@@ -3,23 +3,25 @@ extends Node
 
 # base stats from the player
 var base_stats = {
-	"damage": 20,
+	"attack_damage": 20,
 	"movement_speed": 100,
 	"hp": 100,
-	"range": 10
+	"attack_range": 10,
+	"attack_cooldown" : 2
 }
 
 # additive modifiers from the player
 var additive_mods = {
-	"damage": 0,
+	"attack_damage": 0,
 	"movement_speed": 0,
 	"hp": 0,
-	"range": 0
+	"attack_range": 0,
+	"attack_cooldown" : 0
 }
 
 # multiplicative modifiers from the player
 var multiplicative_mods = {
-	"damage": 1,
+	"attack_damage": 1,
 	"movement_speed": 1,
 	"hp": 1
 }
