@@ -1,11 +1,41 @@
-extends Node2D
+extends CharacterBody2D
+class_name Enemy
 
+signal died
+signal attacked(player)
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+@export var config: EnemyResource
 
+var health: int
+var attack_timer := 0.0
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+@onready var health_bar := $HealthBar
+
+func _ready():
+	health = config.max_health
+
+func _physics_process(delta):
+	attack_timer = max(attack_timer - delta, 0)
+
+func move_towards(target: Vector2, delta: float):
+	var dir = (target - global_position).normalized()
+	velocity = dir * config.speed
+	move_and_slide()
+
+func take_damage(amount: int):
+	health -= amount
+	health_bar.value = float(health) / config.max_health * 100
+	if health <= 0:
+		die()
+
+func die():
+	emit_signal("died")
+	queue_free()
+
+func can_attack(target: Node2D) -> bool:
+	return global_position.distance_to(target.global_position) <= config.attack_range and attack_timer == 0
+
+func attack(target: Node2D):
+	if can_attack(target):
+		attack_timer = config.attack_cooldown
+		emit_signal("attacked", target)
