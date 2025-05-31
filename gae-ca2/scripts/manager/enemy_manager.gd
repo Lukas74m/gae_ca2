@@ -1,11 +1,11 @@
-extends Node2D
+extends Node
+class_name EnemyManager
 
+@export var enemy_configs: Array[EnemyResource]
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func spawn_enemy(resource: EnemyResource, position: Vector2):
+	var enemy = resource.scene.instantiate()
+	enemy.config = resource
+	enemy.global_position = position
+	add_child(enemy)
+	return enemy
