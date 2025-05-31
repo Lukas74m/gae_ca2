@@ -6,26 +6,26 @@ signal attacked(player)
 
 @export var config: EnemyResource
 
-var health: int
+var current_health: int
 var attack_timer := 0.0
 
-@onready var health_bar := $HealthBar
+@onready var health_bar := $HealthLogic
 
 func _ready():
-	health = config.max_health
+	current_health = config.max_health
 
 func _physics_process(delta):
 	attack_timer = max(attack_timer - delta, 0)
 
 func move_towards(target: Vector2, delta: float):
 	var dir = (target - global_position).normalized()
-	velocity = dir * config.speed
+	velocity = dir * config.movement_speed
 	move_and_slide()
 
 func take_damage(amount: int):
-	health -= amount
-	health_bar.value = float(health) / config.max_health * 100
-	if health <= 0:
+	current_health -= amount
+	health_bar.value = float(current_health) / config.max_health * 100
+	if current_health <= 0:
 		die()
 
 func die():
