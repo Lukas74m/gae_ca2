@@ -1,3 +1,33 @@
-[gd_scene format=3 uid="uid://c5o7ciyvg8l1k"]
+[gd_scene load_steps=6 format=3 uid="uid://c5o7ciyvg8l1k"]
 
-[node name="Player" type="Node2D"]
+[ext_resource type="Script" uid="uid://cnul1yq56e3sh" path="res://scripts/player/player.gd" id="1_gfjak"]
+[ext_resource type="Texture2D" uid="uid://dbqr3cdmo3xrr" path="res://icon.svg" id="2_4kuee"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_524rm"]
+atlas = ExtResource("2_4kuee")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tpg5x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_524rm")
+}],
+"loop": true,
+"name": &"test",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c3xxp"]
+radius = 47.0
+height = 108.0
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_gfjak")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_tpg5x")
+animation = &"test"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_c3xxp")

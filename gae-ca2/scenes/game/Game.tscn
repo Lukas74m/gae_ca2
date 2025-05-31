@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dads2ywxohnu1"]
+[gd_scene load_steps=4 format=3 uid="uid://dads2ywxohnu1"]
 
 [ext_resource type="Script" uid="uid://bkhnbumjr1vsv" path="res://scripts/game/game.gd" id="1_m44fu"]
 [ext_resource type="PackedScene" uid="uid://c4s7ucak0uoa0" path="res://scenes/components/Health.tscn" id="2_m44fu"]
+[ext_resource type="PackedScene" uid="uid://c5o7ciyvg8l1k" path="res://scenes/player/Player.tscn" id="3_vrspl"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_m44fu")
@@ -10,5 +11,8 @@ script = ExtResource("1_m44fu")
 wait_time = 4.0
 
 [node name="Health" parent="." instance=ExtResource("2_m44fu")]
+
+[node name="Player" parent="." instance=ExtResource("3_vrspl")]
+position = Vector2(276, 271)
 
 [connection signal="timeout" from="Gametimer" to="." method="_on_gametimer_timeout"]
