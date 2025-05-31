@@ -4,7 +4,6 @@ var entity_max_health : float
 var entity_current_health : float
 signal died
 
-
 func die():
 	# Send to the specific entity, for example the player
 	emit_signal("died")
@@ -18,5 +17,5 @@ func update_health(healt_change: float):
 func get_health():
 	return entity_current_health
 
-func isdead() -> bool:
+func is_dead() -> bool:
 	return entity_current_health <= 0

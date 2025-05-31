@@ -1,3 +1,14 @@
-[gd_scene format=3 uid="uid://dads2ywxohnu1"]
+[gd_scene load_steps=3 format=3 uid="uid://dads2ywxohnu1"]
+
+[ext_resource type="Script" uid="uid://bkhnbumjr1vsv" path="res://scripts/game/game.gd" id="1_m44fu"]
+[ext_resource type="PackedScene" uid="uid://du7v1mkqlo8qg" path="res://scenes/components/Health_UI.tscn" id="2_vrspl"]
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_m44fu")
+
+[node name="HealthUi" parent="." instance=ExtResource("2_vrspl")]
+
+[node name="Gametimer" type="Timer" parent="."]
+wait_time = 4.0
+
+[connection signal="timeout" from="Gametimer" to="." method="_on_gametimer_timeout"]
