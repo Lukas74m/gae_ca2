@@ -19,3 +19,4 @@ func get_health():
 func is_dead() -> bool:
 	return current_health <= 0
 	
+

@@ -1,3 +1,19 @@
-[gd_scene load_steps=0 format=3 uid="uid://du7v1mkqlo8qg"]
+[gd_scene load_steps=2 format=3 uid="uid://du7v1mkqlo8qg"]
+
+[ext_resource type="Script" uid="uid://fbiw2larro6k" path="res://scripts/components/health_ui.gd" id="1_op26f"]
 
 [node name="HealthUi" type="Node2D"]
+script = ExtResource("1_op26f")
+
+[node name="HealthBackground" type="ColorRect" parent="."]
+unique_name_in_owner = true
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.767025, 2.52686e-06, 9.62615e-07, 1)
+
+[node name="HealthFill" type="ColorRect" parent="HealthBackground"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0, 0.592157, 0.109804, 1)
