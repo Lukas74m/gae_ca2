@@ -1,11 +1,22 @@
 extends Node2D
 
+var entity_max_health : float
+var entity_current_health : float
+signal died
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
 
+func die():
+	# Send to the specific entity, for example the player
+	emit_signal("died")
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func update_health(healt_change: float):
+	# Secures that the entity health is between 0  and entity_max_health
+	entity_current_health = clamp(entity_current_health + healt_change, 0 , entity_max_health)
+	if entity_current_health <= 0:
+		die()
+
+func get_health():
+	return entity_current_health
+
+func isdead() -> bool:
+	return entity_current_health <= 0
