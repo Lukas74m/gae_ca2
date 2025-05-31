@@ -1,12 +1,14 @@
 extends Node2D
 
-@onready var health_bar = $HealthUi
+@onready var health = $Health
 @onready var game_timer = $Gametimer
-var health = 20
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	game_timer.start()
+	health.max_health = 100
+	health.current_health = 100
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -16,5 +18,5 @@ func _process(delta: float) -> void:
 
 func _on_gametimer_timeout() -> void:
 	print("timeout")
-	health += 10
-	health_bar.update_health(25)
+	var health_update = -10
+	health.update_health(health_update)
