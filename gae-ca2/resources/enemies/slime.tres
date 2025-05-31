@@ -4,9 +4,9 @@
 
 [resource]
 script = ExtResource("1_6pnpc")
-hp = 0
-movement_speed = 0.0
-attack_range = 0.0
-attack_damage = 0.0
-attack_cooldown = 0.0
+hp = 1
+movement_speed = 1.0
+attack_range = 1.0
+attack_damage = 1.0
+attack_cooldown = 10.0
 metadata/_custom_type_script = "uid://p4xaeqeavuor"
