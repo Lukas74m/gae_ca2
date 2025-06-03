@@ -17,9 +17,7 @@ func load_enemy_resources():
 	#base_enemy_scenes.shuffle()
 
 func spawn_enemy(position: Vector2):
-	print(enemy_resources)
 	for enemy_resource in enemy_resources:
-		print("APjobadkn")
 		var enemy_object = enemy_base_scene.instantiate()
 		enemy_object.enemy_resource = enemy_resource
 		enemy_object.global_position = position

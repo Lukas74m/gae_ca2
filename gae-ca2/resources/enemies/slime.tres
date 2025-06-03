@@ -4,8 +4,8 @@
 
 [resource]
 script = ExtResource("1_6pnpc")
-texture = "C:/Users/lukas/IB Material HSM/GAE/game_jam3_ca2/gae_ca2/gae-ca2/assets/enemies/Unbenannt.png"
-max_health = 100
+texture = "res://assets/enemies/Unbenannt.png"
+max_health = 0
 movement_speed = 0.0
 attack_range = 0.0
 attack_damage = 0.0

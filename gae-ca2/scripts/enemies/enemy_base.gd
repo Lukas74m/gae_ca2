@@ -20,7 +20,6 @@ var attack_timer := 0.0
 @onready var health_bar := $HealthLogic
 
 func _ready():
-	print("SPAWNING")
 	var texture = load(enemy_resource.texture)
 	enemy_visual.texture = texture
 	max_health = enemy_resource.max_health
