@@ -1,4 +1,4 @@
-extends Node2D
+extends CharacterBody2D
 class_name Enemy
 
 signal died
@@ -6,6 +6,7 @@ signal attacked(player)
 
 @export var enemy_resource: EnemyResource
 @onready var enemy_visual = $Sprite2D
+
 var max_health: int
 var movement_speed: float
 var attack_range: float
@@ -19,7 +20,7 @@ var attack_cooldown: float
 @onready var health := $Health
 
 func _ready():
-	health.set_healthbar_position(global_position +  + Vector2(0,50))
+	health.set_healthbar_position(global_position + Vector2(0,50))
 	health.died.connect(die)
 	
 	var texture = load(enemy_resource.texture)
@@ -31,9 +32,26 @@ func _ready():
 	attack_cooldown = enemy_resource.attack_cooldown
 	
 
-#func _physics_process(delta):
-	#attack_timer = max(attack_timer - delta, 0)
+# attack_cooldown is missing for attack
+func _physics_process(delta):
+	move_towards_player(delta)
 
+func move_towards_player(delta: float):
+	if Global.player == null:
+		push_error("Global.player is null")
+		return
+	var distance_to_player = global_position.distance_to(Global.player.global_position)
+	# Only move if not in attack range
+	if distance_to_player > attack_range:
+		var direction = (Global.player.global_position - global_position).normalized()
+		velocity = direction * movement_speed
+		move_and_slide()
+	else:
+		# Stop moving when in attack range
+		velocity = Vector2.ZERO
+		# Try to attack if possible
+		if can_attack():
+			attack()
 
 func take_damage(amount: int):
 	#current_health -= amount
@@ -42,10 +60,10 @@ func take_damage(amount: int):
 func die():
 	queue_free()
 
-#func can_attack(target: Node2D) -> bool:
-	#return global_position.distance_to(target.global_position) <= enemy_resource.attack_range and attack_timer == 0
-#
-#func attack(target: Node2D):
-	#if can_attack(target):
-		#attack_timer = enemy_resource.attack_cooldown
-		#emit_signal("attacked", target)
+func can_attack() -> bool:
+	return global_position.distance_to(Global.player.global_position) <= attack_range
+
+func attack():
+	if can_attack():
+		emit_signal("attacked")
+		print("adsalfg")
