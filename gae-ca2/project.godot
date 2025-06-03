@@ -15,6 +15,10 @@ run/main_scene="uid://dads2ywxohnu1"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://assets/player/icon.svg"
 
+[autoload]
+
+Global="*res://scripts/global.gd"
+
 [input]
 
 attack={
