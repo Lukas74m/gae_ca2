@@ -22,8 +22,8 @@ func spawn_enemy(position: Vector2):
 		enemy_object.enemy_resource = enemy_resource
 		enemy_object.global_position = position
 	
-		enemy_object.died.connect(_on_enemy_died)
-		enemy_object.attacked.connect(_on_enemy_attacked)
+		#enemy_object.died.connect(_on_enemy_died)
+		#enemy_object.attacked.connect(_on_enemy_attacked)
 	
 		add_child(enemy_object)
 		#return enemy

@@ -6,8 +6,8 @@
 [node name="Enemies" type="Node2D"]
 script = ExtResource("1_ifgcn")
 
-[node name="HealthLogic" parent="." instance=ExtResource("2_0gelj")]
+[node name="Health" parent="." instance=ExtResource("2_0gelj")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(8, 10)
-scale = Vector2(0.215, 0.265)
+scale = Vector2(2, 2.465)

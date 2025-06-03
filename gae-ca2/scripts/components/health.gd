@@ -26,10 +26,11 @@ func update_health_bar():
 	tween = create_tween()
 	tween.tween_property(health_fill, "size:x", target_width, 0.3)
 
+func set_healthbar_position(position):
+	health_background.position = position
 
 func die():
 	emit_signal("died")
-
 
 func update_health(health_change: float):
 	# Secures that the entity health is between 0 and max_health
@@ -38,10 +39,8 @@ func update_health(health_change: float):
 	if current_health <= 0:
 		die()
 
-
 func get_health():
 	return current_health
-
 
 func is_dead() -> bool:
 	return current_health <= 0

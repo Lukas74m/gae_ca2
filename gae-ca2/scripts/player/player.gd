@@ -4,12 +4,13 @@ extends CharacterBody2D
 @export var stop_distance: float = 4.0
 @onready var attack_area: Area2D = $Area2D
 @onready var player_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var health = $Health
 
 var attacking: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	health.set_healthbar_position(global_position + Vector2(-10, 70))
 	
 func _input(event):
 	if event.is_action_pressed("attack") and not attacking:
