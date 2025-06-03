@@ -1,14 +1,13 @@
-[gd_resource type="Resource" script_class="EnemyResource" load_steps=3 format=3 uid="uid://d3o6lho4m3hgy"]
+[gd_resource type="Resource" script_class="EnemyResource" load_steps=2 format=3 uid="uid://gwatrwp216xw"]
 
 [ext_resource type="Script" uid="uid://p4xaeqeavuor" path="res://scripts/manager/enemy_resource.gd" id="1_6pnpc"]
-[ext_resource type="PackedScene" uid="uid://drynr2xfytmmr" path="res://scenes/manager/EnemyManager.tscn" id="1_wcmes"]
 
 [resource]
 script = ExtResource("1_6pnpc")
-scene = ExtResource("1_wcmes")
-max_health = 1
-movement_speed = 1.0
-attack_range = 1.0
-attack_damage = 1.0
-attack_cooldown = 10.0
+texture = "C:/Users/lukas/IB Material HSM/GAE/game_jam3_ca2/gae_ca2/gae-ca2/assets/enemies/Unbenannt.png"
+max_health = 100
+movement_speed = 0.0
+attack_range = 0.0
+attack_damage = 0.0
+attack_cooldown = 0.0
 metadata/_custom_type_script = "uid://p4xaeqeavuor"

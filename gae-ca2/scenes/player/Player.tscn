@@ -87,27 +87,29 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c3xxp"]
-radius = 98.0
-height = 508.0
+radius = 74.0
+height = 328.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4kuee"]
-radius = 509.267
+radius = 252.335
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_gfjak")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-107.5, 91)
+scale = Vector2(0.3, 0.335)
 sprite_frames = SubResource("SpriteFrames_tpg5x")
 animation = &"walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(18, 16)
+position = Vector2(-97, 118)
 shape = SubResource("CapsuleShape2D_c3xxp")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-17, -17)
+position = Vector2(-95, 110)
 shape = SubResource("CircleShape2D_4kuee")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

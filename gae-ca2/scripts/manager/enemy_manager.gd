@@ -1,20 +1,35 @@
 extends Node
 class_name EnemyManager
 
-@export var base_enemy_scene: PackedScene
-@export var enemy_configs: Array[EnemyResource]
 
-func spawn_enemy(resource: EnemyResource, position: Vector2):
-	var enemy = resource.scene.instantiate()
-	enemy.config = resource
-	enemy.global_position = position
+@export var enemy_configs: Array[EnemyResource]
+var enemy_base_scene = preload("res://scenes/enemies/EnemyBase.tscn")
+var enemy_resources = []
+
+func _ready():
+	load_enemy_resources()
+
+
+func load_enemy_resources():
+	enemy_resources = [
+		preload("res://resources/enemies/slime.tres")
+	]
+	#base_enemy_scenes.shuffle()
+
+func spawn_enemy(position: Vector2):
+	print(enemy_resources)
+	for enemy_resource in enemy_resources:
+		print("APjobadkn")
+		var enemy_object = enemy_base_scene.instantiate()
+		enemy_object.enemy_resource = enemy_resource
+		enemy_object.global_position = position
 	
-		# CONNECT ENEMY SIGNALS HERE
-	enemy.died.connect(_on_enemy_died)
-	enemy.attacked.connect(_on_enemy_attacked)
+		enemy_object.died.connect(_on_enemy_died)
+		enemy_object.attacked.connect(_on_enemy_attacked)
 	
-	add_child(enemy)
-	return enemy
+		add_child(enemy_object)
+		#return enemy
+	
 
 func _on_enemy_died():
 	print("Enemy died - could drop loot, add score, etc.")
