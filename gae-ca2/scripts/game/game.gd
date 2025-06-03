@@ -6,9 +6,10 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	Global.player= player
 	game_timer.start()
 	enemy_manager.spawn_enemy(Vector2(0,0))
+	Global.player = player
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
