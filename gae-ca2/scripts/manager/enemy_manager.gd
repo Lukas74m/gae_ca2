@@ -7,6 +7,7 @@ var enemy_base_scene = preload("res://scenes/enemies/EnemyBase.tscn")
 var enemy_resources = []
 
 func _ready():
+	
 	load_enemy_resources()
 
 
@@ -21,7 +22,7 @@ func spawn_enemy(position: Vector2):
 		var enemy_object = enemy_base_scene.instantiate()
 		enemy_object.enemy_resource = enemy_resource
 		enemy_object.global_position = position
-	
+		enemy_object.add_to_group("enemies")
 		#enemy_object.died.connect(_on_enemy_died)
 		#enemy_object.attacked.connect(_on_enemy_attacked)
 	
