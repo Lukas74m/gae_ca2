@@ -20,9 +20,6 @@ var attack_cooldown: float
 @onready var health := $Health
 
 func _ready():
-	health.set_healthbar_position(global_position + Vector2(-15,50))
-	health.died.connect(die)
-	
 	var texture = load(enemy_resource.texture)
 	enemy_visual.texture = texture
 	max_health = enemy_resource.max_health
@@ -30,6 +27,10 @@ func _ready():
 	attack_range = enemy_resource.attack_range 
 	attack_damage = enemy_resource.attack_damage
 	attack_cooldown = enemy_resource.attack_cooldown
+	
+	health.initialize_health(max_health)
+	health.set_healthbar_position(global_position + Vector2(-15,50))
+	health.died.connect(die)
 	
 
 # attack_cooldown is missing for attack
@@ -55,7 +56,8 @@ func move_towards_player(delta: float):
 
 func take_damage(amount: int):
 	#current_health -= amount
-	health.update_health(amount)
+	print(max_health)
+	health.update_health(-amount)
 
 func die():
 	queue_free()
@@ -64,6 +66,4 @@ func can_attack() -> bool:
 	return global_position.distance_to(Global.player.global_position) <= attack_range
 
 func attack():
-	if can_attack():
-		emit_signal("attacked")
-		print("adsalfg")
+	Global.player.take_damage(attack_damage)

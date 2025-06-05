@@ -18,4 +18,5 @@ func _process(delta: float) -> void:
 
 
 func _on_gametimer_timeout() -> void:
-	print("timeout")
+	#print("timeout")
+	pass
