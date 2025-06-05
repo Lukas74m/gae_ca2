@@ -20,7 +20,7 @@ var attack_cooldown: float
 @onready var health := $Health
 
 func _ready():
-	health.set_healthbar_position(global_position + Vector2(0,50))
+	health.set_healthbar_position(global_position + Vector2(-15,50))
 	health.died.connect(die)
 	
 	var texture = load(enemy_resource.texture)

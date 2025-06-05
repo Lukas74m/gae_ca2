@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c4s7ucak0uoa0" path="res://scenes/components/Health.tscn" id="2_0gelj"]
 
 [node name="Enemies" type="CharacterBody2D"]
+scale = Vector2(0.3, 0.3)
 script = ExtResource("1_ifgcn")
 
 [node name="Health" parent="." instance=ExtResource("2_0gelj")]

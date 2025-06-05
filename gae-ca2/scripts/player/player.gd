@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed: float = 70.0
+@export var speed: float = 170.0
 @export var stop_distance: float = 30.0
 @export var dash_speed: float = 200.0
 @export var dash_duration: float = 0.2
@@ -16,7 +16,7 @@ var dash_direction: Vector2 = Vector2.ZERO
 var attacking: bool = false
 
 func _ready() -> void:
-	health.set_healthbar_position(global_position + Vector2(-10, 70))
+	health.set_healthbar_position(global_position + Vector2(-45, -40))
 
 #Eingabe des Spielers
 func _input(event):

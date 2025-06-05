@@ -6,7 +6,7 @@
 script = ExtResource("1_6pnpc")
 texture = "res://assets/enemies/pixil-frame-0 (6).png"
 max_health = 2
-movement_speed = 75.0
+movement_speed = 50.0
 attack_range = 1.0
 attack_damage = 1.0
 attack_cooldown = 100.0
