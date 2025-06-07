@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c4s7ucak0uoa0" path="res://scenes/components/Health.tscn" id="2_0gelj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0gelj"]
-radius = 53.3333
+radius = 46.6667
 
 [node name="Enemies" type="CharacterBody2D"]
 scale = Vector2(0.3, 0.3)
