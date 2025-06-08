@@ -28,7 +28,6 @@ func spawn_enemy(enemy):
 func spawn_wave(enemy_composition, spawn_frequency):
 	for enemy in enemy_composition:
 		for enemy_amount in range(enemy_composition[enemy]):
-			print(enemy)
 			await get_tree().create_timer(spawn_frequency).timeout
 			spawn_enemy(enemy)
 

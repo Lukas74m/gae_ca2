@@ -2,12 +2,14 @@ extends Node2D
 
 @onready var game_timer = $Gametimer
 @onready var enemy_manager = $EnemyManager
+@onready var progress_manager = $ProgressManger 
 @onready var player = $Player
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#enemy_manager.spawn_enemy()
 	Global.player = player
+	Global.ProgressManager = progress_manager
 	game_timer.start()
 	
 

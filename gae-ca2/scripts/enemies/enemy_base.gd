@@ -6,6 +6,7 @@ signal attacked(player)
 
 @export var enemy_resource: EnemyResource
 @onready var enemy_visual = $Sprite2D
+@onready var health := $Health
 
 var max_health: int
 var movement_speed: float
@@ -13,11 +14,6 @@ var attack_range: float
 var attack_damage: float
 var attack_cooldown: float
 
-#mittelfristig weg
-#var current_health: int
-#var attack_timer := 0.0
-
-@onready var health := $Health
 
 func _ready():
 	var texture = load(enemy_resource.texture)
@@ -58,7 +54,9 @@ func take_damage(amount: int):
 	health.update_health(-amount)
 
 func die():
+	Global.ProgressManager.update_level_progress()
 	queue_free()
+	
 
 func can_attack() -> bool:
 	return global_position.distance_to(Global.player.global_position) <= attack_range

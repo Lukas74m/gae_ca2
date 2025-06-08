@@ -1,6 +1,6 @@
 extends Node2D
 
-var current_wave_size
+var current_level_kill_amount = 0
 var progress_resources
 var level_resource
 var enemy_manager
@@ -26,11 +26,18 @@ func load_progress_resources():
 
 
 func on_level_up():
-	#print("Should level up")
 	var next_level = current_level_dict["current_level"] + 1
-	level_resource = progress_resources["level_" + str(next_level)]
-	load_level_information()
-	enemy_manager.spawn_wave(current_level_dict["enemy_composition"], current_level_dict["spawn_frequency"])
+	var key = "level_" + str(next_level)
+	
+	if progress_resources.has(key):
+		level_resource = progress_resources[key]
+		load_level_information()
+		enemy_manager.spawn_wave(
+			current_level_dict["enemy_composition"],
+			current_level_dict["spawn_frequency"]
+		)
+	else:
+		printerr("No more levels!")
 
 
 func load_level_information():
@@ -39,3 +46,10 @@ func load_level_information():
 	current_level_dict["enemy_composition"] = level_resource.enemy_composition
 	current_level_dict["spawn_frequency"] = level_resource.spawn_frequency
 	current_level_dict["level_boss"] = level_resource.level_boss	
+
+
+func update_level_progress():
+	current_level_kill_amount += 1
+	if current_level_kill_amount >= current_level_dict["level_wave_size"]:
+		current_level_kill_amount = 0
+		on_level_up()
