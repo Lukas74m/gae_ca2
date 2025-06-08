@@ -12,22 +12,25 @@ func _ready():
 
 
 func load_enemy_resources():
-	enemy_resources = [
-		preload("res://resources/enemies/slime.tres")
-	]
-	#base_enemy_scenes.shuffle()
-
-func spawn_enemy():
-	for enemy_resource in enemy_resources:
-		var enemy_object = enemy_base_scene.instantiate()
-		enemy_object.enemy_resource = enemy_resource
-		#enemy_object.global_position = position
-		enemy_object.add_to_group("enemies")
-		add_child(enemy_object)	
+	enemy_resources = {
+		"slime": preload("res://resources/enemies/slime.tres")	
+	}
 
 
-func spawn_wave(enemy_composition):
-	print("Spawning")
+func spawn_enemy(enemy):
+	var enemy_object = enemy_base_scene.instantiate()
+	enemy_object.enemy_resource = enemy_resources[enemy]
+	enemy_object.global_position = Vector2(0, 0)
+	enemy_object.add_to_group("enemies")
+	add_child(enemy_object)	
+
+
+func spawn_wave(enemy_composition, spawn_frequency):
+	for enemy in enemy_composition:
+		for enemy_amount in range(enemy_composition[enemy]):
+			print(enemy)
+			await get_tree().create_timer(spawn_frequency).timeout
+			spawn_enemy(enemy)
 
 
 func _on_enemy_died():

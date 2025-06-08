@@ -9,6 +9,7 @@ var current_level_dict = {
 	"current_level": 0,
 	"level_wave_size": 0,
 	"enemy_composition": {},
+	"spawn_frequency": 0,
 	"level_boss": ""
 }
 
@@ -25,14 +26,16 @@ func load_progress_resources():
 
 
 func on_level_up():
+	#print("Should level up")
 	var next_level = current_level_dict["current_level"] + 1
 	level_resource = progress_resources["level_" + str(next_level)]
 	load_level_information()
-	enemy_manager.spawn_wave(current_level_dict["enemy_composition"])
+	enemy_manager.spawn_wave(current_level_dict["enemy_composition"], current_level_dict["spawn_frequency"])
 
 
 func load_level_information():
 	current_level_dict["current_level"] = level_resource.current_level
 	current_level_dict["level_wave_size"] = level_resource.level_wave_size
 	current_level_dict["enemy_composition"] = level_resource.enemy_composition
+	current_level_dict["spawn_frequency"] = level_resource.spawn_frequency
 	current_level_dict["level_boss"] = level_resource.level_boss	
