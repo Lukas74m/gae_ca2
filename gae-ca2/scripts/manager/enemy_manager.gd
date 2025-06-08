@@ -17,18 +17,18 @@ func load_enemy_resources():
 	]
 	#base_enemy_scenes.shuffle()
 
-func spawn_enemy(position: Vector2):
+func spawn_enemy():
 	for enemy_resource in enemy_resources:
 		var enemy_object = enemy_base_scene.instantiate()
 		enemy_object.enemy_resource = enemy_resource
-		enemy_object.global_position = position
+		#enemy_object.global_position = position
 		enemy_object.add_to_group("enemies")
-		#enemy_object.died.connect(_on_enemy_died)
-		#enemy_object.attacked.connect(_on_enemy_attacked)
-	
-		add_child(enemy_object)
-		#return enemy
-	
+		add_child(enemy_object)	
+
+
+func spawn_wave(enemy_composition):
+	print("Spawning")
+
 
 func _on_enemy_died():
 	print("Enemy died - could drop loot, add score, etc.")

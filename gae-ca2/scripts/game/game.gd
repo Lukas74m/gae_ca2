@@ -6,9 +6,9 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	game_timer.start()
-	enemy_manager.spawn_enemy(Vector2(0,0))
+	enemy_manager.spawn_enemy()
 	Global.player = player
+	game_timer.start()
 	
 
 

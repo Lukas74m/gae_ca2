@@ -55,8 +55,6 @@ func move_towards_player(delta: float):
 			attack()
 
 func take_damage(amount: int):
-	#current_health -= amount
-	print(max_health)
 	health.update_health(-amount)
 
 func die():
