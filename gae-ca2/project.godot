@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="GAE CA2"
-run/main_scene="uid://dads2ywxohnu1"
+run/main_scene="uid://cxx3el2lce3d2"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://assets/player/icon.svg"
 
