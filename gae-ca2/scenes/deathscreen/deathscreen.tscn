@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://bssklr8wevq48"]
+
+[ext_resource type="Script" uid="uid://mbxpwk46vjra" path="res://scripts/deathscreen/deathscreen.gd" id="1_d4h8k"]
+[ext_resource type="Script" uid="uid://3ec3cm3265m7" path="res://scripts/deathscreen/texture_button.gd" id="2_bssjh"]
+[ext_resource type="Texture2D" uid="uid://vin4wv4t3hn5" path="res://assets/pixel dungeon asset pack/2D Pixel Dungeon Asset Pack/interface/square_right_2_4.png" id="2_jco5j"]
+
+[node name="Deathscreen" type="Node2D"]
+script = ExtResource("1_d4h8k")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+offset_left = 517.0
+offset_top = 281.0
+offset_right = 638.0
+offset_bottom = 306.0
+size_flags_horizontal = 8
+texture_normal = ExtResource("2_jco5j")
+script = ExtResource("2_bssjh")
+
+[node name="Label" type="Label" parent="TextureButton"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Startbildschirm"
+
+[connection signal="pressed" from="TextureButton" to="TextureButton" method="_on_pressed"]

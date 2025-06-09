@@ -101,3 +101,8 @@ func get_stat(stat_name: String):
 
 #func die():
 	#queue_free()
+
+
+func _on_health_died() -> void:
+	await get_tree().create_timer(1.2).timeout
+	get_tree().change_scene_to_file("res://scenes/deathscreen/deathscreen.tscn")

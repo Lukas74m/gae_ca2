@@ -230,3 +230,4 @@ scale = Vector2(0.2, 0.2)
 [node name="PlayerStats" parent="." instance=ExtResource("7_npwbq")]
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="died" from="Health" to="." method="_on_health_died"]
