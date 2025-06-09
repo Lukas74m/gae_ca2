@@ -1,0 +1,304 @@
+[gd_scene load_steps=32 format=3 uid="uid://cxx3el2lce3d2"]
+
+[ext_resource type="Texture2D" uid="uid://rwdm74nqhelq" path="res://assets/buttons/Test_Button.png" id="1_eyxl6"]
+[ext_resource type="Texture2D" uid="uid://drsj06k5do28m" path="res://assets/buttons/Test_Button_Hover.png" id="2_m2m30"]
+[ext_resource type="Script" uid="uid://8q8wxq3n0obc" path="res://scripts/mainMenu/play_button.gd" id="3_m2m30"]
+[ext_resource type="Texture2D" uid="uid://wkwoejl3hpar" path="res://assets/buttons/Test_Button_On_Click.png" id="3_y210c"]
+[ext_resource type="Script" uid="uid://brm31nfjnr504" path="res://scripts/mainMenu/sound_button.gd" id="5_y210c"]
+[ext_resource type="Script" uid="uid://bs8us8popi4rr" path="res://scripts/mainMenu/help_button.gd" id="6_bh2hf"]
+[ext_resource type="Script" uid="uid://bxq12qv6mnh6b" path="res://scripts/mainMenu/quit_button.gd" id="7_lt47h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8afvm"]
+atlas = ExtResource("3_y210c")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iukig"]
+atlas = ExtResource("3_y210c")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_12wyl"]
+atlas = ExtResource("3_y210c")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ekc0u"]
+atlas = ExtResource("3_y210c")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2k0je"]
+atlas = ExtResource("3_y210c")
+region = Rect2(400, 0, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_65jxp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8afvm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iukig")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_12wyl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ekc0u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2k0je")
+}],
+"loop": false,
+"name": &"click",
+"speed": 12.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y210c"]
+atlas = ExtResource("3_y210c")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_65jxp"]
+atlas = ExtResource("3_y210c")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d4ctb"]
+atlas = ExtResource("3_y210c")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ebw8y"]
+atlas = ExtResource("3_y210c")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5271p"]
+atlas = ExtResource("3_y210c")
+region = Rect2(400, 0, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_no2s3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y210c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_65jxp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d4ctb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ebw8y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5271p")
+}],
+"loop": false,
+"name": &"click",
+"speed": 12.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lbdhq"]
+atlas = ExtResource("3_y210c")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bh2hf"]
+atlas = ExtResource("3_y210c")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lt47h"]
+atlas = ExtResource("3_y210c")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wkoib"]
+atlas = ExtResource("3_y210c")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aoxig"]
+atlas = ExtResource("3_y210c")
+region = Rect2(400, 0, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lbdhq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lbdhq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bh2hf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lt47h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wkoib")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aoxig")
+}],
+"loop": false,
+"name": &"click",
+"speed": 12.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6enk"]
+atlas = ExtResource("3_y210c")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sn6g4"]
+atlas = ExtResource("3_y210c")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7yx1s"]
+atlas = ExtResource("3_y210c")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_725k2"]
+atlas = ExtResource("3_y210c")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vo403"]
+atlas = ExtResource("3_y210c")
+region = Rect2(400, 0, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bh2hf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6enk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sn6g4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7yx1s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_725k2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vo403")
+}],
+"loop": false,
+"name": &"click",
+"speed": 12.0
+}]
+
+[node name="MainMenu" type="Node2D"]
+
+[node name="Background" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 520.0
+offset_top = 130.0
+offset_right = 620.0
+offset_bottom = 242.0
+
+[node name="PlayButton" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("1_eyxl6")
+texture_hover = ExtResource("2_m2m30")
+script = ExtResource("3_m2m30")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="VBoxContainer/PlayButton"]
+position = Vector2(50, 50)
+sprite_frames = SubResource("SpriteFrames_65jxp")
+animation = &"click"
+
+[node name="PlayLabel" type="Label" parent="VBoxContainer/PlayButton"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 29.0
+offset_right = 82.0
+offset_bottom = 52.0
+text = "Spielen"
+
+[node name="SoundButton" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("1_eyxl6")
+texture_hover = ExtResource("2_m2m30")
+script = ExtResource("5_y210c")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="VBoxContainer/SoundButton"]
+position = Vector2(50, 50)
+sprite_frames = SubResource("SpriteFrames_no2s3")
+animation = &"click"
+
+[node name="SoundLabel" type="Label" parent="VBoxContainer/SoundButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -25.0
+offset_top = -7.0
+offset_right = 29.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 8
+text = "Soundeinstellungen"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HelpButton" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("1_eyxl6")
+texture_hover = ExtResource("2_m2m30")
+script = ExtResource("6_bh2hf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="VBoxContainer/HelpButton"]
+position = Vector2(50, 50)
+sprite_frames = SubResource("SpriteFrames_lbdhq")
+animation = &"click"
+
+[node name="HelpLabel" type="Label" parent="VBoxContainer/HelpButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = -18.0
+offset_right = -1.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Hilfe"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuitButton" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("1_eyxl6")
+texture_hover = ExtResource("2_m2m30")
+script = ExtResource("7_lt47h")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="VBoxContainer/QuitButton"]
+position = Vector2(50, 50)
+sprite_frames = SubResource("SpriteFrames_bh2hf")
+animation = &"click"
+
+[node name="QuitLabel" type="Label" parent="VBoxContainer/QuitButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = -7.0
+offset_right = 3.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Beenden"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="VBoxContainer/PlayButton" to="VBoxContainer/PlayButton" method="_on_pressed"]
+[connection signal="ready" from="VBoxContainer/PlayButton" to="VBoxContainer/PlayButton" method="_on_ready"]
+[connection signal="animation_finished" from="VBoxContainer/PlayButton/AnimatedSprite2D" to="VBoxContainer/PlayButton" method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="pressed" from="VBoxContainer/SoundButton" to="VBoxContainer/SoundButton" method="_on_pressed"]
+[connection signal="ready" from="VBoxContainer/SoundButton" to="VBoxContainer/SoundButton" method="_on_ready"]
+[connection signal="animation_finished" from="VBoxContainer/SoundButton/AnimatedSprite2D" to="VBoxContainer/SoundButton" method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="pressed" from="VBoxContainer/HelpButton" to="VBoxContainer/HelpButton" method="_on_pressed"]
+[connection signal="ready" from="VBoxContainer/HelpButton" to="VBoxContainer/HelpButton" method="_on_ready"]
+[connection signal="animation_finished" from="VBoxContainer/HelpButton/AnimatedSprite2D" to="VBoxContainer/HelpButton" method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="VBoxContainer/QuitButton" method="_on_pressed"]
+[connection signal="ready" from="VBoxContainer/QuitButton" to="VBoxContainer/QuitButton" method="_on_ready"]
+[connection signal="animation_finished" from="VBoxContainer/QuitButton/AnimatedSprite2D" to="VBoxContainer/QuitButton" method="_on_animated_sprite_2d_animation_finished"]

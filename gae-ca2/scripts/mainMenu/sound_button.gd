@@ -1,0 +1,19 @@
+extends TextureButton
+
+@onready var SoundButton: AnimatedSprite2D = $AnimatedSprite2D
+var start_sound_window_after_animation = false
+
+func _on_ready() -> void:
+	SoundButton.visible = false
+	SoundButton.stop()
+
+
+func _on_pressed() -> void:
+	SoundButton.visible = true
+	SoundButton.play("click")
+	start_sound_window_after_animation = true
+
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	if start_sound_window_after_animation:
+		get_tree().change_scene_to_file("res://scenes/Soundsettings.tscn")
