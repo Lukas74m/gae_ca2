@@ -1,0 +1,96 @@
+[gd_scene load_steps=12 format=3 uid="uid://bssklr8wevq48"]
+
+[ext_resource type="Script" uid="uid://mbxpwk46vjra" path="res://scripts/deathscreen/deathscreen.gd" id="1_d4h8k"]
+[ext_resource type="Script" uid="uid://3ec3cm3265m7" path="res://scripts/deathscreen/texture_button.gd" id="2_bssjh"]
+[ext_resource type="Texture2D" uid="uid://rwdm74nqhelq" path="res://assets/buttons/Test_Button.png" id="2_u6gas"]
+[ext_resource type="Texture2D" uid="uid://drsj06k5do28m" path="res://assets/buttons/Test_Button_Hover.png" id="3_3638j"]
+[ext_resource type="Texture2D" uid="uid://wkwoejl3hpar" path="res://assets/buttons/Test_Button_On_Click.png" id="5_3638j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_btbqu"]
+atlas = ExtResource("5_3638j")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gm5rc"]
+atlas = ExtResource("5_3638j")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_esdwi"]
+atlas = ExtResource("5_3638j")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sp2op"]
+atlas = ExtResource("5_3638j")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t037i"]
+atlas = ExtResource("5_3638j")
+region = Rect2(400, 0, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s586m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_btbqu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gm5rc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_esdwi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sp2op")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t037i")
+}],
+"loop": false,
+"name": &"click",
+"speed": 10.0
+}]
+
+[node name="Deathscreen" type="Node2D"]
+script = ExtResource("1_d4h8k")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 532.0
+offset_top = 260.0
+offset_right = 632.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("2_u6gas")
+texture_hover = ExtResource("3_3638j")
+script = ExtResource("2_bssjh")
+
+[node name="Label" type="Label" parent="TextureButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -59.5
+offset_top = -11.5
+offset_right = 59.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Startbildschirm"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TextureButton"]
+position = Vector2(50, 50)
+sprite_frames = SubResource("SpriteFrames_s586m")
+animation = &"click"
+frame = 4
+frame_progress = 1.0
+
+[connection signal="pressed" from="TextureButton" to="TextureButton" method="_on_pressed"]
+[connection signal="animation_finished" from="TextureButton/AnimatedSprite2D" to="TextureButton" method="_on_animated_sprite_2d_animation_finished"]

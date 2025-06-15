@@ -17,4 +17,4 @@ func _on_pressed() -> void:
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if start_help_after_animation:
-		get_tree().change_scene_to_file("res://scenes/game/Help.tscn")
+		get_tree().change_scene_to_file("res://scenes/helpSettings/help_settings.tscn")

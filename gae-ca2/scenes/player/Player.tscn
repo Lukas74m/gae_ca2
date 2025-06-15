@@ -204,7 +204,7 @@ radius = 4.0
 height = 16.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4kuee"]
-radius = 13.0
+radius = 18.0
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_gfjak")
@@ -230,3 +230,4 @@ scale = Vector2(0.2, 0.2)
 [node name="PlayerStats" parent="." instance=ExtResource("7_npwbq")]
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="died" from="Health" to="." method="_on_health_died"]
