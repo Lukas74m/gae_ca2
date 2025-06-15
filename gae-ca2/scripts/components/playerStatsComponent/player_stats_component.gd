@@ -8,7 +8,9 @@ var base_stats = {
 	#"attack_cooldown": 2, 				# Cooldown is based on animations
 	"dash_speed": 200,
 	"movement_speed": 100,
-	"max_health": 100
+	"max_health": 100,
+	"krit_rate": 20,
+	"krit_damage": 20
 }
 
 # additive modifiers from the player
