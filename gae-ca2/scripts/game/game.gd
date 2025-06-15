@@ -4,7 +4,6 @@ extends Node2D
 @onready var enemy_manager = $EnemyManager
 @onready var progress_manager = $ProgressManger 
 @onready var player = $Player
-@onready var shop: CanvasLayer = $Shop
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
