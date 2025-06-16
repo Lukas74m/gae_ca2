@@ -19,7 +19,6 @@ var dash_direction: Vector2 = Vector2.ZERO
 var attacking: bool = false
 
 func _ready() -> void:
-	#health.died.connect(die)		# Enable this later
 	health.initialize_health(get_stat("max_health"))
 	health.set_healthbar_position(global_position + Vector2(-45, -40))
 
@@ -162,4 +161,4 @@ func get_stat(stat_name: String):
 func _on_health_died() -> void:
 	change_state(PlayerState.DEAD)
 	await get_tree().create_timer(1.2).timeout
-	get_tree().change_scene_to_file("res://scenes/deathscreen/deathscreen.tscn")
+	get_tree().change_scene_to_file("res://scenes/deathscreen/Deathscreen.tscn")

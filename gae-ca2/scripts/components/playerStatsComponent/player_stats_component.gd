@@ -9,8 +9,8 @@ var base_stats = {
 	"dash_speed": 200,
 	"movement_speed": 100,
 	"max_health": 100,
-	"krit_rate": 20,
-	"krit_damage": 20
+	"crit_rate": 0.2,
+	"crit_damage": 20
 }
 
 # additive modifiers from the player

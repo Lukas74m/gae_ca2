@@ -1,7 +1,6 @@
 extends Node
 class_name EnemyManager
 
-
 @export var enemy_configs: Array[EnemyResource]
 
 var enemy_resources = []
@@ -11,7 +10,6 @@ var enemy_scenes = []
 func _ready():
 	load_enemy_scenes()
 	load_enemy_resources()
-
 
 func load_enemy_scenes():
 	enemy_scenes = {

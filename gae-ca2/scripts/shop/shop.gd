@@ -9,8 +9,8 @@ extends CanvasLayer
 var possible_upgrades = [
 	{"stat": "attack_damage", "amount": 15, "label": "+15 Angriffsschaden"},
 	{"stat": "max_health", "amount": 25, "label": "+25 Max. Leben"},
-	{"stat": "krit_rate", "amount": 15, "label": "+15 Krit-Wahrscheinlichkeit"},
-	{"stat": "krit_damage", "amount": 25, "label": "+25 Kritischer Schaden"}
+	{"stat": "crit_rate", "amount": 15, "label": "+15 Krit-Wahrscheinlichkeit"},
+	{"stat": "crit_damage", "amount": 25, "label": "+25 Kritischer Schaden"}
 ]
 
 var chosen_upgrades = []  
@@ -32,7 +32,6 @@ func show_shop():
 
 	panel.show()
 	#get_tree().paused = true
-
 
 
 func _on_option_1_button_pressed() -> void:
