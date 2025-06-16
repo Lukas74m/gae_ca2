@@ -18,7 +18,8 @@ var boss_current_state: BossState = BossState.WALK
 
 func _ready():
 	super._ready()  # Call parent _ready()
-	
+	health.set_healthbar_position(global_position + Vector2(-15,100))	
+
 	# Override some base enemy values for boss
 	max_health *= 3  # Bosses have more health
 	health.initialize_health(max_health)
@@ -88,7 +89,7 @@ func perform_melee_attack(delta: float, distance_to_player: float):
 	# Set cooldown and return to walking
 	melee_cooldown_timer = melee_attack_cooldown
 	change_boss_state(BossState.WALK)
-	
+
 func change_boss_state(new_state: BossState):
 	if boss_current_state == new_state:
 		return
@@ -100,14 +101,17 @@ func change_boss_state(new_state: BossState):
 			print("Boss entering ranged attack state")
 		BossState.MELEE_ATTACK:
 			print("Boss entering melee attack state")
+
+			attack()
 		BossState.DEAD:
 			die()
 
-# Override parent attack method to use boss-specific logic
-func attack():
-	# This method is called from parent, but we handle attacks differently
-	# So we can leave this empty or redirect to our boss logic
-	pass
+## Override parent attack method to use boss-specific logic
+#func attack():
+	## This method is called from parent, but we handle attacks differently
+	## So we can leave this empty or redirect to our boss logic
+	#pass
+
 
 # Override die method to add boss-specific death behavior
 func die():

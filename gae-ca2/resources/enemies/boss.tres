@@ -12,10 +12,13 @@ melee_attack_range = 50.0
 melee_attack_damage = 25.0
 melee_attack_cooldown = 1.5
 projectile_scene_path = ""
-texture = "res://assets/enemies/Boss-modified.png"
+
+name = "Orc"
 max_health = 300
 movement_speed = 2.0
 attack_range = 50.0
 attack_damage = 25.0
 attack_cooldown = 1.5
+
 metadata/_custom_type_script = "uid://d3or1fqpts76j"
+

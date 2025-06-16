@@ -5,20 +5,30 @@ class_name EnemyManager
 
 var enemy_resources = []
 var enemy_scenes = []
+var boss_scenes = []
 
 
 func _ready():
+	#load_boss_scenes()
 	load_enemy_scenes()
 	load_enemy_resources()
 
+
+#func load_boss_scenes():
+	#boss_scenes = {
+		#"Orc_Boss": preload("res://scenes/enemies/bosses/BossBase.tscn")
+	#}
+
 func load_enemy_scenes():
 	enemy_scenes = {
-		"Orc": preload("res://scenes/enemies/Enemy_Orc.tscn")
+		"Orc": preload("res://scenes/enemies/Enemy_Orc.tscn"),
+		"Orc_Boss": preload("res://scenes/enemies/bosses/BossBase.tscn")
 	}
 
 func load_enemy_resources():
 	enemy_resources = {
-		"Orc": preload("res://resources/enemies/orc.tres")	
+		"Orc": preload("res://resources/enemies/orc.tres"),
+		"Orc_Boss": preload("res://resources/enemies/boss.tres")	
 	}
 
 
@@ -27,7 +37,15 @@ func spawn_enemy(enemy_name: String):
 	enemy_object.enemy_resource = enemy_resources[enemy_name]
 	enemy_object.global_position = Vector2(0, 0)
 	enemy_object.add_to_group("enemies")
-	add_child(enemy_object)	
+	add_child(enemy_object)
+	
+	
+func spawn_boss(boss_name: String):
+	var boss_object = enemy_scenes[boss_name].instantiate()
+	boss_object.enemy_resource = enemy_resources[boss_name]
+	boss_object.global_position = Vector2(0, 0)
+	boss_object.add_to_group("enemies")
+	add_child(boss_object)
 
 
 func spawn_wave(enemy_composition, spawn_frequency):
