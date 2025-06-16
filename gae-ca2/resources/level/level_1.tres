@@ -7,7 +7,7 @@ script = ExtResource("1_mgrjq")
 current_level = 1
 level_wave_size = 3
 enemy_composition = {
-"slime": 3
+"Orc": 3
 }
 spawn_frequency = 5
 level_boss = "GogginsDavid"

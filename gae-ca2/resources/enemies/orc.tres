@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_6pnpc")
-texture = "res://assets/enemies/pixil-frame-0 (6).png"
+name = "Orc"
 max_health = 50
 movement_speed = 50.0
 attack_range = 15.0

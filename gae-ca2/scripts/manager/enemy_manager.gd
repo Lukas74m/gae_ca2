@@ -3,23 +3,30 @@ class_name EnemyManager
 
 
 @export var enemy_configs: Array[EnemyResource]
-var enemy_base_scene = preload("res://scenes/enemies/EnemyBase.tscn")
+
 var enemy_resources = []
+var enemy_scenes = []
+
 
 func _ready():
-	
+	load_enemy_scenes()
 	load_enemy_resources()
 
 
+func load_enemy_scenes():
+	enemy_scenes = {
+		"Orc": preload("res://scenes/enemies/Enemy_Orc.tscn")
+	}
+
 func load_enemy_resources():
 	enemy_resources = {
-		"slime": preload("res://resources/enemies/slime.tres")	
+		"Orc": preload("res://resources/enemies/orc.tres")	
 	}
 
 
-func spawn_enemy(enemy):
-	var enemy_object = enemy_base_scene.instantiate()
-	enemy_object.enemy_resource = enemy_resources[enemy]
+func spawn_enemy(enemy_name: String):
+	var enemy_object = enemy_scenes[enemy_name].instantiate()
+	enemy_object.enemy_resource = enemy_resources[enemy_name]
 	enemy_object.global_position = Vector2(0, 0)
 	enemy_object.add_to_group("enemies")
 	add_child(enemy_object)	

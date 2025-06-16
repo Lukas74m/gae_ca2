@@ -1,7 +1,7 @@
 extends Resource
 class_name EnemyResource
 
-@export var texture: String
+@export var name: String
 @export var max_health: int
 @export var movement_speed: float
 @export var attack_range: float

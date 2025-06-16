@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8ok3sup48cry"]
+
+[ext_resource type="PackedScene" uid="uid://41vujg0qkyqh" path="res://scenes/enemies/EnemyBase.tscn" id="1_pfjf4"]
+[ext_resource type="Texture2D" uid="uid://c4vq0nrns5kti" path="res://assets/enemies/pixil-frame-0 (6).png" id="2_2ymwm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p15uk"]
+radius = 41.2311
+
+[node name="Enemy_Orc" instance=ExtResource("1_pfjf4")]
+
+[node name="Sprite2D" parent="." index="1"]
+position = Vector2(4.76837e-07, 9.53674e-07)
+texture = ExtResource("2_2ymwm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
+shape = SubResource("CircleShape2D_p15uk")
+debug_color = Color(0.906051, 0.113516, 0.687782, 0.42)

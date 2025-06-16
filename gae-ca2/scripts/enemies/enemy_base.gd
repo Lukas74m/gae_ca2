@@ -20,8 +20,6 @@ var attack_cooldown: float
 var attack_cooldown_timer: float = 0.0
 
 func _ready():
-	var texture = load(enemy_resource.texture)
-	enemy_visual.texture = texture
 	max_health = enemy_resource.max_health
 	movement_speed = enemy_resource.movement_speed
 	attack_range = enemy_resource.attack_range 
