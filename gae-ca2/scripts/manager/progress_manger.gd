@@ -42,7 +42,8 @@ func on_level_up():
 			current_level_dict["spawn_frequency"]
 		)
 	else:
-		printerr("No more levels!")
+		Global.shop.show_shop()
+		#printerr("No more levels!")
 
 # Saves the information about the new level localy
 func load_level_information():

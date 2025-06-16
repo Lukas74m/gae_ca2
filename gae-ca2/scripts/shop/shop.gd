@@ -6,9 +6,6 @@ extends CanvasLayer
 @onready var label1: Label = $Panel/HBoxContainer/Option1Button/Label
 @onready var label2: Label = $Panel/HBoxContainer/Option2Button/Label
 
-var player
-
-
 var possible_upgrades = [
 	{"stat": "attack_damage", "amount": 15, "label": "+15 Angriffsschaden"},
 	{"stat": "max_health", "amount": 25, "label": "+25 Max. Leben"},
@@ -18,8 +15,10 @@ var possible_upgrades = [
 
 var chosen_upgrades = []  
 
-func show_shop(p_player):
-	player = p_player
+func _ready():
+	_close_shop()
+
+func show_shop():
 	chosen_upgrades.clear()
 
 	# Two differend upgrade-types
@@ -35,6 +34,7 @@ func show_shop(p_player):
 	#get_tree().paused = true
 
 
+
 func _on_option_1_button_pressed() -> void:
 	_apply_upgrade(0)
 
@@ -43,10 +43,10 @@ func _on_option_2_button_pressed() -> void:
 	_apply_upgrade(1)
 	
 func _apply_upgrade(index):
-	if player and index < chosen_upgrades.size():
+	if Global.player and index < chosen_upgrades.size():
 		var upgrade = chosen_upgrades[index]
-		player.get_node("PlayerStats").base_stats[upgrade["stat"]] += upgrade["amount"]
-		print(player.get_node("PlayerStats").base_stats[upgrade["stat"]])
+		Global.player.get_node("PlayerStats").base_stats[upgrade["stat"]] += upgrade["amount"]
+		print(Global.player.get_node("PlayerStats").base_stats[upgrade["stat"]])
 		_close_shop()
 		
 func _close_shop():

@@ -8,8 +8,10 @@
 script = ExtResource("1_rktij")
 
 [node name="Panel" type="Panel" parent="."]
-offset_right = 287.0
-offset_bottom = 201.0
+offset_left = -1.0
+offset_top = 1.0
+offset_right = 286.0
+offset_bottom = 202.0
 
 [node name="Label" type="Label" parent="Panel"]
 layout_mode = 0
