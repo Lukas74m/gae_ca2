@@ -42,6 +42,7 @@ func on_level_up():
 			current_level_dict["spawn_frequency"]
 		)
 	else:
+		enemy_manager.spawn_boss(current_level_dict["level_boss"])
 		Global.shop.show_shop()
 		#printerr("No more levels!")
 
@@ -61,4 +62,3 @@ func update_level_progress():
 	if current_level_kill_amount >= current_level_dict["level_wave_size"]:
 		current_level_kill_amount = 0
 		on_level_up()
-		
