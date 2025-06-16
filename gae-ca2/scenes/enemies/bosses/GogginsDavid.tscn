@@ -1,3 +1,12 @@
-[gd_scene format=3 uid="uid://c6b6urymoc5qp"]
+[gd_scene load_steps=2 format=3 uid="uid://c6b6urymoc5qp"]
 
-[node name="GogginsDavid" type="Node2D"]
+[ext_resource type="Script" uid="uid://dy06kynt7epty" path="res://scripts/enemies/boss_base.gd" id="1_hjtpw"]
+
+[node name="GogginsDavid" type="CharacterBody2D"]
+script = ExtResource("1_hjtpw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
