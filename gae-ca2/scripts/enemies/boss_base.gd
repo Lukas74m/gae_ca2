@@ -88,39 +88,6 @@ func perform_melee_attack(delta: float, distance_to_player: float):
 	# Set cooldown and return to walking
 	melee_cooldown_timer = melee_attack_cooldown
 	change_boss_state(BossState.WALK)
-
-#func throw_projectile_at_player():
-	#if not projectile_scene:
-		#print("No projectile scene assigned to boss!")
-		#return
-		#
-	#var projectile = projectile_scene.instantiate()
-	#get_tree().current_scene.add_child(projectile)
-	#
-	## Position projectile at boss location
-	#projectile.global_position = global_position
-	#
-	## Calculate direction to player with some prediction
-	#var target_position = predict_player_position()
-	#var direction = (target_position - global_position).normalized()
-	#
-	## Set projectile properties
-	#if projectile.has_method("initialize"):
-		#projectile.initialize(direction, projectile_speed, ranged_attack_damage)
-	#
-	#print("Boss threw projectile at player")
-
-#func predict_player_position() -> Vector2:
-	## Simple prediction: aim slightly ahead of player based on their velocity
-	#var player_velocity = Vector2.ZERO
-	#if Global.player.has_method("get_velocity"):
-		#player_velocity = Global.player.get_velocity()
-	#elif Global.player.has_property("velocity"):
-		#player_velocity = Global.player.velocity
-	#
-	## Predict where player will be in 0.5 seconds
-	#var prediction_time = 0.5
-	#return Global.player.global_position + (player_velocity * prediction_time)
 	
 func change_boss_state(new_state: BossState):
 	if boss_current_state == new_state:
