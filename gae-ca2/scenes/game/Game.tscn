@@ -385,7 +385,6 @@ tile_map_data = PackedByteArray("AAAQAPP/AQAFAAYAAAAQAPT/AQAHAAcAAAAQAPX/AQAHAAc
 tile_set = SubResource("TileSet_vg8p7")
 
 [node name="Gametimer" type="Timer" parent="."]
-wait_time = 4.0
 
 [node name="Player" parent="." instance=ExtResource("3_vrspl")]
 position = Vector2(-40, 38)
@@ -402,3 +401,4 @@ position_smoothing_enabled = true
 [node name="Shop" parent="." instance=ExtResource("8_wnrko")]
 
 [connection signal="timeout" from="Gametimer" to="." method="_on_gametimer_timeout"]
+[connection signal="player_death" from="Player" to="." method="_on_player_player_death"]

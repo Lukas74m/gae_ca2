@@ -21,5 +21,8 @@ func _process(delta: float) -> void:
 
 
 func _on_gametimer_timeout() -> void:
-	#print("timeout")
-	pass
+	Global.time_alive += 1
+
+
+func _on_player_player_death() -> void:
+	game_timer.stop()
