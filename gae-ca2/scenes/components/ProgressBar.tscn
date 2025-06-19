@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxyuukgy0vofe"]
+
+[ext_resource type="Script" uid="uid://bqgk3ycdgt1e2" path="res://scripts/components/progress_bar.gd" id="1_mk2y3"]
+
+[node name="ProgressBar" type="ProgressBar"]
+script = ExtResource("1_mk2y3")

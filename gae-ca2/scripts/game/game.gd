@@ -3,6 +3,7 @@ extends Node2D
 @onready var game_timer = $Gametimer
 @onready var enemy_manager = $EnemyManager
 @onready var progress_manager = $ProgressManger 
+@onready var task_display_instance = $CanvasLayer/TaskDisplay
 @onready var player = $Player
 @onready var shop = $Shop
 
@@ -11,8 +12,15 @@ func _ready() -> void:
 	#enemy_manager.spawn_enemy()
 	Global.player = player
 	Global.ProgressManager = progress_manager
-	Global.shop = shop
+	Global.shop = shop	
+	set_task_display()
 	game_timer.start()
+
+func set_task_display():
+	task_display_instance.update_display({
+	"Übrige Gegner ": 1,
+	"Getötete Gegner ": 0,
+}, "Level Overview")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

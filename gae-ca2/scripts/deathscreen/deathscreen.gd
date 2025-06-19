@@ -1,10 +1,10 @@
 extends Panel
 
-@onready var stats_display_instance = $StatsDisplay
+@onready var stats_display_instance = $Control/CenterContainer/StatsDisplay
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	stats_display_instance.set_stats({
+	stats_display_instance.update_display({
 	"Überlebte Zeit ": Global.time_alive,
 	"Getötete Gegner ": Global.kills,
 	"Score ": Global.score	

@@ -62,3 +62,10 @@ func update_level_progress():
 	if current_level_kill_amount >= current_level_dict["level_wave_size"]:
 		current_level_kill_amount = 0
 		on_level_up()
+
+func get_level_wave_size():
+	return current_level_dict["level_wave_size"]
+	
+
+func get_current_level_kill_amount():
+	return current_level_kill_amount

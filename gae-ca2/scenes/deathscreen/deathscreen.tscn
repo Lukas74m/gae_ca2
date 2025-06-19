@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://df1ymeh7kbn6q"]
+[gd_scene load_steps=14 format=3 uid="uid://df1ymeh7kbn6q"]
 
 [ext_resource type="Script" uid="uid://b8veoxcmbw0wc" path="res://scripts/deathscreen/deathscreen.gd" id="1_btbqu"]
 [ext_resource type="Script" uid="uid://3ec3cm3265m7" path="res://scripts/deathscreen/texture_button.gd" id="2_bssjh"]
@@ -50,42 +50,35 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="LabelSettings" id="LabelSettings_btbqu"]
+font_size = 25
+font_color = Color(0.816797, 0.0841022, 0, 1)
+outline_size = 1
+outline_color = Color(0.997687, 0.488045, 0.420835, 1)
+shadow_size = 3
+
 [node name="Deathscreen" type="Panel"]
 script = ExtResource("1_btbqu")
 
-[node name="GameOverText" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 442.0
-offset_top = 14.0
-offset_right = 592.0
-offset_bottom = 37.0
-grow_horizontal = 2
-scale = Vector2(2, 2)
-text = "Game Over! "
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="Control" type="CanvasLayer" parent="."]
 
-[node name="TextureButton" type="TextureButton" parent="."]
-layout_mode = 1
+[node name="TextureButton" type="TextureButton" parent="Control"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 532.0
-offset_top = 260.0
-offset_right = 632.0
-offset_bottom = 360.0
+offset_left = -44.0
+offset_top = 139.0
+offset_right = 56.0
+offset_bottom = 239.0
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("2_u6gas")
 texture_hover = ExtResource("3_3638j")
 script = ExtResource("2_bssjh")
 
-[node name="Label" type="Label" parent="TextureButton"]
+[node name="Label" type="Label" parent="Control/TextureButton"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -102,15 +95,34 @@ text = "Startbildschirm"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TextureButton"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control/TextureButton"]
 position = Vector2(50, 50)
 sprite_frames = SubResource("SpriteFrames_s586m")
 animation = &"click"
 frame = 4
 frame_progress = 1.0
 
-[node name="StatsDisplay" parent="." instance=ExtResource("6_gm5rc")]
-layout_mode = 1
+[node name="CenterContainer" type="VBoxContainer" parent="Control"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -48.0
+offset_right = 48.0
+offset_bottom = 40.0
+grow_horizontal = 2
 
-[connection signal="pressed" from="TextureButton" to="TextureButton" method="_on_pressed"]
-[connection signal="animation_finished" from="TextureButton/AnimatedSprite2D" to="TextureButton" method="_on_animated_sprite_2d_animation_finished"]
+[node name="StatsDisplay" parent="Control/CenterContainer" instance=ExtResource("6_gm5rc")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="GameOverText" type="Label" parent="Control/CenterContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Game Over! "
+label_settings = SubResource("LabelSettings_btbqu")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Control/TextureButton" to="Control/TextureButton" method="_on_pressed"]
+[connection signal="animation_finished" from="Control/TextureButton/AnimatedSprite2D" to="Control/TextureButton" method="_on_animated_sprite_2d_animation_finished"]
