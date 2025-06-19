@@ -1,10 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://bssklr8wevq48"]
+[gd_scene load_steps=15 format=3 uid="uid://df1ymeh7kbn6q"]
 
-[ext_resource type="Script" uid="uid://mbxpwk46vjra" path="res://scripts/deathscreen/deathscreen.gd" id="1_d4h8k"]
+[ext_resource type="Script" uid="uid://b8veoxcmbw0wc" path="res://scripts/deathscreen/deathscreen.gd" id="1_btbqu"]
 [ext_resource type="Script" uid="uid://3ec3cm3265m7" path="res://scripts/deathscreen/texture_button.gd" id="2_bssjh"]
+[ext_resource type="Theme" uid="uid://b2ftdon0s262d" path="res://stats_display_theme.tres" id="2_gm5rc"]
 [ext_resource type="Texture2D" uid="uid://rwdm74nqhelq" path="res://assets/buttons/Test_Button.png" id="2_u6gas"]
 [ext_resource type="Texture2D" uid="uid://drsj06k5do28m" path="res://assets/buttons/Test_Button_Hover.png" id="3_3638j"]
 [ext_resource type="Texture2D" uid="uid://wkwoejl3hpar" path="res://assets/buttons/Test_Button_On_Click.png" id="5_3638j"]
+[ext_resource type="PackedScene" uid="uid://cpnywmo70ieol" path="res://scenes/components/StatsDisplay.tscn" id="6_gm5rc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_btbqu"]
 atlas = ExtResource("5_3638j")
@@ -49,44 +51,43 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="Deathscreen" type="Node2D"]
-script = ExtResource("1_d4h8k")
+[sub_resource type="LabelSettings" id="LabelSettings_btbqu"]
+font_size = 25
+font_color = Color(0.816797, 0.0841022, 0, 1)
+outline_size = 1
+outline_color = Color(0.997687, 0.488045, 0.420835, 1)
+shadow_size = 3
 
-[node name="score" type="Label" parent="."]
-offset_left = 541.0
-offset_top = 123.0
-offset_right = 581.0
-offset_bottom = 146.0
+[node name="Deathscreen" type="Panel"]
+script = ExtResource("1_btbqu")
 
-[node name="time_alive" type="Label" parent="."]
-offset_left = 537.0
-offset_top = 99.0
-offset_right = 577.0
-offset_bottom = 122.0
+[node name="Control" type="CanvasLayer" parent="."]
 
-[node name="enemy_kills" type="Label" parent="."]
-offset_left = 539.0
-offset_top = 141.0
-offset_right = 579.0
-offset_bottom = 164.0
+[node name="Panel" type="Panel" parent="Control"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_gm5rc")
 
-[node name="TextureButton" type="TextureButton" parent="."]
+[node name="TextureButton" type="TextureButton" parent="Control"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 532.0
-offset_top = 260.0
-offset_right = 632.0
-offset_bottom = 360.0
+offset_left = -44.0
+offset_top = 139.0
+offset_right = 56.0
+offset_bottom = 239.0
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("2_u6gas")
 texture_hover = ExtResource("3_3638j")
 script = ExtResource("2_bssjh")
 
-[node name="Label" type="Label" parent="TextureButton"]
+[node name="Label" type="Label" parent="Control/TextureButton"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -103,12 +104,34 @@ text = "Startbildschirm"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TextureButton"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control/TextureButton"]
 position = Vector2(50, 50)
 sprite_frames = SubResource("SpriteFrames_s586m")
 animation = &"click"
 frame = 4
 frame_progress = 1.0
 
-[connection signal="pressed" from="TextureButton" to="TextureButton" method="_on_pressed"]
-[connection signal="animation_finished" from="TextureButton/AnimatedSprite2D" to="TextureButton" method="_on_animated_sprite_2d_animation_finished"]
+[node name="StatsDisplay" parent="Control" instance=ExtResource("6_gm5rc")]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.0
+offset_top = 189.0
+offset_bottom = 189.0
+grow_vertical = 1
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="GameOverText" type="Label" parent="Control"]
+offset_left = 501.0
+offset_top = 60.0
+offset_right = 651.0
+offset_bottom = 95.0
+size_flags_horizontal = 4
+text = "Game Over! "
+label_settings = SubResource("LabelSettings_btbqu")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Control/TextureButton" to="Control/TextureButton" method="_on_pressed"]
+[connection signal="animation_finished" from="Control/TextureButton/AnimatedSprite2D" to="Control/TextureButton" method="_on_animated_sprite_2d_animation_finished"]

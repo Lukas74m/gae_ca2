@@ -1,11 +1,17 @@
-extends Node2D
+extends Panel
 
-@onready var time_alive_label = $time_alive
-@onready var enemy_kills_label = $enemy_kills
-@onready var score_label = $score
+@onready var stats_display_instance = $Control/StatsDisplay
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	stats_display_instance.update_display({
+	"Überlebte Zeit ": Global.time_alive,
+	"Getötete Gegner ": Global.kills,
+	"Score ": Global.score	
+}, "Statistik")
 
 
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	time_alive_label.text = "Zeit überlebt: %.1f Sekunden" % Global.time_alive
-	enemy_kills_label.text = "Kills: %d" % Global.kills
-	score_label.text = "Score: %d" % Global.score
+	pass

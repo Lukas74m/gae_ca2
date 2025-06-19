@@ -17,6 +17,7 @@ var dash_time_left: float = 0.0
 var dash_cooldown_left: float = 0.0
 var dash_direction: Vector2 = Vector2.ZERO
 var attacking: bool = false
+signal player_death
 
 func _ready() -> void:
 	health.initialize_health(get_stat("max_health"))

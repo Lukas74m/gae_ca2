@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://dads2ywxohnu1"]
+[gd_scene load_steps=15 format=4 uid="uid://dads2ywxohnu1"]
 
 [ext_resource type="Script" uid="uid://bkhnbumjr1vsv" path="res://scripts/game/game.gd" id="1_m44fu"]
 [ext_resource type="Texture2D" uid="uid://djjmnhn7uw1i4" path="res://assets/dungeon tileset pack/0x72_DungeonTilesetII_v1.7 (1)/0x72_DungeonTilesetII_v1.7/atlas_floor-16x16.png" id="2_wnrko"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://4i36g80kqt6t" path="res://assets/dungeon tileset pack/0x72_DungeonTilesetII_v1.7 (1)/0x72_DungeonTilesetII_v1.7/atlas_walls_low-16x16.png" id="4_56wml"]
 [ext_resource type="PackedScene" uid="uid://co8ulpd1qg5vg" path="res://scenes/manager/ProgressManger.tscn" id="5_lyhax"]
 [ext_resource type="PackedScene" uid="uid://vcvbrmlgyiai" path="res://scenes/shop/Shop.tscn" id="8_wnrko"]
+[ext_resource type="PackedScene" uid="uid://byi3e8vfwfdhg" path="res://scenes/components/TaskDisplay.tscn" id="9_qf6a8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gg4pt"]
 texture = ExtResource("2_wnrko")
@@ -385,7 +386,6 @@ tile_map_data = PackedByteArray("AAAQAPP/AQAFAAYAAAAQAPT/AQAHAAcAAAAQAPX/AQAHAAc
 tile_set = SubResource("TileSet_vg8p7")
 
 [node name="Gametimer" type="Timer" parent="."]
-wait_time = 4.0
 
 [node name="Player" parent="." instance=ExtResource("3_vrspl")]
 position = Vector2(-40, 38)
@@ -400,5 +400,17 @@ position_smoothing_enabled = true
 [node name="ProgressManger" parent="." instance=ExtResource("5_lyhax")]
 
 [node name="Shop" parent="." instance=ExtResource("8_wnrko")]
+visible = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="TaskDisplay" parent="CanvasLayer" instance=ExtResource("9_qf6a8")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [connection signal="timeout" from="Gametimer" to="." method="_on_gametimer_timeout"]
+[connection signal="player_death" from="Player" to="." method="_on_player_player_death"]
