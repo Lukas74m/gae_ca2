@@ -3,7 +3,7 @@ class_name Boss
 
 enum BossState { WALK, RANGED_ATTACK, MELEE_ATTACK, DEAD }
 
-@export var projectile_scene: PackedScene
+@export var projectile_scene = preload("res://scenes/projectiles/BossProjectile.tscn")
 @export var ranged_attack_range: float = 200.0
 @export var ranged_attack_damage: float = 15.0
 @export var ranged_attack_cooldown: float = 2.0
@@ -12,8 +12,8 @@ enum BossState { WALK, RANGED_ATTACK, MELEE_ATTACK, DEAD }
 @export var melee_attack_damage: float = 25.0
 @export var melee_attack_cooldown: float = 1.5
 
-var ranged_cooldown_timer: float = 0.0
-var melee_cooldown_timer: float = 0.0
+var ranged_cooldown_timer: float = 10.0
+var melee_cooldown_timer: float = 5.0
 var boss_current_state: BossState = BossState.WALK
 
 func _ready():
@@ -91,37 +91,36 @@ func perform_melee_attack(delta: float, distance_to_player: float):
 	change_boss_state(BossState.WALK)
 
 func throw_projectile_at_player():
-	if not projectile_scene:
-		print("No projectile scene assigned to boss!")
-		return
 		
 	var projectile = projectile_scene.instantiate()
 	get_tree().current_scene.add_child(projectile)
+	
 	
 	# Position projectile at boss location
 	projectile.global_position = global_position
 	
 	# Calculate direction to player with some prediction
-	var target_position = predict_player_position()
-	var direction = (target_position - global_position).normalized()
+	#var target_position = predict_player_position()
+	#var direction = (target_position - global_position).normalized()
 	
 	# Set projectile properties
-	if projectile.has_method("initialize"):
-		projectile.initialize(direction, projectile_speed, ranged_attack_damage)
+	#if projectile.has_method("initialize"):
+		#projectile.initialize(direction, projectile_speed, ranged_attack_damage)
 	
 	print("Boss threw projectile at player")
 
-func predict_player_position() -> Vector2:
-	# Simple prediction: aim slightly ahead of player based on their velocity
-	var player_velocity = Vector2.ZERO
-	if Global.player.has_method("get_velocity"):
-		player_velocity = Global.player.get_velocity()
-	elif Global.player.has_property("velocity"):
-		player_velocity = Global.player.velocity
+#func predict_player_position() -> Vector2:
 	
-	# Predict where player will be in 0.5 seconds
-	var prediction_time = 0.5
-	return Global.player.global_position + (player_velocity * prediction_time)
+	## Simple prediction: aim slightly ahead of player based on their velocity
+	#var player_velocity = Vector2.ZERO
+	#if Global.player.has_method("get_velocity"):
+		#player_velocity = Global.player.get_velocity()
+	#elif Global.player.has_property("velocity"):
+		#player_velocity = Global.player.velocity
+	#
+	## Predict where player will be in 0.5 seconds
+	#var prediction_time = 0.5
+	#return Global.player.global_position + (player_velocity * prediction_time)
 
 func deal_melee_damage():
 	if Global.player.has_method("take_damage"):
