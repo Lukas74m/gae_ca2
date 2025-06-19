@@ -66,7 +66,7 @@ func move_towards_player(delta: float, distance_to_player: float):
 func attack_player(delta:float, distance_to_player: float):
 	velocity = Vector2.ZERO
 	#if distance_to_player > enemy_resource.attack_range:
-	#	change_state(EnemyState.WALK)
+		#change_state(EnemyState.WALK)
 
 func change_state(new_state: EnemyState):
 	if current_state == new_state:

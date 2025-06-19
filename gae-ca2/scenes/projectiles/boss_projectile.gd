@@ -11,16 +11,17 @@ var lifetime: float = 5.0  # Projectile disappears after 5 seconds
 
 func _ready():
 	# Connect collision signals
-	body_entered.connect(_on_body_entered)
-	area_entered.connect(_on_area_entered)
+	#body_entered.connect(_on_body_entered)
+	#area_entered.connect(_on_area_entered)
 	
 	# Start lifetime timer
-	var timer = Timer.new()
-	add_child(timer)
-	timer.wait_time = lifetime
-	timer.one_shot = true
-	timer.start()
-	timer.timeout.connect(_on_lifetime_expired)
+	adjust_direction()
+	#var timer = Timer.new()
+	#add_child(timer)
+	#timer.wait_time = lifetime
+	#timer.one_shot = true
+	#timer.start()
+	#timer.timeout.connect(_on_lifetime_expired)
 
 func initialize(proj_direction: Vector2, proj_speed: float, proj_damage: float):
 	direction = proj_direction
@@ -54,13 +55,31 @@ func _on_body_entered(body):
 		create_hit_effect()
 		queue_free()
 
-func _on_area_entered(area):
-	# Handle collision with other areas if needed
-	pass
 
 func _on_lifetime_expired():
 	# Projectile expires naturally
 	queue_free()
+	
+
+func adjust_direction() -> void:
+	var projectile_flying = true
+	while projectile_flying == true:
+		var direction = (Global.player.global_position - global_position).normalized()
+		global_position += direction * 7
+		
+		if Global.player.global_position.distance_to(global_position) <= 20:
+			# * Global.player.get_stat("movement_speed") for the calculation below
+			var player_position_prediction = (get_global_mouse_position() - Global.player.global_position).normalized()
+			global_position += player_position_prediction * 7
+			await get_tree().create_timer(1).timeout
+			if Global.player.global_position.distance_to(global_position) <= 20:
+				Global.player.take_damage(20)
+				projectile_flying = false
+			queue_free()
+		await get_tree().create_timer(0.1).timeout
+	
+	
+	
 
 func create_hit_effect():
 	# Create visual/audio effects when projectile hits
