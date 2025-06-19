@@ -3,7 +3,7 @@
 [sub_resource type="FontVariation" id="FontVariation_phq8n"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_phq8n"]
-bg_color = Color(0.0826608, 0.274968, 0.3838, 1)
+bg_color = Color(0.0470654, 2.76752e-07, 0.0255979, 1)
 
 [resource]
 Label/colors/font_color = Color(1, 0.0392157, 0.129412, 1)

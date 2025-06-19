@@ -3,11 +3,11 @@ extends Control
 @onready var title_label = $VBoxContainer/Title
 @onready var vbox_container = $VBoxContainer
 	
-func _ready() -> void:
-	print("Size:", size)
+func update_display(stats: Dictionary, title: String):
+	set_labels(stats, title)
+	#update_progress_bar()
 	
-
-func set_stats(stats: Dictionary, title: String ):
+func set_labels(stats: Dictionary, title: String ):
 	# Delete all previous entries (except title)
 	for child in vbox_container.get_children():
 		if child != title_label:

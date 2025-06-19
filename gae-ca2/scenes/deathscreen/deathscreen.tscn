@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://df1ymeh7kbn6q"]
+[gd_scene load_steps=15 format=3 uid="uid://df1ymeh7kbn6q"]
 
 [ext_resource type="Script" uid="uid://b8veoxcmbw0wc" path="res://scripts/deathscreen/deathscreen.gd" id="1_btbqu"]
 [ext_resource type="Script" uid="uid://3ec3cm3265m7" path="res://scripts/deathscreen/texture_button.gd" id="2_bssjh"]
+[ext_resource type="Theme" uid="uid://b2ftdon0s262d" path="res://stats_display_theme.tres" id="2_gm5rc"]
 [ext_resource type="Texture2D" uid="uid://rwdm74nqhelq" path="res://assets/buttons/Test_Button.png" id="2_u6gas"]
 [ext_resource type="Texture2D" uid="uid://drsj06k5do28m" path="res://assets/buttons/Test_Button_Hover.png" id="3_3638j"]
 [ext_resource type="Texture2D" uid="uid://wkwoejl3hpar" path="res://assets/buttons/Test_Button_On_Click.png" id="5_3638j"]
@@ -62,6 +63,14 @@ script = ExtResource("1_btbqu")
 
 [node name="Control" type="CanvasLayer" parent="."]
 
+[node name="Panel" type="Panel" parent="Control"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_gm5rc")
+
 [node name="TextureButton" type="TextureButton" parent="Control"]
 anchors_preset = 8
 anchor_left = 0.5
@@ -102,22 +111,22 @@ animation = &"click"
 frame = 4
 frame_progress = 1.0
 
-[node name="CenterContainer" type="VBoxContainer" parent="Control"]
+[node name="StatsDisplay" parent="Control" instance=ExtResource("6_gm5rc")]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -48.0
-offset_right = 48.0
-offset_bottom = 40.0
-grow_horizontal = 2
-
-[node name="StatsDisplay" parent="Control/CenterContainer" instance=ExtResource("6_gm5rc")]
-layout_mode = 2
+anchor_bottom = 0.0
+offset_top = 189.0
+offset_bottom = 189.0
+grow_vertical = 1
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="GameOverText" type="Label" parent="Control/CenterContainer"]
-layout_mode = 2
+[node name="GameOverText" type="Label" parent="Control"]
+offset_left = 501.0
+offset_top = 60.0
+offset_right = 651.0
+offset_bottom = 95.0
 size_flags_horizontal = 4
 text = "Game Over! "
 label_settings = SubResource("LabelSettings_btbqu")
