@@ -128,8 +128,16 @@ func perform_attack():
 				if !body.has_method("take_damage"):
 					push_error("[Player.gd, perform_attack()] Error : body has no take_damage")
 				else: 
-					body.take_damage(get_stat("attack_damage"))
-	
+					var attack_damage = get_stat("attack_damage")
+					var crit_damage = get_stat("crit_damage")
+					var crit_rate = get_stat("crit_rate")
+					var is_crit = randf() < crit_rate
+					var total_damage = attack_damage
+					if is_crit:
+						print("crit jay")
+						total_damage *= crit_damage
+					body.take_damage(total_damage)
+					
 
 # Checks if the enemy is in view direction of the player (If mouse points in enemy direction)
 func is_facing(target_pos: Vector2) -> bool:

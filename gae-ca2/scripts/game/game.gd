@@ -12,6 +12,8 @@ func _ready() -> void:
 	Global.player = player
 	Global.ProgressManager = progress_manager
 	Global.shop = shop
+	#randomize for randf in player
+	randomize()
 	game_timer.start()
 
 

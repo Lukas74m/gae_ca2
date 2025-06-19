@@ -9,8 +9,8 @@ extends CanvasLayer
 var possible_upgrades = [
 	{"stat": "attack_damage", "amount": 15, "label": "+15 Angriffsschaden"},
 	{"stat": "max_health", "amount": 25, "label": "+25 Max. Leben"},
-	{"stat": "crit_rate", "amount": 15, "label": "+15 Krit-Wahrscheinlichkeit"},
-	{"stat": "crit_damage", "amount": 25, "label": "+25 Kritischer Schaden"}
+	{"stat": "crit_rate", "amount": 0.15, "label": "+15% Krit-Wahrscheinlichkeit"},
+	{"stat": "crit_damage", "amount": 0.3, "label": "+30% Kritischer Schaden"}
 ]
 
 var chosen_upgrades = []  
