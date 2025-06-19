@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://by8ljf8gdygsy"]
+[gd_scene load_steps=5 format=3 uid="uid://uillq8yy1jid"]
 
 [ext_resource type="PackedScene" uid="uid://41vujg0qkyqh" path="res://scenes/enemies/EnemyBase.tscn" id="1_lw1cg"]
 [ext_resource type="Script" uid="uid://dy06kynt7epty" path="res://scripts/enemies/boss_base.gd" id="2_u5uy3"]
@@ -10,6 +10,7 @@ height = 213.333
 
 [node name="Boss" instance=ExtResource("1_lw1cg")]
 script = ExtResource("2_u5uy3")
+projectile_scene = null
 ranged_attack_range = 200.0
 ranged_attack_damage = 15.0
 ranged_attack_cooldown = 2.0

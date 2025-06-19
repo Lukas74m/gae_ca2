@@ -45,6 +45,11 @@ func spawn_boss(boss_name: String):
 	boss_object.enemy_resource = enemy_resources[boss_name]
 	boss_object.global_position = Vector2(0, 0)
 	boss_object.add_to_group("enemies")
+	
+	# Load projectile scene for boss
+	var boss_resource = enemy_resources[boss_name] as BossResource
+	if boss_resource and boss_resource.projectile_scene_path != "":
+		boss_object.projectile_scene = load(boss_resource.projectile_scene_path)
 	add_child(boss_object)
 
 
