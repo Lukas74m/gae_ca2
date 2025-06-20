@@ -400,7 +400,6 @@ position_smoothing_enabled = true
 [node name="ProgressManger" parent="." instance=ExtResource("5_lyhax")]
 
 [node name="Shop" parent="." instance=ExtResource("8_wnrko")]
-visible = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 0

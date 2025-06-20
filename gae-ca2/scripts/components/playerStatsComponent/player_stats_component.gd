@@ -7,8 +7,8 @@ var base_stats = {
 	"attack_range": 10,
 	#"attack_cooldown": 2, 				# Cooldown is based on animations
 	"dash_speed": 200,
-	"movement_speed": 300,
-	"max_health": 100,
+	"movement_speed": 200,
+	"max_health": 500,
 	"crit_rate": 0.2,
 	"crit_damage": 1.2
 }

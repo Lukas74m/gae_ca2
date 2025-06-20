@@ -14,11 +14,12 @@ script = ExtResource("2_u5uy3")
 projectile_scene = ExtResource("3_xvspy")
 ranged_attack_range = 200.0
 ranged_attack_damage = 15.0
-ranged_attack_cooldown = 2.0
+ranged_attack_cooldown = 5.0
 projectile_speed = 300.0
 melee_attack_range = 50.0
 melee_attack_damage = 25.0
-melee_attack_cooldown = 1.5
+melee_attack_cooldown = 5.0
+melee_charge_cooldown = 1.0
 
 [node name="Sprite2D" parent="." index="1"]
 scale = Vector2(1, 1.23)

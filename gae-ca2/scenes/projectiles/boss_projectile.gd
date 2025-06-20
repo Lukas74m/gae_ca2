@@ -9,13 +9,14 @@ var lifetime: float = 5.0  # Projectile disappears after 5 seconds
 @onready var sprite = $Sprite2D
 @onready var collision_shape = $CollisionShape2D
 
-func _ready():
+#func _ready():
+	#pass
 	# Connect collision signals
 	#body_entered.connect(_on_body_entered)
 	#area_entered.connect(_on_area_entered)
 	
 	# Start lifetime timer
-	adjust_direction()
+	#adjust_direction()
 	#var timer = Timer.new()
 	#add_child(timer)
 	#timer.wait_time = lifetime
@@ -29,11 +30,28 @@ func initialize(proj_direction: Vector2, proj_speed: float, proj_damage: float):
 	damage = proj_damage
 	
 	# Rotate sprite to face movement direction
-	rotation = direction.angle()
+	#rotation = direction.angle()
+	
+func ranged_attack(direction: Vector2, target_position: Vector2) -> void:
+	var player_start_pos = Global.player.global_position
 
-func _physics_process(delta):
-	# Move projectile
-	global_position += direction * speed * delta
+	var tween := create_tween()
+	tween.tween_property(self, "global_position", target_position, 0.5).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
+	await tween.finished
+
+	# Nach Ankunft 1 Sekunde warten
+	#await get_tree().create_timer(0.1).timeout
+
+	# Spielerposition überprüfen und ggf. Schaden zufügen
+	if Global.player.global_position.distance_to(player_start_pos) <= 15:
+		Global.player.take_damage(damage)
+
+	queue_free()
+
+
+#func _physics_process(delta):
+	## Move projectile
+	#global_position += direction * speed * delta
 
 func _on_body_entered(body):
 	# Check if it hit the player

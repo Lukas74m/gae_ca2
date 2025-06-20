@@ -6,14 +6,16 @@ enum BossState { WALK, RANGED_ATTACK, MELEE_ATTACK, DEAD }
 @export var projectile_scene = preload("res://scenes/projectiles/BossProjectile.tscn")
 @export var ranged_attack_range: float = 200.0
 @export var ranged_attack_damage: float = 15.0
-@export var ranged_attack_cooldown: float = 2.0
+@export var ranged_attack_cooldown: float = 5.0
 @export var projectile_speed: float = 300.0
 @export var melee_attack_range: float = 50.0
 @export var melee_attack_damage: float = 25.0
-@export var melee_attack_cooldown: float = 1.5
+@export var melee_attack_cooldown: float = 5.0
+@export var melee_charge_cooldown: float = 1.0
 
-var ranged_cooldown_timer: float = 10.0
-var melee_cooldown_timer: float = 5.0
+var ranged_cooldown_timer: float
+var melee_cooldown_timer: float
+var melee_charge_timer: float
 var boss_current_state: BossState = BossState.WALK
 
 func _ready():
@@ -32,6 +34,8 @@ func _physics_process(delta):
 		ranged_cooldown_timer -= delta
 	if melee_cooldown_timer > 0.0:
 		melee_cooldown_timer -= delta
+	if melee_charge_timer > 0.0:
+		melee_charge_timer -= delta
 		
 	if Global.player == null:
 		push_error("Global.player is null")
@@ -45,9 +49,9 @@ func _physics_process(delta):
 		BossState.WALK:
 			boss_movement_logic(delta, distance_to_player)
 		BossState.RANGED_ATTACK:
-			perform_ranged_attack(delta, distance_to_player)
+			await perform_ranged_attack(delta, distance_to_player)
 		BossState.MELEE_ATTACK:
-			perform_melee_attack(delta, distance_to_player)
+			await perform_melee_attack(delta, distance_to_player)
 		BossState.DEAD:
 			velocity = Vector2.ZERO
 			
@@ -73,6 +77,7 @@ func perform_ranged_attack(delta: float, distance_to_player: float):
 	velocity = Vector2.ZERO
 	
 	# Aim and throw projectile at player
+	printerr("Range attack ", Global.time_alive)
 	throw_projectile_at_player()
 	
 	# Set cooldown and return to walking
@@ -81,7 +86,9 @@ func perform_ranged_attack(delta: float, distance_to_player: float):
 
 func perform_melee_attack(delta: float, distance_to_player: float):
 	velocity = Vector2.ZERO
-	
+	# Animation gestartet, warten ob player in range bleibt
+	printerr("Starte animation und gebe Chance zum ausweichen")
+	#melee_charge_timer = melee_charge_cooldown
 	# Perform melee attack
 	if distance_to_player <= melee_attack_range:
 		deal_melee_damage()
@@ -100,33 +107,37 @@ func throw_projectile_at_player():
 	projectile.global_position = global_position
 	
 	# Calculate direction to player with some prediction
-	#var target_position = predict_player_position()
-	#var direction = (target_position - global_position).normalized()
+	var target_position = predict_player_position()
+	#var target_position = Global.player.global_position
+	##var distance_to_player = (target_position - global_position)
+	var direction = (target_position - global_position).normalized()
 	
 	# Set projectile properties
-	#if projectile.has_method("initialize"):
-		#projectile.initialize(direction, projectile_speed, ranged_attack_damage)
+	if projectile.has_method("initialize"):
+		projectile.initialize(direction, projectile_speed, ranged_attack_damage)
+	projectile.ranged_attack(direction, target_position)
 	
-	print("Boss threw projectile at player")
+	#print("Boss threw projectile at player")
 
-#func predict_player_position() -> Vector2:
-	
-	## Simple prediction: aim slightly ahead of player based on their velocity
-	#var player_velocity = Vector2.ZERO
-	#if Global.player.has_method("get_velocity"):
-		#player_velocity = Global.player.get_velocity()
+func predict_player_position() -> Vector2:
+	# Simple prediction: aim slightly ahead of player based on their velocity
+	var player_velocity = Vector2.ZERO
+	if Global.player.has_method("get_velocity"):
+		player_velocity = Global.player.get_velocity()
+	else:
+		printerr("No player_velocity")
 	#elif Global.player.has_property("velocity"):
 		#player_velocity = Global.player.velocity
-	#
-	## Predict where player will be in 0.5 seconds
-	#var prediction_time = 0.5
-	#return Global.player.global_position + (player_velocity * prediction_time)
+	
+	# Predict where player will be in 0.5 seconds
+	var prediction_time = 0.5
+	return Global.player.global_position + (player_velocity * prediction_time)
 
 func deal_melee_damage():
+	printerr("Melle attack ", Global.time_alive)
 	if Global.player.has_method("take_damage"):
 		Global.player.take_damage(melee_attack_damage)
-		print("Boss dealt ", melee_attack_damage, " melee damage to player")
-
+		
 func change_boss_state(new_state: BossState):
 	if boss_current_state == new_state:
 		return
@@ -135,9 +146,10 @@ func change_boss_state(new_state: BossState):
 	
 	match new_state:
 		BossState.RANGED_ATTACK:
-			print("Boss entering ranged attack state")
+			pass
+			#print("Boss entering ranged attack state")
 		BossState.MELEE_ATTACK:
-			print("Boss entering melee attack state")
+			#print("Boss entering melee attack state")
 
 			attack()
 		BossState.DEAD:

@@ -7,7 +7,8 @@ func _ready() -> void:
 	stats_display_instance.update_display({
 	"Überlebte Zeit ": Global.time_alive,
 	"Getötete Gegner ": Global.kills,
-	"Score ": Global.score	
+	#"Überlebte level ": Global.ProgressManager.get_level(),
+	"Score ": Global.score,
 }, "Statistik")
 
 

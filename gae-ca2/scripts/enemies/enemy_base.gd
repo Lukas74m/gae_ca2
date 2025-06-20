@@ -84,6 +84,7 @@ func take_damage(amount: int):
 	health.update_health(-amount)
 
 func die():
+	Global.kills += 1
 	Global.ProgressManager.update_level_progress()
 	queue_free()
 	

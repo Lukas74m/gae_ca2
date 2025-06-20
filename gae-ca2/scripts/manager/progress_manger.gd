@@ -69,3 +69,6 @@ func get_level_wave_size():
 
 func get_current_level_kill_amount():
 	return current_level_kill_amount
+	
+func get_level():
+	return current_level_dict["current_level"]
