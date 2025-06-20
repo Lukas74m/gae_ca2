@@ -57,7 +57,7 @@ func _physics_process(delta: float) -> void:
 			var distance = direction.length()
 			if distance > STOP_DISTANCE:
 				velocity = direction.normalized() * get_stat("movement_speed")
-				player_sprite.play("walk")
+				player_sprite.play("move")
 			else:
 				velocity = Vector2.ZERO
 				change_state(PlayerState.IDLE)
