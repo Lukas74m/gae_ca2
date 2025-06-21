@@ -13,8 +13,12 @@ const DASH_COOLDOWN: float = 1.0
 @onready var player_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var health = $Health
 @onready var player_center: Marker2D = $PlayerCenter
-
+@export var dash_ghost_scene: PackedScene
+var ghost_spawn_interval := 0.05
+var ghost_timer := 0.0
 var is_dashing: bool = false
+
+
 var dash_time_left: float = 0.0
 var dash_cooldown_left: float = 0.0
 var dash_direction: Vector2 = Vector2.ZERO
@@ -61,6 +65,10 @@ func _physics_process(delta: float) -> void:
 		PlayerState.DASH:
 			player_sprite.play("dash")
 			velocity = dash_direction * get_stat("dash_speed")
+			ghost_timer -= delta
+			if ghost_timer <= 0.0:
+				spawn_dash_ghost()
+				ghost_timer = ghost_spawn_interval
 			dash_time_left -= delta
 			if dash_time_left <= 0.0:
 				change_state(PlayerState.IDLE)
@@ -140,3 +148,10 @@ func _on_health_died() -> void:
 	change_state(PlayerState.DEAD)
 	await get_tree().create_timer(1.2).timeout
 	get_tree().change_scene_to_file("res://scenes/deathscreen/Deathscreen.tscn")
+
+func spawn_dash_ghost():
+	var ghost = dash_ghost_scene.instantiate() as Sprite2D
+	ghost.texture = player_sprite.sprite_frames.get_frame_texture(player_sprite.animation, player_sprite.frame)
+	ghost.global_position = player_center.global_position
+	ghost.flip_h = player_sprite.flip_h
+	get_parent().add_child(ghost)

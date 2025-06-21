@@ -47,13 +47,11 @@ texture = ExtResource("3_arcqg")
 
 [node name="BossAnimation" type="AnimatedSprite2D" parent="." index="2"]
 position = Vector2(0, 1.58946e-06)
-scale = Vector2(1, 1)
 sprite_frames = SubResource("SpriteFrames_xvspy")
 animation = &"attack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
 position = Vector2(26.6667, 20)
-scale = Vector2(1, 1)
 shape = SubResource("CapsuleShape2D_arcqg")
 
 [node name="BossCenter" type="Marker2D" parent="." index="4"]
