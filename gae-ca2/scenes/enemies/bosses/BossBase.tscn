@@ -52,8 +52,10 @@ sprite_frames = SubResource("SpriteFrames_xvspy")
 animation = &"attack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
+
 visible = false
 position = Vector2(6.66666, 36.6667)
+
 shape = SubResource("CapsuleShape2D_arcqg")
 
 [node name="BossCenter" type="Marker2D" parent="." index="4"]

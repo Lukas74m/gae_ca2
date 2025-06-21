@@ -1,7 +1,8 @@
-[gd_scene load_steps=25 format=3 uid="uid://c5o7ciyvg8l1k"]
+[gd_scene load_steps=28 format=3 uid="uid://c5o7ciyvg8l1k"]
 
 [ext_resource type="Script" uid="uid://cnul1yq56e3sh" path="res://scripts/player/player.gd" id="1_gfjak"]
 [ext_resource type="Texture2D" uid="uid://be54xp6d03gkl" path="res://assets/player/Character_Attack_new.png" id="2_c3xxp"]
+[ext_resource type="PackedScene" uid="uid://bto6qrfftmiin" path="res://scenes/player/ghost.tscn" id="2_npwbq"]
 [ext_resource type="Texture2D" uid="uid://bt0sojp5xikm8" path="res://assets/player/Character_Idle_new.png" id="3_npwbq"]
 [ext_resource type="Texture2D" uid="uid://c73nbi7bwn3h3" path="res://assets/player/Character_Walk_new.png" id="4_v42im"]
 [ext_resource type="PackedScene" uid="uid://c4s7ucak0uoa0" path="res://scenes/components/Health.tscn" id="5_tpg5x"]
@@ -38,6 +39,14 @@ region = Rect2(192, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_8qjgm"]
 atlas = ExtResource("2_c3xxp")
 region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_npwbq"]
+atlas = ExtResource("4_v42im")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v42im"]
+atlas = ExtResource("4_v42im")
+region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ejd4k"]
 atlas = ExtResource("3_npwbq")
@@ -100,6 +109,17 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_npwbq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v42im")
+}],
+"loop": false,
+"name": &"dash",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_ejd4k")
 }, {
 "duration": 1.0,
@@ -140,12 +160,14 @@ radius = 18.0
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(9, 0)
 script = ExtResource("1_gfjak")
+dash_ghost_scene = ExtResource("2_npwbq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-10, 0)
 sprite_frames = SubResource("SpriteFrames_tpg5x")
-animation = &"idle"
+animation = &"dash"
 autoplay = "idle"
+frame_progress = 0.712099
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
