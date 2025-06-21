@@ -3,6 +3,9 @@ extends CharacterBody2D
 enum PlayerState { IDLE, WALK, DASH, ATTACK, DEAD }
 var current_state: PlayerState = PlayerState.IDLE
 
+signal attack_start
+signal dash_start
+
 const STOP_DISTANCE: float = 12.0
 const START_DISTANCE: float = 20.0
 const DASH_DURATION: float = 0.2
@@ -17,7 +20,6 @@ const DASH_COOLDOWN: float = 1.0
 var ghost_spawn_interval := 0.05
 var ghost_timer := 0.0
 var is_dashing: bool = false
-
 
 var dash_time_left: float = 0.0
 var dash_cooldown_left: float = 0.0
@@ -98,6 +100,7 @@ func check_movement_input() -> void:
 # Checks if enemies are in the right direction and attack range
 # If true, do damage to the enemy
 func perform_attack():
+	emit_signal("attack_start")
 	for body in attack_area.get_overlapping_bodies():
 		# Must be an enemy
 		if body.is_in_group("enemies"):
@@ -126,6 +129,7 @@ func is_facing(target_pos: Vector2) -> bool:
 	
 func start_dash():
 	change_state(PlayerState.DASH)
+	emit_signal("dash_start")
 	dash_time_left = DASH_DURATION
 	dash_cooldown_left = DASH_COOLDOWN
 	dash_direction = (get_global_mouse_position() - player_center.global_position).normalized()
