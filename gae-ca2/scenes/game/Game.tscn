@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://dads2ywxohnu1"]
+[gd_scene load_steps=18 format=4 uid="uid://dads2ywxohnu1"]
 
 [ext_resource type="Script" uid="uid://bkhnbumjr1vsv" path="res://scripts/game/game.gd" id="1_m44fu"]
 [ext_resource type="Texture2D" uid="uid://djjmnhn7uw1i4" path="res://assets/dungeon tileset pack/0x72_DungeonTilesetII_v1.7 (1)/0x72_DungeonTilesetII_v1.7/atlas_floor-16x16.png" id="2_wnrko"]
@@ -9,6 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://co8ulpd1qg5vg" path="res://scenes/manager/ProgressManger.tscn" id="5_lyhax"]
 [ext_resource type="PackedScene" uid="uid://vcvbrmlgyiai" path="res://scenes/shop/Shop.tscn" id="8_wnrko"]
 [ext_resource type="PackedScene" uid="uid://byi3e8vfwfdhg" path="res://scenes/components/TaskDisplay.tscn" id="9_qf6a8"]
+[ext_resource type="Texture2D" uid="uid://c8bhnr4kql7j4" path="res://assets/skillleiste/Attack_Icon.png" id="10_56wml"]
+[ext_resource type="Texture2D" uid="uid://kpi0a6nk4ai" path="res://assets/skillleiste/Dash_Icon.png" id="11_aptqa"]
+[ext_resource type="Texture2D" uid="uid://c06vngo44emjn" path="res://assets/to_do_Leiste/Test_To-Do_Tasks.png" id="12_gynul"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gg4pt"]
 texture = ExtResource("2_wnrko")
@@ -410,6 +413,18 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 grow_horizontal = 1
 grow_vertical = 1
+
+[node name="AttackIcon" type="Sprite2D" parent="."]
+position = Vector2(-73, 103)
+texture = ExtResource("10_56wml")
+
+[node name="DashIcon" type="Sprite2D" parent="."]
+position = Vector2(-39, 103)
+texture = ExtResource("11_aptqa")
+
+[node name="TestTo-doTasks" type="Sprite2D" parent="."]
+position = Vector2(-45, -10)
+texture = ExtResource("12_gynul")
 
 [connection signal="timeout" from="Gametimer" to="." method="_on_gametimer_timeout"]
 [connection signal="player_death" from="Player" to="." method="_on_player_player_death"]
