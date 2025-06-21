@@ -165,9 +165,10 @@ dash_ghost_scene = ExtResource("2_npwbq")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-10, 0)
 sprite_frames = SubResource("SpriteFrames_tpg5x")
-animation = &"dash"
+animation = &"attack"
 autoplay = "idle"
-frame_progress = 0.712099
+frame = 7
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
