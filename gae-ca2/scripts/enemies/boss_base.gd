@@ -11,8 +11,9 @@ enum BossState { WALK, RANGED_ATTACK, MELEE_ATTACK, DEAD }
 @export var melee_attack_range: float = 50.0
 @export var melee_attack_damage: float = 25.0
 @export var melee_attack_cooldown: float = 5.0
-@export var melee_charge_cooldown: float = 1.0
+@export var melee_charge_cooldown: float = 2.0
 
+var charging = false
 var ranged_cooldown_timer: float
 var melee_cooldown_timer: float
 var melee_charge_timer: float
@@ -20,13 +21,12 @@ var boss_current_state: BossState = BossState.WALK
 
 func _ready():
 	super._ready()  # Call parent _ready()
-	health.set_healthbar_position(global_position + Vector2(-15,100))	
+	health.set_healthbar_position(global_position + Vector2(-15,130))	
 
 	# Override some base enemy values for boss
 	max_health *= 3  # Bosses have more health
 	health.initialize_health(max_health)
 	
-	print("Boss initialized with ", max_health, " health")
 
 func _physics_process(delta):
 	# Update cooldown timers
@@ -36,6 +36,7 @@ func _physics_process(delta):
 		melee_cooldown_timer -= delta
 	if melee_charge_timer > 0.0:
 		melee_charge_timer -= delta
+		
 		
 	if Global.player == null:
 		push_error("Global.player is null")
@@ -47,17 +48,22 @@ func _physics_process(delta):
 	
 	match boss_current_state:
 		BossState.WALK:
-			boss_movement_logic(delta, distance_to_player)
+			boss_movement_logic(distance_to_player)
 		BossState.RANGED_ATTACK:
-			await perform_ranged_attack(delta, distance_to_player)
+			perform_ranged_attack(distance_to_player)
 		BossState.MELEE_ATTACK:
-			await perform_melee_attack(delta, distance_to_player)
+			if !charging:
+				perform_melee_charge()
+			if melee_charge_timer <= 0 and charging:
+				print(melee_charge_timer <= 0 and charging, melee_charge_timer, charging)
+				charging = false
+				perform_melee_attack(distance_to_player)
 		BossState.DEAD:
 			velocity = Vector2.ZERO
 			
 	move_and_slide()
 	
-func boss_movement_logic(delta: float, distance_to_player: float):
+func boss_movement_logic(distance_to_player: float):
 	# Decide which attack to use based on distance and cooldowns
 	if distance_to_player <= melee_attack_range and melee_cooldown_timer <= 0.0:
 		change_boss_state(BossState.MELEE_ATTACK)
@@ -73,26 +79,28 @@ func boss_movement_logic(delta: float, distance_to_player: float):
 	else:
 		velocity = Vector2.ZERO
 
-func perform_ranged_attack(delta: float, distance_to_player: float):
+func perform_ranged_attack(distance_to_player: float):
 	velocity = Vector2.ZERO
 	
 	# Aim and throw projectile at player
-	printerr("Range attack ", Global.time_alive)
+	#printerr("Range attack ", Global.time_alive)
 	throw_projectile_at_player()
 	
 	# Set cooldown and return to walking
 	ranged_cooldown_timer = ranged_attack_cooldown
 	change_boss_state(BossState.WALK)
 
-func perform_melee_attack(delta: float, distance_to_player: float):
+func perform_melee_charge():
+	# Animation starten
+	charging = true
+	melee_charge_timer = melee_charge_cooldown
+	printerr("Starte animation und gebe Chance zum ausweichen ", Global.time_alive)
+
+func perform_melee_attack(distance_to_player: float):
 	velocity = Vector2.ZERO
-	# Animation gestartet, warten ob player in range bleibt
-	printerr("Starte animation und gebe Chance zum ausweichen")
-	#melee_charge_timer = melee_charge_cooldown
-	# Perform melee attack
 	if distance_to_player <= melee_attack_range:
 		deal_melee_damage()
-	
+	printerr("Melle Damage ", Global.time_alive)
 	# Set cooldown and return to walking
 	melee_cooldown_timer = melee_attack_cooldown
 	change_boss_state(BossState.WALK)
@@ -134,7 +142,6 @@ func predict_player_position() -> Vector2:
 	return Global.player.global_position + (player_velocity * prediction_time)
 
 func deal_melee_damage():
-	printerr("Melle attack ", Global.time_alive)
 	if Global.player.has_method("take_damage"):
 		Global.player.take_damage(melee_attack_damage)
 		
@@ -147,11 +154,8 @@ func change_boss_state(new_state: BossState):
 	match new_state:
 		BossState.RANGED_ATTACK:
 			pass
-			#print("Boss entering ranged attack state")
 		BossState.MELEE_ATTACK:
-			#print("Boss entering melee attack state")
-
-			attack()
+			velocity = Vector2.ZERO
 		BossState.DEAD:
 			die()
 
