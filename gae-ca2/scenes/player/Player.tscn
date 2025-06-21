@@ -138,15 +138,14 @@ height = 22.0
 radius = 18.0
 
 [node name="Player" type="CharacterBody2D"]
+position = Vector2(9, 0)
 script = ExtResource("1_gfjak")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-10, 0)
 sprite_frames = SubResource("SpriteFrames_tpg5x")
-animation = &"move"
+animation = &"idle"
 autoplay = "idle"
-frame = 4
-frame_progress = 0.19314
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-9, 0)
@@ -163,6 +162,9 @@ position = Vector2(4, 13)
 scale = Vector2(0.2, 0.2)
 
 [node name="PlayerStats" parent="." instance=ExtResource("7_npwbq")]
+
+[node name="PlayerCenter" type="Marker2D" parent="."]
+position = Vector2(-10, 1)
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="died" from="Health" to="." method="_on_health_died"]

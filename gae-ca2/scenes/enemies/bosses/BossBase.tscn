@@ -1,9 +1,27 @@
-[gd_scene load_steps=6 format=3 uid="uid://uillq8yy1jid"]
+[gd_scene load_steps=7 format=3 uid="uid://uillq8yy1jid"]
 
 [ext_resource type="PackedScene" uid="uid://41vujg0qkyqh" path="res://scenes/enemies/EnemyBase.tscn" id="1_lw1cg"]
 [ext_resource type="Script" uid="uid://dy06kynt7epty" path="res://scripts/enemies/boss_base.gd" id="2_u5uy3"]
 [ext_resource type="Texture2D" uid="uid://djk3b4rkt0p6f" path="res://assets/dungeon tileset pack/0x72_DungeonTilesetII_v1.7 (1)/0x72_DungeonTilesetII_v1.7/frames/ogre_idle_anim_f0.png" id="3_arcqg"]
 [ext_resource type="PackedScene" uid="uid://bdsbeuiutxvap" path="res://scenes/projectiles/BossProjectile.tscn" id="3_xvspy"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xvspy"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_arcqg"]
 radius = 56.6667
@@ -20,11 +38,22 @@ melee_attack_range = 50.0
 melee_attack_damage = 25.0
 melee_attack_cooldown = 5.0
 melee_charge_cooldown = 1.0
+sprite_path = NodePath("BossAnimation")
+center_path = NodePath("BossCenter")
 
 [node name="Sprite2D" parent="." index="1"]
 scale = Vector2(1, 1.23)
 texture = ExtResource("3_arcqg")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
+[node name="BossAnimation" type="AnimatedSprite2D" parent="." index="2"]
+position = Vector2(0, 1.58946e-06)
+scale = Vector2(1, 1)
+sprite_frames = SubResource("SpriteFrames_xvspy")
+animation = &"attack"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
 position = Vector2(26.6667, 20)
+scale = Vector2(1, 1)
 shape = SubResource("CapsuleShape2D_arcqg")
+
+[node name="BossCenter" type="Marker2D" parent="." index="4"]

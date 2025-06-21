@@ -392,7 +392,7 @@ position = Vector2(-40, 38)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(-9, 1)
-zoom = Vector2(3.5, 3.5)
+zoom = Vector2(4, 4)
 position_smoothing_enabled = true
 
 [node name="EnemyManager" parent="." instance=ExtResource("4_7qcb4")]

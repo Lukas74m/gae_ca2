@@ -3,7 +3,8 @@ extends CharacterBody2D
 enum PlayerState { IDLE, WALK, DASH, ATTACK, DEAD }
 var current_state: PlayerState = PlayerState.IDLE
 
-const STOP_DISTANCE: float = 10.0
+const STOP_DISTANCE: float = 12.0
+const START_DISTANCE: float = 20.0
 const DASH_DURATION: float = 0.2
 const DASH_COOLDOWN: float = 1.0
 
@@ -11,6 +12,7 @@ const DASH_COOLDOWN: float = 1.0
 @onready var attack_area: Area2D = $Area2D
 @onready var player_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var health = $Health
+@onready var player_center: Marker2D = $PlayerCenter
 
 var is_dashing: bool = false
 var dash_time_left: float = 0.0
@@ -23,15 +25,6 @@ func _ready() -> void:
 	health.initialize_health(get_stat("max_health"))
 	health.set_healthbar_position(global_position + Vector2(-45, -40))
 
-# Player keyboard inputs
-#func _input(event):
-#	if event.is_action_pressed("attack") and not attacking and not is_dashing:
-#		attacking = true
-#		player_sprite.play("attack")
-#		perform_attack()
-#		
-#	if event.is_action_pressed("dash") and not is_dashing and dash_cooldown_left <= 0.0 and not attacking:
-#		start_dash()
 func _input(event: InputEvent) -> void:
 	# Nur im passenden Zustand auf Inputs reagieren.
 	if current_state == PlayerState.IDLE or current_state == PlayerState.WALK:
@@ -53,12 +46,12 @@ func _physics_process(delta: float) -> void:
 	
 		PlayerState.WALK:
 			var mouse_position = get_global_mouse_position()
-			var direction = mouse_position - global_position
+			var direction = mouse_position - player_center.global_position
 			var distance = direction.length()
-			if distance > STOP_DISTANCE:
+			if distance > START_DISTANCE:
 				velocity = direction.normalized() * get_stat("movement_speed")
 				player_sprite.play("move")
-			else:
+			elif distance < STOP_DISTANCE:
 				velocity = Vector2.ZERO
 				change_state(PlayerState.IDLE)
 		
@@ -74,33 +67,9 @@ func _physics_process(delta: float) -> void:
 		
 		PlayerState.DEAD:
 			velocity = Vector2.ZERO
+	var mouse_direction = get_global_mouse_position()
+	player_sprite.flip_h = mouse_direction.x < player_center.global_position.x
 	move_and_slide()  	
-	#if is_dashing:
-	#	player_sprite.play("dash")
-	#	velocity = dash_direction * get_stat("dash_speed")
-	#	dash_time_left -= delta
-	#	if dash_time_left <= 0.0:
-	#		is_dashing = false
-	#	move_and_slide()
-	#	return  
-
-	#if dash_cooldown_left > 0.0:
-	#	dash_cooldown_left -= delta
-
-	# Normal movement, only if player is doing nothing else
-	#if not attacking:
-	#	var mouse_position = get_global_mouse_position()
-	#	var direction = mouse_position - global_position
-	#	var distance = direction.length()
-
-	#	if distance > STOP_DISTANCE:
-	#		velocity = direction.normalized() * get_stat("movement_speed")
-	#		player_sprite.play("walk")
-	#	else:
-	#		velocity = Vector2.ZERO
-	#		player_sprite.play("idle")
-			
-	#move_and_slide()  
 
 # Helpmethod to change states
 func change_state(new_state: PlayerState) -> void:
@@ -115,7 +84,7 @@ func change_state(new_state: PlayerState) -> void:
 			
 func check_movement_input() -> void:
 	var mouse_position = get_global_mouse_position()
-	if (mouse_position - global_position).length() > STOP_DISTANCE:
+	if (mouse_position - player_center.global_position).length() > STOP_DISTANCE:
 		change_state(PlayerState.WALK)
 
 # Checks if enemies are in the right direction and attack range
@@ -124,7 +93,7 @@ func perform_attack():
 	for body in attack_area.get_overlapping_bodies():
 		# Must be an enemy
 		if body.is_in_group("enemies"):
-			if is_facing(body.global_position):
+			if is_facing(body.get_center_position()):
 				# Debug
 				if !body.has_method("take_damage"):
 					push_error("[Player.gd, perform_attack()] Error : body has no take_damage")
@@ -142,8 +111,8 @@ func perform_attack():
 
 # Checks if the enemy is in view direction of the player (If mouse points in enemy direction)
 func is_facing(target_pos: Vector2) -> bool:
-	var to_target = (target_pos - global_position).normalized()
-	var to_mouse = (get_global_mouse_position() - global_position).normalized()
+	var to_target = (target_pos - player_center.global_position).normalized()
+	var to_mouse = (get_global_mouse_position() - player_center.global_position).normalized()
 	return to_mouse.dot(to_target) > 0.7  
 	
 	
@@ -151,7 +120,7 @@ func start_dash():
 	change_state(PlayerState.DASH)
 	dash_time_left = DASH_DURATION
 	dash_cooldown_left = DASH_COOLDOWN
-	dash_direction = (get_global_mouse_position() - global_position).normalized()
+	dash_direction = (get_global_mouse_position() - player_center.global_position).normalized()
 
 
 func _on_animated_sprite_2d_animation_finished() -> void:
@@ -164,8 +133,8 @@ func take_damage(amount: int):
 func get_stat(stat_name: String):
 	return stats.get_stat(stat_name)
 
-#func die():
-	#queue_free()
+func get_center_position() -> Vector2:
+	return player_center.global_position
 
 func _on_health_died() -> void:
 	change_state(PlayerState.DEAD)
