@@ -25,6 +25,7 @@ func load_enemy_scenes():
 		"Orc_Boss": preload("res://scenes/enemies/bosses/BossBase.tscn")
 	}
 
+# The entity names have to be the exact same like in the level.tres files
 func load_enemy_resources():
 	enemy_resources = {
 		"Orc": preload("res://resources/enemies/orc.tres"),

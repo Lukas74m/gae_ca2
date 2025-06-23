@@ -1,14 +1,15 @@
 [gd_resource type="Resource" script_class="ProgressResource" load_steps=2 format=3 uid="uid://cfu7x1dmxgjl6"]
 
-[ext_resource type="Script" uid="uid://cm03la2l26qe" path="res://scripts/manager/progress_resource.gd" id="1_mgrjq"]
+[ext_resource type="Script" uid="uid://cm03la2l26qe" path="res://scripts/resource_scripts/progress_resource.gd" id="1_mgrjq"]
 
 [resource]
 script = ExtResource("1_mgrjq")
 current_level = 1
-level_wave_size = 1
+level_wave_size = 2
 enemy_composition = {
-"Orc": 1
+"Orc": 2
 }
-spawn_frequency = 5
-level_boss = "Orc_Boss"
+spawn_frequency = 3
+level_boss_name = "Orc_Boss"
+boss_level = false
 metadata/_custom_type_script = "uid://cm03la2l26qe"
