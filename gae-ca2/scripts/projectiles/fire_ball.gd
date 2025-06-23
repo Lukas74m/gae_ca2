@@ -4,6 +4,7 @@ extends Area2D
 @onready var timer: Timer = $Timer
 var direction: Vector2 = Vector2.ZERO
 var damage
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 func _ready():
 	$Timer.start(1.0) 
@@ -24,10 +25,17 @@ func _on_body_entered(body: Node2D) -> void:
 		if !body.has_method("take_damage"):
 			push_error("[Player.gd, perform_attack()] Error : body has no take_damage")
 		else:
+			animated_sprite_2d.play("on_hit")
+			speed = 0
 			body.take_damage(damage)
 			print(damage) 
-			queue_free()
+			#queue_free()
 
 
 func _on_timer_timeout() -> void:
 	queue_free()
+
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	if animated_sprite_2d.animation == "on_hit":
+		queue_free()
