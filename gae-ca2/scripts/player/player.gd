@@ -148,6 +148,7 @@ func get_stat(stat_name: String):
 func get_center_position() -> Vector2:
 	return player_center.global_position
 
+# Player dies
 func _on_health_died() -> void:
 	change_state(PlayerState.DEAD)
 	await get_tree().create_timer(1.2).timeout
@@ -159,3 +160,11 @@ func spawn_dash_ghost():
 	ghost.global_position = player_center.global_position
 	ghost.flip_h = player_sprite.flip_h
 	get_parent().add_child(ghost)
+
+# Heals the player by a certain amount in percent
+# If player currently has 20/100 HP and method is called with 0.5,
+# 0.5 percent of the players max health is added to the current health
+# -> 20 + 0.5 * 100 (example max_health) = 70 for the new health
+func heal_player(heal_percentage: float):
+	var healing_amount = get_stat("max_health") * heal_percentage
+	health.update_health(healing_amount)
