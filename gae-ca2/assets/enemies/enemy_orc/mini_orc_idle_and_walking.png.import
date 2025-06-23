@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://rnhuo7cd3r5d"
-path="res://.godot/imported/mini_orc_idle_and_walking.png-481a4be0be882ac0f598c7f6ed7c8103.ctex"
+path="res://.godot/imported/mini_orc_idle_and_walking.png-92f3f2f5286b355a1bc9b93a51dee220.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/enemies/mini_orc_idle_and_walking.png"
-dest_files=["res://.godot/imported/mini_orc_idle_and_walking.png-481a4be0be882ac0f598c7f6ed7c8103.ctex"]
+source_file="res://assets/enemies/enemy_orc/mini_orc_idle_and_walking.png"
+dest_files=["res://.godot/imported/mini_orc_idle_and_walking.png-92f3f2f5286b355a1bc9b93a51dee220.ctex"]
 
 [params]
 

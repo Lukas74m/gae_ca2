@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://41vujg0qkyqh" path="res://scenes/enemies/EnemyBase.tscn" id="1_pfjf4"]
 [ext_resource type="Texture2D" uid="uid://b7p3264oqpo37" path="res://assets/dungeon tileset pack/0x72_DungeonTilesetII_v1.7 (1)/0x72_DungeonTilesetII_v1.7/frames/orc_warrior_idle_anim_f0.png" id="2_2ymwm"]
-[ext_resource type="Texture2D" uid="uid://ccm0rjkxpfpc0" path="res://assets/enemies/mini_orc_attack.png" id="2_wprko"]
-[ext_resource type="Texture2D" uid="uid://rnhuo7cd3r5d" path="res://assets/enemies/mini_orc_idle_and_walking.png" id="3_be4gh"]
+[ext_resource type="Texture2D" uid="uid://bpoq51py4ommh" path="res://assets/enemies/enemy_orc/mini_orc_attack.png" id="2_wprko"]
+[ext_resource type="Texture2D" uid="uid://rnhuo7cd3r5d" path="res://assets/enemies/enemy_orc/mini_orc_idle_and_walking.png" id="3_be4gh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wprko"]
 atlas = ExtResource("2_wprko")
@@ -190,7 +190,7 @@ center_path = NodePath("OrcCenter")
 position = Vector2(13.3333, -6.66667)
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_2ymwm")
-animation = &"move"
+animation = &"attack"
 autoplay = "idle"
 
 [node name="Sprite2D" parent="." index="2"]
