@@ -192,8 +192,6 @@ scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_2ymwm")
 animation = &"attack"
 autoplay = "idle"
-frame = 12
-frame_progress = 1.0
 
 [node name="Sprite2D" parent="." index="2"]
 visible = false

@@ -95,9 +95,7 @@ func adjust_direction() -> void:
 				projectile_flying = false
 			queue_free()
 		await get_tree().create_timer(0.1).timeout
-	
-	
-	
+
 
 func create_hit_effect():
 	# Create visual/audio effects when projectile hits
