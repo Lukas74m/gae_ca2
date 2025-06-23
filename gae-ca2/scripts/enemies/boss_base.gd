@@ -34,8 +34,7 @@ func _ready():
 	health.set_healthbar_position(global_position + Vector2(-15,130))	
 
 	# Override some base enemy values for boss
-	max_health *= 3  # Bosses have more health
-	health.initialize_health(max_health)
+	health.initialize_health(get_stat("max_health"))
 	
 	# Set initial dash cooldown to prevent immediate dashing
 	dash_cooldown_timer = initial_dash_delay
@@ -80,6 +79,7 @@ func _physics_process(delta):
 			
 	move_and_slide()
 	
+	
 func boss_movement_logic(distance_to_player: float):
 	#Check for dash opportunity (player is far but not too far, and dash is available)
 	if distance_to_player > melee_attack_range and distance_to_player <= dash_range and dash_cooldown_timer <= 0.0:
@@ -96,9 +96,10 @@ func boss_movement_logic(distance_to_player: float):
 	# Move towards player if not in any attack range
 	if distance_to_player > melee_attack_range:
 		var direction = (Global.player.global_position - global_position).normalized()
-		velocity = direction * movement_speed * 0.8  # Bosses move slightly slower
+		velocity = direction * get_stat("movement_speed") * 0.8  # Bosses move slightly slower
 	else:
 		velocity = Vector2.ZERO
+
 
 func start_dash():
 	change_boss_state(BossState.DASH)
@@ -133,6 +134,7 @@ func perform_melee_charge():
 	melee_charge_timer = melee_charge_cooldown
 	printerr("Starte animation und gebe Chance zum ausweichen ", Global.time_alive)
 
+
 func perform_melee_attack(distance_to_player: float):
 	velocity = Vector2.ZERO
 	if distance_to_player <= melee_attack_range:
@@ -142,19 +144,19 @@ func perform_melee_attack(distance_to_player: float):
 	melee_cooldown_timer = melee_attack_cooldown
 	change_boss_state(BossState.WALK)
 
+
 func throw_projectile_at_player():
 		
 	var projectile = projectile_scene.instantiate()
 	get_tree().current_scene.add_child(projectile)
 	
-	
+
 	# Position projectile at boss location
 	projectile.global_position = global_position
 	
 	# Calculate direction to player with some prediction
 	var target_position = predict_player_position()
-	#var target_position = Global.player.global_position
-	##var distance_to_player = (target_position - global_position)
+
 	var direction = (target_position - global_position).normalized()
 	
 	# Set projectile properties
@@ -162,7 +164,6 @@ func throw_projectile_at_player():
 		projectile.initialize(direction, projectile_speed, ranged_attack_damage)
 	projectile.ranged_attack(direction, target_position)
 	
-	#print("Boss threw projectile at player")
 
 func predict_player_position() -> Vector2:
 	# Simple prediction: aim slightly ahead of player based on their velocity
@@ -171,8 +172,7 @@ func predict_player_position() -> Vector2:
 		player_velocity = Global.player.get_velocity()
 	else:
 		printerr("No player_velocity")
-	#elif Global.player.has_property("velocity"):
-		#player_velocity = Global.player.velocity
+
 	
 	# Predict where player will be in 0.5 seconds
 	var prediction_time = 0.5
@@ -197,12 +197,6 @@ func change_boss_state(new_state: BossState):
 			die()
 		BossState.DASH:
 			pass
-
-## Override parent attack method to use boss-specific logic
-#func attack():
-	## This method is called from parent, but we handle attacks differently
-	## So we can leave this empty or redirect to our boss logic
-	#pass
 
 
 # Override die method to add boss-specific death behavior

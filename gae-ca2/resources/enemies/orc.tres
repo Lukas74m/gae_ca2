@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="EnemyResource" load_steps=2 format=3 uid="uid://gwatrwp216xw"]
 
-[ext_resource type="Script" uid="uid://p4xaeqeavuor" path="res://scripts/manager/enemy_resource.gd" id="1_6pnpc"]
+[ext_resource type="Script" uid="uid://p4xaeqeavuor" path="res://scripts/resource_scripts/enemy_resource.gd" id="1_6pnpc"]
 
 [resource]
 script = ExtResource("1_6pnpc")
@@ -9,5 +9,5 @@ max_health = 50
 movement_speed = 50.0
 attack_range = 20.0
 attack_damage = 10.0
-attack_cooldown = 1.5
+attack_cooldown = 2.0
 metadata/_custom_type_script = "uid://p4xaeqeavuor"

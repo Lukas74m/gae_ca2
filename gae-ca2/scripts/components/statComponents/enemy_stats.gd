@@ -1,23 +1,20 @@
-class_name PlayerStatComponent
+class_name EnemyStatComponent
 extends Node
 
 # base stats from the player
 var base_stats = {
-	"attack_damage": 25,
-	"attack_range": 15,
-	#"attack_cooldown": 2, 				# Cooldown is based on animations
-	"dash_speed": 250,
-	"movement_speed": 100,
-	"max_health": 500,
-	"crit_rate": 0.2,
-	"crit_damage": 1.2
+	"attack_damage": 0,
+	"attack_range": 0,
+	"attack_cooldown": 0,
+	"movement_speed": 0,
+	"max_health": 0,
 }
 
 # additive modifiers from the player
 var additive_mods = {
 	"attack_damage": 0,
 	"attack_range": 0,
-	#"attack_cooldown": 0, 				# Cooldown is based on animations
+	"attack_cooldown": 0,
 	"dash_speed": 0,
 	"movement_speed": 0,
 	"max_health": 0
@@ -29,6 +26,13 @@ var multiplicative_mods = {
 	"movement_speed": 1,
 	"max_health": 1
 }
+
+func initialize_stats(enemy_resource: EnemyResource):
+	base_stats["max_health"] = enemy_resource.max_health
+	base_stats["movement_speed"] = enemy_resource.movement_speed
+	base_stats["attack_range"] = enemy_resource.attack_range 
+	base_stats["attack_damage"] = enemy_resource.attack_damage
+	base_stats["attack_cooldown"] = enemy_resource.attack_cooldown
 
 
 # Returns the base damage with all upgrades 

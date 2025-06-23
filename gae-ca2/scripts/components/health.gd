@@ -36,8 +36,9 @@ func set_healthbar_position(position):
 func die():
 	emit_signal("died")
 
-# Updates the healthpoints of the entity 
-# Also calls a method to update it visually
+# Updates the healthpoints of the entity
+# Negetive inputs are damage while positiv inputs are heal
+# Also calls a method to update it visuallying
 func update_health(health_change: float):
 	# Secures that the entity health is between 0 and max_health
 	current_health = clamp(current_health + health_change, 0, max_health)

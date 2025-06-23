@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="BossResource" load_steps=2 format=3 uid="uid://d0b4mwafgc0g7"]
 
-[ext_resource type="Script" uid="uid://d3or1fqpts76j" path="res://scripts/manager/boss_ressource.gd" id="1_jlmjw"]
+[ext_resource type="Script" uid="uid://d3or1fqpts76j" path="res://scripts/resource_scripts/boss_ressource.gd" id="1_jlmjw"]
 
 [resource]
 script = ExtResource("1_jlmjw")

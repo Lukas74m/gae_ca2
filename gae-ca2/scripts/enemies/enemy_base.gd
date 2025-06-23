@@ -11,26 +11,18 @@ var current_state: EnemyState = EnemyState.WALK
 @export var sprite_path: NodePath
 @export var center_path: NodePath
 @onready var enemy_visual = $Sprite2D
-@onready var health := $Health
+@onready var health = $Health
+@onready var stats = $EnemyStats
 @onready var sprite: AnimatedSprite2D = get_node(sprite_path)
 @onready var center: Marker2D = get_node(center_path)
-
-var max_health: int
-var movement_speed: float
-var attack_range: float
-var attack_damage: float
-var attack_cooldown: float
 
 var attack_cooldown_timer: float = 0.0
 
 func _ready():
-	max_health = enemy_resource.max_health
-	movement_speed = enemy_resource.movement_speed
-	attack_range = enemy_resource.attack_range 
-	attack_damage = enemy_resource.attack_damage
-	attack_cooldown = enemy_resource.attack_cooldown
-	
-	health.initialize_health(max_health)
+	# Giving the resource to the statsComponent to load specifix stats
+	stats.initialize_stats(enemy_resource)
+	# Coennecting to health component
+	health.initialize_health(get_stat("max_health"))
 	health.set_healthbar_position(global_position + Vector2(-15,50))
 	health.died.connect(die)
 	sprite.frame_changed.connect(_on_attack_frame_changed)
@@ -58,15 +50,15 @@ func _physics_process(delta):
 			
 func move_towards_player(delta: float, distance_to_player: float):
 	# If in attack range and cooldown 0
-	if distance_to_player <= attack_range and attack_cooldown_timer <= 0.0:
+	if distance_to_player <= get_stat("attack_range") and attack_cooldown_timer <= 0.0:
 		change_state(EnemyState.ATTACK)
 		return
 	# Only move if not in attack range
-	if distance_to_player > attack_range and attack_cooldown_timer <= 0.0:
+	if distance_to_player > get_stat("attack_range") and attack_cooldown_timer <= 0.0:
 		sprite.flip_h = Global.player.get_center_position().x < global_position.x
 		sprite.play("move")
 		var direction = (Global.player.get_center_position() - global_position).normalized()
-		velocity = direction * movement_speed
+		velocity = direction * get_stat("movement_speed")
 	else:
 		# Stop moving when in attack range but cooldown >= 0
 		sprite.flip_h = Global.player.get_center_position().x < global_position.x
@@ -107,12 +99,16 @@ func get_center_position() -> Vector2:
 func attack():
 	sprite.flip_h = Global.player.get_center_position().x < global_position.x
 	sprite.play("attack")
-	attack_cooldown_timer = attack_cooldown 
+	attack_cooldown_timer = get_stat("attack_cooldown")
 	await sprite.animation_finished
 	sprite.play("idle")
 
 func _on_attack_frame_changed():
 	if sprite.animation == "attack" and sprite.frame == 10:
 		var distance = global_position.distance_to(Global.player.get_center_position())
-		if distance <= attack_range:
-			Global.player.take_damage(attack_damage)
+		if distance <= stats.get_stat("attack_range"):
+			Global.player.take_damage(get_stat("attack_damage"))
+
+
+func get_stat(stat_name: String):
+	return stats.get_stat(stat_name)

@@ -40,7 +40,8 @@ func _on_option_1_button_pressed() -> void:
 
 func _on_option_2_button_pressed() -> void:
 	_apply_upgrade(1)
-	
+
+
 func _apply_upgrade(index):
 	if Global.player and index < chosen_upgrades.size():
 		var upgrade = chosen_upgrades[index]
