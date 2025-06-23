@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbr0fk1e3cv82"
-path="res://.godot/imported/Magic_Attack_Animation.png-833b82480a89a0eb275e160153abd532.ctex"
+uid="uid://c0c13vtjkpfat"
+path="res://.godot/imported/Magic_Attack_Animation (1).png-210fda8d14a0a461a8d9d9a38517fad2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/player/Magic_Attack_Animation.png"
-dest_files=["res://.godot/imported/Magic_Attack_Animation.png-833b82480a89a0eb275e160153abd532.ctex"]
+source_file="res://assets/player/Magic_Attack_Animation (1).png"
+dest_files=["res://.godot/imported/Magic_Attack_Animation (1).png-210fda8d14a0a461a8d9d9a38517fad2.ctex"]
 
 [params]
 

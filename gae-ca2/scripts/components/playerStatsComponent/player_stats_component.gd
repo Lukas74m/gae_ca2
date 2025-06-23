@@ -10,7 +10,8 @@ var base_stats = {
 	"movement_speed": 100,
 	"max_health": 500,
 	"crit_rate": 0.2,
-	"crit_damage": 1.2
+	"crit_damage": 1.2,
+	"fireball_damage": 10
 }
 
 # additive modifiers from the player

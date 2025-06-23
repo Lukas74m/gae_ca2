@@ -1,36 +1,40 @@
 extends CharacterBody2D
 
-enum PlayerState { IDLE, WALK, DASH, ATTACK, DEAD }
+enum PlayerState { IDLE, WALK, DASH, ATTACK, DEAD, FIREBALL }
 var current_state: PlayerState = PlayerState.IDLE
 
 signal attack_start
 signal dash_start
+signal fireball_start
 
 const STOP_DISTANCE: float = 12.0
 const START_DISTANCE: float = 20.0
 const DASH_DURATION: float = 0.2
 const DASH_COOLDOWN: float = 1.0
 
+@onready var fireball_scene = preload("res://scenes/projectiles/fire_ball.tscn")
 @onready var stats = $PlayerStats
 @onready var attack_area: Area2D = $Area2D
 @onready var player_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var health = $Health
 @onready var player_center: Marker2D = $PlayerCenter
+@onready var skillbar: Node2D = $"../CanvasLayer/Skillbar"
 @export var dash_ghost_scene: PackedScene
+
 var ghost_spawn_interval := 0.05
 var ghost_timer := 0.0
 var is_dashing: bool = false
-
 var dash_time_left: float = 0.0
 var dash_cooldown_left: float = 0.0
 var dash_direction: Vector2 = Vector2.ZERO
 var attacking: bool = false
-signal player_death
+var can_fireball: bool = true
 
 func _ready() -> void:
 	health.initialize_health(get_stat("max_health"))
 	health.set_healthbar_position(global_position + Vector2(-45, -40))
-
+	skillbar.fireball_cooldown_finished.connect(_on_fireball_cooldown_finished)
+	
 func _input(event: InputEvent) -> void:
 	# Nur im passenden Zustand auf Inputs reagieren.
 	if current_state == PlayerState.IDLE or current_state == PlayerState.WALK:
@@ -38,6 +42,8 @@ func _input(event: InputEvent) -> void:
 			change_state(PlayerState.ATTACK)
 		elif event.is_action_pressed("dash") and dash_cooldown_left <= 0.0:
 			start_dash()
+		elif event.is_action_pressed("fireball") and can_fireball == true:
+			change_state(PlayerState.FIREBALL)
 
 # Walk, dashen and idle
 func _physics_process(delta: float) -> void:
@@ -62,6 +68,9 @@ func _physics_process(delta: float) -> void:
 				change_state(PlayerState.IDLE)
 		
 		PlayerState.ATTACK:
+			velocity = Vector2.ZERO
+		
+		PlayerState.FIREBALL:
 			velocity = Vector2.ZERO
 		
 		PlayerState.DASH:
@@ -91,6 +100,9 @@ func change_state(new_state: PlayerState) -> void:
 		PlayerState.ATTACK:
 			player_sprite.play("attack")
 			perform_attack()
+		PlayerState.FIREBALL:
+			player_sprite.play("fireball")
+			shoot_fireball()
 			
 func check_movement_input() -> void:
 	var mouse_position = get_global_mouse_position()
@@ -118,7 +130,6 @@ func perform_attack():
 						print("crit jay")
 						total_damage *= crit_damage
 					body.take_damage(total_damage)
-					
 
 # Checks if the enemy is in view direction of the player (If mouse points in enemy direction)
 func is_facing(target_pos: Vector2) -> bool:
@@ -136,7 +147,7 @@ func start_dash():
 
 
 func _on_animated_sprite_2d_animation_finished() -> void:
-	if player_sprite.animation == "attack":
+	if player_sprite.animation == "attack" or player_sprite.animation == "fireball":
 		change_state(PlayerState.IDLE)
 
 func take_damage(amount: int):
@@ -159,3 +170,17 @@ func spawn_dash_ghost():
 	ghost.global_position = player_center.global_position
 	ghost.flip_h = player_sprite.flip_h
 	get_parent().add_child(ghost)
+
+func shoot_fireball():
+	emit_signal("fireball_start")
+	can_fireball = false
+	var fireball = fireball_scene.instantiate()
+	fireball.global_position = player_center.global_position 
+	fireball.initialize(
+		(get_global_mouse_position() - fireball.global_position).normalized(),
+		get_stat("fireball_damage")
+	)
+	get_tree().current_scene.add_child(fireball)
+
+func _on_fireball_cooldown_finished():
+	can_fireball = true

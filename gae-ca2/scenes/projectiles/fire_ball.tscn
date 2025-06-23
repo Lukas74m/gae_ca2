@@ -1,0 +1,81 @@
+[gd_scene load_steps=11 format=3 uid="uid://bed6mjp4oyiex"]
+
+[ext_resource type="Script" uid="uid://ddi367nmbjjo1" path="res://scripts/projectiles/fire_ball.gd" id="1_qdnx5"]
+[ext_resource type="Texture2D" uid="uid://c0c13vtjkpfat" path="res://assets/player/Magic_Attack_Animation (1).png" id="2_eyjtw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skkn4"]
+atlas = ExtResource("2_eyjtw")
+region = Rect2(0, 0, 90, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ctll"]
+atlas = ExtResource("2_eyjtw")
+region = Rect2(90, 0, 90, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b6dau"]
+atlas = ExtResource("2_eyjtw")
+region = Rect2(180, 0, 90, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tqtec"]
+atlas = ExtResource("2_eyjtw")
+region = Rect2(270, 0, 90, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8fq0j"]
+atlas = ExtResource("2_eyjtw")
+region = Rect2(360, 0, 90, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3tr0"]
+atlas = ExtResource("2_eyjtw")
+region = Rect2(450, 0, 90, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ad410"]
+atlas = ExtResource("2_eyjtw")
+region = Rect2(540, 0, 90, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xoivn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skkn4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ctll")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b6dau")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tqtec")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8fq0j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i3tr0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ad410")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="FireBall" type="Area2D"]
+script = ExtResource("1_qdnx5")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+build_mode = 1
+polygon = PackedVector2Array(0, -3, 5, 0, 0, 4, -5, 1)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-8, 1)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_xoivn")
+autoplay = "default"
+frame = 6
+frame_progress = 1.0
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
