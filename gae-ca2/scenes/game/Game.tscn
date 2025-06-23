@@ -417,4 +417,3 @@ position = Vector2(530, 574)
 scale = Vector2(2.5, 2.5)
 
 [connection signal="timeout" from="Gametimer" to="." method="_on_gametimer_timeout"]
-[connection signal="player_death" from="Player" to="." method="_on_player_player_death"]

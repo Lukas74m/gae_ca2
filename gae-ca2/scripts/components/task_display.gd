@@ -3,9 +3,9 @@ extends Control
 @onready var title_label = $CanvasLayer/VBoxContainer/Title
 @onready var vbox_container = $CanvasLayer/VBoxContainer
 @onready var progress_bar = $CanvasLayer/Control/ProgressBar
-@onready var to_do: AnimatedSprite2D = $CanvasLayer/VBoxContainer/AnimatedSprite2D
+@onready var to_do: AnimatedSprite2D = $CanvasLayer/AnimatedSprite2D
 
-	
+
 func update_display(stats: Dictionary, title: String):
 	set_labels(stats, title)
 	update_progress_bar()
