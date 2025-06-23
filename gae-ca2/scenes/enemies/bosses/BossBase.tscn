@@ -39,6 +39,11 @@ melee_attack_range = 50.0
 melee_attack_damage = 25.0
 melee_attack_cooldown = 5.0
 melee_charge_cooldown = 2.0
+dash_range = 150.0
+dash_speed = 600.0
+dash_duration = 0.3
+dash_cooldown = 8.0
+initial_dash_delay = 3.0
 sprite_path = NodePath("BossAnimation")
 center_path = NodePath("BossCenter")
 
@@ -52,10 +57,8 @@ sprite_frames = SubResource("SpriteFrames_xvspy")
 animation = &"attack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
-
 visible = false
 position = Vector2(6.66666, 36.6667)
-
 shape = SubResource("CapsuleShape2D_arcqg")
 
 [node name="BossCenter" type="Marker2D" parent="." index="4"]

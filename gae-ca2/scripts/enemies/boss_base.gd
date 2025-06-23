@@ -1,7 +1,7 @@
 extends Enemy
 class_name Boss
 
-enum BossState { WALK, RANGED_ATTACK, MELEE_ATTACK, DEAD }
+enum BossState { WALK, RANGED_ATTACK, MELEE_ATTACK, DEAD, DASH }
 
 @export var projectile_scene = preload("res://scenes/projectiles/BossProjectile.tscn")
 @export var ranged_attack_range: float = 200.0
@@ -13,11 +13,21 @@ enum BossState { WALK, RANGED_ATTACK, MELEE_ATTACK, DEAD }
 @export var melee_attack_cooldown: float = 5.0
 @export var melee_charge_cooldown: float = 2.0
 
+# Dash properties
+@export var dash_range: float = 150.0
+@export var dash_speed: float = 600.0
+@export var dash_duration: float = 0.3
+@export var dash_cooldown: float = 8.0
+@export var initial_dash_delay: float = 3.0
+
 var charging = false
 var ranged_cooldown_timer: float
 var melee_cooldown_timer: float
 var melee_charge_timer: float
 var boss_current_state: BossState = BossState.WALK
+var dash_cooldown_timer: float
+var dash_time_left: float
+var dash_direction: Vector2
 
 func _ready():
 	super._ready()  # Call parent _ready()
@@ -26,6 +36,9 @@ func _ready():
 	# Override some base enemy values for boss
 	max_health *= 3  # Bosses have more health
 	health.initialize_health(max_health)
+	
+	# Set initial dash cooldown to prevent immediate dashing
+	dash_cooldown_timer = initial_dash_delay
 	
 
 func _physics_process(delta):
@@ -36,6 +49,8 @@ func _physics_process(delta):
 		melee_cooldown_timer -= delta
 	if melee_charge_timer > 0.0:
 		melee_charge_timer -= delta
+	if dash_cooldown_timer > 0.0:
+		dash_cooldown_timer -= delta
 		
 		
 	if Global.player == null:
@@ -60,10 +75,16 @@ func _physics_process(delta):
 				perform_melee_attack(distance_to_player)
 		BossState.DEAD:
 			velocity = Vector2.ZERO
+		BossState.DASH:
+			perform_dash(delta)
 			
 	move_and_slide()
 	
 func boss_movement_logic(distance_to_player: float):
+	#Check for dash opportunity (player is far but not too far, and dash is available)
+	if distance_to_player > melee_attack_range and distance_to_player <= dash_range and dash_cooldown_timer <= 0.0:
+		start_dash()
+		return
 	# Decide which attack to use based on distance and cooldowns
 	if distance_to_player <= melee_attack_range and melee_cooldown_timer <= 0.0:
 		change_boss_state(BossState.MELEE_ATTACK)
@@ -78,6 +99,22 @@ func boss_movement_logic(distance_to_player: float):
 		velocity = direction * movement_speed * 0.8  # Bosses move slightly slower
 	else:
 		velocity = Vector2.ZERO
+
+func start_dash():
+	change_boss_state(BossState.DASH)
+	dash_time_left = dash_duration
+	dash_cooldown_timer = dash_cooldown
+	dash_direction = (Global.player.global_position - global_position).normalized()
+	printerr("Boss dashing towards player", Global.time_alive)
+
+func perform_dash(delta: float):
+	velocity = dash_direction * dash_speed
+	dash_time_left -= delta
+	
+	if dash_time_left <= 0.0:
+		change_boss_state(BossState.WALK)
+		printerr("Boss dash completed", Global.time_alive)
+
 
 func perform_ranged_attack(distance_to_player: float):
 	velocity = Vector2.ZERO
@@ -158,6 +195,8 @@ func change_boss_state(new_state: BossState):
 			velocity = Vector2.ZERO
 		BossState.DEAD:
 			die()
+		BossState.DASH:
+			pass
 
 ## Override parent attack method to use boss-specific logic
 #func attack():
