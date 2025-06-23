@@ -195,4 +195,3 @@ func shoot_fireball():
 
 func _on_fireball_cooldown_finished():
 	can_fireball = true
-

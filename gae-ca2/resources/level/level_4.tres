@@ -10,4 +10,5 @@ enemy_composition = {}
 spawn_frequency = 0
 level_boss_name = "Orc_Boss"
 boss_level = true
+current_chapter = 1
 metadata/_custom_type_script = "uid://cm03la2l26qe"

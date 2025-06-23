@@ -18,14 +18,18 @@ func _ready() -> void:
 
 func set_task_display():
 	task_display_instance.update_display({
-	"Übrige Gegner ": 1,
-	"Getötete Gegner ": 0,
-}, "Level Overview")
+	"current_wave_size": Global.ProgressManager.get_level_wave_size(),
+	"killed_wave_enemies": Global.ProgressManager.get_current_level_kill_amount(),
+	"current_artefact_amount": Global.ProgressManager.get_current_artefact_amount(),
+	"chapter_artefact_amount": Global.ProgressManager.get_chapter_artefact_amount(),
+	"level": Global.ProgressManager.get_level(),
+	"chapter": Global.ProgressManager.get_chapter()
+})
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	set_task_display()
 
 
 func _on_gametimer_timeout() -> void:

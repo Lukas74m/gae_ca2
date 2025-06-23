@@ -118,7 +118,7 @@ alignment = 1
 [node name="Title" type="Label" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
-text = "oajihugdhvj"
+text = "Chapter 1: Level 1"
 label_settings = SubResource("LabelSettings_5xplb")
 horizontal_alignment = 1
 
@@ -130,15 +130,31 @@ anchor_right = 0.5
 grow_horizontal = 2
 size_flags_horizontal = 2
 size_flags_vertical = 4
+theme = ExtResource("1_r04c6")
 
 [node name="ProgressBar" parent="CanvasLayer/Control" instance=ExtResource("3_tsd5v")]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -80.0
-offset_top = 126.0
-offset_right = 63.0
-offset_bottom = 153.0
+offset_left = -221.0
+offset_top = 56.0
+offset_right = -78.0
+offset_bottom = 83.0
 grow_horizontal = 2
 size_flags_horizontal = 0
+
+[node name="Wave_size_info" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = -221.0
+offset_top = 37.0
+offset_right = -78.0
+offset_bottom = 60.0
+text = "Besiege 3 Gegner "
+
+[node name="Task_size_info" type="Label" parent="CanvasLayer/Control"]
+offset_left = 72.0
+offset_top = 75.0
+offset_right = 227.0
+offset_bottom = 98.0
+text = "Besiege 3 artefacten gesammelt"

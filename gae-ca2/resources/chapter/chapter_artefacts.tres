@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ArtefactResource" load_steps=2 format=3 uid="uid://0naq127ko4is"]
+
+[ext_resource type="Script" uid="uid://bps75x017cknu" path="res://scripts/resource_scripts/artefacts_resource.gd" id="1_hdhpb"]
+
+[resource]
+script = ExtResource("1_hdhpb")
+chapters_information = {
+"chapter_1": 4
+}
+metadata/_custom_type_script = "uid://bps75x017cknu"

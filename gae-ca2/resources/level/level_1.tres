@@ -5,11 +5,12 @@
 [resource]
 script = ExtResource("1_mgrjq")
 current_level = 1
-level_wave_size = 1
+level_wave_size = 3
 enemy_composition = {
-"Orc": 1
+"Orc": 3
 }
 spawn_frequency = 3
 level_boss_name = "Orc_Boss"
 boss_level = false
+current_chapter = 1
 metadata/_custom_type_script = "uid://cm03la2l26qe"
