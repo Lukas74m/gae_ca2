@@ -1,8 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://bed6mjp4oyiex"]
+[gd_scene load_steps=18 format=3 uid="uid://bed6mjp4oyiex"]
 
 [ext_resource type="Script" uid="uid://ddi367nmbjjo1" path="res://scripts/projectiles/fire_ball.gd" id="1_qdnx5"]
 [ext_resource type="Texture2D" uid="uid://c0c13vtjkpfat" path="res://assets/player/Magic_Attack_Animation (1).png" id="2_eyjtw"]
-[ext_resource type="Texture2D" uid="uid://d10ohci73rtbe" path="res://assets/player/Magic_Attack_Hit_Animation.png" id="3_skkn4"]
+[ext_resource type="Texture2D" uid="uid://coni4fj664f11" path="res://assets/player/magic_onhit_animation.png" id="3_skkn4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_skkn4"]
 atlas = ExtResource("2_eyjtw")
@@ -34,23 +34,27 @@ region = Rect2(540, 0, 90, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xoivn"]
 atlas = ExtResource("3_skkn4")
-region = Rect2(0, 0, 90, 64)
+region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h24og"]
 atlas = ExtResource("3_skkn4")
-region = Rect2(90, 0, 90, 64)
+region = Rect2(64, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sai3j"]
 atlas = ExtResource("3_skkn4")
-region = Rect2(180, 0, 90, 64)
+region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4ri3v"]
 atlas = ExtResource("3_skkn4")
-region = Rect2(270, 0, 90, 64)
+region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ex2vr"]
 atlas = ExtResource("3_skkn4")
-region = Rect2(360, 0, 90, 64)
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q57f3"]
+atlas = ExtResource("3_skkn4")
+region = Rect2(320, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xoivn"]
 animations = [{
@@ -95,6 +99,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ex2vr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q57f3")
 }],
 "loop": false,
 "name": &"on_hit",
@@ -112,10 +119,7 @@ polygon = PackedVector2Array(0, -3, 5, 0, 0, 4, -5, 1)
 position = Vector2(-8, 1)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_xoivn")
-animation = &"on_hit"
 autoplay = "default"
-frame = 4
-frame_progress = 1.0
 
 [node name="Timer" type="Timer" parent="."]
 

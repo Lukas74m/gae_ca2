@@ -368,15 +368,41 @@ animation = &"cooldown"
 autoplay = "default"
 
 [node name="Dash" type="AnimatedSprite2D" parent="HBoxContainer"]
-position = Vector2(36, 0)
+position = Vector2(74, 0)
 sprite_frames = SubResource("SpriteFrames_70dnd")
 animation = &"cooldown"
 autoplay = "default"
 
 [node name="Fireball" type="AnimatedSprite2D" parent="HBoxContainer"]
-position = Vector2(72, 0)
+position = Vector2(37, 0)
 sprite_frames = SubResource("SpriteFrames_ypc3d")
 autoplay = "default"
+
+[node name="Label" type="Label" parent="."]
+offset_left = -18.0
+offset_top = -21.0
+offset_right = -5.0
+offset_bottom = 2.0
+scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Q"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 18.0
+offset_top = -19.0
+offset_right = 34.0
+offset_bottom = 4.0
+scale = Vector2(0.5, 0.5)
+text = "W"
+
+[node name="Label3" type="Label" parent="."]
+offset_left = 58.0
+offset_top = -20.0
+offset_right = 67.0
+offset_bottom = 3.0
+scale = Vector2(0.5, 0.5)
+text = "E"
 
 [connection signal="animation_finished" from="HBoxContainer/Attack" to="." method="_on_attack_skill_animation_finished"]
 [connection signal="animation_finished" from="HBoxContainer/Dash" to="." method="_on_dash_animation_finished"]
