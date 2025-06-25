@@ -3,11 +3,11 @@ class_name Boss
 
 enum BossState { WALK, RANGED_ATTACK, MELEE_ATTACK, DEAD, DASH }
 
-@export var projectile_scene = preload("res://scenes/projectiles/BossProjectile.tscn")
+@export var projectile_scene = preload("res://scenes/projectiles/boss_projectile.tscn")
 @export var ranged_attack_range: float = 200.0
 @export var ranged_attack_damage: float = 15.0
 @export var ranged_attack_cooldown: float = 5.0
-@export var projectile_speed: float = 300.0
+@export var projectile_speed: float = 250.0
 @export var melee_attack_range: float = 50.0
 @export var melee_attack_damage: float = 25.0
 @export var melee_attack_cooldown: float = 5.0
@@ -158,8 +158,8 @@ func throw_projectile_at_player():
 	
 	# Set projectile properties
 	if projectile.has_method("initialize"):
-		projectile.initialize(direction, projectile_speed, ranged_attack_damage)
-	projectile.ranged_attack(direction, target_position)
+		projectile.initialize(direction, ranged_attack_damage, projectile_speed)
+		#projectile.ranged_attack(direction, target_position)
 	
 
 func predict_player_position() -> Vector2:

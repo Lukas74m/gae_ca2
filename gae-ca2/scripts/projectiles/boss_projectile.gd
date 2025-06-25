@@ -1,83 +1,22 @@
-extends Area2D
-class_name BossProjectile
+extends "res://scripts/projectiles/projectile_base.gd"
 
-var direction: Vector2
-var speed: float
-var damage: float
-var lifetime: float = 5.0  # Projectile disappears after 5 seconds
-
-@onready var sprite = $Sprite2D
-@onready var collision_shape = $CollisionShape2D
-
-#func _ready():
-	#pass
-	# Connect collision signals
-	#body_entered.connect(_on_body_entered)
-	#area_entered.connect(_on_area_entered)
-	
-	# Start lifetime timer
-	#adjust_direction()
-	#var timer = Timer.new()
-	#add_child(timer)
-	#timer.wait_time = lifetime
-	#timer.one_shot = true
-	#timer.start()
-	#timer.timeout.connect(_on_lifetime_expired)
-
-func initialize(proj_direction: Vector2, proj_speed: float, proj_damage: float):
-	direction = proj_direction
-	speed = proj_speed
-	damage = proj_damage
-	
-	# Rotate sprite to face movement direction
-	#rotation = direction.angle()
-	
-func ranged_attack(direction: Vector2, target_position: Vector2) -> void:
-	var player_start_pos = Global.player.global_position
-
-	var tween := create_tween()
-	tween.tween_property(self, "global_position", target_position, 0.5).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
-	await tween.finished
-
-	# Nach Ankunft 1 Sekunde warten
-	#await get_tree().create_timer(0.1).timeout
-
-	# Spielerposition überprüfen und ggf. Schaden zufügen
-	if Global.player.global_position.distance_to(player_start_pos) <= 15:
-		Global.player.take_damage(damage)
-
-	queue_free()
-
-
-#func _physics_process(delta):
-	## Move projectile
-	#global_position += direction * speed * delta
-
-func _on_body_entered(body):
-	# Check if it hit the player
-	if body == Global.player:
-		# Deal damage to player
-		if body.has_method("take_damage"):
+ 
+func _on_body_entered(body: Node2D) -> void:
+	if body.is_in_group("enemies"):
+		if !body.has_method("take_damage"):
+			push_error("[Player.gd, perform_attack()] Error : body has no take_damage")
+		else:
 			body.take_damage(damage)
-		
-		# Create hit effect (optional)
-		create_hit_effect()
-		
-		# Destroy projectile
-		queue_free()
-	
-	# Check if it hit a wall or obstacle
-	elif body.has_method("has_method") == false:  # Static bodies like walls
-		# Create hit effect
-		create_hit_effect()
-		queue_free()
+			animated_sprite_2d.play("on_hit")
+			speed = 0
 
 
-func _on_lifetime_expired():
-	# Projectile expires naturally
-	queue_free()
-	
-#  ------------ Not used
+func _on_animated_sprite_2d_animation_finished() -> void:
+	if animated_sprite_2d.animation == "on_hit":
+		queue_free()
+
+# Currently not used
+# Might be used later
 # Don't delete yet
 func adjust_direction() -> void:
 	var projectile_flying = true
@@ -95,8 +34,3 @@ func adjust_direction() -> void:
 				projectile_flying = false
 			queue_free()
 		await get_tree().create_timer(0.1).timeout
-
-
-func create_hit_effect():
-	# Create visual/audio effects when projectile hits
-	print("Projectile impact effect")

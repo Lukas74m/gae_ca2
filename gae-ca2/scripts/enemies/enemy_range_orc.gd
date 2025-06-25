@@ -21,7 +21,7 @@ func attack():
 	fireball.global_position = enemy_center.global_position 
 	fireball.initialize(
 		(Global.player.global_position - fireball.global_position).normalized(),
-		get_stat("fireball_damage")
+		get_stat("fireball_damage"), 125 #Speed
 	)
 	get_tree().current_scene.add_child(fireball)
 

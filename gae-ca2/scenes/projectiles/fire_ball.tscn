@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://sqsqkveap037"]
+[gd_scene load_steps=19 format=3 uid="uid://ci55pqfw24pkm"]
 
 [ext_resource type="PackedScene" uid="uid://cltoe21sv21gd" path="res://scenes/projectiles/Projectile_Base.tscn" id="1_hd6fg"]
 [ext_resource type="Script" uid="uid://ddi367nmbjjo1" path="res://scripts/projectiles/fire_ball.gd" id="2_472mr"]

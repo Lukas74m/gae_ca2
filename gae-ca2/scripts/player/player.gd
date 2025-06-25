@@ -190,7 +190,7 @@ func shoot_fireball():
 	fireball.global_position = player_center.global_position 
 	fireball.initialize(
 		(get_global_mouse_position() - fireball.global_position).normalized(),
-		get_stat("fireball_damage")
+		get_stat("fireball_damage"), 200 # Speed
 	)
 	get_tree().current_scene.add_child(fireball)
 

@@ -1,8 +1,5 @@
 extends "res://scripts/projectiles/projectile_base.gd"
 
-func _ready():
-	super._ready()
-	speed = 200
  
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemies"):

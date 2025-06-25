@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://41vujg0qkyqh" path="res://scenes/enemies/EnemyBase.tscn" id="1_lw1cg"]
 [ext_resource type="Script" uid="uid://dy06kynt7epty" path="res://scripts/enemies/boss_base.gd" id="2_u5uy3"]
-[ext_resource type="PackedScene" uid="uid://bdsbeuiutxvap" path="res://scenes/projectiles/BossProjectile.tscn" id="3_xvspy"]
+[ext_resource type="PackedScene" uid="uid://cw2m4h4fpvtcf" path="res://scenes/projectiles/boss_projectile.tscn" id="3_arcqg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_arcqg"]
 radius = 40.0
@@ -11,7 +11,7 @@ height = 113.333
 [node name="Boss" instance=ExtResource("1_lw1cg")]
 position = Vector2(-39, 41)
 script = ExtResource("2_u5uy3")
-projectile_scene = ExtResource("3_xvspy")
+projectile_scene = ExtResource("3_arcqg")
 ranged_attack_range = 200.0
 ranged_attack_damage = 15.0
 ranged_attack_cooldown = 5.0

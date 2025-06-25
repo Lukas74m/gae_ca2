@@ -9,9 +9,10 @@ var damage
 func _ready():
 	$Timer.start() 
 
-func initialize(_direction: Vector2, _damage: int):
+func initialize(_direction: Vector2, _damage: int, _speed: int):
 	direction = _direction
 	damage = _damage
+	speed = _speed
 	rotation = direction.angle()
 
 func _physics_process(delta):
