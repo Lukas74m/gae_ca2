@@ -8,9 +8,6 @@ enum EnemyState { WALK, ATTACK, DEAD }
 var current_state: EnemyState = EnemyState.WALK
 
 @export var enemy_resource: EnemyResource
-#@export var sprite_path: NodePath
-#@export var center_path: NodePath
-#@onready var enemy_visual = $Sprite2D
 @onready var health = $Health
 @onready var stats = $EnemyStats
 @onready var enemy_animations: AnimatedSprite2D = $EnemyAnimations
@@ -18,10 +15,6 @@ var current_state: EnemyState = EnemyState.WALK
 
 var attack_cooldown_timer: float = 0.0
 
-var attacks = {
-	"melee": func() -> void: melee_attack(),
-	#"ranged": func() -> void: shoot_projectile()
-}
 
 func _ready():
 	# Giving the resource to the statsComponent to load specifix stats
@@ -56,7 +49,19 @@ func _physics_process(delta):
 			
 func move_towards_player(delta: float, distance_to_player: float):
 	pass
+	
+func change_state(new_state: EnemyState):
+	if current_state == new_state:
+		return
 		
+	current_state = new_state
+	
+	match new_state:
+		EnemyState.ATTACK:
+			attack()
+		EnemyState.DEAD:
+			die()
+	
 func take_damage(amount: int):
 	health.update_health(-amount)
 
@@ -68,16 +73,8 @@ func die():
 func get_stat(stat_name: String):
 	return stats.get_stat(stat_name)
 
-func attack(type: String):
-	if attacks.has(type):
-		attacks[type].call()
-
 # Overwritten by subclasses
 func _on_attack_frame_changed():
-	pass
-
-# Overwritten by subclasses
-func melee_attack():
 	pass
 
 # Overwritten by subclasses
@@ -85,5 +82,5 @@ func get_center_position():
 	pass
 	
 # Overwritten by subclasses
-func change_state(new_state: EnemyState):
+func attack():
 	pass

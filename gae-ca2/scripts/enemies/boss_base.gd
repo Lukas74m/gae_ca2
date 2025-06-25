@@ -202,3 +202,7 @@ func die():
 	boss_current_state = BossState.DEAD
 	# Add boss death effects here (screen shake, special loot, etc.)
 	super.die()
+	
+# Overrides enemy_base.gd
+func get_center_position():
+	return center.global_position

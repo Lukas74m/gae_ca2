@@ -2,23 +2,9 @@ extends "res://scripts/enemies/enemy_base.gd"
 
 func _ready():
 	super._ready()
-	attacks["melee"] = func(): melee_attack()
-
-func change_state(new_state: EnemyState):
-	if current_state == new_state:
-		return
-		
-	current_state = new_state
-	
-	match new_state:
-		EnemyState.ATTACK:
-			attack("melee")
-		EnemyState.DEAD:
-			die()
-			
 
 # Overrides enemy_base.gd
-func melee_attack():
+func attack():
 	enemy_animations.flip_h = Global.player.get_center_position().x < global_position.x
 	enemy_animations.play("attack")
 	attack_cooldown_timer = get_stat("attack_cooldown")

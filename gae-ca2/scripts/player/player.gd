@@ -99,7 +99,7 @@ func change_state(new_state: PlayerState) -> void:
 	match new_state:
 		PlayerState.ATTACK:
 			player_sprite.play("attack")
-			perform_attack()
+			attack()
 		PlayerState.FIREBALL:
 			player_sprite.play("fireball")
 			shoot_fireball()
@@ -111,7 +111,7 @@ func check_movement_input() -> void:
 
 # Checks if enemies are in the right direction and attack range
 # If true, do damage to the enemy
-func perform_attack():
+func attack():
 	emit_signal("attack_start")
 	for body in attack_area.get_overlapping_bodies():
 		# Must be an enemy
