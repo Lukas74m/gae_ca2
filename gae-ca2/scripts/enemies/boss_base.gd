@@ -66,7 +66,6 @@ func _physics_process(delta):
 			if !charging:
 				perform_melee_charge()
 			if melee_charge_timer <= 0 and charging:
-				print(melee_charge_timer <= 0 and charging, melee_charge_timer, charging)
 				charging = false
 				perform_melee_attack(distance_to_player)
 		BossState.DEAD:

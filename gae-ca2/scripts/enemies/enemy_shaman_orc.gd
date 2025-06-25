@@ -1,31 +1,59 @@
 extends "res://scripts/enemies/enemy_base.gd"
 
-@onready var fireball_scene = preload("res://scenes/projectiles/Orc_Projectile.tscn")
-@onready var enemy_center = $EnemyCenter
-
-signal fireball_start
-var can_fireball: bool = true
+var enemy_scenes = {}
+var enemy_resources  = {}
+var spawn_amount = 2
 
 func _ready():
 	super._ready()
+	load_enemy_scenes()
+	load_enemy_resources() 
 
+func load_enemy_scenes():
+	enemy_scenes = {
+		"Melee_Orc": preload("res://scenes/enemies/Melee_Orc.tscn"),
+		#"Range_Orc": preload("res://scenes/enemies/Enemy_Range_Orc.tscn")
+	}
+	
+# The entity names have to be the exact same like in the level.tres files
+func load_enemy_resources():
+	enemy_resources = {
+		"Melee_Orc": preload("res://resources/enemies/melee_orc.tres"),
+		#"Range_Orc": preload("res://resources/enemies/range_orc.tres"),
+	}
+	
+	
 # Overrides enemy_base.gd
 func attack():
 	#enemy_animations.flip_h = Global.player.get_center_position().x < global_position.x
 	#enemy_animations.play("attack")
 	attack_cooldown_timer = get_stat("attack_cooldown")
 	#await enemy_animations.animation_finished
-	can_fireball = false
-	var fireball = fireball_scene.instantiate()
-	fireball.global_position = enemy_center.global_position 
-	fireball.initialize(
-		(Global.player.global_position - fireball.global_position).normalized(),
-		get_stat("fireball_damage"), 125 #Speed
-	)
-	get_tree().current_scene.add_child(fireball)
+	for i in range(spawn_amount):
+		# Kleine zufällige Abweichung um Überlagerung zu vermeiden
+		var offset = Vector2(
+			randf_range(-20, 20),  # Zufällig zwischen -20 und +20
+			randf_range(-20, 20)
+		)
+		spawn_enemy_at("Melee_Orc", get_center_position() + offset)
+	
+	await get_tree().create_timer(0.3).timeout
 
-func _on_fireball_cooldown_finished():
-	can_fireball = true
+
+func spawn_enemy_at(enemy_name, pos: Vector2):
+	if enemy_name == null:
+		printerr("Keine Enemy Scene zugewiesen!")
+		return
+	
+	if enemy_name in enemy_scenes:
+		var enemy = enemy_scenes[enemy_name].instantiate()
+		enemy.enemy_resource = enemy_resources[enemy_name]
+		get_tree().current_scene.add_child(enemy)
+		enemy.global_position = pos
+	else:
+		printerr("No such enemy ", enemy_name)
+		print("Available keys: ", enemy_scenes.keys())
+
 
 # Overrides enemy_base.gd
 func _on_attack_frame_changed():

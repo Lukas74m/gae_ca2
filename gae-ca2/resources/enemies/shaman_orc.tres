@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EnemyResource" load_steps=2 format=3 uid="uid://ntuxcqsok5n1"]
+
+[ext_resource type="Script" uid="uid://p4xaeqeavuor" path="res://scripts/resource_scripts/enemy_resource.gd" id="1_krgc7"]
+
+[resource]
+script = ExtResource("1_krgc7")
+name = "Shaman_Orc"
+max_health = 35
+movement_speed = 70.0
+attack_range = 60.0
+attack_damage = 5.0
+attack_cooldown = 10.0
+metadata/_custom_type_script = "uid://p4xaeqeavuor"

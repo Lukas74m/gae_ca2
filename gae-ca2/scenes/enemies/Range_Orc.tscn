@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://dk00wpftg1tix"]
+
+[ext_resource type="PackedScene" uid="uid://41vujg0qkyqh" path="res://scenes/enemies/EnemyBase.tscn" id="1_jonyt"]
+[ext_resource type="Script" uid="uid://dg2wv5kpfemed" path="res://scripts/enemies/enemy_range_orc.gd" id="2_5jl5p"]
+[ext_resource type="Texture2D" uid="uid://bhhyv6qjh8pbk" path="res://assets/dungeon tileset pack/0x72_DungeonTilesetII_v1.7 (1)/0x72_DungeonTilesetII_v1.7/frames/big_demon_run_anim_f0.png" id="3_83v8l"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4fa51"]
+radius = 23.3333
+height = 53.3333
+
+[node name="Enemy_Range_Orc" instance=ExtResource("1_jonyt")]
+script = ExtResource("2_5jl5p")
+
+[node name="Health" parent="." index="0"]
+position = Vector2(-26.6667, 26.6667)
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="4"]
+position = Vector2(-0.666665, -4.66666)
+scale = Vector2(1.91667, 1.77778)
+texture = ExtResource("3_83v8l")
+
+[node name="CollisionShape2D" parent="." index="5"]
+shape = SubResource("CapsuleShape2D_4fa51")

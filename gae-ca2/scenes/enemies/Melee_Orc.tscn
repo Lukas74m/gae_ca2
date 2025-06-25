@@ -1,96 +1,96 @@
 [gd_scene load_steps=29 format=3 uid="uid://gthmdo0mgpcm"]
 
-[ext_resource type="PackedScene" uid="uid://41vujg0qkyqh" path="res://scenes/enemies/EnemyBase.tscn" id="1_pfjf4"]
-[ext_resource type="Script" uid="uid://dxrchvuodo0r5" path="res://scripts/enemies/enemy_melee_orc.gd" id="2_be4gh"]
-[ext_resource type="Texture2D" uid="uid://bpoq51py4ommh" path="res://assets/enemies/enemy_orc/mini_orc_attack.png" id="2_wprko"]
-[ext_resource type="Texture2D" uid="uid://rnhuo7cd3r5d" path="res://assets/enemies/enemy_orc/mini_orc_idle_and_walking.png" id="3_be4gh"]
+[ext_resource type="PackedScene" uid="uid://41vujg0qkyqh" path="res://scenes/enemies/EnemyBase.tscn" id="1_4ttfu"]
+[ext_resource type="Script" uid="uid://dxrchvuodo0r5" path="res://scripts/enemies/enemy_melee_orc.gd" id="2_av4ak"]
+[ext_resource type="Texture2D" uid="uid://bpoq51py4ommh" path="res://assets/enemies/enemy_orc/mini_orc_attack.png" id="3_og7q1"]
+[ext_resource type="Texture2D" uid="uid://rnhuo7cd3r5d" path="res://assets/enemies/enemy_orc/mini_orc_idle_and_walking.png" id="4_uemfv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wprko"]
-atlas = ExtResource("2_wprko")
+atlas = ExtResource("3_og7q1")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_be4gh"]
-atlas = ExtResource("2_wprko")
+atlas = ExtResource("3_og7q1")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_00kp7"]
-atlas = ExtResource("2_wprko")
+atlas = ExtResource("3_og7q1")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kru07"]
-atlas = ExtResource("2_wprko")
+atlas = ExtResource("3_og7q1")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ltupo"]
-atlas = ExtResource("2_wprko")
+atlas = ExtResource("3_og7q1")
 region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tuehj"]
-atlas = ExtResource("2_wprko")
+atlas = ExtResource("3_og7q1")
 region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ydkts"]
-atlas = ExtResource("2_wprko")
+atlas = ExtResource("3_og7q1")
 region = Rect2(192, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_up3l2"]
-atlas = ExtResource("2_wprko")
+atlas = ExtResource("3_og7q1")
 region = Rect2(224, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sbnjc"]
-atlas = ExtResource("2_wprko")
+atlas = ExtResource("3_og7q1")
 region = Rect2(256, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r1h7e"]
-atlas = ExtResource("2_wprko")
+atlas = ExtResource("3_og7q1")
 region = Rect2(288, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k7f0a"]
-atlas = ExtResource("2_wprko")
+atlas = ExtResource("3_og7q1")
 region = Rect2(320, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8f5dv"]
-atlas = ExtResource("2_wprko")
+atlas = ExtResource("3_og7q1")
 region = Rect2(352, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ayw2k"]
-atlas = ExtResource("2_wprko")
+atlas = ExtResource("3_og7q1")
 region = Rect2(384, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mt6qy"]
-atlas = ExtResource("3_be4gh")
+atlas = ExtResource("4_uemfv")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eqjm2"]
-atlas = ExtResource("3_be4gh")
+atlas = ExtResource("4_uemfv")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_00q4r"]
-atlas = ExtResource("3_be4gh")
+atlas = ExtResource("4_uemfv")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fvn2w"]
-atlas = ExtResource("3_be4gh")
+atlas = ExtResource("4_uemfv")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ati3f"]
-atlas = ExtResource("3_be4gh")
+atlas = ExtResource("4_uemfv")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4aifm"]
-atlas = ExtResource("3_be4gh")
+atlas = ExtResource("4_uemfv")
 region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_abni2"]
-atlas = ExtResource("3_be4gh")
+atlas = ExtResource("4_uemfv")
 region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4etto"]
-atlas = ExtResource("3_be4gh")
+atlas = ExtResource("4_uemfv")
 region = Rect2(192, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_37u27"]
-atlas = ExtResource("3_be4gh")
+atlas = ExtResource("4_uemfv")
 region = Rect2(224, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_be4gh"]
@@ -181,10 +181,10 @@ animations = [{
 radius = 16.0
 height = 44.0
 
-[node name="Enemy_Orc" instance=ExtResource("1_pfjf4")]
+[node name="Enemy_Orc" instance=ExtResource("1_4ttfu")]
 position = Vector2(3, -3)
 scale = Vector2(0.5, 0.5)
-script = ExtResource("2_be4gh")
+script = ExtResource("2_av4ak")
 
 [node name="Health" parent="." index="0"]
 position = Vector2(-18, 46)

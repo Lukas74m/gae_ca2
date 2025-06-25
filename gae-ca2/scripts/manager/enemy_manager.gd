@@ -17,16 +17,18 @@ func _ready():
 
 func load_enemy_scenes():
 	enemy_scenes = {
-		"Orc": preload("res://scenes/enemies/Enemy_Orc.tscn"),
-		"Range_Orc": preload("res://scenes/enemies/Enemy_Range_Orc.tscn"),
+		"Melee_Orc": preload("res://scenes/enemies/Melee_Orc.tscn"),
+		"Range_Orc": preload("res://scenes/enemies/Range_Orc.tscn"),
+		"Shaman_Orc": preload("res://scenes/enemies/Shaman_Orc.tscn"),
 		"Orc_Boss": preload("res://scenes/enemies/bosses/BossBase.tscn")
 	}
 
 # The entity names have to be the exact same like in the level.tres files
 func load_enemy_resources():
 	enemy_resources = {
-		"Orc": preload("res://resources/enemies/orc.tres"),
+		"Melee_Orc": preload("res://resources/enemies/melee_orc.tres"),
 		"Range_Orc": preload("res://resources/enemies/range_orc.tres"),
+		"Shaman_Orc": preload("res://resources/enemies/shaman_orc.tres"),
 		"Orc_Boss": preload("res://resources/enemies/boss.tres")	
 	}
 

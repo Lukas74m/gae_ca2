@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://bmyb2c5xg4vt0"]
+
+[ext_resource type="PackedScene" uid="uid://41vujg0qkyqh" path="res://scenes/enemies/EnemyBase.tscn" id="1_vxccf"]
+[ext_resource type="Script" uid="uid://dditclxq8cmi5" path="res://scripts/enemies/enemy_shaman_orc.gd" id="2_ynriq"]
+[ext_resource type="Texture2D" uid="uid://cer73ttf64g7h" path="res://assets/dungeon tileset pack/0x72_DungeonTilesetII_v1.7 (1)/0x72_DungeonTilesetII_v1.7/frames/ice_zombie_anim_f3.png" id="3_2adx3"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1m6qx"]
+radius = 6.66667
+height = 20.0
+
+[node name="Shaman_Orc" instance=ExtResource("1_vxccf")]
+script = ExtResource("2_ynriq")
+
+[node name="Health" parent="." index="0"]
+position = Vector2(-6.66667, 20)
+scale = Vector2(0.25, 0.25)
+
+[node name="CollisionShape2D" parent="." index="4"]
+scale = Vector2(2, 2)
+shape = SubResource("CapsuleShape2D_1m6qx")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="5"]
+scale = Vector2(2, 2)
+texture = ExtResource("3_2adx3")
