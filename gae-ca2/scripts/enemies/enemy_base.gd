@@ -8,24 +8,29 @@ enum EnemyState { WALK, ATTACK, DEAD }
 var current_state: EnemyState = EnemyState.WALK
 
 @export var enemy_resource: EnemyResource
-@export var sprite_path: NodePath
-@export var center_path: NodePath
-@onready var enemy_visual = $Sprite2D
+#@export var sprite_path: NodePath
+#@export var center_path: NodePath
+#@onready var enemy_visual = $Sprite2D
 @onready var health = $Health
 @onready var stats = $EnemyStats
-@onready var sprite: AnimatedSprite2D = get_node(sprite_path)
-@onready var center: Marker2D = get_node(center_path)
+@onready var enemy_animations: AnimatedSprite2D = $EnemyAnimations
+@onready var center: Marker2D = $EnemyCenter
 
 var attack_cooldown_timer: float = 0.0
+
+var attacks = {
+	"melee": func() -> void: melee_attack(),
+	#"ranged": func() -> void: shoot_projectile()
+}
 
 func _ready():
 	# Giving the resource to the statsComponent to load specifix stats
 	stats.initialize_stats(enemy_resource)
-	# Coennecting to health component
+	# Connecting to health component
 	health.initialize_health(get_stat("max_health"))
 	health.set_healthbar_position(global_position + Vector2(-15,50))
 	health.died.connect(die)
-	sprite.frame_changed.connect(_on_attack_frame_changed)
+	enemy_animations.frame_changed.connect(_on_attack_frame_changed)
 	
 func _physics_process(delta):
 	if attack_cooldown_timer > 0.0:
@@ -41,7 +46,8 @@ func _physics_process(delta):
 		EnemyState.WALK:
 			move_towards_player(delta, distance_to_player)
 		EnemyState.ATTACK:
-			attack_player(delta, distance_to_player)
+			# Stay still for attack
+			velocity = Vector2.ZERO
 			if attack_cooldown_timer <= 0.0:
 				change_state(EnemyState.WALK)
 		EnemyState.DEAD:
@@ -49,38 +55,7 @@ func _physics_process(delta):
 	move_and_slide()
 			
 func move_towards_player(delta: float, distance_to_player: float):
-	# If in attack range and cooldown 0
-	if distance_to_player <= get_stat("attack_range") and attack_cooldown_timer <= 0.0:
-		change_state(EnemyState.ATTACK)
-		return
-	# Only move if not in attack range
-	if distance_to_player > get_stat("attack_range") and attack_cooldown_timer <= 0.0:
-		sprite.flip_h = Global.player.get_center_position().x < global_position.x
-		sprite.play("move")
-		var direction = (Global.player.get_center_position() - global_position).normalized()
-		velocity = direction * get_stat("movement_speed")
-	else:
-		# Stop moving when in attack range but cooldown >= 0
-		sprite.flip_h = Global.player.get_center_position().x < global_position.x
-		sprite.play("idle")
-		velocity = Vector2.ZERO
-
-func attack_player(delta:float, distance_to_player: float):
-	velocity = Vector2.ZERO
-	#if distance_to_player > enemy_resource.attack_range:
-		#change_state(EnemyState.WALK)
-
-func change_state(new_state: EnemyState):
-	if current_state == new_state:
-		return
-		
-	current_state = new_state
-	
-	match new_state:
-		EnemyState.ATTACK:
-			attack()
-		EnemyState.DEAD:
-			die()
+	pass
 		
 func take_damage(amount: int):
 	health.update_health(-amount)
@@ -89,26 +64,26 @@ func die():
 	Global.kills += 1
 	Global.ProgressManager.update_level_progress()
 	queue_free()
-	
-func get_center_position() -> Vector2:
-	return center.global_position
-
-#func can_attack() -> bool:
-#	return global_position.distance_to(Global.player.global_position) <= attack_range
-
-func attack():
-	sprite.flip_h = Global.player.get_center_position().x < global_position.x
-	sprite.play("attack")
-	attack_cooldown_timer = get_stat("attack_cooldown")
-	await sprite.animation_finished
-	sprite.play("idle")
-
-func _on_attack_frame_changed():
-	if sprite.animation == "attack" and sprite.frame == 10:
-		var distance = global_position.distance_to(Global.player.get_center_position())
-		if distance <= stats.get_stat("attack_range"):
-			Global.player.take_damage(get_stat("attack_damage"))
-
 
 func get_stat(stat_name: String):
 	return stats.get_stat(stat_name)
+
+func attack(type: String):
+	if attacks.has(type):
+		attacks[type].call()
+
+# Overwritten by subclasses
+func _on_attack_frame_changed():
+	pass
+
+# Overwritten by subclasses
+func melee_attack():
+	pass
+
+# Overwritten by subclasses
+func get_center_position():
+	pass
+	
+# Overwritten by subclasses
+func change_state(new_state: EnemyState):
+	pass

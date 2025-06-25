@@ -31,10 +31,7 @@ var dash_direction: Vector2
 
 func _ready():
 	super._ready()  # Call parent _ready()
-	health.set_healthbar_position(global_position + Vector2(-15,130))	
-
-	# Override some base enemy values for boss
-	health.initialize_health(get_stat("max_health"))
+	health.set_healthbar_position(global_position + Vector2(-15,130))
 	
 	# Set initial dash cooldown to prevent immediate dashing
 	dash_cooldown_timer = initial_dash_delay

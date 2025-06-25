@@ -10,8 +10,8 @@ script = ExtResource("1_ifgcn")
 
 [node name="Health" parent="." instance=ExtResource("2_0gelj")]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(8, 10)
-scale = Vector2(2, 2.465)
-
 [node name="EnemyStats" parent="." instance=ExtResource("3_jg7ly")]
+
+[node name="EnemyAnimations" type="AnimatedSprite2D" parent="."]
+
+[node name="EnemyCenter" type="Marker2D" parent="."]
