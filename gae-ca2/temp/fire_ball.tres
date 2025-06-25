@@ -1,63 +1,61 @@
-[gd_scene load_steps=19 format=3 uid="uid://sqsqkveap037"]
+[gd_resource type="SpriteFrames" load_steps=16 format=3 uid="uid://dqsmqf1lu3nv8"]
 
-[ext_resource type="PackedScene" uid="uid://cltoe21sv21gd" path="res://scenes/projectiles/Projectile_Base.tscn" id="1_hd6fg"]
-[ext_resource type="Script" uid="uid://ddi367nmbjjo1" path="res://scripts/projectiles/fire_ball.gd" id="2_472mr"]
-[ext_resource type="Texture2D" uid="uid://c0c13vtjkpfat" path="res://assets/player/Magic_Attack_Animation (1).png" id="3_32213"]
-[ext_resource type="Texture2D" uid="uid://coni4fj664f11" path="res://assets/player/magic_onhit_animation.png" id="4_wwbsr"]
+[ext_resource type="Texture2D" uid="uid://c0c13vtjkpfat" path="res://assets/player/Magic_Attack_Animation (1).png" id="1_45jwv"]
+[ext_resource type="Texture2D" uid="uid://coni4fj664f11" path="res://assets/player/magic_onhit_animation.png" id="2_uh8u0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_skkn4"]
-atlas = ExtResource("3_32213")
+atlas = ExtResource("1_45jwv")
 region = Rect2(0, 0, 90, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6ctll"]
-atlas = ExtResource("3_32213")
+atlas = ExtResource("1_45jwv")
 region = Rect2(90, 0, 90, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b6dau"]
-atlas = ExtResource("3_32213")
+atlas = ExtResource("1_45jwv")
 region = Rect2(180, 0, 90, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tqtec"]
-atlas = ExtResource("3_32213")
+atlas = ExtResource("1_45jwv")
 region = Rect2(270, 0, 90, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8fq0j"]
-atlas = ExtResource("3_32213")
+atlas = ExtResource("1_45jwv")
 region = Rect2(360, 0, 90, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i3tr0"]
-atlas = ExtResource("3_32213")
+atlas = ExtResource("1_45jwv")
 region = Rect2(450, 0, 90, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ad410"]
-atlas = ExtResource("3_32213")
+atlas = ExtResource("1_45jwv")
 region = Rect2(540, 0, 90, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xoivn"]
-atlas = ExtResource("4_wwbsr")
+atlas = ExtResource("2_uh8u0")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h24og"]
-atlas = ExtResource("4_wwbsr")
+atlas = ExtResource("2_uh8u0")
 region = Rect2(64, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sai3j"]
-atlas = ExtResource("4_wwbsr")
+atlas = ExtResource("2_uh8u0")
 region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4ri3v"]
-atlas = ExtResource("4_wwbsr")
+atlas = ExtResource("2_uh8u0")
 region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ex2vr"]
-atlas = ExtResource("4_wwbsr")
+atlas = ExtResource("2_uh8u0")
 region = Rect2(256, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q57f3"]
-atlas = ExtResource("4_wwbsr")
+atlas = ExtResource("2_uh8u0")
 region = Rect2(320, 0, 64, 64)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_qucwm"]
+[resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -108,15 +106,3 @@ animations = [{
 "name": &"on_hit",
 "speed": 12.0
 }]
-
-[node name="Fire_Ball" instance=ExtResource("1_hd6fg")]
-script = ExtResource("2_472mr")
-
-[node name="CollisionShape2D" parent="." index="0"]
-polygon = PackedVector2Array(-7, 0, -1, -4, 3, -4, 6, -2, 6, 0, 3, 3, -2, 3, -6, 2)
-
-[node name="AnimatedSprite2D" parent="." index="1"]
-position = Vector2(-9, -1)
-scale = Vector2(0.5, 0.5)
-sprite_frames = SubResource("SpriteFrames_qucwm")
-autoplay = "default"

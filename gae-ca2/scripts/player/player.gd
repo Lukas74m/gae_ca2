@@ -13,7 +13,7 @@ const START_DISTANCE: float = 20.0
 const DASH_DURATION: float = 0.2
 const DASH_COOLDOWN: float = 1.0
 
-@onready var fireball_scene = preload("res://scenes/projectiles/fire_ball.tscn")
+@onready var fireball_scene = preload("res://scenes/projectiles/Fire_Ball.tscn")
 @onready var stats = $PlayerStats
 @onready var attack_area: Area2D = $Area2D
 @onready var player_sprite: AnimatedSprite2D = $AnimatedSprite2D

@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://cltoe21sv21gd"]
+
+[ext_resource type="Script" uid="uid://bh328mthevi7m" path="res://scripts/projectiles/projectile_base.gd" id="1_al3l1"]
+
+[node name="ProjectileBase" type="Area2D"]
+script = ExtResource("1_al3l1")
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.15, 0.15)
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,6 +1,6 @@
 extends "res://scripts/enemies/enemy_base.gd"
 
-@onready var fireball_scene = preload("res://scenes/projectiles/fire_ball.tscn")
+@onready var fireball_scene = preload("res://scenes/projectiles/Orc_Projectile.tscn")
 @onready var enemy_center = $EnemyCenter
 
 signal fireball_start
