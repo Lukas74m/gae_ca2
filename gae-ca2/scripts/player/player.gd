@@ -32,7 +32,7 @@ var can_fireball: bool = true
 
 func _ready() -> void:
 	health.initialize_health(get_stat("max_health"))
-	health.set_healthbar_position(global_position + Vector2(-45, -40))
+	#health.set_healthbar_position(global_position + Vector2(-45, -40))
 	skillbar.fireball_cooldown_finished.connect(_on_fireball_cooldown_finished)
 	
 func _input(event: InputEvent) -> void:

@@ -21,7 +21,7 @@ func _ready():
 	stats.initialize_stats(enemy_resource)
 	# Connecting to health component
 	health.initialize_health(get_stat("max_health"))
-	health.set_healthbar_position(global_position + Vector2(-15,50))
+	#health.set_healthbar_position(global_position + Vector2(-15,50))
 	health.died.connect(die)
 	enemy_animations.frame_changed.connect(_on_attack_frame_changed)
 	

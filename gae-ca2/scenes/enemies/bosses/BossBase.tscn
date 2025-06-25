@@ -26,7 +26,13 @@ dash_duration = 0.3
 dash_cooldown = 8.0
 initial_dash_delay = 3.0
 
+[node name="Health" parent="." index="0"]
+position = Vector2(103.333, -133.333)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
 visible = false
 position = Vector2(6.66666, 36.6667)
 shape = SubResource("CapsuleShape2D_arcqg")
+
+[node name="EnemyCenter" parent="." index="4"]
+position = Vector2(130, -136.667)

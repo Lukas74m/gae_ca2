@@ -218,7 +218,7 @@ script = ExtResource("1_gfjak")
 dash_ghost_scene = ExtResource("2_npwbq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-10, 0)
+position = Vector2(-9, 0)
 sprite_frames = SubResource("SpriteFrames_tpg5x")
 animation = &"fireball"
 autoplay = "idle"
@@ -238,13 +238,13 @@ visible = false
 shape = SubResource("CircleShape2D_4kuee")
 
 [node name="Health" parent="." instance=ExtResource("5_tpg5x")]
-position = Vector2(4, 13)
+position = Vector2(-14, 12)
 scale = Vector2(0.2, 0.2)
 
 [node name="PlayerStats" parent="." instance=ExtResource("7_npwbq")]
 
 [node name="PlayerCenter" type="Marker2D" parent="."]
-position = Vector2(-10, 1)
+position = Vector2(-9, 0)
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="died" from="Health" to="." method="_on_health_died"]

@@ -36,7 +36,7 @@ func load_enemy_resources():
 func spawn_enemy(enemy_name: String):
 	var enemy_object = enemy_scenes[enemy_name].instantiate()
 	enemy_object.enemy_resource = enemy_resources[enemy_name]
-	enemy_object.global_position = Vector2(0, 0)
+	enemy_object.global_position = Vector2(-844.0, -517.0)
 	enemy_object.add_to_group("enemies")
 	add_child(enemy_object)
 	
@@ -44,7 +44,7 @@ func spawn_enemy(enemy_name: String):
 func spawn_boss(boss_name: String):
 	var boss_object = enemy_scenes[boss_name].instantiate()
 	boss_object.enemy_resource = enemy_resources[boss_name]
-	boss_object.global_position = Vector2(0, 0)
+	boss_object.global_position = Vector2(-844.0, -517.0)
 	boss_object.add_to_group("enemies")
 	
 	# Load projectile scene for boss
