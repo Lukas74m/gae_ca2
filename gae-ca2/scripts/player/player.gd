@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 enum PlayerState { IDLE, WALK, DASH, ATTACK, DEAD, FIREBALL }
 var current_state: PlayerState = PlayerState.IDLE

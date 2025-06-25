@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://bdsbeuiutxvap" path="res://scenes/projectiles/BossProjectile.tscn" id="3_xvspy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_arcqg"]
-radius = 56.6667
-height = 213.333
+radius = 40.0
+height = 113.333
 
 [node name="Boss" instance=ExtResource("1_lw1cg")]
 position = Vector2(-39, 41)
@@ -29,10 +29,9 @@ initial_dash_delay = 3.0
 [node name="Health" parent="." index="0"]
 position = Vector2(103.333, -133.333)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
-visible = false
-position = Vector2(6.66666, 36.6667)
-shape = SubResource("CapsuleShape2D_arcqg")
-
-[node name="EnemyCenter" parent="." index="4"]
+[node name="EnemyCenter" parent="." index="3"]
 position = Vector2(130, -136.667)
+
+[node name="CollisionShape2D" parent="." index="4"]
+position = Vector2(130, -160)
+shape = SubResource("CapsuleShape2D_arcqg")

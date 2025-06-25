@@ -17,6 +17,8 @@ var attack_cooldown_timer: float = 0.0
 
 
 func _ready():
+	print(enemy_resource.name)
+	add_to_group("enemies")
 	# Giving the resource to the statsComponent to load specifix stats
 	stats.initialize_stats(enemy_resource)
 	# Connecting to health component

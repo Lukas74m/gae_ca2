@@ -59,7 +59,6 @@ func _on_body_entered(body):
 		# Deal damage to player
 		if body.has_method("take_damage"):
 			body.take_damage(damage)
-			print("Projectile hit player for ", damage, " damage")
 		
 		# Create hit effect (optional)
 		create_hit_effect()
@@ -78,7 +77,8 @@ func _on_lifetime_expired():
 	# Projectile expires naturally
 	queue_free()
 	
-
+#  ------------ Not used
+# Don't delete yet
 func adjust_direction() -> void:
 	var projectile_flying = true
 	while projectile_flying == true:

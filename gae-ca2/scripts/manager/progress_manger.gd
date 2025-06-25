@@ -53,6 +53,7 @@ func on_level_up():
 		load_level_information()
 		# If no boss level spawn regular wave
 		if current_level_dict["boss_level"] == false:
+			print(current_level_dict["enemy_composition"])
 			enemy_manager.spawn_wave(
 				current_level_dict["enemy_composition"],
 				current_level_dict["spawn_frequency"]

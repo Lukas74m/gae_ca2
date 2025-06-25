@@ -30,6 +30,14 @@ func _on_body_entered(body: Node2D) -> void:
 			body.take_damage(damage)
 			print(damage) 
 			#queue_free()
+	#if body is Player:
+		#if !body.has_method("take_damage"):
+			#push_error("Error : body has no take_damage")
+		#else:
+			#animated_sprite_2d.play("on_hit")
+			#speed = 0
+			#body.take_damage(10)
+			#print(damage) 
 
 
 func _on_timer_timeout() -> void:

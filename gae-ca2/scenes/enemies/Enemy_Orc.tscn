@@ -5,10 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://bpoq51py4ommh" path="res://assets/enemies/enemy_orc/mini_orc_attack.png" id="2_wprko"]
 [ext_resource type="Texture2D" uid="uid://rnhuo7cd3r5d" path="res://assets/enemies/enemy_orc/mini_orc_idle_and_walking.png" id="3_be4gh"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wprko"]
-radius = 11.1111
-height = 31.1111
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_wprko"]
 atlas = ExtResource("2_wprko")
 region = Rect2(0, 0, 32, 32)
@@ -181,6 +177,10 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wprko"]
+radius = 16.0
+height = 44.0
+
 [node name="Enemy_Orc" instance=ExtResource("1_pfjf4")]
 position = Vector2(3, -3)
 scale = Vector2(0.5, 0.5)
@@ -190,17 +190,15 @@ script = ExtResource("2_be4gh")
 position = Vector2(-18, 46)
 scale = Vector2(0.5, 0.5)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
-visible = false
-position = Vector2(-10, 10)
-scale = Vector2(1.5, 1.5)
-shape = SubResource("CapsuleShape2D_wprko")
-
-[node name="EnemyAnimations" parent="." index="3"]
+[node name="EnemyAnimations" parent="." index="2"]
 position = Vector2(-4.28572, 4.28572)
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_be4gh")
 animation = &"attack"
 
-[node name="EnemyCenter" parent="." index="4"]
+[node name="EnemyCenter" parent="." index="3"]
 position = Vector2(-4.28572, 4.28572)
+
+[node name="CollisionShape2D" parent="." index="4"]
+position = Vector2(-4, 20)
+shape = SubResource("CapsuleShape2D_wprko")
