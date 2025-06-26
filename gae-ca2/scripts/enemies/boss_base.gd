@@ -15,9 +15,9 @@ enum BossState { WALK, RANGED_ATTACK, MELEE_ATTACK, DEAD, DASH }
 
 # Dash properties
 @export var dash_range: float = 150.0
-@export var dash_speed: float = 600.0
+@export var dash_speed: float = 400.0
 @export var dash_duration: float = 0.3
-@export var dash_cooldown: float = 8.0
+@export var dash_cooldown: float = 15.0
 @export var initial_dash_delay: float = 3.0
 
 var charging = false
@@ -31,7 +31,7 @@ var dash_direction: Vector2
 
 func _ready():
 	super._ready()  # Call parent _ready()
-	health.set_healthbar_position(global_position + Vector2(-15,130))
+	#health.set_healthbar_position(global_position + Vector2(-15,130))
 	
 	# Set initial dash cooldown to prevent immediate dashing
 	dash_cooldown_timer = initial_dash_delay
@@ -55,7 +55,7 @@ func _physics_process(delta):
 		move_and_slide()
 		return
 		
-	var distance_to_player = global_position.distance_to(Global.player.global_position)
+	var distance_to_player = center.global_position.distance_to(Global.player.center.global_position)
 	
 	match boss_current_state:
 		BossState.WALK:
@@ -91,7 +91,7 @@ func boss_movement_logic(distance_to_player: float):
 	
 	# Move towards player if not in any attack range
 	if distance_to_player > melee_attack_range:
-		var direction = (Global.player.global_position - global_position).normalized()
+		var direction = (Global.player.center.global_position - center.global_position).normalized()
 		velocity = direction * get_stat("movement_speed") * 0.8  # Bosses move slightly slower
 	else:
 		velocity = Vector2.ZERO
@@ -101,8 +101,8 @@ func start_dash():
 	change_boss_state(BossState.DASH)
 	dash_time_left = dash_duration
 	dash_cooldown_timer = dash_cooldown
-	dash_direction = (Global.player.global_position - global_position).normalized()
-	printerr("Boss dashing towards player", Global.time_alive)
+	dash_direction = (Global.player.center.global_position - center.global_position).normalized()
+	#printerr("Boss dashing towards player", Global.time_alive)
 
 func perform_dash(delta: float):
 	velocity = dash_direction * dash_speed
@@ -128,14 +128,14 @@ func perform_melee_charge():
 	# Animation starten
 	charging = true
 	melee_charge_timer = melee_charge_cooldown
-	printerr("Starte animation und gebe Chance zum ausweichen ", Global.time_alive)
+	#printerr("Starte animation und gebe Chance zum ausweichen ", Global.time_alive)
 
 
 func perform_melee_attack(distance_to_player: float):
 	velocity = Vector2.ZERO
 	if distance_to_player <= melee_attack_range:
 		deal_melee_damage()
-	printerr("Melle Damage ", Global.time_alive)
+	#printerr("Melle Damage ", Global.time_alive)
 	# Set cooldown and return to walking
 	melee_cooldown_timer = melee_attack_cooldown
 	change_boss_state(BossState.WALK)
@@ -148,12 +148,12 @@ func throw_projectile_at_player():
 	
 
 	# Position projectile at boss location
-	projectile.global_position = global_position
+	projectile.global_position = center.global_position
 	
 	# Calculate direction to player with some prediction
 	var target_position = predict_player_position()
 
-	var direction = (target_position - global_position).normalized()
+	var direction = (target_position - center.global_position).normalized()
 	
 	# Set projectile properties
 	if projectile.has_method("initialize"):
@@ -172,7 +172,7 @@ func predict_player_position() -> Vector2:
 	
 	# Predict where player will be in 0.5 seconds
 	var prediction_time = 0.5
-	return Global.player.global_position + (player_velocity * prediction_time)
+	return Global.player.center.global_position + (player_velocity * prediction_time)
 
 func deal_melee_damage():
 	if Global.player.has_method("take_damage"):

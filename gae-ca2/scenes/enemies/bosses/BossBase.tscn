@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://uillq8yy1jid"]
+[gd_scene load_steps=6 format=3 uid="uid://uillq8yy1jid"]
 
 [ext_resource type="PackedScene" uid="uid://41vujg0qkyqh" path="res://scenes/enemies/EnemyBase.tscn" id="1_lw1cg"]
 [ext_resource type="Script" uid="uid://dy06kynt7epty" path="res://scripts/enemies/boss_base.gd" id="2_u5uy3"]
 [ext_resource type="PackedScene" uid="uid://cw2m4h4fpvtcf" path="res://scenes/projectiles/boss_projectile.tscn" id="3_arcqg"]
+[ext_resource type="Texture2D" uid="uid://djk3b4rkt0p6f" path="res://assets/dungeon tileset pack/0x72_DungeonTilesetII_v1.7 (1)/0x72_DungeonTilesetII_v1.7/frames/ogre_idle_anim_f0.png" id="4_xvspy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_arcqg"]
 radius = 40.0
@@ -21,17 +22,25 @@ melee_attack_damage = 25.0
 melee_attack_cooldown = 5.0
 melee_charge_cooldown = 2.0
 dash_range = 150.0
-dash_speed = 600.0
+dash_speed = 400.0
 dash_duration = 0.3
-dash_cooldown = 8.0
+dash_cooldown = 15.0
 initial_dash_delay = 3.0
 
 [node name="Health" parent="." index="0"]
-position = Vector2(103.333, -133.333)
+position = Vector2(106.667, -86.6667)
+
+[node name="EnemyAnimations" parent="." index="2"]
+position = Vector2(130, -136.667)
 
 [node name="EnemyCenter" parent="." index="3"]
 position = Vector2(130, -136.667)
 
 [node name="CollisionShape2D" parent="." index="4"]
-position = Vector2(130, -160)
+position = Vector2(130, -140)
 shape = SubResource("CapsuleShape2D_arcqg")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="5"]
+position = Vector2(130, -156.667)
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("4_xvspy")

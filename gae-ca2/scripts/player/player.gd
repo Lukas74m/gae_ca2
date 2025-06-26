@@ -18,9 +18,11 @@ const DASH_COOLDOWN: float = 1.0
 @onready var attack_area: Area2D = $Area2D
 @onready var player_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var health = $Health
+@onready var center = $PlayerCenter
 @onready var player_center: Marker2D = $PlayerCenter
 @onready var skillbar: Node2D = $"../CanvasLayer/Skillbar"
 @export var dash_ghost_scene: PackedScene
+
 
 var ghost_spawn_interval := 0.05
 var ghost_timer := 0.0

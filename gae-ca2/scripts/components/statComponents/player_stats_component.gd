@@ -4,7 +4,7 @@ extends Node
 # base stats from the player
 var base_stats = {
 	"attack_damage": 25,
-	"attack_range": 25,
+	"attack_range": 30,
 	#"attack_cooldown": 2, 				# Cooldown is based on animations
 	"dash_speed": 250,
 	"movement_speed": 100,
