@@ -1,7 +1,7 @@
 class_name EnemyStatComponent
 extends Node
 
-# base stats from the player
+# base stats from the entity
 var base_stats = {
 	"attack_damage": 0,
 	"attack_range": 0,
@@ -10,17 +10,16 @@ var base_stats = {
 	"max_health": 0,
 }
 
-# additive modifiers from the player
+# additive modifiers from the entity
 var additive_mods = {
 	"attack_damage": 0,
 	"attack_range": 0,
 	"attack_cooldown": 0,
-	"dash_speed": 0,
 	"movement_speed": 0,
 	"max_health": 0
 }
 
-# multiplicative modifiers from the player
+# multiplicative modifiers from the entity
 var multiplicative_mods = {
 	"attack_damage": 1,
 	"movement_speed": 1,

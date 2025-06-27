@@ -36,8 +36,6 @@ func attack():
 			randf_range(-20, 20)
 		)
 		spawn_enemy_at("Melee_Orc", get_center_position() + offset)
-	
-	await get_tree().create_timer(0.3).timeout
 
 
 func spawn_enemy_at(enemy_name, pos: Vector2):

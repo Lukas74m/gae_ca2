@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://uillq8yy1jid"]
+[gd_scene load_steps=7 format=3 uid="uid://uillq8yy1jid"]
 
 [ext_resource type="PackedScene" uid="uid://41vujg0qkyqh" path="res://scenes/enemies/EnemyBase.tscn" id="1_lw1cg"]
 [ext_resource type="Script" uid="uid://dy06kynt7epty" path="res://scripts/enemies/boss_base.gd" id="2_u5uy3"]
 [ext_resource type="PackedScene" uid="uid://cw2m4h4fpvtcf" path="res://scenes/projectiles/boss_projectile.tscn" id="3_arcqg"]
+[ext_resource type="Script" uid="uid://kx71cbik2jc5" path="res://scripts/components/statComponents/orc_boss_stats.gd" id="4_5k20f"]
 [ext_resource type="Texture2D" uid="uid://djk3b4rkt0p6f" path="res://assets/dungeon tileset pack/0x72_DungeonTilesetII_v1.7 (1)/0x72_DungeonTilesetII_v1.7/frames/ogre_idle_anim_f0.png" id="4_xvspy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_arcqg"]
@@ -13,22 +14,12 @@ height = 113.333
 position = Vector2(-39, 41)
 script = ExtResource("2_u5uy3")
 projectile_scene = ExtResource("3_arcqg")
-ranged_attack_range = 200.0
-ranged_attack_damage = 15.0
-ranged_attack_cooldown = 5.0
-projectile_speed = 300.0
-melee_attack_range = 50.0
-melee_attack_damage = 25.0
-melee_attack_cooldown = 5.0
-melee_charge_cooldown = 2.0
-dash_range = 150.0
-dash_speed = 400.0
-dash_duration = 0.3
-dash_cooldown = 15.0
-initial_dash_delay = 3.0
 
 [node name="Health" parent="." index="0"]
 position = Vector2(106.667, -86.6667)
+
+[node name="EnemyStats" parent="." index="1"]
+script = ExtResource("4_5k20f")
 
 [node name="EnemyAnimations" parent="." index="2"]
 position = Vector2(130, -136.667)
@@ -44,3 +35,8 @@ shape = SubResource("CapsuleShape2D_arcqg")
 position = Vector2(130, -156.667)
 scale = Vector2(3.5, 3.5)
 texture = ExtResource("4_xvspy")
+
+[node name="Spawn_entourage_timer" type="Timer" parent="." index="6"]
+wait_time = 25.0
+
+[connection signal="timeout" from="Spawn_entourage_timer" to="." method="_on_spawn_entourage_timer_timeout"]

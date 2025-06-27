@@ -40,16 +40,26 @@ func spawn_enemy(enemy_name: String):
 	add_child(enemy_object)
 	
 	
-func spawn_boss(boss_name: String):
+func spawn_boss(boss_name: String, chapter: int):
 	var boss_object = enemy_scenes[boss_name].instantiate()
 	boss_object.enemy_resource = enemy_resources[boss_name]
 	boss_object.global_position = Vector2(-844.0, -517.0)
+	# After instaniating the boss, check in which phas ehe is
 	
-	# Load projectile scene for boss
-	var boss_resource = enemy_resources[boss_name] as BossResource
-	if boss_resource and boss_resource.projectile_scene_path != "":
-		boss_object.projectile_scene = load("res://scenes/projectiles/BossProjectile.tscn")
+	## Load projectile scene for boss
+	#var boss_resource = enemy_resources[boss_name] as BossResource
+	#if boss_resource and boss_resource.projectile_scene_path != "":
+		#boss_object.projectile_scene = load("res://scenes/projectiles/BossProjectile.tscn")
 	add_child(boss_object)
+	# Start timer for spawning
+	boss_object.entourage_timer.start()
+	match chapter:
+		2: 
+			boss_object.range_ability_enabled = true
+		3: 
+			boss_object.dash_abilty_enabled = true
+			boss_object.range_ability_enabled = true
+		_: pass
 
 
 func spawn_wave(enemy_composition, spawn_frequency):

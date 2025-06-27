@@ -1,24 +1,10 @@
 extends Enemy
 class_name Boss
 
-enum BossState { WALK, RANGED_ATTACK, MELEE_ATTACK, DEAD, DASH }
-
+@onready var entourage_timer = $Spawn_entourage_timer
 @export var projectile_scene = preload("res://scenes/projectiles/boss_projectile.tscn")
-@export var ranged_attack_range: float = 200.0
-@export var ranged_attack_damage: float = 15.0
-@export var ranged_attack_cooldown: float = 5.0
-@export var projectile_speed: float = 250.0
-@export var melee_attack_range: float = 50.0
-@export var melee_attack_damage: float = 25.0
-@export var melee_attack_cooldown: float = 5.0
-@export var melee_charge_cooldown: float = 2.0
 
-# Dash properties
-@export var dash_range: float = 150.0
-@export var dash_speed: float = 400.0
-@export var dash_duration: float = 0.3
-@export var dash_cooldown: float = 15.0
-@export var initial_dash_delay: float = 3.0
+enum BossState { WALK, RANGED_ATTACK, MELEE_ATTACK, DEAD, DASH }
 
 var charging = false
 var ranged_cooldown_timer: float
@@ -29,13 +15,54 @@ var dash_cooldown_timer: float
 var dash_time_left: float
 var dash_direction: Vector2
 
+# Optional
+var enemy_scenes = {}
+var enemy_resources  = {}
+
+# Boss has 3 phases
+# 1. Melee
+# 2. Melee and Range
+# 3. Melee, Range and Dash
+var range_ability_enabled = false	# Second phase
+var dash_abilty_enabled = false		# Third phase
+
+# General attack properties
+#@export var ranged_attack_range
+#@export var ranged_attack_damage
+#@export var ranged_attack_cooldown
+#@export var projectile_speed
+#@export var melee_attack_range
+#@export var melee_attack_damage
+#@export var melee_attack_cooldown
+#@export var melee_charge_cooldown
+
+# Dash properties
+#@export var dash_range
+#@export var dash_speed
+#@export var dash_duration
+#@export var dash_cooldown
+#@export var initial_dash_delay
+
+
+func load_enemy_scenes():
+	enemy_scenes = {
+		"Melee_Orc": preload("res://scenes/enemies/Melee_Orc.tscn"),
+		#"Range_Orc": preload("res://scenes/enemies/Enemy_Range_Orc.tscn")
+	}
+
+# The entity names have to be the exact same like in the level.tres files
+func load_enemy_resources():
+	enemy_resources = {
+		"Melee_Orc": preload("res://resources/enemies/melee_orc.tres"),
+		#"Range_Orc": preload("res://resources/enemies/range_orc.tres"),
+	}
+	
 func _ready():
-	super._ready()  # Call parent _ready()
-	#health.set_healthbar_position(global_position + Vector2(-15,130))
-	
+	super._ready()
 	# Set initial dash cooldown to prevent immediate dashing
-	dash_cooldown_timer = initial_dash_delay
-	
+	dash_cooldown_timer = stats.get_stat("initial_dash_delay")
+	load_enemy_scenes()
+	load_enemy_resources() 
 
 func _physics_process(delta):
 	# Update cooldown timers
@@ -77,35 +104,37 @@ func _physics_process(delta):
 	
 	
 func boss_movement_logic(distance_to_player: float):
-	#Check for dash opportunity (player is far but not too far, and dash is available)
-	if distance_to_player > melee_attack_range and distance_to_player <= dash_range and dash_cooldown_timer <= 0.0:
+	# Check for dash opportunity (player is far but not too far, and dash is available)
+	if dash_abilty_enabled == true and distance_to_player > stats.get_stat("melee_attack_range") and distance_to_player <= stats.get_stat("dash_range") and dash_cooldown_timer <= 0.0:
 		start_dash()
 		return
+		
 	# Decide which attack to use based on distance and cooldowns
-	if distance_to_player <= melee_attack_range and melee_cooldown_timer <= 0.0:
+	if distance_to_player <= stats.get_stat("melee_attack_range") and melee_cooldown_timer <= 0.0:
 		change_boss_state(BossState.MELEE_ATTACK)
 		return
-	elif distance_to_player <= ranged_attack_range and distance_to_player > melee_attack_range and ranged_cooldown_timer <= 0.0:
+	# If phase 2 is activated and in range and out of melee range and no cooldown
+	elif range_ability_enabled == true and distance_to_player <= stats.get_stat("ranged_attack_range") and distance_to_player > stats.get_stat("melee_attack_range") and ranged_cooldown_timer <= 0.0:
 		change_boss_state(BossState.RANGED_ATTACK)
 		return
-	
+		
 	# Move towards player if not in any attack range
-	if distance_to_player > melee_attack_range:
+	if distance_to_player > stats.get_stat("melee_attack_range"):
 		var direction = (Global.player.center.global_position - center.global_position).normalized()
-		velocity = direction * get_stat("movement_speed") * 0.8  # Bosses move slightly slower
+		velocity = direction * get_stat("movement_speed")
 	else:
 		velocity = Vector2.ZERO
 
 
 func start_dash():
 	change_boss_state(BossState.DASH)
-	dash_time_left = dash_duration
-	dash_cooldown_timer = dash_cooldown
+	dash_time_left = stats.get_stat("dash_duration")
+	dash_cooldown_timer = stats.get_stat("dash_cooldown")
 	dash_direction = (Global.player.center.global_position - center.global_position).normalized()
 	#printerr("Boss dashing towards player", Global.time_alive)
 
 func perform_dash(delta: float):
-	velocity = dash_direction * dash_speed
+	velocity = dash_direction * stats.get_stat("dash_speed")
 	dash_time_left -= delta
 	
 	if dash_time_left <= 0.0:
@@ -121,23 +150,23 @@ func perform_ranged_attack(distance_to_player: float):
 	throw_projectile_at_player()
 	
 	# Set cooldown and return to walking
-	ranged_cooldown_timer = ranged_attack_cooldown
+	ranged_cooldown_timer = stats.get_stat("ranged_attack_cooldown")
 	change_boss_state(BossState.WALK)
 
 func perform_melee_charge():
 	# Animation starten
 	charging = true
-	melee_charge_timer = melee_charge_cooldown
+	melee_charge_timer = stats.get_stat("melee_charge_cooldown")
 	#printerr("Starte animation und gebe Chance zum ausweichen ", Global.time_alive)
 
 
 func perform_melee_attack(distance_to_player: float):
 	velocity = Vector2.ZERO
-	if distance_to_player <= melee_attack_range:
+	if distance_to_player <= stats.get_stat("melee_attack_range"):
 		deal_melee_damage()
 	#printerr("Melle Damage ", Global.time_alive)
 	# Set cooldown and return to walking
-	melee_cooldown_timer = melee_attack_cooldown
+	melee_cooldown_timer = stats.get_stat("melee_attack_cooldown")
 	change_boss_state(BossState.WALK)
 
 
@@ -157,7 +186,7 @@ func throw_projectile_at_player():
 	
 	# Set projectile properties
 	if projectile.has_method("initialize"):
-		projectile.initialize(direction, ranged_attack_damage, projectile_speed)
+		projectile.initialize(direction, stats.get_stat("ranged_attack_damage"), stats.get_stat("projectile_speed"))
 		#projectile.ranged_attack(direction, target_position)
 	
 
@@ -176,7 +205,7 @@ func predict_player_position() -> Vector2:
 
 func deal_melee_damage():
 	if Global.player.has_method("take_damage"):
-		Global.player.take_damage(melee_attack_damage)
+		Global.player.take_damage(stats.get_stat("melee_attack_damage"))
 		
 func change_boss_state(new_state: BossState):
 	if boss_current_state == new_state:
@@ -205,3 +234,34 @@ func die():
 # Overrides enemy_base.gd
 func get_center_position():
 	return center.global_position
+
+# Optional
+func spawn_entourage():
+	#await enemy_animations.animation_finished
+	for i in range(2):
+		# Kleine zufällige Abweichung um Überlagerung zu vermeiden
+		var offset = Vector2(
+			randf_range(-20, 20),  # Zufällig zwischen -20 und +20
+			randf_range(-20, 20)
+		)
+		spawn_enemy_at("Melee_Orc", get_center_position() + offset)
+
+# Optional	
+func spawn_enemy_at(enemy_name, pos: Vector2):
+	if enemy_name == null:
+		printerr("Keine Enemy Scene zugewiesen!")
+		return
+	
+	if enemy_name in enemy_scenes:
+		var enemy = enemy_scenes[enemy_name].instantiate()
+		enemy.is_spawned_by_other_entity = true
+		enemy.enemy_resource = enemy_resources[enemy_name]
+		get_tree().current_scene.add_child(enemy)
+		enemy.global_position = pos
+	else:
+		printerr("No such enemy ", enemy_name)
+		print("Available keys: ", enemy_scenes.keys())
+
+
+func _on_spawn_entourage_timer_timeout() -> void:
+	spawn_entourage()

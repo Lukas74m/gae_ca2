@@ -30,13 +30,12 @@ func _ready() -> void:
 	next_chapter()
 	on_level_up()
 
-
 # Loads all level resources with the specific information
 func load_progress_resources():
 	progress_resources = {
-		"level_1": preload("res://resources/level/level_1.tres"),
-		"level_2": preload("res://resources/level/level_2.tres"),
-		"level_3": preload("res://resources/level/level_3.tres"),
+		"level_1": preload("res://resources/level/test_level_1.tres"),
+		"level_2": preload("res://resources/level/test_level_2.tres"),
+		"level_3": preload("res://resources/level/test_level_3.tres"),
 		"level_4": preload("res://resources/level/level_4.tres")  
 	}
 
@@ -62,7 +61,7 @@ func on_level_up():
 		else:
 			#If enough boss artefacts maybe weaken the boss
 			#var boss_weakend = is_enough_artefacts_collected()
-			enemy_manager.spawn_boss(current_level_dict["level_boss_name"])
+			enemy_manager.spawn_boss(current_level_dict["level_boss_name"], get_chapter())
 	else:
 		printerr("No more levels!")
 
