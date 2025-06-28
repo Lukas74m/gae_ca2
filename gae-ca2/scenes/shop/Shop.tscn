@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://vcvbrmlgyiai"]
+[gd_scene load_steps=5 format=3 uid="uid://vcvbrmlgyiai"]
 
 [ext_resource type="Script" uid="uid://dxgytc8f7yu4" path="res://scripts/shop/shop.gd" id="1_rktij"]
 [ext_resource type="Texture2D" uid="uid://rwdm74nqhelq" path="res://assets/buttons/Test_Button.png" id="2_tc8pp"]
 [ext_resource type="Texture2D" uid="uid://drsj06k5do28m" path="res://assets/buttons/Test_Button_Hover.png" id="3_srfm6"]
+
+[sub_resource type="Theme" id="Theme_tc8pp"]
+default_font_size = 12
 
 [node name="Shop" type="CanvasLayer"]
 script = ExtResource("1_rktij")
@@ -40,14 +43,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-
 offset_left = -309.0
 offset_top = -104.5
 offset_right = 309.0
 offset_bottom = 104.5
-
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_tc8pp")
 columns = 3
 
 [node name="Option1Button" type="TextureButton" parent="Panel/HBoxContainer"]

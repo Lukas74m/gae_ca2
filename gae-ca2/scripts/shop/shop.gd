@@ -8,53 +8,61 @@ extends CanvasLayer
 @onready var label2: Label = $Panel/HBoxContainer/Option2Button/Label
 @onready var label3: Label = $Panel/HBoxContainer/Option3Button/Label
 
+# Globale Wahrscheinlichkeiten für alle Stats
+var global_rarity_chances = {
+	"common": 50,
+	"rare": 30,
+	"epic": 15,
+	"legendary": 5
+}
+
 # Basis-Upgrades mit Seltenheitsstufen
 var upgrade_templates = [
 	{
 		"stat": "attack_damage",
 		"label_base": "Angriffsschaden",
 		"rarities": {
-			"common": {"amount": 10, "chance": 50},
-			"rare": {"amount": 14, "chance": 30},
-			"epic": {"amount": 18, "chance": 15},
-			"legendary": {"amount": 21, "chance": 5}
+			"common": {"amount": 10},
+			"rare": {"amount": 14},
+			"epic": {"amount": 18},
+			"legendary": {"amount": 21}
 		}
 	},
 	{
 		"stat": "max_health",
 		"label_base": "Max. Leben",
 		"rarities": {
-			"common": {"amount": 10, "chance": 50},
-			"rare": {"amount": 14, "chance": 30},
-			"epic": {"amount": 18, "chance": 15},
-			"legendary": {"amount": 21, "chance": 5}
+			"common": {"amount": 10},
+			"rare": {"amount": 14},
+			"epic": {"amount": 18},
+			"legendary": {"amount": 25}
 		}
 	},
 	{
 		"stat": "crit_rate",
 		"label_base": "Krit-Wahrscheinlichkeit",
 		"rarities": {
-			"common": {"amount": 0.08, "chance": 50},
-			"rare": {"amount": 0.12, "chance": 30},
-			"epic": {"amount": 0.16, "chance": 15},
-			"legendary": {"amount": 0.20, "chance": 5}
+			"common": {"amount": 0.08},
+			"rare": {"amount": 0.12},
+			"epic": {"amount": 0.16},
+			"legendary": {"amount": 0.20}
 		}
 	},
 	{
 		"stat": "crit_damage",
 		"label_base": "Kritischer Schaden",
 		"rarities": {
-			"common": {"amount": 0.15, "chance": 50},
-			"rare": {"amount": 0.22, "chance": 30},
-			"epic": {"amount": 0.30, "chance": 15},
-			"legendary": {"amount": 0.40, "chance": 5}
+			"common": {"amount": 0.15},
+			"rare": {"amount": 0.22},
+			"epic": {"amount": 0.30},
+			"legendary": {"amount": 0.40}
 		}
 	}
 ]
 
 var gamble_possible_upgrades = [
-	{"stat": "attack_damage", "amount": 15, "label": "+ 0-15 Angriffsschaden", "gamble": true},
-	{"stat": "max_health", "amount": 25, "label": " + 0-25 Max. Leben", "gamble": true}
+	{"stat": "attack_damage", "amount": 15, "label": "+ 0-27 Angriffsschaden", "gamble": true},
+	{"stat": "max_health", "amount": 25, "label": " + 0-27 Max. Leben", "gamble": true}
 ]
 
 # Farben für die Seltenheiten
@@ -92,7 +100,7 @@ func show_shop():
 	panel.show()
 
 func generate_upgrade_with_rarity(template):
-	var rarity = get_random_rarity(template["rarities"])
+	var rarity = get_random_rarity()
 	var rarity_data = template["rarities"][rarity]
 	
 	var upgrade = {
@@ -111,16 +119,16 @@ func generate_upgrade_with_rarity(template):
 	
 	return upgrade
 
-func get_random_rarity(rarities):
+func get_random_rarity():
 	var total_chance = 0
-	for rarity in rarities:
-		total_chance += rarities[rarity]["chance"]
+	for rarity in global_rarity_chances:
+		total_chance += global_rarity_chances[rarity]
 	
 	var random_value = randi() % total_chance
 	var current_chance = 0
 	
-	for rarity in rarities:
-		current_chance += rarities[rarity]["chance"]
+	for rarity in global_rarity_chances:
+		current_chance += global_rarity_chances[rarity]
 		if random_value < current_chance:
 			return rarity
 	
