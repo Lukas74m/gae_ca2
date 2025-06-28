@@ -8,60 +8,185 @@ extends CanvasLayer
 @onready var label2: Label = $Panel/HBoxContainer/Option2Button/Label
 @onready var label3: Label = $Panel/HBoxContainer/Option3Button/Label
 
-var possible_upgrades = [
-	{"stat": "attack_damage", "amount": 15, "label": "+15 Angriffsschaden"},
-	{"stat": "max_health", "amount": 25, "label": "+25 Max. Leben"},
-	{"stat": "crit_rate", "amount": 0.15, "label": "+15% Krit-Wahrscheinlichkeit"},
-	{"stat": "crit_damage", "amount": 0.3, "label": "+30% Kritischer Schaden"}
+# Basis-Upgrades mit Seltenheitsstufen
+var upgrade_templates = [
+	{
+		"stat": "attack_damage",
+		"label_base": "Angriffsschaden",
+		"rarities": {
+			"common": {"amount": 10, "chance": 50},
+			"rare": {"amount": 14, "chance": 30},
+			"epic": {"amount": 18, "chance": 15},
+			"legendary": {"amount": 21, "chance": 5}
+		}
+	},
+	{
+		"stat": "max_health",
+		"label_base": "Max. Leben",
+		"rarities": {
+			"common": {"amount": 10, "chance": 50},
+			"rare": {"amount": 14, "chance": 30},
+			"epic": {"amount": 18, "chance": 15},
+			"legendary": {"amount": 21, "chance": 5}
+		}
+	},
+	{
+		"stat": "crit_rate",
+		"label_base": "Krit-Wahrscheinlichkeit",
+		"rarities": {
+			"common": {"amount": 0.08, "chance": 50},
+			"rare": {"amount": 0.12, "chance": 30},
+			"epic": {"amount": 0.16, "chance": 15},
+			"legendary": {"amount": 0.20, "chance": 5}
+		}
+	},
+	{
+		"stat": "crit_damage",
+		"label_base": "Kritischer Schaden",
+		"rarities": {
+			"common": {"amount": 0.15, "chance": 50},
+			"rare": {"amount": 0.22, "chance": 30},
+			"epic": {"amount": 0.30, "chance": 15},
+			"legendary": {"amount": 0.40, "chance": 5}
+		}
+	}
 ]
+
 var gamble_possible_upgrades = [
-	{"stat": "attack_damage", "amount": 15, "label": "+ 0-15 Angriffsschaden"},
-	{"stat": "max_health", "amount": 25, "label": " + 0-25 Max. Leben"}
+	{"stat": "attack_damage", "amount": 15, "label": "+ 0-15 Angriffsschaden", "gamble": true},
+	{"stat": "max_health", "amount": 25, "label": " + 0-25 Max. Leben", "gamble": true}
 ]
+
+# Farben für die Seltenheiten
+var rarity_colors = {
+	"common": Color.WHITE,
+	"rare": Color.CYAN,
+	"epic": Color.MAGENTA,
+	"legendary": Color.GOLD
+}
 
 # Upgrades that can be selected in the shop
-var current_upgrades_in_shop = []  
+var current_upgrades_in_shop = []
 
 func _ready():
-	_close_shop()
+	close_shop()
 
 func show_shop():
 	current_upgrades_in_shop.clear()
-
-	# Copy for shuffle and randomization 
-	var upgrade_pool = possible_upgrades.duplicate()
-	upgrade_pool.shuffle()
+	
+	# Erstelle 2 normale Upgrades mit Seltenheiten
+	var selected_templates = upgrade_templates.duplicate()
+	selected_templates.shuffle()
+	
+	for i in range(2):
+		var upgrade_with_rarity = generate_upgrade_with_rarity(selected_templates[i])
+		current_upgrades_in_shop.append(upgrade_with_rarity)
+	
+	# Füge ein Gamble-Upgrade hinzu
 	var gamble_upgrade_pool = gamble_possible_upgrades.duplicate()
 	gamble_upgrade_pool.shuffle()
-	
-	
-	current_upgrades_in_shop.append(upgrade_pool[0])
-	current_upgrades_in_shop.append(upgrade_pool[1])
 	current_upgrades_in_shop.append(gamble_upgrade_pool[0])
-
-	label1.text = current_upgrades_in_shop[0]["label"]
-	label2.text = current_upgrades_in_shop[1]["label"]
-	label3.text = current_upgrades_in_shop[2]["label"]
-
+	
+	# Update Labels mit Farben
+	update_shop_labels()
 	panel.show()
-	#get_tree().paused = true
 
+func generate_upgrade_with_rarity(template):
+	var rarity = get_random_rarity(template["rarities"])
+	var rarity_data = template["rarities"][rarity]
+	
+	var upgrade = {
+		"stat": template["stat"],
+		"amount": rarity_data["amount"],
+		"rarity": rarity,
+		"gamble": false
+	}
+	
+	# Erstelle das Label basierend auf dem Stat-Typ
+	match template["stat"]:
+		"crit_rate", "crit_damage":
+			upgrade["label"] = "+%d%% %s" % [rarity_data["amount"] * 100, template["label_base"]]
+		_:
+			upgrade["label"] = "+%s %s" % [str(rarity_data["amount"]), template["label_base"]]
+	
+	return upgrade
+
+func get_random_rarity(rarities):
+	var total_chance = 0
+	for rarity in rarities:
+		total_chance += rarities[rarity]["chance"]
+	
+	var random_value = randi() % total_chance
+	var current_chance = 0
+	
+	for rarity in rarities:
+		current_chance += rarities[rarity]["chance"]
+		if random_value < current_chance:
+			return rarity
+	
+	return "common" # Fallback
+
+# Diese Funktion wird nicht mehr benötigt, da keine Präfixe verwendet werden
+# func get_rarity_prefix(rarity):
+
+func update_shop_labels():
+	var labels = [label1, label2, label3]
+	
+	for i in range(current_upgrades_in_shop.size()):
+		var upgrade = current_upgrades_in_shop[i]
+		labels[i].text = upgrade["label"]
+		
+		# Setze Farbe basierend auf Seltenheit (nur für nicht-Gamble Upgrades)
+		if not upgrade.get("gamble", false):
+			var rarity = upgrade.get("rarity", "common")
+			labels[i].modulate = rarity_colors.get(rarity, Color.WHITE)
+		else:
+			labels[i].modulate = Color.WHITE
 
 func _on_option_1_button_pressed() -> void:
-	_apply_upgrade(0)
-
+	apply_upgrade(0)
 
 func _on_option_2_button_pressed() -> void:
-	_apply_upgrade(1)
+	apply_upgrade(1)
 
+func _on_option_3_button_pressed() -> void:
+	apply_upgrade(2)
 
-func _apply_upgrade(index):
+func apply_upgrade(index):
 	if Global.player and index < current_upgrades_in_shop.size():
 		var upgrade = current_upgrades_in_shop[index]
-		Global.player.get_node("PlayerStats").base_stats[upgrade["stat"]] += upgrade["amount"]
-		print(Global.player.get_node("PlayerStats").base_stats[upgrade["stat"]])
-		_close_shop()
+		var final_amount = upgrade["amount"]
 		
-func _close_shop():
+		# Prüfen ob es sich um ein Gamble-Upgrade handelt
+		if upgrade.get("gamble", false):
+			print("GAMBLE ERKANNT!")
+			final_amount = get_weighted_random_value(upgrade["amount"])
+		else:
+			print("UPGRADE ANGEWENDET - Seltenheit: ", upgrade.get("rarity", "N/A"))
+		
+		Global.player.get_node("PlayerStats").base_stats[upgrade["stat"]] += final_amount
+		print("Angewendet: ", final_amount, " auf ", upgrade["stat"])
+		print("Neuer Wert: ", Global.player.get_node("PlayerStats").base_stats[upgrade["stat"]])
+		close_shop()
+
+# Separate Funktion für die gewichtete Zufallsberechnung
+func get_weighted_random_value(max_value) -> int:
+	print("Berechne gewichteten Wert für max_value: ", max_value)
+	var mid_point = float(max_value) / 2.0
+	var random_float = randf()
+	var weighted_value: float
+	
+	if random_float < 0.65:  # 65% Chance für untere Hälfte
+		weighted_value = random_float / 0.65 * mid_point
+		print("Untere Hälfte: ", weighted_value)
+	else:  # 35% Chance für obere Hälfte
+		weighted_value = mid_point + ((random_float - 0.65) / 0.35) * mid_point
+		print("Obere Hälfte: ", weighted_value)
+	
+	var result = int(round(weighted_value))
+	print("Finaler Gamble-Wert: ", result)
+	return result
+
+func close_shop():
 	panel.hide()
 	get_tree().paused = false
