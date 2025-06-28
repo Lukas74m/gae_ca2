@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://gthmdo0mgpcm"]
+[gd_scene load_steps=30 format=3 uid="uid://gthmdo0mgpcm"]
 
 [ext_resource type="PackedScene" uid="uid://41vujg0qkyqh" path="res://scenes/enemies/EnemyBase.tscn" id="1_4ttfu"]
 [ext_resource type="Script" uid="uid://dxrchvuodo0r5" path="res://scripts/enemies/enemy_melee_orc.gd" id="2_av4ak"]
@@ -181,24 +181,34 @@ animations = [{
 radius = 16.0
 height = 44.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_4ttfu"]
+radius = 20.0
+
 [node name="Enemy_Orc" instance=ExtResource("1_4ttfu")]
 position = Vector2(3, -3)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("2_av4ak")
 
 [node name="Health" parent="." index="0"]
-position = Vector2(-18, 46)
+position = Vector2(-18, 32)
 scale = Vector2(0.5, 0.5)
 
 [node name="EnemyAnimations" parent="." index="2"]
-position = Vector2(-4.28572, 4.28572)
+position = Vector2(-6, -12)
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_be4gh")
 animation = &"attack"
 
 [node name="EnemyCenter" parent="." index="3"]
-position = Vector2(-4.28572, 4.28572)
+position = Vector2(-6, 6)
 
 [node name="CollisionShape2D" parent="." index="4"]
-position = Vector2(-4, 20)
+position = Vector2(-6, 6)
 shape = SubResource("CapsuleShape2D_wprko")
+
+[node name="Area2D" type="Area2D" parent="." index="5"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(-6, 6)
+shape = SubResource("CircleShape2D_4ttfu")
+debug_color = Color(1, 0.160334, 0.501193, 0.42)

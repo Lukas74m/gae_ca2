@@ -13,28 +13,39 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -143.5
-offset_top = -100.5
-offset_right = 143.5
-offset_bottom = 100.5
+offset_left = -275.0
+offset_top = -157.0
+offset_right = 344.0
+offset_bottom = 105.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 
 [node name="Label" type="Label" parent="Panel"]
-layout_mode = 0
-offset_left = 64.0
-offset_top = 23.0
-offset_right = 225.0
-offset_bottom = 46.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -78.5
+offset_top = 17.0
+offset_right = 82.5
+offset_bottom = 40.0
+grow_horizontal = 2
 text = "Wähle eine Upgrade!"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
-layout_mode = 0
-offset_left = 38.0
-offset_top = 61.0
-offset_right = 242.0
-offset_bottom = 161.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -161.0
+offset_top = -50.0
+offset_right = 161.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Option1Button" type="TextureButton" parent="Panel/HBoxContainer"]
 layout_mode = 2
@@ -57,5 +68,16 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 
+[node name="Option3Button" type="TextureButton" parent="Panel/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_tc8pp")
+texture_hover = ExtResource("3_srfm6")
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer/Option3Button"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
 [connection signal="pressed" from="Panel/HBoxContainer/Option1Button" to="." method="_on_option_1_button_pressed"]
 [connection signal="pressed" from="Panel/HBoxContainer/Option2Button" to="." method="_on_option_2_button_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/Option3Button" to="." method="_on_option_2_button_pressed"]

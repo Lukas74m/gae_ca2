@@ -36,7 +36,7 @@ func _physics_process(delta):
 		move_and_slide()
 		return
 		
-	var distance_to_player = global_position.distance_to(Global.player.get_center_position())
+	var distance_to_player = center.global_position.distance_to(Global.player.get_center_position())
 	match current_state:
 		EnemyState.WALK:
 			move_towards_player(delta, distance_to_player)
