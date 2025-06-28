@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://c57owfghvm7q5"]
+
+[node name="SpawnScalingManager" type="Node2D"]

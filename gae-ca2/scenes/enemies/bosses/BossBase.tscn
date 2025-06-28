@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://41vujg0qkyqh" path="res://scenes/enemies/EnemyBase.tscn" id="1_lw1cg"]
 [ext_resource type="Script" uid="uid://dy06kynt7epty" path="res://scripts/enemies/boss_base.gd" id="2_u5uy3"]
 [ext_resource type="PackedScene" uid="uid://cw2m4h4fpvtcf" path="res://scenes/projectiles/boss_projectile.tscn" id="3_arcqg"]
-[ext_resource type="Script" uid="uid://kx71cbik2jc5" path="res://scripts/components/statComponents/orc_boss_stats.gd" id="4_5k20f"]
+[ext_resource type="Script" path="res://scripts/components/statComponents/orc_boss_stats.gd" id="4_5k20f"]
 [ext_resource type="Texture2D" uid="uid://djk3b4rkt0p6f" path="res://assets/dungeon tileset pack/0x72_DungeonTilesetII_v1.7 (1)/0x72_DungeonTilesetII_v1.7/frames/ogre_idle_anim_f0.png" id="4_xvspy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_arcqg"]
