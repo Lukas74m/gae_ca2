@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://caoqta2c7pqis"
-path="res://.godot/imported/boss_charge_attack.png-386582df8da2c9aebf5e0c71b0026a72.ctex"
+path="res://.godot/imported/boss_dash_attack.png-acfad791bbc47ed95c9c0e17d1aef5aa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/enemies/boss/boss_charge_attack.png"
-dest_files=["res://.godot/imported/boss_charge_attack.png-386582df8da2c9aebf5e0c71b0026a72.ctex"]
+source_file="res://assets/enemies/boss/boss_dash_attack.png"
+dest_files=["res://.godot/imported/boss_dash_attack.png-acfad791bbc47ed95c9c0e17d1aef5aa.ctex"]
 
 [params]
 

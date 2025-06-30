@@ -137,7 +137,7 @@ func boss_movement_logic(distance_to_player: float):
 
 func start_dash():
 	boss_animations.play("dash_charge")
-	await boss_animations.animation_finished
+	#await boss_animations.animation_finished
 	change_boss_state(BossState.DASH)
 	dash_time_left = stats.get_stat("dash_duration")
 	dash_cooldown_timer = stats.get_stat("dash_cooldown")
@@ -167,28 +167,23 @@ func perform_ranged_attack(distance_to_player: float):
 
 func perform_melee_charge():
 	# Animation starten
-	if !meele_charge_animation:
-		meele_charge_animation == true
-		boss_animations.play("attack_charge")
-		await boss_animations.animation_finished
+
+	boss_animations.play("attack")
+	
 	charging = true
 	melee_charge_timer = stats.get_stat("melee_charge_cooldown")
 	#printerr("Starte animation und gebe Chance zum ausweichen ", Global.time_alive)
 
 
 func perform_melee_attack(distance_to_player: float):
-	meele_charge_animation == false
+	
 
 	velocity = Vector2.ZERO
-	if distance_to_player <= stats.get_stat("melee_attack_range") and !meele_attack_animation:
-		meele_attack_animation = true
-		boss_animations.play("attack")
+	if distance_to_player <= stats.get_stat("melee_attack_range"):
 		deal_melee_damage()
 	#printerr("Melle Damage ", Global.time_alive)
 	# Set cooldown and return to walking
 	melee_cooldown_timer = stats.get_stat("melee_attack_cooldown")
-	await boss_animations.animation_finished
-	meele_attack_animation = false
 	change_boss_state(BossState.WALK)
 
 
