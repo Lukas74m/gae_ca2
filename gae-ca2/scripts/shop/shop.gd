@@ -107,6 +107,7 @@ func show_shop():
 	update_shop_labels()
 	reward_with_box_for_buttons.show()
 	panel.show()
+	get_tree().paused = true
 
 func generate_upgrade_with_rarity(template):
 	var rarity = get_random_rarity()
