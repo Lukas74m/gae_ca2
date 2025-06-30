@@ -4,9 +4,17 @@ extends CanvasLayer
 @onready var btn_option2: TextureButton = $Panel/HBoxContainer/Option2Button
 @onready var btn_option3: TextureButton = $Panel/HBoxContainer/Option3Button
 @onready var panel: Panel = $Panel
+@onready var reward_with_box_for_buttons: Sprite2D = $RewardWithBoxForButtons
 @onready var label1: Label = $Panel/HBoxContainer/Option1Button/Label
 @onready var label2: Label = $Panel/HBoxContainer/Option2Button/Label
 @onready var label3: Label = $Panel/HBoxContainer/Option3Button/Label
+
+@export var button_textures := {
+	"common": preload("res://assets/rewards/Reward_Button_Normal2.png"),
+	"rare": preload("res://assets/rewards/Reward_Button_Rare.png"),
+	"epic": preload("res://assets/rewards/Reward_Button_Epic.png"),
+	"legendary": preload("res://assets/rewards/Reward_Button_Legendary.png")
+}
 
 # Globale Wahrscheinlichkeiten für alle Stats
 var global_rarity_chances = {
@@ -97,6 +105,7 @@ func show_shop():
 	
 	# Update Labels mit Farben
 	update_shop_labels()
+	reward_with_box_for_buttons.show()
 	panel.show()
 
 func generate_upgrade_with_rarity(template):
@@ -139,6 +148,7 @@ func get_random_rarity():
 
 func update_shop_labels():
 	var labels = [label1, label2, label3]
+	var buttons = [btn_option1, btn_option2, btn_option3]
 	
 	for i in range(current_upgrades_in_shop.size()):
 		var upgrade = current_upgrades_in_shop[i]
@@ -148,6 +158,9 @@ func update_shop_labels():
 		if not upgrade.get("gamble", false):
 			var rarity = upgrade.get("rarity", "common")
 			labels[i].modulate = rarity_colors.get(rarity, Color.WHITE)
+			buttons[i].texture_normal = button_textures[rarity]
+			buttons[i].texture_hover = button_textures[rarity]
+			buttons[i].texture_pressed = button_textures[rarity]
 		else:
 			labels[i].modulate = Color.WHITE
 
@@ -196,5 +209,6 @@ func get_weighted_random_value(max_value) -> int:
 	return result
 
 func close_shop():
+	reward_with_box_for_buttons.hide()
 	panel.hide()
 	get_tree().paused = false
