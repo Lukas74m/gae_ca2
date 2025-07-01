@@ -234,7 +234,7 @@ func apply_upgrade(index):
 		#print("Angewendet: ", final_amount, " auf ", upgrade["stat"])
 		#print("Neuer Wert: ", Global.player.get_node("PlayerStats").base_stats[upgrade["stat"]])
 	
-	return upgrade["label_base"] + ": +" + str(final_amount)
+	return upgrade["label_base"] + ": + " + str(final_amount)
 
 # Separate Funktion für die gewichtete Zufallsberechnung
 func get_weighted_random_value(max_value) -> int:

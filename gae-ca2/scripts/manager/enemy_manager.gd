@@ -59,10 +59,12 @@ func spawn_boss(boss_name: String, chapter: int):
 		2: 
 			boss_object.range_ability_enabled = true
 			boss_object.boss_with_orc_animations.show()
+			boss_object.boss_animations.hide()
 		3: 
 			boss_object.dash_abilty_enabled = true
 			boss_object.range_ability_enabled = true
 			boss_object.boss_with_orc_animations.show()
+			boss_object.boss_animations.hide()
 		_: pass
 
 

@@ -9,7 +9,7 @@ var enemy_manager
 var artefact_resource = preload("res://resources/chapter/chapter_artefacts.tres")
 var level_resource
 var progress_resources
-
+var additional_enemies = 0
 
 # Information about the current level
 var current_level_dict = {
@@ -25,6 +25,7 @@ var current_level_dict = {
 # Gets the EnemyManager to send him the information
 # Loads the information and starts the first level
 func _ready() -> void:
+	additional_enemies = 0
 	enemy_manager = get_node("../EnemyManager")
 	await load_progress_resources()
 	next_chapter()
@@ -52,7 +53,6 @@ func on_level_up():
 		load_level_information()
 		# If no boss level spawn regular wave
 		if current_level_dict["boss_level"] == false:
-			print(current_level_dict["enemy_composition"])
 			enemy_manager.spawn_wave(
 				current_level_dict["enemy_composition"],
 				current_level_dict["spawn_frequency"]
@@ -80,8 +80,9 @@ func load_level_information():
 func update_level_progress():
 	current_level_kill_amount += 1
 	# Checks if level is finished
-	if current_level_kill_amount >= current_level_dict["level_wave_size"]:
+	if current_level_kill_amount >= current_level_dict["level_wave_size"] + additional_enemies:
 		current_level_kill_amount = 0
+		additional_enemies = 0
 		
 		# Heal the player after each wave
 		# Heal more before a boss wave
@@ -117,7 +118,7 @@ func is_next_boss_level():
 	return (current_level_dict["current_level"] + 1) % 4 == 0
 
 func get_level_wave_size():
-	return current_level_dict["level_wave_size"]
+	return current_level_dict["level_wave_size"] + additional_enemies
 
 func get_current_level_kill_amount():
 	return current_level_kill_amount

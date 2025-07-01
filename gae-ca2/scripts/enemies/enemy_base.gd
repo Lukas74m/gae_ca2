@@ -6,7 +6,7 @@ signal attacked(player)
 
 enum EnemyState { WALK, ATTACK, DEAD }
 var current_state: EnemyState = EnemyState.WALK
-var is_spawned_by_other_entity = false
+#var is_spawned_by_other_entity = false
 
 @export var enemy_resource: EnemyResource
 @onready var health = $Health
@@ -69,8 +69,8 @@ func take_damage(amount: int):
 
 func die():
 	Global.kills += 1
-	if is_spawned_by_other_entity == false:
-		Global.ProgressManager.update_level_progress()
+	#if is_spawned_by_other_entity == false:
+	Global.ProgressManager.update_level_progress()
 	queue_free()
 
 func get_stat(stat_name: String):

@@ -71,13 +71,14 @@ func spawn_enemy_at(enemy_name, pos: Vector2):
 	
 	if enemy_name in enemy_scenes:
 		var enemy = enemy_scenes[enemy_name].instantiate()
-		enemy.is_spawned_by_other_entity = true
+		#enemy.is_spawned_by_other_entity = true
 		enemy.enemy_resource = enemy_resources[enemy_name]
 		get_tree().current_scene.add_child(enemy)
 		enemy.global_position = pos
+		Global.ProgressManager.additional_enemies += 1
 	else:
 		printerr("No such enemy ", enemy_name)
-		print("Available keys: ", enemy_scenes.keys())
+		printerr("Available keys: ", enemy_scenes.keys())
 
 
 # Overrides enemy_base.gd
@@ -100,7 +101,6 @@ func move_towards_player(delta: float, distance_to_player: float):
 	# If in attack range and cooldown 0
 	if distance_to_player <= get_stat("attack_range") and attack_cooldown_timer <= 0.0:
 		change_state(EnemyState.ATTACK)
-		print("attack")
 		return
 	# Only move if not in attack range
 	if distance_to_player > get_stat("attack_range") and attack_cooldown_timer <= 0.0:
@@ -108,10 +108,8 @@ func move_towards_player(delta: float, distance_to_player: float):
 		enemy_animations.play("move")
 		var direction = (Global.player.get_center_position() - global_position).normalized()
 		velocity = direction * get_stat("movement_speed")
-		print("move")
 	else:
 		# Stop moving when in attack range but cooldown >= 0
 		enemy_animations.flip_h = Global.player.get_center_position().x < global_position.x
 		enemy_animations.play("idle")
 		velocity = Vector2.ZERO
-		print("idle")
