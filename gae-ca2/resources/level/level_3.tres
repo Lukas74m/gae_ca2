@@ -5,10 +5,10 @@
 [resource]
 script = ExtResource("1_n7n6f")
 current_level = 3
-level_wave_size = 6
+level_wave_size = 10
 enemy_composition = {
-"Melee_Orc": 4,
-"Shaman_Orc": 2
+"Melee_Orc": 7,
+"Shaman_Orc": 3
 }
 spawn_frequency = 3
 level_boss_name = "Orc_Boss"

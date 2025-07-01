@@ -17,7 +17,7 @@ func _ready():
 func attack():
 	enemy_animations.flip_h = Global.player.get_center_position().x < global_position.x
 	enemy_animations.play("shoot")
-	bow.rotation = (Global.player.global_position - bow.global_position).normalized()
+	#bow.rotation = (Global.player.global_position - bow.global_position).normalized()
 	bow.visible = true
 	bow.play("bow")
 	attack_cooldown_timer = get_stat("attack_cooldown")

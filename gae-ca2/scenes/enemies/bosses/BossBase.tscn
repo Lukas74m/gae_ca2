@@ -581,6 +581,8 @@ animations = [{
 
 [node name="Boss" instance=ExtResource("1_lw1cg")]
 position = Vector2(-39, 41)
+collision_layer = 3
+collision_mask = 6
 script = ExtResource("2_u5uy3")
 projectile_scene = ExtResource("3_arcqg")
 
@@ -605,7 +607,7 @@ position = Vector2(130, -136.667)
 shape = SubResource("CapsuleShape2D_arcqg")
 
 [node name="Spawn_entourage_timer" type="Timer" parent="." index="5"]
-wait_time = 22.5
+wait_time = 5.0
 
 [node name="Boss_with_orc_animations" type="AnimatedSprite2D" parent="." index="6"]
 visible = false
