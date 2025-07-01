@@ -9,12 +9,20 @@ extends CanvasLayer
 @onready var label2: Label = $Panel/HBoxContainer/Option2Button/Label
 @onready var label3: Label = $Panel/HBoxContainer/Option3Button/Label
 
+#@export var button_textures := {
+#	"common": preload("res://assets/rewards/Reward_Button_Normal2.png"),
+#	"rare": preload("res://assets/rewards/Reward_Button_Rare.png"),
+#	"epic": preload("res://assets/rewards/Reward_Button_Epic.png"),
+#	"legendary": preload("res://assets/rewards/Reward_Button_Legendary.png")
+#}
+
 @export var button_textures := {
-	"common": preload("res://assets/rewards/Reward_Button_Normal2.png"),
-	"rare": preload("res://assets/rewards/Reward_Button_Rare.png"),
-	"epic": preload("res://assets/rewards/Reward_Button_Epic.png"),
-	"legendary": preload("res://assets/rewards/Reward_Button_Legendary.png")
+	"common": preload("res://assets/rewards/Reward_Button_v.2.png"),
+	"rare": preload("res://assets/rewards/Reward_Button_v.2.png"),
+	"epic": preload("res://assets/rewards/Reward_Button_v.2.png"),
+	"legendary": preload("res://assets/rewards/Reward_Button_v.2.png")
 }
+
 
 # Globale Wahrscheinlichkeiten für alle Stats
 var global_rarity_chances = {
@@ -163,7 +171,11 @@ func update_shop_labels():
 			buttons[i].texture_hover = button_textures[rarity]
 			buttons[i].texture_pressed = button_textures[rarity]
 		else:
+			var rarity = upgrade.get("rarity", "common")
 			labels[i].modulate = Color.WHITE
+			buttons[i].texture_normal = button_textures[rarity]
+			buttons[i].texture_hover = button_textures[rarity]
+			buttons[i].texture_pressed = button_textures[rarity]
 
 func _on_option_1_button_pressed() -> void:
 	apply_upgrade(0)
