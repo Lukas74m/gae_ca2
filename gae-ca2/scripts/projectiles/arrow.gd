@@ -1,9 +1,9 @@
 extends "res://scripts/projectiles/projectile_base.gd"
 
 func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group("enemies"):
+	if body is Player:
 		if !body.has_method("take_damage"):
-			push_error("[Player.gd, perform_attack()] Error : body has no take_damage")
+			push_error("Error : body has no take_damage")
 		else:
 			body.take_damage(damage)
 			animated_sprite_2d.play("on_hit")

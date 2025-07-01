@@ -1,5 +1,6 @@
 extends TextureButton
 
+@onready var player_animations: AnimatedSprite2D = $"../../PlayerAnimations"
 @onready var QuitButton: AnimatedSprite2D = $AnimatedSprite2D
 var quit_game_after_animation = false
 
@@ -12,6 +13,7 @@ func _on_ready() -> void:
 func _on_pressed() -> void:
 	QuitButton.visible = true
 	QuitButton.play("click")
+	player_animations.play("attack")
 	quit_game_after_animation = true
 
 

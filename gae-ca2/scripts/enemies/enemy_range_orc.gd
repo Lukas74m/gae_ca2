@@ -1,9 +1,13 @@
 extends "res://scripts/enemies/enemy_base.gd"
 
-@onready var fireball_scene = preload("res://scenes/projectiles/Orc_Projectile.tscn")
+#@onready var fireball_scene = preload("res://scenes/projectiles/Orc_Projectile.tscn")
+@onready var arrow_scene = preload("res://scenes/projectiles/arrow.tscn")
+
+@onready var bow: AnimatedSprite2D = $Bow
 @onready var enemy_center = $EnemyCenter
 
 signal fireball_start
+
 var can_fireball: bool = true
 
 func _ready():
@@ -11,18 +15,19 @@ func _ready():
 
 # Overrides enemy_base.gd
 func attack():
-	#enemy_animations.flip_h = Global.player.get_center_position().x < global_position.x
-	#enemy_animations.play("attack")
+	enemy_animations.flip_h = Global.player.get_center_position().x < global_position.x
+	enemy_animations.play("shoot")
+	bow.play("bow")
 	attack_cooldown_timer = get_stat("attack_cooldown")
 	#await enemy_animations.animation_finished
 	can_fireball = false
-	var fireball = fireball_scene.instantiate()
-	fireball.global_position = enemy_center.global_position 
-	fireball.initialize(
-		(Global.player.global_position - fireball.global_position).normalized(),
+	var arrow = arrow_scene.instantiate()
+	arrow.global_position = enemy_center.global_position 
+	arrow.initialize(
+		(Global.player.global_position - arrow.global_position).normalized(),
 		get_stat("fireball_damage"), 125 #Speed
 	)
-	get_tree().current_scene.add_child(fireball)
+	get_tree().current_scene.add_child(arrow)
 
 func _on_fireball_cooldown_finished():
 	can_fireball = true
@@ -51,11 +56,11 @@ func move_towards_player(delta: float, distance_to_player: float):
 	# Only move if not in attack range
 	if distance_to_player > get_stat("attack_range") and attack_cooldown_timer <= 0.0:
 		enemy_animations.flip_h = Global.player.get_center_position().x < global_position.x
-		#enemy_animations.play("move")
+		enemy_animations.play("move")
 		var direction = (Global.player.get_center_position() - global_position).normalized()
 		velocity = direction * get_stat("movement_speed")
 	else:
 		# Stop moving when in attack range but cooldown >= 0
 		enemy_animations.flip_h = Global.player.get_center_position().x < global_position.x
-		#enemy_animations.play("idle")
+		enemy_animations.play("idle")
 		velocity = Vector2.ZERO

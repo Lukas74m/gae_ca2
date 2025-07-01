@@ -1,5 +1,6 @@
 extends TextureButton
 
+@onready var player_animations: AnimatedSprite2D = $"../../PlayerAnimations"
 @onready var SoundButton: AnimatedSprite2D = $AnimatedSprite2D
 var start_sound_window_after_animation
 
@@ -11,6 +12,7 @@ func _on_ready() -> void:
 func _on_pressed() -> void:
 	SoundButton.visible = true
 	SoundButton.play("click")
+	player_animations.play("attack")
 	start_sound_window_after_animation = true
 
 

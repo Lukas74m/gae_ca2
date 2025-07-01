@@ -1,5 +1,7 @@
 extends "res://scripts/enemies/enemy_base.gd"
 
+@onready var summon_circle: Sprite2D = $SummonCircle
+
 var enemy_scenes = {}
 var enemy_resources  = {}
 var spawn_amount = 2
@@ -36,7 +38,10 @@ func attack():
 			randf_range(-20, 20)
 		)
 		spawn_enemy_at("Melee_Orc", get_center_position() + offset)
-
+	enemy_animations.play("summon")
+	summon_circle.visible == true
+	await enemy_animations.animation_finished
+	summon_circle.visible == false
 
 func spawn_enemy_at(enemy_name, pos: Vector2):
 	if enemy_name == null:
@@ -78,11 +83,11 @@ func move_towards_player(delta: float, distance_to_player: float):
 	# Only move if not in attack range
 	if distance_to_player > get_stat("attack_range") and attack_cooldown_timer <= 0.0:
 		enemy_animations.flip_h = Global.player.get_center_position().x < global_position.x
-		#enemy_animations.play("move")
+		enemy_animations.play("move")
 		var direction = (Global.player.get_center_position() - global_position).normalized()
 		velocity = direction * get_stat("movement_speed")
 	else:
 		# Stop moving when in attack range but cooldown >= 0
 		enemy_animations.flip_h = Global.player.get_center_position().x < global_position.x
-		#enemy_animations.play("idle")
+		enemy_animations.play("idle")
 		velocity = Vector2.ZERO
