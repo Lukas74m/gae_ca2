@@ -266,6 +266,7 @@ frame = 10
 frame_progress = 1.0
 
 [node name="Bow" type="AnimatedSprite2D" parent="." index="4"]
+visible = false
 sprite_frames = SubResource("SpriteFrames_ldwvg")
 animation = &"bow"
 frame = 10
@@ -273,3 +274,5 @@ frame_progress = 1.0
 
 [node name="CollisionShape2D" parent="." index="5"]
 shape = SubResource("CapsuleShape2D_4fa51")
+
+[connection signal="animation_finished" from="Bow" to="." method="_on_bow_animation_finished"]
