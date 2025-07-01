@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://vcvbrmlgyiai"]
+[gd_scene load_steps=31 format=3 uid="uid://vcvbrmlgyiai"]
 
 [ext_resource type="Script" uid="uid://dxgytc8f7yu4" path="res://scripts/shop/shop.gd" id="1_rktij"]
 [ext_resource type="Texture2D" uid="uid://b7s3qvn1du15q" path="res://assets/rewards/Reward_with_Box_for_Buttons.png" id="2_srfm6"]
@@ -172,9 +172,6 @@ animations = [{
 "speed": 15.0
 }]
 
-[sub_resource type="LabelSettings" id="LabelSettings_6yl83"]
-font_size = 28
-
 [node name="Shop" type="CanvasLayer"]
 process_mode = 3
 script = ExtResource("1_rktij")
@@ -228,28 +225,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Option1Button"]
-visible = false
 position = Vector2(255.833, 227.5)
 scale = Vector2(1.2389, 1.23641)
 sprite_frames = SubResource("SpriteFrames_08t84")
 animation = &"click"
-
-[node name="Result1" type="Label" parent="Option1Button"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.0343137
-anchor_top = 0.5
-anchor_right = 0.985294
-anchor_bottom = 0.5
-offset_left = -7.67162
-offset_top = 11.5
-offset_right = -7.67163
-offset_bottom = 84.5
-grow_horizontal = 2
-grow_vertical = 2
-label_settings = SubResource("LabelSettings_6yl83")
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="Option2Button" type="TextureButton" parent="."]
 offset_left = 423.0
@@ -281,13 +260,6 @@ text = "ahudvahdbjadaj"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Option2Button"]
-visible = false
-position = Vector2(258.333, 230.833)
-scale = Vector2(1.25101, 1.25453)
-sprite_frames = SubResource("SpriteFrames_08t84")
-animation = &"click"
-
 [node name="Result2" type="Label" parent="Option2Button"]
 layout_mode = 1
 anchors_preset = -1
@@ -295,15 +267,21 @@ anchor_left = 0.0343137
 anchor_top = 0.5
 anchor_right = 0.985294
 anchor_bottom = 0.5
-offset_left = -7.67162
+offset_left = -7.67163
 offset_top = 11.5
 offset_right = -7.67163
 offset_bottom = 84.5
 grow_horizontal = 2
 grow_vertical = 2
-label_settings = SubResource("LabelSettings_6yl83")
+text = "ahudvahdbjadaj"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Option2Button"]
+position = Vector2(258.333, 230.833)
+scale = Vector2(1.25101, 1.25453)
+sprite_frames = SubResource("SpriteFrames_08t84")
+animation = &"click"
 
 [node name="Option3Button" type="TextureButton" parent="."]
 offset_left = 764.0
@@ -336,28 +314,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Option3Button"]
-visible = false
 position = Vector2(257.5, 230.833)
 scale = Vector2(1.24697, 1.25453)
 sprite_frames = SubResource("SpriteFrames_08t84")
 animation = &"click"
-
-[node name="Result3" type="Label" parent="Option3Button"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.0343137
-anchor_top = 0.5
-anchor_right = 0.985294
-anchor_bottom = 0.5
-offset_left = -7.67162
-offset_top = 11.5
-offset_right = -7.67163
-offset_bottom = 84.5
-grow_horizontal = 2
-grow_vertical = 2
-label_settings = SubResource("LabelSettings_6yl83")
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [connection signal="pressed" from="Option1Button" to="." method="_on_option_1_button_pressed"]
 [connection signal="pressed" from="Option1Button" to="Option1Button" method="_on_pressed"]

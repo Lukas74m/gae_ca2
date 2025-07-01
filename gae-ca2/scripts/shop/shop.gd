@@ -6,9 +6,13 @@ extends CanvasLayer
 @onready var btn_option3: TextureButton = $Option3Button
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $Option1Button/AnimatedSprite2D
-@onready var animated_sprite_2d_2: AnimatedSprite2D = $Option2Button/AnimatedSprite2D2
-@onready var animated_sprite_2d_3: AnimatedSprite2D = $Option3Button/AnimatedSprite2D3
+@onready var animated_sprite_2d_2: AnimatedSprite2D = $Option2Button/AnimatedSprite2D
+@onready var animated_sprite_2d_3: AnimatedSprite2D = $Option3Button/AnimatedSprite2D
 
+
+@onready var result_label_1 = $Option1Button/Result1
+@onready var result_label_2 = $Option2Button/Result2
+@onready var result_label_3 = $Option3Button/Result3
 
 #@onready var panel: Panel = $Panel
 #@onready var reward_with_box_for_buttons: Sprite2D = $RewardWithBoxForButtons
@@ -85,8 +89,8 @@ var upgrade_templates = [
 ]
 
 var gamble_possible_upgrades = [
-	{"stat": "attack_damage", "amount": 15, "label": "+ 0-27 Angriffsschaden", "gamble": true},
-	{"stat": "max_health", "amount": 25, "label": " + 0-27 Max. Leben", "gamble": true}
+	{"stat": "attack_damage", "amount": 15, "label": "+ 0-27 Angriffsschaden", "label_base": "Angriffsschaden", "gamble": true, "color": Color.WHITE},
+	{"stat": "max_health", "amount": 25, "label": " + 0-27 Max. Leben", "label_base": "Max. Leben", "gamble": true, "color": Color.WHITE}
 ]
 
 # Farben für die Seltenheiten
@@ -133,7 +137,9 @@ func generate_upgrade_with_rarity(template):
 		"stat": template["stat"],
 		"amount": rarity_data["amount"],
 		"rarity": rarity,
-		"gamble": false
+		"label_base": template["label_base"],
+		"gamble": false,
+		"color": rarity_colors[rarity]  # Farbe direkt im Upgrade speichern
 	}
 	
 	# Erstelle das Label basierend auf dem Stat-Typ
@@ -186,58 +192,72 @@ func update_shop_labels():
 			buttons[i].texture_pressed = button_textures[rarity]
 
 func _on_option_1_button_pressed() -> void:
+	result_label_1.show()  # Label sichtbar machen
+	result_label_1.text = apply_upgrade(0)
+	result_label_1.modulate = current_upgrades_in_shop[0]["color"]
 	await animated_sprite_2d.animation_finished
-	apply_upgrade(0)
+	result_label_1.hide()
+	close_shop()
 
 func _on_option_2_button_pressed() -> void:
+	result_label_2.show()  # Label sichtbar machen
+	result_label_2.text = apply_upgrade(1)
+	result_label_2.modulate = current_upgrades_in_shop[1]["color"]
 	await animated_sprite_2d_2.animation_finished
-	apply_upgrade(1)
+	result_label_2.hide()
+	close_shop()
 
 func _on_option_3_button_pressed() -> void:
+	result_label_3.show()  # Label sichtbar machen
+	result_label_3.text = apply_upgrade(2)
+	result_label_3.modulate = current_upgrades_in_shop[2]["color"]
 	await animated_sprite_2d_3.animation_finished
-	apply_upgrade(2)
+	result_label_3.hide()
+	close_shop()
 
 func apply_upgrade(index):
+	var final_amount
+	var upgrade
 	if Global.player and index < current_upgrades_in_shop.size():
-		var upgrade = current_upgrades_in_shop[index]
-		var final_amount = upgrade["amount"]
+		upgrade = current_upgrades_in_shop[index]
+		final_amount = upgrade["amount"]
 		
 		# Prüfen ob es sich um ein Gamble-Upgrade handelt
 		if upgrade.get("gamble", false):
-			print("GAMBLE ERKANNT!")
+			#print("GAMBLE ERKANNT!")
 			final_amount = get_weighted_random_value(upgrade["amount"])
 		else:
-			print("UPGRADE ANGEWENDET - Seltenheit: ", upgrade.get("rarity", "N/A"))
+			pass
+			#print("UPGRADE ANGEWENDET - Seltenheit: ", upgrade.get("rarity", "N/A"))
 		
 		Global.player.get_node("PlayerStats").base_stats[upgrade["stat"]] += final_amount
-		print("Angewendet: ", final_amount, " auf ", upgrade["stat"])
-		print("Neuer Wert: ", Global.player.get_node("PlayerStats").base_stats[upgrade["stat"]])
-		close_shop()
+		#print("Angewendet: ", final_amount, " auf ", upgrade["stat"])
+		#print("Neuer Wert: ", Global.player.get_node("PlayerStats").base_stats[upgrade["stat"]])
+	
+	return upgrade["label_base"] + ": +" + str(final_amount)
 
 # Separate Funktion für die gewichtete Zufallsberechnung
 func get_weighted_random_value(max_value) -> int:
-	print("Berechne gewichteten Wert für max_value: ", max_value)
+	#print("Berechne gewichteten Wert für max_value: ", max_value)
 	var mid_point = float(max_value) / 2.0
 	var random_float = randf()
 	var weighted_value: float
 	
 	if random_float < 0.65:  # 65% Chance für untere Hälfte
 		weighted_value = random_float / 0.65 * mid_point
-		print("Untere Hälfte: ", weighted_value)
+		#print("Untere Hälfte: ", weighted_value)
 	else:  # 35% Chance für obere Hälfte
 		weighted_value = mid_point + ((random_float - 0.65) / 0.35) * mid_point
-		print("Obere Hälfte: ", weighted_value)
+		#print("Obere Hälfte: ", weighted_value)
 	
 	var result = int(round(weighted_value))
-	print("Finaler Gamble-Wert: ", result)
+	#print("Finaler Gamble-Wert: ", result)
 	return result
 
 func close_shop():
-	#reward_with_box_for_buttons.hide()
 	animated_sprite_2d.visible = false
 	animated_sprite_2d_2.visible = false
 	animated_sprite_2d_3.visible = false
-	
 	shop.hide()
 	get_tree().paused = false
 
