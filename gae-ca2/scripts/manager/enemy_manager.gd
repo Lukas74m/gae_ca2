@@ -54,11 +54,15 @@ func spawn_boss(boss_name: String, chapter: int):
 	# Start timer for spawning
 	boss_object.entourage_timer.start()
 	match chapter:
+		1:
+			boss_object.boss_animations.show()
 		2: 
 			boss_object.range_ability_enabled = true
+			boss_object.boss_with_orc_animations.show()
 		3: 
 			boss_object.dash_abilty_enabled = true
 			boss_object.range_ability_enabled = true
+			boss_object.boss_with_orc_animations.show()
 		_: pass
 
 
