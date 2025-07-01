@@ -606,7 +606,7 @@ position = Vector2(130, -136.667)
 shape = SubResource("CapsuleShape2D_arcqg")
 
 [node name="Spawn_entourage_timer" type="Timer" parent="." index="5"]
-wait_time = 5.0
+wait_time = 22.5
 
 [node name="Boss_with_orc_animations" type="AnimatedSprite2D" parent="." index="6"]
 visible = false

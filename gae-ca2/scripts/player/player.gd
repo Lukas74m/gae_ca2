@@ -130,7 +130,6 @@ func attack():
 					var is_crit = randf() < crit_rate
 					var total_damage = attack_damage
 					if is_crit:
-						print("crit jay")
 						total_damage *= crit_damage
 					body.take_damage(total_damage)
 

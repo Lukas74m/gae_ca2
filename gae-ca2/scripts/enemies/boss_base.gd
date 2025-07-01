@@ -255,10 +255,10 @@ func spawn_enemy_at(enemy_name, pos: Vector2):
 	
 	if enemy_name in enemy_scenes:
 		var enemy = enemy_scenes[enemy_name].instantiate()
-		enemy.is_spawned_by_other_entity = true
 		enemy.enemy_resource = enemy_resources[enemy_name]
 		get_tree().current_scene.add_child(enemy)
 		enemy.global_position = pos
+		Global.ProgressManager.additional_enemies += 1
 	else:
 		printerr("No such enemy ", enemy_name)
 		print("Available keys: ", enemy_scenes.keys())
