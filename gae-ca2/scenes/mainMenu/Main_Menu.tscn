@@ -232,6 +232,15 @@ autoplay = "idle"
 position = Vector2(573, 273)
 texture = ExtResource("4_sn6g4")
 
+[node name="Label" type="Label" parent="MainMenuGameInstructions"]
+offset_left = 264.0
+offset_top = -126.0
+offset_right = 476.0
+offset_bottom = -51.0
+text = "Mache Enemies kaputt
+Mit so Fähigkeiten
+ und Boss killen und so was"
+
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
@@ -273,7 +282,7 @@ offset_bottom = 529.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
-theme_override_constants/separation = 16
+theme_override_constants/separation = 73
 
 [node name="PlayButton" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
@@ -321,18 +330,20 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -25.0
-offset_top = -7.0
-offset_right = 29.0
-offset_bottom = -7.0
+offset_left = -27.0
+offset_top = 4.0
+offset_right = 27.0
+offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 8
-text = "Soundeinstellungen"
+text = "Einstellungen
+"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HelpButton" type="TextureButton" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 texture_normal = ExtResource("1_lt47h")
 texture_hover = ExtResource("2_wkoib")
