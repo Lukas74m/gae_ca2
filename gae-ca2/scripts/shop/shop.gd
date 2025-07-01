@@ -1,13 +1,17 @@
 extends CanvasLayer
+@onready var shop: CanvasLayer = $"."
 
-@onready var btn_option1: TextureButton = $Panel/HBoxContainer/Option1Button
-@onready var btn_option2: TextureButton = $Panel/HBoxContainer/Option2Button
-@onready var btn_option3: TextureButton = $Panel/HBoxContainer/Option3Button
-@onready var panel: Panel = $Panel
-@onready var reward_with_box_for_buttons: Sprite2D = $RewardWithBoxForButtons
-@onready var label1: Label = $Panel/HBoxContainer/Option1Button/Label
-@onready var label2: Label = $Panel/HBoxContainer/Option2Button/Label
-@onready var label3: Label = $Panel/HBoxContainer/Option3Button/Label
+@onready var btn_option1: TextureButton = $VBoxContainer/HBoxContainer/Option1Button
+@onready var btn_option2: TextureButton = $VBoxContainer/HBoxContainer/Option2Button
+@onready var btn_option3: TextureButton = $VBoxContainer/HBoxContainer/Option3Button
+
+#@onready var panel: Panel = $Panel
+#@onready var reward_with_box_for_buttons: Sprite2D = $RewardWithBoxForButtons
+@onready var label1: Label = $VBoxContainer/HBoxContainer/Option1Button/Label
+@onready var label2: Label = $VBoxContainer/HBoxContainer/Option2Button/Label
+@onready var label3: Label = $VBoxContainer/HBoxContainer/Option3Button/Label
+
+
 
 #@export var button_textures := {
 #	"common": preload("res://assets/rewards/Reward_Button_Normal2.png"),
@@ -113,8 +117,8 @@ func show_shop():
 	
 	# Update Labels mit Farben
 	update_shop_labels()
-	reward_with_box_for_buttons.show()
-	panel.show()
+	#reward_with_box_for_buttons.show()
+	shop.show()
 	get_tree().paused = true
 
 func generate_upgrade_with_rarity(template):
@@ -222,6 +226,6 @@ func get_weighted_random_value(max_value) -> int:
 	return result
 
 func close_shop():
-	reward_with_box_for_buttons.hide()
-	panel.hide()
+	#reward_with_box_for_buttons.hide()
+	shop.hide()
 	get_tree().paused = false

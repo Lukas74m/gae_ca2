@@ -119,3 +119,4 @@ polygon = PackedVector2Array(6, 2, 16, -5, 25, -5, 29, 0, 28, 4, 24, 7, 15, 7, 9
 [node name="AnimatedSprite2D" parent="." index="1"]
 scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_p3f7e")
+animation = &"on_hit"
