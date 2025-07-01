@@ -1,6 +1,9 @@
 extends Enemy
 class_name Boss
 
+@onready var boss_animations: AnimatedSprite2D = $Boss_animations
+@onready var boss_with_orc_animations: AnimatedSprite2D = $Boss_with_orc_animations
+
 @onready var entourage_timer = $Spawn_entourage_timer
 @export var projectile_scene = preload("res://scenes/projectiles/boss_projectile.tscn")
 
@@ -105,17 +108,18 @@ func boss_movement_logic(distance_to_player: float):
 		
 	# Move towards player if not in any attack range
 	if distance_to_player > stats.get_stat("melee_attack_range"):
-		play_boss__animation("move")
+		boss_animations.play("move")
 		var direction = (Global.player.center.global_position - center.global_position).normalized()
+		boss_animations.flip_h = direction.x < 0
 		velocity = direction * get_stat("movement_speed")
 	else:
-
 		play_boss__animation("idel")
 		velocity = Vector2.ZERO
 
 
 func start_dash():
 	#play_boss__animation("dash") #davor dash_charge
+
 	#await boss_animations.animation_finished
 	change_boss_state(BossState.DASH)
 	dash_time_left = stats.get_stat("dash_duration")
@@ -152,6 +156,8 @@ func perform_melee_charge():
 
 
 func perform_melee_attack(distance_to_player: float):
+	
+
 	velocity = Vector2.ZERO
 	if distance_to_player <= stats.get_stat("melee_attack_range"):
 		deal_melee_damage()

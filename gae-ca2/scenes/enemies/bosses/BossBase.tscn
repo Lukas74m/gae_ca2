@@ -1,5 +1,6 @@
 [gd_scene load_steps=88 format=3 uid="uid://uillq8yy1jid"]
 
+
 [ext_resource type="PackedScene" uid="uid://41vujg0qkyqh" path="res://scenes/enemies/EnemyBase.tscn" id="1_lw1cg"]
 [ext_resource type="Script" uid="uid://dy06kynt7epty" path="res://scripts/enemies/boss_base.gd" id="2_u5uy3"]
 [ext_resource type="PackedScene" uid="uid://cw2m4h4fpvtcf" path="res://scenes/projectiles/boss_projectile.tscn" id="3_arcqg"]
@@ -13,9 +14,11 @@
 [ext_resource type="Texture2D" path="res://assets/enemies/boss/boss_move_and_idle.png" id="10_826se"]
 [ext_resource type="Texture2D" path="res://assets/enemies/boss/boss_with_miniorc_throw_attack.png" id="12_826se"]
 
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_arcqg"]
 radius = 40.0
 height = 113.333
+
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kftr7"]
 atlas = ExtResource("9_q2tgc")
@@ -217,6 +220,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_od51t")
 }],
 "loop": false,
+
 "name": &"melee_attack",
 "speed": 5.0
 }, {
@@ -421,6 +425,7 @@ region = Rect2(1024, 0, 64, 64)
 animations = [{
 "frames": [{
 "duration": 1.0,
+
 "texture": SubResource("AtlasTexture_1cxgm")
 }],
 "loop": true,
@@ -450,7 +455,9 @@ animations = [{
 "texture": SubResource("AtlasTexture_wloth")
 }],
 "loop": false,
+
 "name": &"dash_charge111",
+
 "speed": 5.0
 }, {
 "frames": [{
@@ -472,6 +479,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+
 "texture": SubResource("AtlasTexture_njm5h")
 }, {
 "duration": 1.0,
@@ -513,6 +521,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+
 "texture": SubResource("AtlasTexture_8rju1")
 }, {
 "duration": 1.0,
@@ -563,6 +572,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_tfuxt")
 }],
 "loop": true,
+
 "name": &"range_attack11",
 "speed": 5.0
 }, {
@@ -618,6 +628,7 @@ texture = ExtResource("4_xvspy")
 wait_time = 25.0
 
 [node name="Boss_animations" type="AnimatedSprite2D" parent="." index="7"]
+
 visible = false
 position = Vector2(130, -186.667)
 scale = Vector2(3, 3)

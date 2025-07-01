@@ -1,14 +1,19 @@
 [gd_scene load_steps=5 format=3 uid="uid://vcvbrmlgyiai"]
 
 [ext_resource type="Script" uid="uid://dxgytc8f7yu4" path="res://scripts/shop/shop.gd" id="1_rktij"]
-[ext_resource type="Texture2D" uid="uid://rwdm74nqhelq" path="res://assets/buttons/Test_Button.png" id="2_tc8pp"]
+[ext_resource type="Texture2D" uid="uid://b7s3qvn1du15q" path="res://assets/rewards/Reward_with_Box_for_Buttons.png" id="2_srfm6"]
 [ext_resource type="Texture2D" uid="uid://drsj06k5do28m" path="res://assets/buttons/Test_Button_Hover.png" id="3_srfm6"]
 
 [sub_resource type="Theme" id="Theme_tc8pp"]
 default_font_size = 12
 
 [node name="Shop" type="CanvasLayer"]
+process_mode = 3
 script = ExtResource("1_rktij")
+
+[node name="RewardWithBoxForButtons" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+texture = ExtResource("2_srfm6")
 
 [node name="Panel" type="Panel" parent="."]
 anchors_preset = 8
@@ -22,7 +27,6 @@ offset_right = 344.0
 offset_bottom = 105.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 4
 
 [node name="Label" type="Label" parent="Panel"]
 layout_mode = 1
@@ -43,10 +47,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -309.0
-offset_top = -104.5
-offset_right = 309.0
-offset_bottom = 104.5
+offset_left = -154.0
+offset_top = -50.0
+offset_right = 154.0
+offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_tc8pp")
@@ -56,7 +60,6 @@ columns = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture_normal = ExtResource("2_tc8pp")
 texture_hover = ExtResource("3_srfm6")
 stretch_mode = 0
 metadata/_edit_use_anchors_ = true
@@ -80,7 +83,6 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture_normal = ExtResource("2_tc8pp")
 texture_hover = ExtResource("3_srfm6")
 stretch_mode = 0
 
@@ -103,7 +105,6 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture_normal = ExtResource("2_tc8pp")
 texture_hover = ExtResource("3_srfm6")
 stretch_mode = 0
 
