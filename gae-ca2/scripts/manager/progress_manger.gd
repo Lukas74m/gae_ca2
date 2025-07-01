@@ -33,9 +33,9 @@ func _ready() -> void:
 # Loads all level resources with the specific information
 func load_progress_resources():
 	progress_resources = {
-		"level_1": preload("res://resources/level/test_level_1.tres"),
-		"level_2": preload("res://resources/level/test_level_2.tres"),
-		"level_3": preload("res://resources/level/test_level_3.tres"),
+		"level_1": preload("res://resources/level/level_1.tres"),
+		"level_2": preload("res://resources/level/level_2.tres"),
+		"level_3": preload("res://resources/level/level_3.tres"),
 		"level_4": preload("res://resources/level/level_4.tres")  
 	}
 
