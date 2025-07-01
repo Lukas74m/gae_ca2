@@ -1,7 +1,7 @@
 [gd_resource type="SpriteFrames" load_steps=20 format=3 uid="uid://dqsmqf1lu3nv8"]
 
-[ext_resource type="Texture2D" path="res://assets/enemies/boss/turn_into_projectile.png" id="1_45jwv"]
-[ext_resource type="Texture2D" path="res://assets/enemies/boss/projectile.png" id="2_uh8u0"]
+[ext_resource type="Texture2D" uid="uid://cp5tmukmbuh6o" path="res://assets/enemies/boss/turn_into_projectile.png" id="1_45jwv"]
+[ext_resource type="Texture2D" uid="uid://pio64yqygcyg" path="res://assets/enemies/boss/projectile.png" id="2_uh8u0"]
 [ext_resource type="Texture2D" uid="uid://coni4fj664f11" path="res://assets/player/magic_onhit_animation.png" id="3_uh8u0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kgbwr"]

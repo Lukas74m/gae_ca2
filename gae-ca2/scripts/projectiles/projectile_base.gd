@@ -7,7 +7,7 @@ var damage
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 func _ready():
-	$Timer.start() 
+	$Timer.start()
 
 func initialize(_direction: Vector2, _damage: int, _speed: int):
 	direction = _direction

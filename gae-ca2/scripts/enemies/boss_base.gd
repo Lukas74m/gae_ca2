@@ -1,7 +1,7 @@
 extends Enemy
 class_name Boss
 
-@onready var boss_animations: AnimatedSprite2D = $Boss_animations
+@onready var boss_animations: AnimatedSprite2D = $EnemyAnimations
 @onready var boss_with_orc_animations: AnimatedSprite2D = $Boss_with_orc_animations
 
 @onready var entourage_timer = $Spawn_entourage_timer
@@ -9,8 +9,10 @@ class_name Boss
 
 enum BossState { WALK, RANGED_ATTACK, MELEE_ATTACK, DEAD, DASH }
 
-var charging = false
+var charging_melee = false
+var charging_range = false
 var ranged_cooldown_timer: float
+var ranged_charge_timer: float
 var melee_cooldown_timer: float
 var melee_charge_timer: float
 var boss_current_state: BossState = BossState.WALK
@@ -23,7 +25,7 @@ var enemy_scenes = {}
 var enemy_resources  = {}
 
 # Boss has 3 phases
-# 1. Melee
+# 1. Melee							# Default
 # 2. Melee and Range
 # 3. Melee, Range and Dash
 var range_ability_enabled = false	# Second phase
@@ -62,6 +64,8 @@ func _physics_process(delta):
 		melee_charge_timer -= delta
 	if dash_cooldown_timer > 0.0:
 		dash_cooldown_timer -= delta
+	if ranged_charge_timer > 0.0:
+		ranged_charge_timer -= delta
 		
 		
 	if Global.player == null:
@@ -76,12 +80,16 @@ func _physics_process(delta):
 		BossState.WALK:
 			boss_movement_logic(distance_to_player)
 		BossState.RANGED_ATTACK:
-			perform_ranged_attack(distance_to_player)
+			if !charging_range:
+				perform_ranged_charge()
+			if ranged_charge_timer <= 0 and charging_range:
+				charging_range = false
+				perform_ranged_attack(distance_to_player)
 		BossState.MELEE_ATTACK:
-			if !charging:
+			if !charging_melee:
 				perform_melee_charge()
-			if melee_charge_timer <= 0 and charging:
-				charging = false
+			if melee_charge_timer <= 0 and charging_melee:
+				charging_melee = false
 				perform_melee_attack(distance_to_player)
 		BossState.DEAD:
 			velocity = Vector2.ZERO
@@ -106,15 +114,13 @@ func boss_movement_logic(distance_to_player: float):
 		change_boss_state(BossState.RANGED_ATTACK)
 		return
 		
-	# Move towards player if not in any attack range
-	if distance_to_player > stats.get_stat("melee_attack_range"):
-		boss_animations.play("move")
+	# Move towards player
+	else:
+		play_boss__animation("move")
 		var direction = (Global.player.center.global_position - center.global_position).normalized()
 		boss_animations.flip_h = direction.x < 0
+		boss_with_orc_animations.flip_h = direction.x < 0
 		velocity = direction * get_stat("movement_speed")
-	else:
-		play_boss__animation("idel")
-		velocity = Vector2.ZERO
 
 
 func start_dash():
@@ -131,33 +137,33 @@ func perform_dash(delta: float):
 	play_boss__animation("dash")
 	velocity = dash_direction * stats.get_stat("dash_speed")
 	dash_time_left -= delta
-	
+	# If boss connects on player, player gets damage
+	if center.global_position.distance_to(Global.player.center.global_position) <= 32:
+		Global.player.take_damage(2)
 	if dash_time_left <= 0.0:
 		change_boss_state(BossState.WALK)
-		printerr("Boss dash completed", Global.time_alive)
 
 
 func perform_ranged_attack(distance_to_player: float):
-	#velocity = Vector2.ZERO
-	
+	play_boss__animation("range_attack")
 	# Aim and throw projectile at player
-	#printerr("Range attack ", Global.time_alive)
 	throw_projectile_at_player()
-	
 	# Set cooldown and return to walking
 	ranged_cooldown_timer = stats.get_stat("ranged_attack_cooldown")
 	change_boss_state(BossState.WALK)
 
+func perform_ranged_charge():
+	play_boss__animation("range_attack_charge")
+	charging_range = true
+	ranged_charge_timer = 1.2					# Have to change this. This is the projectile lifetime
+
 func perform_melee_charge():
 	play_boss__animation("melee_attack")
-	charging = true
+	charging_melee = true
 	melee_charge_timer = stats.get_stat("melee_charge_cooldown")
-	#printerr("Starte animation und gebe Chance zum ausweichen ", Global.time_alive)
 
 
 func perform_melee_attack(distance_to_player: float):
-	
-
 	velocity = Vector2.ZERO
 	if distance_to_player <= stats.get_stat("melee_attack_range"):
 		deal_melee_damage()
@@ -168,7 +174,6 @@ func perform_melee_attack(distance_to_player: float):
 
 
 func throw_projectile_at_player():
-	play_boss__animation("range_attack")
 	var projectile = projectile_scene.instantiate()
 	get_tree().current_scene.add_child(projectile)
 	
@@ -234,14 +239,13 @@ func get_center_position():
 # Optional
 func spawn_entourage():
 	#await enemy_animations.animation_finished
-	for i in range(2):
+	for i in range(3):
 		# Kleine zufällige Abweichung um Überlagerung zu vermeiden
 		var offset = Vector2(
 			randf_range(-20, 20),  # Zufällig zwischen -20 und +20
 			randf_range(-20, 20)
 		)
-		spawn_enemy_at("Melee_Orc", Vector2(0,0))
-		#spawn_enemy_at("Melee_Orc", get_center_position() + offset)
+		spawn_enemy_at("Melee_Orc", get_center_position() + offset)
 
 # Optional	
 func spawn_enemy_at(enemy_name, pos: Vector2):
@@ -265,8 +269,6 @@ func _on_spawn_entourage_timer_timeout() -> void:
 
 func play_boss__animation(animation_name : String):
 		if range_ability_enabled:
-			printerr("In range animation: ", animation_name)
 			boss_with_orc_animations.play(animation_name)
 		else:
-			printerr("In melee animation: ", animation_name)
 			boss_animations.play(animation_name)

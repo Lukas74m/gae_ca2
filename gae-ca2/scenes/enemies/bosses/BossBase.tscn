@@ -1,24 +1,16 @@
-[gd_scene load_steps=88 format=3 uid="uid://uillq8yy1jid"]
-
+[gd_scene load_steps=86 format=3 uid="uid://uillq8yy1jid"]
 
 [ext_resource type="PackedScene" uid="uid://41vujg0qkyqh" path="res://scenes/enemies/EnemyBase.tscn" id="1_lw1cg"]
 [ext_resource type="Script" uid="uid://dy06kynt7epty" path="res://scripts/enemies/boss_base.gd" id="2_u5uy3"]
 [ext_resource type="PackedScene" uid="uid://cw2m4h4fpvtcf" path="res://scenes/projectiles/boss_projectile.tscn" id="3_arcqg"]
 [ext_resource type="Script" uid="uid://kx71cbik2jc5" path="res://scripts/components/statComponents/orc_boss_stats.gd" id="4_5k20f"]
-[ext_resource type="Texture2D" uid="uid://djk3b4rkt0p6f" path="res://assets/dungeon tileset pack/0x72_DungeonTilesetII_v1.7 (1)/0x72_DungeonTilesetII_v1.7/frames/ogre_idle_anim_f0.png" id="4_xvspy"]
-[ext_resource type="Texture2D" path="res://assets/enemies/boss/boss_attack.png" id="6_p73f6"]
-[ext_resource type="Texture2D" path="res://assets/enemies/boss/boss_with_miniorc_attack.png" id="7_g4l8a"]
-[ext_resource type="Texture2D" path="res://assets/enemies/boss/boss_with_miniorc_move_and_idle.png" id="8_q0lhm"]
-[ext_resource type="Texture2D" path="res://assets/enemies/boss/boss_with_minorc_charge_attack.png" id="8_q2tgc"]
-[ext_resource type="Texture2D" path="res://assets/enemies/boss/boss_dash_attack.png" id="9_q2tgc"]
-[ext_resource type="Texture2D" path="res://assets/enemies/boss/boss_move_and_idle.png" id="10_826se"]
-[ext_resource type="Texture2D" path="res://assets/enemies/boss/boss_with_miniorc_throw_attack.png" id="12_826se"]
-
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_arcqg"]
-radius = 40.0
-height = 113.333
-
+[ext_resource type="Texture2D" uid="uid://bj5aprx2m0gtv" path="res://assets/enemies/boss/boss_attack.png" id="6_p73f6"]
+[ext_resource type="Texture2D" uid="uid://bxsufbkji8s5s" path="res://assets/enemies/boss/boss_with_miniorc_attack.png" id="7_g4l8a"]
+[ext_resource type="Texture2D" uid="uid://cckr6nipimhbw" path="res://assets/enemies/boss/boss_with_miniorc_move_and_idle.png" id="8_q0lhm"]
+[ext_resource type="Texture2D" uid="uid://0y7rsous7oyv" path="res://assets/enemies/boss/boss_with_minorc_charge_attack.png" id="8_q2tgc"]
+[ext_resource type="Texture2D" uid="uid://caoqta2c7pqis" path="res://assets/enemies/boss/boss_dash_attack.png" id="9_q2tgc"]
+[ext_resource type="Texture2D" uid="uid://b6coxojmli1n1" path="res://assets/enemies/boss/boss_move_and_idle.png" id="10_826se"]
+[ext_resource type="Texture2D" uid="uid://dbkwancb31ala" path="res://assets/enemies/boss/boss_with_miniorc_throw_attack.png" id="12_826se"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kftr7"]
 atlas = ExtResource("9_q2tgc")
@@ -132,7 +124,7 @@ region = Rect2(384, 0, 64, 64)
 atlas = ExtResource("10_826se")
 region = Rect2(448, 0, 64, 64)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_ndch5"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_vgika"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -220,7 +212,6 @@ animations = [{
 "texture": SubResource("AtlasTexture_od51t")
 }],
 "loop": false,
-
 "name": &"melee_attack",
 "speed": 5.0
 }, {
@@ -244,6 +235,10 @@ animations = [{
 "name": &"move",
 "speed": 5.0
 }]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_arcqg"]
+radius = 63.3333
+height = 153.333
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1cxgm"]
 atlas = ExtResource("8_q2tgc")
@@ -369,6 +364,22 @@ region = Rect2(576, 0, 64, 64)
 atlas = ExtResource("8_q0lhm")
 region = Rect2(640, 0, 64, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ndch5"]
+atlas = ExtResource("12_826se")
+region = Rect2(768, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ikja"]
+atlas = ExtResource("12_826se")
+region = Rect2(832, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tn57o"]
+atlas = ExtResource("12_826se")
+region = Rect2(896, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_84ho0"]
+atlas = ExtResource("12_826se")
+region = Rect2(960, 0, 64, 64)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_7taap"]
 atlas = ExtResource("12_826se")
 region = Rect2(0, 0, 64, 64)
@@ -401,31 +412,10 @@ region = Rect2(384, 0, 64, 64)
 atlas = ExtResource("12_826se")
 region = Rect2(448, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ndch5"]
-atlas = ExtResource("12_826se")
-region = Rect2(768, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6ikja"]
-atlas = ExtResource("12_826se")
-region = Rect2(832, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tn57o"]
-atlas = ExtResource("12_826se")
-region = Rect2(896, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_84ho0"]
-atlas = ExtResource("12_826se")
-region = Rect2(960, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fofay"]
-atlas = ExtResource("12_826se")
-region = Rect2(1024, 0, 64, 64)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_wf8rd"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-
 "texture": SubResource("AtlasTexture_1cxgm")
 }],
 "loop": true,
@@ -455,9 +445,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_wloth")
 }],
 "loop": false,
-
 "name": &"dash_charge111",
-
 "speed": 5.0
 }, {
 "frames": [{
@@ -479,7 +467,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-
 "texture": SubResource("AtlasTexture_njm5h")
 }, {
 "duration": 1.0,
@@ -521,7 +508,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-
 "texture": SubResource("AtlasTexture_8rju1")
 }, {
 "duration": 1.0,
@@ -544,6 +530,23 @@ animations = [{
 }],
 "loop": true,
 "name": &"move",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ndch5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ikja")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tn57o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_84ho0")
+}],
+"loop": true,
+"name": &"range_attack",
 "speed": 5.0
 }, {
 "frames": [{
@@ -572,28 +575,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_tfuxt")
 }],
 "loop": true,
-
-"name": &"range_attack11",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ndch5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6ikja")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tn57o")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_84ho0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fofay")
-}],
-"loop": true,
-"name": &"range_attack111",
+"name": &"range_attack_charge",
 "speed": 5.0
 }]
 
@@ -603,43 +585,33 @@ script = ExtResource("2_u5uy3")
 projectile_scene = ExtResource("3_arcqg")
 
 [node name="Health" parent="." index="0"]
-position = Vector2(106.667, -86.6667)
+position = Vector2(93.3333, -60)
+scale = Vector2(1.5, 1.5)
 
 [node name="EnemyStats" parent="." index="1"]
 script = ExtResource("4_5k20f")
 
 [node name="EnemyAnimations" parent="." index="2"]
-position = Vector2(130, -136.667)
+position = Vector2(126.667, -233.333)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_vgika")
+animation = &"melee_attack"
 
 [node name="EnemyCenter" parent="." index="3"]
 position = Vector2(130, -136.667)
 
 [node name="CollisionShape2D" parent="." index="4"]
-position = Vector2(130, -140)
+position = Vector2(130, -136.667)
 shape = SubResource("CapsuleShape2D_arcqg")
 
-[node name="Sprite2D" type="Sprite2D" parent="." index="5"]
+[node name="Spawn_entourage_timer" type="Timer" parent="." index="5"]
+wait_time = 22.5
+
+[node name="Boss_with_orc_animations" type="AnimatedSprite2D" parent="." index="6"]
 visible = false
-position = Vector2(130, -156.667)
-scale = Vector2(3.5, 3.5)
-texture = ExtResource("4_xvspy")
-
-[node name="Spawn_entourage_timer" type="Timer" parent="." index="6"]
-wait_time = 25.0
-
-[node name="Boss_animations" type="AnimatedSprite2D" parent="." index="7"]
-
-visible = false
-position = Vector2(130, -186.667)
-scale = Vector2(3, 3)
-sprite_frames = SubResource("SpriteFrames_ndch5")
-animation = &"dash_charge111"
-
-[node name="Boss_with_orc_animations" type="AnimatedSprite2D" parent="." index="8"]
-visible = false
-position = Vector2(130, -186.667)
-scale = Vector2(3, 3)
+position = Vector2(126.667, -233.333)
+scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_wf8rd")
-animation = &"range_attack111"
+animation = &"dash"
 
 [connection signal="timeout" from="Spawn_entourage_timer" to="." method="_on_spawn_entourage_timer_timeout"]
