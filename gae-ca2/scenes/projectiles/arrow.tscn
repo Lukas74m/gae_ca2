@@ -2,11 +2,13 @@
 
 [ext_resource type="PackedScene" uid="uid://cltoe21sv21gd" path="res://scenes/projectiles/Projectile_Base.tscn" id="1_iyfe7"]
 [ext_resource type="Script" path="res://scripts/projectiles/arrow.gd" id="2_m2i7i"]
-[ext_resource type="Texture2D" uid="uid://bs7ad2fdfcwps" path="res://assets/enemies/archer_orc/arrow.png" id="3_36eux"]
 [ext_resource type="Texture2D" uid="uid://coni4fj664f11" path="res://assets/player/magic_onhit_animation.png" id="3_nl28u"]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_m2i7i"]
+load_path = "res://.godot/imported/arrow.png-04b0af36f5723fdcdcb27d2035ef7ef7.ctex"
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_hhd7i"]
-atlas = ExtResource("3_36eux")
+atlas = SubResource("CompressedTexture2D_m2i7i")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_in7jg"]
@@ -68,6 +70,7 @@ animations = [{
 }]
 
 [node name="Arrow" instance=ExtResource("1_iyfe7")]
+scale = Vector2(4, 4)
 script = ExtResource("2_m2i7i")
 
 [node name="CollisionShape2D" parent="." index="0"]
@@ -77,3 +80,6 @@ polygon = PackedVector2Array(3, 2, 5.6, 2.5, 3, 3)
 [node name="AnimatedSprite2D" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_f8dnc")
 autoplay = "default"
+
+[node name="Timer" parent="." index="2"]
+wait_time = 5.0

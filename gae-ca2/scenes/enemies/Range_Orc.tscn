@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://dg2wv5kpfemed" path="res://scripts/enemies/enemy_range_orc.gd" id="2_5jl5p"]
 [ext_resource type="Texture2D" uid="uid://cojl6xi83duun" path="res://assets/enemies/archer_orc/acher_orc_idle_and_move.png" id="3_7iduu"]
 [ext_resource type="Texture2D" uid="uid://b07dr73x4ngf0" path="res://assets/enemies/archer_orc/archer_orc_shoot.png" id="4_did05"]
-[ext_resource type="Texture2D" uid="uid://8mww7lsnrbwy" path="res://assets/enemies/archer_orc/archer_orc_bow_animation.png" id="5_83v8l"]
+[ext_resource type="Texture2D" uid="uid://ddhjyclol46i4" path="res://assets/enemies/archer_orc/archer_orc_bow_animation.png" id="5_83v8l"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tpk2j"]
 atlas = ExtResource("3_7iduu")
@@ -164,53 +164,56 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7iduu"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_83v8l"]
 atlas = ExtResource("5_83v8l")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_did05"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_7iduu"]
 atlas = ExtResource("5_83v8l")
 region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_twrlv"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_did05"]
 atlas = ExtResource("5_83v8l")
 region = Rect2(64, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cgwh3"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_twrlv"]
 atlas = ExtResource("5_83v8l")
 region = Rect2(96, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_byltp"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_cgwh3"]
 atlas = ExtResource("5_83v8l")
 region = Rect2(128, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hprqr"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_byltp"]
 atlas = ExtResource("5_83v8l")
 region = Rect2(160, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7vqme"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_hprqr"]
 atlas = ExtResource("5_83v8l")
 region = Rect2(192, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fytxf"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_7vqme"]
 atlas = ExtResource("5_83v8l")
 region = Rect2(224, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_uampc"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_fytxf"]
 atlas = ExtResource("5_83v8l")
 region = Rect2(256, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gj4p1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_uampc"]
 atlas = ExtResource("5_83v8l")
 region = Rect2(288, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fg1j7"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_gj4p1"]
 atlas = ExtResource("5_83v8l")
 region = Rect2(320, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ldwvg"]
 animations = [{
 "frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_83v8l")
+}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7iduu")
 }, {
@@ -240,9 +243,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_gj4p1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fg1j7")
 }],
 "loop": false,
 "name": &"bow",
@@ -260,16 +260,17 @@ script = ExtResource("2_5jl5p")
 position = Vector2(-26.6667, 26.6667)
 
 [node name="EnemyAnimations" parent="." index="2"]
+position = Vector2(0, -20)
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_twrlv")
 animation = &"shoot"
-frame = 10
-frame_progress = 1.0
 
 [node name="Bow" type="AnimatedSprite2D" parent="." index="4"]
 visible = false
+position = Vector2(0, 10)
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_ldwvg")
 animation = &"bow"
-frame = 10
 frame_progress = 1.0
 
 [node name="CollisionShape2D" parent="." index="5"]

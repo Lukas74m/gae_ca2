@@ -10,6 +10,27 @@ func _ready():
 	super._ready()
 	load_enemy_scenes()
 	load_enemy_resources() 
+	summon_circle.visible == false
+	
+func _physics_process(delta):
+	if attack_cooldown_timer > 0.0:
+		attack_cooldown_timer -= delta
+	if Global.player == null:
+		push_error("Global.player is null")
+		velocity = Vector2.ZERO
+		move_and_slide()
+		return
+		
+	var distance_to_player = center.global_position.distance_to(Global.player.get_center_position())
+	match current_state:
+		EnemyState.WALK:
+			move_towards_player(delta, distance_to_player)
+		EnemyState.ATTACK:
+			# Stay still for attack
+			velocity = Vector2.ZERO
+		EnemyState.DEAD:
+			velocity = Vector2.ZERO
+	move_and_slide()
 
 func load_enemy_scenes():
 	enemy_scenes = {
@@ -30,7 +51,9 @@ func attack():
 	#enemy_animations.flip_h = Global.player.get_center_position().x < global_position.x
 	#enemy_animations.play("attack")
 	attack_cooldown_timer = get_stat("attack_cooldown")
-	#await enemy_animations.animation_finished
+	enemy_animations.play("summon")
+	summon_circle.show()
+	await enemy_animations.animation_finished
 	for i in range(spawn_amount):
 		# Kleine zufällige Abweichung um Überlagerung zu vermeiden
 		var offset = Vector2(
@@ -38,11 +61,9 @@ func attack():
 			randf_range(-20, 20)
 		)
 		spawn_enemy_at("Melee_Orc", get_center_position() + offset)
-	enemy_animations.play("summon")
-	summon_circle.visible == true
-	await enemy_animations.animation_finished
-	summon_circle.visible == false
-
+	summon_circle.hide()
+	change_state(EnemyState.WALK)
+	
 func spawn_enemy_at(enemy_name, pos: Vector2):
 	if enemy_name == null:
 		printerr("Keine Enemy Scene zugewiesen!")
@@ -79,6 +100,7 @@ func move_towards_player(delta: float, distance_to_player: float):
 	# If in attack range and cooldown 0
 	if distance_to_player <= get_stat("attack_range") and attack_cooldown_timer <= 0.0:
 		change_state(EnemyState.ATTACK)
+		print("attack")
 		return
 	# Only move if not in attack range
 	if distance_to_player > get_stat("attack_range") and attack_cooldown_timer <= 0.0:
@@ -86,8 +108,10 @@ func move_towards_player(delta: float, distance_to_player: float):
 		enemy_animations.play("move")
 		var direction = (Global.player.get_center_position() - global_position).normalized()
 		velocity = direction * get_stat("movement_speed")
+		print("move")
 	else:
 		# Stop moving when in attack range but cooldown >= 0
 		enemy_animations.flip_h = Global.player.get_center_position().x < global_position.x
 		enemy_animations.play("idle")
 		velocity = Vector2.ZERO
+		print("idle")
