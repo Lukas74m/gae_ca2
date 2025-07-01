@@ -1,12 +1,175 @@
-[gd_scene load_steps=6 format=3 uid="uid://vcvbrmlgyiai"]
+[gd_scene load_steps=32 format=3 uid="uid://vcvbrmlgyiai"]
 
 [ext_resource type="Script" uid="uid://dxgytc8f7yu4" path="res://scripts/shop/shop.gd" id="1_rktij"]
 [ext_resource type="Texture2D" uid="uid://b7s3qvn1du15q" path="res://assets/rewards/Reward_with_Box_for_Buttons.png" id="2_srfm6"]
 [ext_resource type="Texture2D" uid="uid://drsj06k5do28m" path="res://assets/buttons/Test_Button_Hover.png" id="3_srfm6"]
 [ext_resource type="Texture2D" uid="uid://cel53uqprebug" path="res://assets/rewards/Reward_Button_v.2.png" id="3_xjfbs"]
+[ext_resource type="Script" uid="uid://bbaiogxgg4j8g" path="res://scripts/shop/option_1_button.gd" id="5_6yl83"]
+[ext_resource type="Texture2D" uid="uid://ccna8dtf71i5y" path="res://assets/rewards/Reward_Button_On_Click_Animation_v.2.png" id="6_rdw2s"]
+[ext_resource type="Script" uid="uid://d3ou2tksr71bo" path="res://scripts/shop/option_2_button.gd" id="7_rdw2s"]
+[ext_resource type="Script" uid="uid://cm5fyhxq8wq24" path="res://scripts/shop/option_3_button.gd" id="8_2xo2e"]
 
-[sub_resource type="Theme" id="Theme_tc8pp"]
-default_font_size = 12
+[sub_resource type="AtlasTexture" id="AtlasTexture_2xo2e"]
+atlas = ExtResource("6_rdw2s")
+region = Rect2(0, 0, 413, 368)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pe3u1"]
+atlas = ExtResource("6_rdw2s")
+region = Rect2(413, 0, 413, 368)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bhc6i"]
+atlas = ExtResource("6_rdw2s")
+region = Rect2(826, 0, 413, 368)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vmvrj"]
+atlas = ExtResource("6_rdw2s")
+region = Rect2(1239, 0, 413, 368)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kpekm"]
+atlas = ExtResource("6_rdw2s")
+region = Rect2(1652, 0, 413, 368)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6w4il"]
+atlas = ExtResource("6_rdw2s")
+region = Rect2(2065, 0, 413, 368)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u6xt8"]
+atlas = ExtResource("6_rdw2s")
+region = Rect2(2478, 0, 413, 368)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0fxwm"]
+atlas = ExtResource("6_rdw2s")
+region = Rect2(2891, 0, 413, 368)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_stecx"]
+atlas = ExtResource("6_rdw2s")
+region = Rect2(3304, 0, 413, 368)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jd5bq"]
+atlas = ExtResource("6_rdw2s")
+region = Rect2(3717, 0, 413, 368)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6m6bq"]
+atlas = ExtResource("6_rdw2s")
+region = Rect2(4130, 0, 413, 368)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2mthf"]
+atlas = ExtResource("6_rdw2s")
+region = Rect2(4543, 0, 413, 368)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kp5ey"]
+atlas = ExtResource("6_rdw2s")
+region = Rect2(4956, 0, 413, 368)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_38s0t"]
+atlas = ExtResource("6_rdw2s")
+region = Rect2(5369, 0, 413, 368)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ubj7i"]
+atlas = ExtResource("6_rdw2s")
+region = Rect2(5782, 0, 413, 368)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_04pru"]
+atlas = ExtResource("6_rdw2s")
+region = Rect2(6195, 0, 413, 368)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sr4dq"]
+atlas = ExtResource("6_rdw2s")
+region = Rect2(6608, 0, 413, 368)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wmwds"]
+atlas = ExtResource("6_rdw2s")
+region = Rect2(7021, 0, 413, 368)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fipia"]
+atlas = ExtResource("6_rdw2s")
+region = Rect2(7434, 0, 413, 368)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nxort"]
+atlas = ExtResource("6_rdw2s")
+region = Rect2(7847, 0, 413, 368)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t6hg4"]
+atlas = ExtResource("6_rdw2s")
+region = Rect2(8260, 0, 413, 368)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cx413"]
+atlas = ExtResource("6_rdw2s")
+region = Rect2(8673, 0, 413, 368)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_08t84"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2xo2e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pe3u1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bhc6i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vmvrj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kpekm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6w4il")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u6xt8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0fxwm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_stecx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jd5bq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6m6bq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2mthf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kp5ey")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_38s0t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ubj7i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_04pru")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sr4dq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wmwds")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fipia")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nxort")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t6hg4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cx413")
+}],
+"loop": false,
+"name": &"click",
+"speed": 15.0
+}]
 
 [node name="Shop" type="CanvasLayer"]
 process_mode = 3
@@ -17,96 +180,122 @@ offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("2_srfm6")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -154.0
+[node name="Label" type="Label" parent="."]
+offset_left = 495.0
 offset_top = 55.0
-offset_right = 154.0
-offset_bottom = 182.0
-grow_horizontal = 2
-
-[node name="Label" type="Label" parent="VBoxContainer"]
-layout_mode = 2
+offset_right = 656.0
+offset_bottom = 78.0
 size_flags_horizontal = 4
 text = "Wähle eine Upgrade!"
 
-[node name="HBoxContainer" type="GridContainer" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme = SubResource("Theme_tc8pp")
-theme_override_constants/h_separation = 16
-columns = 3
-
-[node name="Option1Button" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
-layout_mode = 2
+[node name="Option1Button" type="TextureButton" parent="."]
+offset_left = 83.0
+offset_top = 183.0
+offset_right = 496.0
+offset_bottom = 551.0
+scale = Vector2(0.6, 0.6)
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture_normal = ExtResource("3_xjfbs")
-texture_hover = ExtResource("3_srfm6")
 stretch_mode = 0
-metadata/_edit_use_anchors_ = true
+script = ExtResource("5_6yl83")
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/Option1Button"]
+[node name="Label" type="Label" parent="Option1Button"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0343137
 anchor_top = 0.5
 anchor_right = 0.985294
 anchor_bottom = 0.5
-offset_top = -49.5
-offset_bottom = 23.5
+offset_left = -7.5049
+offset_top = -169.0
+offset_right = -7.50491
+offset_bottom = -96.0
 grow_horizontal = 2
 grow_vertical = 2
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Option2Button" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
-layout_mode = 2
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Option1Button"]
+visible = false
+position = Vector2(206.5, 184)
+sprite_frames = SubResource("SpriteFrames_08t84")
+animation = &"click"
+frame = 21
+frame_progress = 1.0
+
+[node name="Option2Button" type="TextureButton" parent="."]
+offset_left = 453.0
+offset_top = 183.0
+offset_right = 866.0
+offset_bottom = 551.0
+scale = Vector2(0.6, 0.6)
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture_normal = ExtResource("3_xjfbs")
 texture_hover = ExtResource("3_srfm6")
 stretch_mode = 0
+script = ExtResource("7_rdw2s")
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/Option2Button"]
+[node name="Label" type="Label" parent="Option2Button"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.044335
 anchor_top = 0.5
 anchor_right = 0.980296
 anchor_bottom = 0.5
-offset_top = -53.5
-offset_bottom = 23.5
+offset_left = -8.31034
+offset_top = -172.333
+offset_right = -8.31036
+offset_bottom = -95.3333
 grow_horizontal = 2
 grow_vertical = 2
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Option3Button" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
-layout_mode = 2
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Option2Button"]
+visible = false
+position = Vector2(206.5, 184)
+sprite_frames = SubResource("SpriteFrames_08t84")
+animation = &"click"
+
+[node name="Option3Button" type="TextureButton" parent="."]
+offset_left = 826.0
+offset_top = 183.0
+offset_right = 1239.0
+offset_bottom = 551.0
+scale = Vector2(0.6, 0.6)
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture_normal = ExtResource("3_xjfbs")
 texture_hover = ExtResource("3_srfm6")
 stretch_mode = 0
+script = ExtResource("8_2xo2e")
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/Option3Button"]
+[node name="Label" type="Label" parent="Option3Button"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 9.0
-offset_top = -51.5
-offset_right = -4.0
-offset_bottom = 23.5
+offset_left = 4.99996
+offset_top = -170.667
+offset_right = -8.00003
+offset_bottom = -95.6667
 grow_horizontal = 2
 grow_vertical = 2
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/Option1Button" to="." method="_on_option_1_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/Option2Button" to="." method="_on_option_2_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/Option3Button" to="." method="_on_option_3_button_pressed"]
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="Option3Button"]
+visible = false
+position = Vector2(206.5, 184)
+sprite_frames = SubResource("SpriteFrames_08t84")
+animation = &"click"
+
+[connection signal="pressed" from="Option1Button" to="." method="_on_option_1_button_pressed"]
+[connection signal="pressed" from="Option1Button" to="Option1Button" method="_on_pressed"]
+[connection signal="pressed" from="Option2Button" to="." method="_on_option_2_button_pressed"]
+[connection signal="pressed" from="Option2Button" to="Option2Button" method="_on_pressed"]
+[connection signal="pressed" from="Option3Button" to="." method="_on_option_3_button_pressed"]
+[connection signal="pressed" from="Option3Button" to="Option3Button" method="_on_pressed"]

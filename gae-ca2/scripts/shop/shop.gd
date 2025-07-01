@@ -1,16 +1,20 @@
 extends CanvasLayer
 @onready var shop: CanvasLayer = $"."
 
-@onready var btn_option1: TextureButton = $VBoxContainer/HBoxContainer/Option1Button
-@onready var btn_option2: TextureButton = $VBoxContainer/HBoxContainer/Option2Button
-@onready var btn_option3: TextureButton = $VBoxContainer/HBoxContainer/Option3Button
+@onready var btn_option1: TextureButton = $Option1Button
+@onready var btn_option2: TextureButton = $Option2Button
+@onready var btn_option3: TextureButton = $Option3Button
+
+@onready var animated_sprite_2d: AnimatedSprite2D = $Option1Button/AnimatedSprite2D
+@onready var animated_sprite_2d_2: AnimatedSprite2D = $Option2Button/AnimatedSprite2D2
+@onready var animated_sprite_2d_3: AnimatedSprite2D = $Option3Button/AnimatedSprite2D3
+
 
 #@onready var panel: Panel = $Panel
 #@onready var reward_with_box_for_buttons: Sprite2D = $RewardWithBoxForButtons
-@onready var label1: Label = $VBoxContainer/HBoxContainer/Option1Button/Label
-@onready var label2: Label = $VBoxContainer/HBoxContainer/Option2Button/Label
-@onready var label3: Label = $VBoxContainer/HBoxContainer/Option3Button/Label
-
+@onready var label1: Label = $Option1Button/Label
+@onready var label2: Label = $Option2Button/Label
+@onready var label3: Label = $Option3Button/Label
 
 
 #@export var button_textures := {
@@ -182,12 +186,15 @@ func update_shop_labels():
 			buttons[i].texture_pressed = button_textures[rarity]
 
 func _on_option_1_button_pressed() -> void:
+	await animated_sprite_2d.animation_finished
 	apply_upgrade(0)
 
 func _on_option_2_button_pressed() -> void:
+	await animated_sprite_2d_2.animation_finished
 	apply_upgrade(1)
 
 func _on_option_3_button_pressed() -> void:
+	await animated_sprite_2d_3.animation_finished
 	apply_upgrade(2)
 
 func apply_upgrade(index):
@@ -227,5 +234,13 @@ func get_weighted_random_value(max_value) -> int:
 
 func close_shop():
 	#reward_with_box_for_buttons.hide()
+	animated_sprite_2d.visible = false
+	animated_sprite_2d_2.visible = false
+	animated_sprite_2d_3.visible = false
+	
 	shop.hide()
 	get_tree().paused = false
+
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	pass # Replace with function body.
