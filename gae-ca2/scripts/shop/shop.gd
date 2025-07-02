@@ -39,9 +39,9 @@ extends CanvasLayer
 # Globale Wahrscheinlichkeiten für alle Stats
 var global_rarity_chances = {
 	"common": 60,
-	"rare": 25,
+	"rare": 26,
 	"epic": 10,
-	"legendary": 5
+	"legendary": 4
 }
 
 # Basis-Upgrades mit Seltenheitsstufen
@@ -50,30 +50,30 @@ var upgrade_templates = [
 		"stat": "attack_damage",
 		"label_base": "Angriffsschaden",
 		"rarities": {
-			"common": {"amount": 8},
-			"rare": {"amount": 10},
-			"epic": {"amount": 12},
-			"legendary": {"amount": 15}
+			"common": {"amount": 2},
+			"rare": {"amount": 3},
+			"epic": {"amount": 4},
+			"legendary": {"amount": 6}
 		}
 	},
 	{
 		"stat": "max_health",
 		"label_base": "Max. Leben",
 		"rarities": {
-			"common": {"amount": 10},
-			"rare": {"amount": 14},
-			"epic": {"amount": 18},
-			"legendary": {"amount": 25}
+			"common": {"amount": 5},
+			"rare": {"amount": 6},
+			"epic": {"amount": 7},
+			"legendary": {"amount": 10}
 		}
 	},
 	{
 		"stat": "crit_rate",
 		"label_base": "Krit-Wahrscheinlichkeit",
 		"rarities": {
-			"common": {"amount": 0.05},
-			"rare": {"amount": 0.7},
-			"epic": {"amount": 0.10},
-			"legendary": {"amount": 0.15}
+			"common": {"amount": 0.04},
+			"rare": {"amount": 0.05},
+			"epic": {"amount": 0.06},
+			"legendary": {"amount": 0.10}
 		}
 	},
 	{
@@ -81,26 +81,26 @@ var upgrade_templates = [
 		"label_base": "Kritischer Schaden",
 		"rarities": {
 			"common": {"amount": 0.10},
-			"rare": {"amount": 0.15},
-			"epic": {"amount": 0.20},
-			"legendary": {"amount": 0.30}
+			"rare": {"amount": 0.12},
+			"epic": {"amount": 0.15},
+			"legendary": {"amount": 0.20}
 		}
 	},
 	{
 		"stat": "fireball_damage",
 		"label_base": "Fireball Schaden",
 		"rarities": {
-			"common": {"amount": 3},
-			"rare": {"amount": 5},
-			"epic": {"amount": 7},
-			"legendary": {"amount": 12}
+			"common": {"amount": 1},
+			"rare": {"amount": 2},
+			"epic": {"amount": 3},
+			"legendary": {"amount": 5}
 		}
 	}
 ]
 
 var gamble_possible_upgrades = [
-	{"stat": "attack_damage", "amount": 15, "label": "+ 0-27 Angriffsschaden", "label_base": "Angriffsschaden", "gamble": true, "color": Color.WHITE},
-	{"stat": "max_health", "amount": 25, "label": " + 0-27 Max. Leben", "label_base": "Max. Leben", "gamble": true, "color": Color.WHITE}
+	{"stat": "attack_damage", "amount": 6, "label": "+ 0-6 Angriffsschaden", "label_base": "Angriffsschaden", "gamble": true, "color": Color.WHITE},
+	{"stat": "max_health", "amount": 10, "label": " + 0-10 Max. Leben", "label_base": "Max. Leben", "gamble": true, "color": Color.WHITE}
 ]
 
 # Farben für die Seltenheiten

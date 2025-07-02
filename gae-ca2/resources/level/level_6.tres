@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ProgressResource" load_steps=2 format=3 uid="uid://cr48vl8jblrje"]
+
+[ext_resource type="Script" uid="uid://cm03la2l26qe" path="res://scripts/resource_scripts/progress_resource.gd" id="1_yqg7q"]
+
+[resource]
+script = ExtResource("1_yqg7q")
+current_level = 6
+level_wave_size = 20
+enemy_composition = {
+"Melee_Orc": 9,
+"Range_Orc": 8,
+"Shaman_Orc": 3
+}
+spawn_frequency = 2
+level_boss_name = "Orc_Boss"
+boss_level = false
+current_chapter = 2

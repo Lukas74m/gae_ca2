@@ -11,7 +11,7 @@ enemy_composition = {
 "Range_Orc": 7,
 "Shaman_Orc": 3
 }
-spawn_frequency = 4
+spawn_frequency = 2
 level_boss_name = "Orc_Boss"
 boss_level = false
 current_chapter = 2
