@@ -34,6 +34,7 @@ func _ready() -> void:
 # Loads all level resources with the specific information
 func load_progress_resources():
 	progress_resources = {
+
 		"level_1": preload("res://resources/level/level_1.tres"),
 		"level_2": preload("res://resources/level/level_2.tres"),
 		"level_3": preload("res://resources/level/level_3.tres"),
@@ -44,7 +45,6 @@ func load_progress_resources():
 		"level_8": preload("res://resources/level/level_8.tres"),
 		"level_9": preload("res://resources/level/level_9.tres")
 	}
-
 
 # Gets the information from the new level
 # Gives the information to the EnemyManager so that it can start spawning enemies
@@ -93,6 +93,10 @@ func update_level_progress():
 		# Heal more before a boss wave
 		if is_next_boss_level():
 			Global.player.heal_player(0.5)
+		elif is_boss_level():
+			printerr("UPDATE")
+			enemy_manager.update_increase_amount()
+			
 		else:
 			Global.player.heal_player(0.25)
 			
@@ -121,6 +125,9 @@ func next_chapter():
 # Every forth level is a boss level
 func is_next_boss_level():
 	return (current_level_dict["current_level"] + 1) % 4 == 0
+
+func is_boss_level():
+	return current_level_dict["boss_level"]
 
 func get_level_wave_size():
 	return current_level_dict["level_wave_size"] + additional_enemies

@@ -7,6 +7,7 @@ var enemy_resources = []
 var enemy_scenes = []
 var boss_scenes = []
 
+var increase_amount = 0.0
 
 func _ready():
 	#load_boss_scenes()
@@ -40,6 +41,7 @@ func spawn_enemy(enemy_name: String):
 	var offset = Vector2(randf_range(-16, 16), randf_range(-16, 16))
 	enemy_object.global_position = spawn_position + offset
 	add_child(enemy_object)
+	enemy_object.increase_stats(get_increase_amount())
 	
 	
 func spawn_boss(boss_name: String, chapter: int):
@@ -76,3 +78,9 @@ func spawn_wave(enemy_composition, spawn_frequency):
 		for enemy_amount in range(enemy_composition[enemy]):
 			await get_tree().create_timer(spawn_frequency).timeout
 			spawn_enemy(enemy)
+			
+func get_increase_amount():
+	return increase_amount
+
+func update_increase_amount():
+	increase_amount += 0.25
