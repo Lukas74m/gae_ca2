@@ -37,14 +37,14 @@ var meele_attack_animation = false
 func load_enemy_scenes():
 	enemy_scenes = {
 		"Melee_Orc": preload("res://scenes/enemies/Melee_Orc.tscn"),
-		#"Range_Orc": preload("res://scenes/enemies/Enemy_Range_Orc.tscn")
+		"Shaman_Orc": preload("res://scenes/enemies/Shaman_Orc.tscn")
 	}
 
 # The entity names have to be the exact same like in the level.tres files
 func load_enemy_resources():
 	enemy_resources = {
 		"Melee_Orc": preload("res://resources/enemies/melee_orc.tres"),
-		#"Range_Orc": preload("res://resources/enemies/range_orc.tres"),
+		"Shaman_Orc": preload("res://resources/enemies/shaman_orc.tres"),
 	}
 	
 func _ready():
@@ -238,14 +238,26 @@ func get_center_position():
 
 # Optional
 func spawn_entourage():
-	#await enemy_animations.animation_finished
-	for i in range(3):
-		# Kleine zufällige Abweichung um Überlagerung zu vermeiden
-		var offset = Vector2(
-			randf_range(-20, 20),  # Zufällig zwischen -20 und +20
-			randf_range(-20, 20)
-		)
-		spawn_enemy_at("Melee_Orc", get_center_position() + offset)
+	if dash_abilty_enabled:
+		#await enemy_animations.animation_finished
+		for i in range(3):
+			# Kleine zufällige Abweichung um Überlagerung zu vermeiden
+			var offset = Vector2(
+				randf_range(-20, 20),  # Zufällig zwischen -20 und +20
+				randf_range(-20, 20)
+			)
+			#spawn_enemy_at("Melee_Orc", get_center_position() + offset)
+			spawn_enemy_at("Melee_Orc", get_center_position() + offset)
+	else:
+		#await enemy_animations.animation_finished
+		for i in range(2):
+			# Kleine zufällige Abweichung um Überlagerung zu vermeiden
+			var offset = Vector2(
+				randf_range(-20, 20),  # Zufällig zwischen -20 und +20
+				randf_range(-20, 20)
+			)
+			spawn_enemy_at("Shaman_Orc", get_center_position() + offset)
+
 
 # Optional	
 func spawn_enemy_at(enemy_name, pos: Vector2):
