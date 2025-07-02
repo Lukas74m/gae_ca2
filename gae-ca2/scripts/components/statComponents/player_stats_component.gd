@@ -9,7 +9,7 @@ var base_stats = {
 	"dash_speed": 250,
 	"movement_speed": 100,
 	"max_health": 100,
-	"crit_rate": 0.2,
+	"crit_rate": 0.1,
 	"crit_damage": 1.2,
 	"fireball_damage": 10
 }

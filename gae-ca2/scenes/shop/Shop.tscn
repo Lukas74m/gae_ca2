@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b7s3qvn1du15q" path="res://assets/rewards/Reward_with_Box_for_Buttons.png" id="2_srfm6"]
 [ext_resource type="Theme" uid="uid://e8sv42deghif" path="res://shop.tres" id="3_pe3u1"]
 [ext_resource type="Texture2D" uid="uid://cel53uqprebug" path="res://assets/rewards/Reward_Button_v.2.png" id="3_xjfbs"]
-[ext_resource type="Script" path="res://scripts/shop/option_1_button.gd" id="5_6yl83"]
+[ext_resource type="Script" uid="uid://bbaiogxgg4j8g" path="res://scripts/shop/option_1_button.gd" id="5_6yl83"]
 [ext_resource type="Texture2D" uid="uid://ccna8dtf71i5y" path="res://assets/rewards/Reward_Button_On_Click_Animation_v.2.png" id="6_rdw2s"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_pe3u1"]

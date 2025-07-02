@@ -106,10 +106,10 @@ func move_towards_player(delta: float, distance_to_player: float):
 	if distance_to_player > get_stat("attack_range") and attack_cooldown_timer <= 0.0:
 		enemy_animations.flip_h = Global.player.get_center_position().x < global_position.x
 		enemy_animations.play("move")
-		var direction = (Global.player.get_center_position() - global_position).normalized()
+		var direction = (Global.player.get_center_position() - center.global_position).normalized()
 		velocity = direction * get_stat("movement_speed")
 	else:
 		# Stop moving when in attack range but cooldown >= 0
-		enemy_animations.flip_h = Global.player.get_center_position().x < global_position.x
+		enemy_animations.flip_h = Global.player.get_center_position().x < center.global_position.x
 		enemy_animations.play("idle")
 		velocity = Vector2.ZERO

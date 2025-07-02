@@ -36,7 +36,9 @@ func load_enemy_resources():
 func spawn_enemy(enemy_name: String):
 	var enemy_object = enemy_scenes[enemy_name].instantiate()
 	enemy_object.enemy_resource = enemy_resources[enemy_name]
-	enemy_object.global_position = Vector2(-844.0, -517.0)
+	var spawn_position = Vector2(-844.0, -517.0)
+	var offset = Vector2(randf_range(-16, 16), randf_range(-16, 16))
+	enemy_object.global_position = spawn_position + offset
 	add_child(enemy_object)
 	
 	
@@ -56,6 +58,7 @@ func spawn_boss(boss_name: String, chapter: int):
 	match chapter:
 		1:
 			boss_object.boss_animations.show()
+			boss_object.boss_with_orc_animations.hide()
 		2: 
 			boss_object.range_ability_enabled = true
 			boss_object.boss_with_orc_animations.show()

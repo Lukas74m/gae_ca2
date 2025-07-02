@@ -233,13 +233,20 @@ position = Vector2(573, 273)
 texture = ExtResource("4_sn6g4")
 
 [node name="Label" type="Label" parent="MainMenuGameInstructions"]
-offset_left = 264.0
-offset_top = -126.0
-offset_right = 476.0
-offset_bottom = -51.0
-text = "Mache Enemies kaputt
-Mit so Fähigkeiten
- und Boss killen und so was"
+offset_left = 242.0
+offset_top = -111.0
+offset_right = 519.0
+offset_bottom = 165.0
+theme_override_font_sizes/font_size = 18
+text = "-Überlebe gegen 
+die Horden von Orks
+
+-Benutze deine Fähigkeiten
+um die Gegner zu besiegen
+
+-Nach jeder Welle kannst du 
+deinen Helden verbessern
+um stärker zu werden"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 anchors_preset = 8
@@ -261,13 +268,37 @@ theme_override_constants/separation = 11
 layout_mode = 2
 texture = ExtResource("5_vo403")
 
+[node name="Label" type="Label" parent="HBoxContainer/TextureRect"]
+layout_mode = 0
+offset_left = -6.0
+offset_top = -12.5
+offset_right = 34.0
+offset_bottom = 10.5
+text = "Q"
+
 [node name="TextureRect2" type="TextureRect" parent="HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("7_ahvwn")
 
+[node name="Label2" type="Label" parent="HBoxContainer/TextureRect2"]
+layout_mode = 0
+offset_left = -6.5
+offset_top = -12.0
+offset_right = 33.5
+offset_bottom = 11.0
+text = "W"
+
 [node name="TextureRect3" type="TextureRect" parent="HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("6_wp84g")
+
+[node name="Label3" type="Label" parent="HBoxContainer/TextureRect3"]
+layout_mode = 0
+offset_left = -2.5
+offset_top = -12.0
+offset_right = 37.5
+offset_bottom = 11.0
+text = "E"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchors_preset = 8
@@ -310,6 +341,7 @@ offset_right = 28.5
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 25
 text = "Spielen"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -330,13 +362,13 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -27.0
-offset_top = 4.0
-offset_right = 27.0
-offset_bottom = 4.0
+offset_left = 64.0
+offset_top = 29.0
+offset_right = -64.0
+offset_bottom = 3.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/font_size = 25
 text = "Einstellungen
 "
 horizontal_alignment = 1
@@ -385,12 +417,13 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 3.0
-offset_top = -7.0
-offset_right = 3.0
-offset_bottom = -7.0
+offset_left = 111.0
+offset_top = 40.0
+offset_right = -111.0
+offset_bottom = -36.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 25
 text = "Beenden"
 horizontal_alignment = 1
 vertical_alignment = 1

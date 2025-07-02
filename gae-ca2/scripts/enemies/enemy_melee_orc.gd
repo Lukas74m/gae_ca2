@@ -14,7 +14,7 @@ func attack():
 # Overrides enemy_base.gd
 func _on_attack_frame_changed():
 	if enemy_animations.animation == "attack" and enemy_animations.frame == 10:
-		var distance = global_position.distance_to(Global.player.get_center_position())
+		var distance = center.global_position.distance_to(Global.player.get_center_position())
 		if distance <= stats.get_stat("attack_range"):
 			Global.player.take_damage(get_stat("attack_damage"))
 

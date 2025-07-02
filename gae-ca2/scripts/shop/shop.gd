@@ -38,9 +38,9 @@ extends CanvasLayer
 
 # Globale Wahrscheinlichkeiten für alle Stats
 var global_rarity_chances = {
-	"common": 50,
-	"rare": 30,
-	"epic": 15,
+	"common": 60,
+	"rare": 25,
+	"epic": 10,
 	"legendary": 5
 }
 
@@ -50,10 +50,10 @@ var upgrade_templates = [
 		"stat": "attack_damage",
 		"label_base": "Angriffsschaden",
 		"rarities": {
-			"common": {"amount": 10},
-			"rare": {"amount": 14},
-			"epic": {"amount": 18},
-			"legendary": {"amount": 21}
+			"common": {"amount": 8},
+			"rare": {"amount": 10},
+			"epic": {"amount": 12},
+			"legendary": {"amount": 15}
 		}
 	},
 	{
@@ -70,20 +70,30 @@ var upgrade_templates = [
 		"stat": "crit_rate",
 		"label_base": "Krit-Wahrscheinlichkeit",
 		"rarities": {
-			"common": {"amount": 0.08},
-			"rare": {"amount": 0.12},
-			"epic": {"amount": 0.16},
-			"legendary": {"amount": 0.20}
+			"common": {"amount": 0.05},
+			"rare": {"amount": 0.7},
+			"epic": {"amount": 0.10},
+			"legendary": {"amount": 0.15}
 		}
 	},
 	{
 		"stat": "crit_damage",
 		"label_base": "Kritischer Schaden",
 		"rarities": {
-			"common": {"amount": 0.15},
-			"rare": {"amount": 0.22},
-			"epic": {"amount": 0.30},
-			"legendary": {"amount": 0.40}
+			"common": {"amount": 0.10},
+			"rare": {"amount": 0.15},
+			"epic": {"amount": 0.20},
+			"legendary": {"amount": 0.30}
+		}
+	},
+	{
+		"stat": "fireball_damage",
+		"label_base": "Fireball Schaden",
+		"rarities": {
+			"common": {"amount": 3},
+			"rare": {"amount": 5},
+			"epic": {"amount": 7},
+			"legendary": {"amount": 12}
 		}
 	}
 ]

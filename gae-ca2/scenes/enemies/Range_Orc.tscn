@@ -161,7 +161,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"shoot",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_83v8l"]
@@ -246,7 +246,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"bow",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4fa51"]
@@ -264,6 +264,8 @@ position = Vector2(0, -20)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_twrlv")
 animation = &"shoot"
+frame = 10
+frame_progress = 1.0
 
 [node name="Bow" type="AnimatedSprite2D" parent="." index="4"]
 visible = false
