@@ -428,6 +428,23 @@ text = "Beenden"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Label" type="Label" parent="."]
+offset_left = 186.0
+offset_top = 565.0
+offset_right = 288.0
+offset_bottom = 588.0
+theme_override_font_sizes/font_size = 14
+text = "Version - Alpha"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 445.0
+offset_top = 11.0
+offset_right = 732.0
+offset_bottom = 53.0
+theme_override_colors/font_color = Color(0.399475, 0.244376, 0.0245967, 1)
+theme_override_font_sizes/font_size = 30
+text = "Brawl of the Depths"
+
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="VBoxContainer/PlayButton" method="_on_pressed"]
 [connection signal="ready" from="VBoxContainer/PlayButton" to="VBoxContainer/PlayButton" method="_on_ready"]
 [connection signal="animation_finished" from="VBoxContainer/PlayButton/AnimatedSprite2D" to="VBoxContainer/PlayButton" method="_on_animated_sprite_2d_animation_finished"]
