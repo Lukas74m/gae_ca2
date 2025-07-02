@@ -153,6 +153,7 @@ offset_bottom = 60.0
 text = "Besiege 3 Gegner "
 
 [node name="Task_size_info" type="Label" parent="CanvasLayer/Control"]
+visible = false
 layout_mode = 0
 offset_left = 72.0
 offset_top = 75.0
