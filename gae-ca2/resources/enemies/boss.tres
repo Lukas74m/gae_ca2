@@ -6,11 +6,11 @@
 script = ExtResource("1_jlmjw")
 ranged_attack_range = 100.0
 ranged_attack_damage = 15.0
-ranged_attack_cooldown = 5.0
+ranged_attack_cooldown = 3.0
 projectile_speed = 150.0
 melee_attack_range = 40.0
 melee_attack_damage = 25.0
-melee_attack_cooldown = 2.0
+melee_attack_cooldown = 1.0
 projectile_scene_path = "\"res://scenes/projectiles/boss_projectile.tscn\""
 melee_charge_cooldown = 2.0
 dash_range = 115.0

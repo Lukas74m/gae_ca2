@@ -41,7 +41,8 @@ func load_progress_resources():
 		"level_5": preload("res://resources/level/level_5.tres"),
 		"level_6": preload("res://resources/level/level_6.tres"),
 		"level_7": preload("res://resources/level/level_7.tres"),
-		"level_8": preload("res://resources/level/level_8.tres")
+		"level_8": preload("res://resources/level/level_8.tres"),
+		"level_9": preload("res://resources/level/level_9.tres")
 	}
 
 
