@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://ea7kjp4asucc"]
 
 [ext_resource type="PackedScene" uid="uid://cltoe21sv21gd" path="res://scenes/projectiles/Projectile_Base.tscn" id="1_iyfe7"]
-[ext_resource type="Script" path="res://scripts/projectiles/arrow.gd" id="2_m2i7i"]
+[ext_resource type="Script" uid="uid://dywbcv6bpb5lp" path="res://scripts/projectiles/arrow.gd" id="2_m2i7i"]
 [ext_resource type="Texture2D" uid="uid://coni4fj664f11" path="res://assets/player/magic_onhit_animation.png" id="3_nl28u"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_m2i7i"]
