@@ -344,7 +344,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"cooldown",
-"speed": 16.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -376,6 +376,7 @@ autoplay = "default"
 [node name="Fireball" type="AnimatedSprite2D" parent="HBoxContainer"]
 position = Vector2(37, 0)
 sprite_frames = SubResource("SpriteFrames_ypc3d")
+animation = &"cooldown"
 autoplay = "default"
 
 [node name="Label" type="Label" parent="."]

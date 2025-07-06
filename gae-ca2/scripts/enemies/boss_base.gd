@@ -138,7 +138,7 @@ func perform_dash(delta: float):
 	velocity = dash_direction * stats.get_stat("dash_speed")
 	dash_time_left -= delta
 	# If boss connects on player, player gets damage
-	if center.global_position.distance_to(Global.player.center.global_position) <= 32:
+	if center.global_position.distance_to(Global.player.center.global_position) <= 30:
 		Global.player.take_damage(2)
 	if dash_time_left <= 0.0:
 		change_boss_state(BossState.WALK)
