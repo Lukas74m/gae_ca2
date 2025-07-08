@@ -131,6 +131,7 @@ func attack():
 					var total_damage = attack_damage
 					if is_crit:
 						total_damage *= crit_damage
+						Global.camera.shake(3)
 					body.take_damage(total_damage)
 
 # Checks if the enemy is in view direction of the player (If mouse points in enemy direction)

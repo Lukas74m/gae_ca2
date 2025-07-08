@@ -74,7 +74,7 @@ func _physics_process(delta):
 		move_and_slide()
 		return
 		
-	var distance_to_player = center.global_position.distance_to(Global.player.center.global_position)
+	var distance_to_player = center.global_position.distance_to(Global.player.get_center_position())
 	
 	match boss_current_state:
 		BossState.WALK:
@@ -108,12 +108,13 @@ func boss_movement_logic(distance_to_player: float):
 	# Decide which attack to use based on distance and cooldowns
 	if distance_to_player <= stats.get_stat("melee_attack_range") and melee_cooldown_timer <= 0.0:
 		change_boss_state(BossState.MELEE_ATTACK)
+		printerr("Melee")
 		return
 	# If phase 2 is activated and in range and out of melee range and no cooldown
-	elif range_ability_enabled == true and distance_to_player <= stats.get_stat("ranged_attack_range") and distance_to_player > stats.get_stat("melee_attack_range") and ranged_cooldown_timer <= 0.0:
+	if range_ability_enabled == true and distance_to_player <= stats.get_stat("ranged_attack_range") and distance_to_player > stats.get_stat("melee_attack_range") and ranged_cooldown_timer <= 0.0:
 		change_boss_state(BossState.RANGED_ATTACK)
+		printerr("Range")
 		return
-		
 	# Move towards player
 	else:
 		play_boss__animation("move")
@@ -164,6 +165,7 @@ func perform_melee_charge():
 
 
 func perform_melee_attack(distance_to_player: float):
+	Global.camera.shake(5)
 	velocity = Vector2.ZERO
 	if distance_to_player <= stats.get_stat("melee_attack_range"):
 		deal_melee_damage()

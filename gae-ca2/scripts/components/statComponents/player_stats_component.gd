@@ -3,22 +3,20 @@ extends Node
 
 # base stats from the player
 var base_stats = {
-	"attack_damage": 50,
+	"attack_damage": 40,
 	"attack_range": 25,
-	#"attack_cooldown": 2, 				# Cooldown is based on animations
 	"dash_speed": 250,
 	"movement_speed": 100,
 	"max_health": 100,
 	"crit_rate": 0.1,
 	"crit_damage": 1.2,
-	"fireball_damage": 10
+	"fireball_damage": 35
 }
 
 # additive modifiers from the player
 var additive_mods = {
 	"attack_damage": 0,
 	"attack_range": 0,
-	#"attack_cooldown": 0, 				# Cooldown is based on animations
 	"dash_speed": 0,
 	"movement_speed": 0,
 	"max_health": 0
@@ -48,7 +46,7 @@ func apply_add_modifier(stat_name: String, value: float):
 
 # Updates the specific multiplicative modifiers 
 func apply_mult_modifier(stat_name: String, value: float):
-	multiplicative_mods[stat_name] = multiplicative_mods.get(stat_name, 1.0) * value
+	multiplicative_mods[stat_name] = multiplicative_mods.get(stat_name, 1.0) + value
 
 
 # resets all the modifiers

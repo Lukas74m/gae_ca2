@@ -88,9 +88,11 @@ func get_center_position():
 func attack():
 	pass
 	
+# Increases enemy stats by certain percentage
+# Called from enemyManager
 func increase_stats(increase_mult : float):
-	stats.apply_add_modifier("attack_damage", stats.get_stat("attack_damage") * increase_mult)
-	stats.apply_add_modifier("max_health", get_stat("max_health") * increase_mult)
+	stats.apply_mult_modifier("attack_damage", increase_mult)
+	stats.apply_mult_modifier("max_health", increase_mult)
 	
 func reset_stats():
 	pass
