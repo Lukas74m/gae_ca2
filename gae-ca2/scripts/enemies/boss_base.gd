@@ -19,6 +19,8 @@ var boss_current_state: BossState = BossState.WALK
 var dash_cooldown_timer: float
 var dash_time_left: float
 var dash_direction: Vector2
+var amount_enemies_spawned = 0
+var MAX_SPAWN_AMOUNT = 9
 
 # Optional
 var enemy_scenes = {}
@@ -240,14 +242,17 @@ func get_center_position():
 
 # Optional
 func spawn_entourage():
-	#await enemy_animations.animation_finished
 	for i in range(3):
-		# Kleine zufällige Abweichung um Überlagerung zu vermeiden
-		var offset = Vector2(
-			randf_range(-20, 20),  # Zufällig zwischen -20 und +20
-			randf_range(-20, 20)
-		)
-		spawn_enemy_at("Melee_Orc", get_center_position() + offset)
+		if amount_enemies_spawned < MAX_SPAWN_AMOUNT:
+			# Enemies spawn with a small offset from each other
+			var offset = Vector2(
+				randf_range(-20, 20),
+				randf_range(-20, 20)
+			)
+			spawn_enemy_at("Melee_Orc", get_center_position() + offset)
+			amount_enemies_spawned += 1
+		else:
+			pass
 
 # Optional	
 func spawn_enemy_at(enemy_name, pos: Vector2):
@@ -260,12 +265,16 @@ func spawn_enemy_at(enemy_name, pos: Vector2):
 		enemy.enemy_resource = enemy_resources[enemy_name]
 		get_tree().current_scene.add_child(enemy)
 		enemy.global_position = pos
+		enemy.is_spawned_by_other_entity = true
+		enemy.enemy_parent = self
 		Global.ProgressManager.additional_enemies += 1
 	else:
 		printerr("No such enemy ", enemy_name)
 		print("Available keys: ", enemy_scenes.keys())
 
-
+func decrease_spawned_enemy_amount():
+	amount_enemies_spawned = max(amount_enemies_spawned - 1, 0)
+	
 func _on_spawn_entourage_timer_timeout() -> void:
 	spawn_entourage()
 

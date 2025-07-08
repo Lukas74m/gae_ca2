@@ -6,7 +6,8 @@ signal attacked(player)
 
 enum EnemyState { WALK, ATTACK, DEAD }
 var current_state: EnemyState = EnemyState.WALK
-#var is_spawned_by_other_entity = false
+var is_spawned_by_other_entity = false
+var enemy_parent = null
 
 @export var enemy_resource: EnemyResource
 @onready var health = $Health
@@ -15,7 +16,6 @@ var current_state: EnemyState = EnemyState.WALK
 @onready var center: Marker2D = $EnemyCenter
 
 var attack_cooldown_timer: float = 0.0
-
 
 func _ready():
 	add_to_group("enemies")
@@ -69,7 +69,13 @@ func take_damage(amount: int):
 
 func die():
 	Global.kills += 1
-	#if is_spawned_by_other_entity == false:
+	# Signals the parent that he is killed
+	# Important for the max spawn amount of a "spawner-enemy"
+	if is_spawned_by_other_entity == true:
+		if enemy_parent != null:
+			enemy_parent.decrease_spawned_enemy_amount()
+		else:
+			pass
 	Global.ProgressManager.update_level_progress()
 	queue_free()
 

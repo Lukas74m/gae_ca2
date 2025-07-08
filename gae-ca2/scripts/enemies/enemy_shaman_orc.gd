@@ -5,6 +5,8 @@ extends "res://scripts/enemies/enemy_base.gd"
 var enemy_scenes = {}
 var enemy_resources  = {}
 var spawn_amount = 2
+var amount_enemies_spawned = 0
+var MAX_SPAWN_AMOUNT = 6
 
 func _ready():
 	super._ready()
@@ -55,12 +57,16 @@ func attack():
 	summon_circle.show()
 	await enemy_animations.animation_finished
 	for i in range(spawn_amount):
-		# Kleine zufällige Abweichung um Überlagerung zu vermeiden
-		var offset = Vector2(
-			randf_range(-20, 20),  # Zufällig zwischen -20 und +20
-			randf_range(-20, 20)
-		)
-		spawn_enemy_at("Melee_Orc", get_center_position() + offset)
+		if amount_enemies_spawned < MAX_SPAWN_AMOUNT:
+			# Enemies spawn with a small offset from each other
+			var offset = Vector2(
+				randf_range(-20, 20),  # Zufällig zwischen -20 und +20
+				randf_range(-20, 20)
+			)
+			spawn_enemy_at("Melee_Orc", get_center_position() + offset)
+			amount_enemies_spawned += 1
+		else:
+			pass
 	summon_circle.hide()
 	change_state(EnemyState.WALK)
 	
@@ -75,6 +81,9 @@ func spawn_enemy_at(enemy_name, pos: Vector2):
 		enemy.enemy_resource = enemy_resources[enemy_name]
 		get_tree().current_scene.add_child(enemy)
 		enemy.global_position = pos
+		# This is for limiting the enemy amount possibly spawned by a "spawner-enemy"
+		enemy.is_spawned_by_other_entity = true
+		enemy.enemy_parent = self
 		Global.ProgressManager.additional_enemies += 1
 	else:
 		printerr("No such enemy ", enemy_name)
@@ -82,24 +91,12 @@ func spawn_enemy_at(enemy_name, pos: Vector2):
 
 
 # Overrides enemy_base.gd
-func _on_attack_frame_changed():
-	
-	# Fernkampfwaffe aufladen oder so
-	# Kann man auch mit pass lassen
-	
-	#if enemy_animations.animation == "attack" and enemy_animations.frame == 10:
-		#var distance = global_position.distance_to(Global.player.get_center_position())
-		#if distance <= stats.get_stat("attack_range"):
-			#Global.player.take_damage(get_stat("attack_damage"))
-	pass 
-
-# Overrides enemy_base.gd
 func get_center_position():
 	return center.global_position
 	
 func move_towards_player(delta: float, distance_to_player: float):
 	# If in attack range and cooldown 0
-	if distance_to_player <= get_stat("attack_range") and attack_cooldown_timer <= 0.0:
+	if distance_to_player <= get_stat("attack_range") and attack_cooldown_timer <= 0.0 and amount_enemies_spawned < MAX_SPAWN_AMOUNT:
 		change_state(EnemyState.ATTACK)
 		return
 	# Only move if not in attack range
@@ -113,3 +110,6 @@ func move_towards_player(delta: float, distance_to_player: float):
 		enemy_animations.flip_h = Global.player.get_center_position().x < center.global_position.x
 		enemy_animations.play("idle")
 		velocity = Vector2.ZERO
+
+func decrease_spawned_enemy_amount():
+	amount_enemies_spawned = max(amount_enemies_spawned - 1, 0)
