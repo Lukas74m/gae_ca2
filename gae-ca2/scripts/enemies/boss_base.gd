@@ -39,14 +39,14 @@ var meele_attack_animation = false
 func load_enemy_scenes():
 	enemy_scenes = {
 		"Melee_Orc": preload("res://scenes/enemies/Melee_Orc.tscn"),
-		#"Range_Orc": preload("res://scenes/enemies/Enemy_Range_Orc.tscn")
+		"Shaman_Orc": preload("res://scenes/enemies/Shaman_Orc.tscn")
 	}
 
 # The entity names have to be the exact same like in the level.tres files
 func load_enemy_resources():
 	enemy_resources = {
 		"Melee_Orc": preload("res://resources/enemies/melee_orc.tres"),
-		#"Range_Orc": preload("res://resources/enemies/range_orc.tres"),
+		"Shaman_Orc": preload("res://resources/enemies/shaman_orc.tres"),
 	}
 	
 func _ready():
@@ -253,6 +253,7 @@ func spawn_entourage():
 			amount_enemies_spawned += 1
 		else:
 			pass
+
 
 # Optional	
 func spawn_enemy_at(enemy_name, pos: Vector2):
