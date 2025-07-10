@@ -1,9 +1,6 @@
 extends CharacterBody2D
 class_name Enemy
 
-signal died
-signal attacked(player)
-
 enum EnemyState { WALK, ATTACK, DEAD }
 var current_state: EnemyState = EnemyState.WALK
 var is_spawned_by_other_entity = false
@@ -50,7 +47,7 @@ func _physics_process(delta):
 			velocity = Vector2.ZERO
 	move_and_slide()
 			
-func move_towards_player(delta: float, distance_to_player: float):
+func move_towards_player(_delta: float, _distance_to_player: float):
 	pass
 	
 func change_state(new_state: EnemyState):

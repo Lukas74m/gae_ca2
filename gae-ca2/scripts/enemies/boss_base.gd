@@ -145,7 +145,7 @@ func perform_dash(delta: float):
 		change_boss_state(BossState.WALK)
 
 
-func perform_ranged_attack(distance_to_player: float):
+func perform_ranged_attack(_distance_to_player: float):
 	play_boss__animation("range_attack")
 	# Aim and throw projectile at player
 	throw_projectile_at_player()

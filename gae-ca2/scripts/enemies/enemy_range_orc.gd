@@ -72,7 +72,7 @@ func _on_attack_frame_changed():
 func get_center_position():
 	return center.global_position
 	
-func move_towards_player(delta: float, distance_to_player: float):
+func move_towards_player(_delta: float, distance_to_player: float):
 	# If in attack range and cooldown 0
 	if distance_to_player <= get_stat("attack_range") and attack_cooldown_timer <= 0.0:
 		change_state(EnemyState.ATTACK)

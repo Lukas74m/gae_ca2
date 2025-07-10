@@ -29,8 +29,8 @@ func update_health_bar():
 	tween.tween_property(health_fill, "size:x", target_width, 0.3)
 
 # Set the healthbar position manually because of different entity sizes
-func set_healthbar_position(position):
-	health_background.position = position
+func set_healthbar_position(new_position):
+	health_background.position = new_position
 
 # Send signal to entity because it died
 func die():

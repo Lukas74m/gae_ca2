@@ -12,7 +12,7 @@ func _ready():
 	super._ready()
 	load_enemy_scenes()
 	load_enemy_resources() 
-	summon_circle.visible == false
+	summon_circle.visible = false
 	
 func _physics_process(delta):
 	if attack_cooldown_timer > 0.0:
@@ -94,7 +94,7 @@ func spawn_enemy_at(enemy_name, pos: Vector2):
 func get_center_position():
 	return center.global_position
 	
-func move_towards_player(delta: float, distance_to_player: float):
+func move_towards_player(_delta: float, distance_to_player: float):
 	# If in attack range and cooldown 0
 	if distance_to_player <= get_stat("attack_range") and attack_cooldown_timer <= 0.0 and amount_enemies_spawned < MAX_SPAWN_AMOUNT:
 		change_state(EnemyState.ATTACK)
