@@ -14,6 +14,7 @@ const DASH_DURATION: float = 0.2
 const DASH_COOLDOWN: float = 1.0
 
 @onready var fireball_scene = preload("res://scenes/projectiles/Fire_Ball.tscn")
+@onready var damage_popup = preload("res://scenes/components/DamagePopUp.tscn")
 @onready var stats = $PlayerStats
 @onready var attack_area: Area2D = $Area2D
 @onready var player_sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -131,7 +132,7 @@ func attack():
 					var total_damage = attack_damage
 					if is_crit:
 						total_damage *= crit_damage
-					body.take_damage(total_damage)
+					body.take_damage(total_damage, is_crit)
 
 # Checks if the enemy is in view direction of the player (If mouse points in enemy direction)
 func is_facing(target_pos: Vector2) -> bool:
@@ -153,6 +154,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		change_state(PlayerState.IDLE)
 
 func take_damage(amount: int):
+	show_damage(amount)
 	health.update_health(-amount)
 	
 func get_stat(stat_name: String):
@@ -197,3 +199,16 @@ func shoot_fireball():
 
 func _on_fireball_cooldown_finished():
 	can_fireball = true
+
+func show_damage(amount: int):
+	var popup = damage_popup.instantiate()
+	popup.position = get_center_position() + Vector2(randf_range(-10, 10), -10)
+	popup.get_node("Label").text = str(amount)
+	# New settings so the color/size adjusments don't effect the original one
+	# If player takes damage its a different color 
+	var old_settings = popup.get_node("Label").label_settings
+	var new_settings = old_settings.duplicate()
+	new_settings.font_size = 18
+	new_settings.outline_color = Color.DODGER_BLUE
+	popup.get_node("Label").label_settings = new_settings
+	get_tree().current_scene.add_child(popup)

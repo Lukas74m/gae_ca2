@@ -88,7 +88,7 @@ func update_level_progress():
 	if current_level_kill_amount >= current_level_dict["level_wave_size"] + additional_enemies:
 		current_level_kill_amount = 0
 		additional_enemies = 0
-		
+		await get_tree().create_timer(0.4).timeout
 		# Heal the player after each wave
 		# Heal more before a boss wave
 		if is_next_boss_level():

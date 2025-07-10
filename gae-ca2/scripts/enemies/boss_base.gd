@@ -110,12 +110,10 @@ func boss_movement_logic(distance_to_player: float):
 	# Decide which attack to use based on distance and cooldowns
 	if distance_to_player <= stats.get_stat("melee_attack_range") and melee_cooldown_timer <= 0.0:
 		change_boss_state(BossState.MELEE_ATTACK)
-		printerr("Melee")
 		return
 	# If phase 2 is activated and in range and out of melee range and no cooldown
 	if range_ability_enabled == true and distance_to_player <= stats.get_stat("ranged_attack_range") and distance_to_player > stats.get_stat("melee_attack_range") and ranged_cooldown_timer <= 0.0:
 		change_boss_state(BossState.RANGED_ATTACK)
-		printerr("Range")
 		return
 	# Move towards player
 	else:
