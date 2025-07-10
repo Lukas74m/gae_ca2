@@ -10,7 +10,6 @@ var boss_scenes = []
 var increase_amount = 0.0
 
 func _ready():
-	#load_boss_scenes()
 	load_enemy_scenes()
 	load_enemy_resources()
 
@@ -37,9 +36,7 @@ func load_enemy_resources():
 func spawn_enemy(enemy_name: String):
 	var enemy_object = enemy_scenes[enemy_name].instantiate()
 	enemy_object.enemy_resource = enemy_resources[enemy_name]
-	var spawn_position = Vector2(-844.0, -517.0)
-	var offset = Vector2(randf_range(-16, 16), randf_range(-16, 16))
-	enemy_object.global_position = spawn_position + offset
+	spawn_around_player(enemy_object)
 	add_child(enemy_object)
 	enemy_object.increase_stats(get_increase_amount())
 	
@@ -47,22 +44,19 @@ func spawn_enemy(enemy_name: String):
 func spawn_boss(boss_name: String, chapter: int):
 	var boss_object = enemy_scenes[boss_name].instantiate()
 	boss_object.enemy_resource = enemy_resources[boss_name]
-	boss_object.global_position = Vector2(-844.0, -517.0)
-	# After instaniating the boss, check in which phas ehe is
-	
-	## Load projectile scene for boss
-	#var boss_resource = enemy_resources[boss_name] as BossResource
-	#if boss_resource and boss_resource.projectile_scene_path != "":
-		#boss_object.projectile_scene = load("res://scenes/projectiles/BossProjectile.tscn")
+	spawn_around_player(boss_object)
 	add_child(boss_object)
-	# Start timer for spawning
+	# Start timer for entourage spawning
 	boss_object.entourage_timer.start()
 	match chapter:
-		1:
-			boss_object.dash_abilty_enabled = true
-			boss_object.range_ability_enabled = true
-			boss_object.boss_animations.hide()
-			boss_object.boss_with_orc_animations.show()
+		# ----------------
+		# Only for testing
+		#1:
+			#boss_object.dash_abilty_enabled = true
+			#boss_object.range_ability_enabled = true
+			#boss_object.boss_animations.hide()
+			#boss_object.boss_with_orc_animations.show()
+		# ----------------
 		2: 
 			boss_object.range_ability_enabled = true
 			boss_object.boss_with_orc_animations.show()
@@ -85,4 +79,8 @@ func get_increase_amount():
 	return increase_amount
 
 func update_increase_amount():
-	increase_amount += 0.25
+	increase_amount += 0.5
+
+func spawn_around_player(enemy_object):
+	var offset = Vector2(randf_range(-100, 100), randf_range(-100, 100))
+	enemy_object.global_position = Global.player.get_center_position() + offset

@@ -50,7 +50,7 @@ func apply_add_modifier(stat_name: String, value: float):
 
 # Updates the specific multiplicative modifiers 
 func apply_mult_modifier(stat_name: String, value: float):
-	multiplicative_mods[stat_name] = multiplicative_mods.get(stat_name, 1.0) * value
+	multiplicative_mods[stat_name] = multiplicative_mods.get(stat_name, 1.0) + value
 
 
 # resets all the modifiers

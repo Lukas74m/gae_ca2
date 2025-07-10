@@ -19,6 +19,8 @@ var boss_current_state: BossState = BossState.WALK
 var dash_cooldown_timer: float
 var dash_time_left: float
 var dash_direction: Vector2
+var amount_enemies_spawned = 0
+var MAX_SPAWN_AMOUNT = 9
 
 # Optional
 var enemy_scenes = {}
@@ -74,7 +76,7 @@ func _physics_process(delta):
 		move_and_slide()
 		return
 		
-	var distance_to_player = center.global_position.distance_to(Global.player.center.global_position)
+	var distance_to_player = center.global_position.distance_to(Global.player.get_center_position())
 	
 	match boss_current_state:
 		BossState.WALK:
@@ -108,12 +110,13 @@ func boss_movement_logic(distance_to_player: float):
 	# Decide which attack to use based on distance and cooldowns
 	if distance_to_player <= stats.get_stat("melee_attack_range") and melee_cooldown_timer <= 0.0:
 		change_boss_state(BossState.MELEE_ATTACK)
+		printerr("Melee")
 		return
 	# If phase 2 is activated and in range and out of melee range and no cooldown
-	elif range_ability_enabled == true and distance_to_player <= stats.get_stat("ranged_attack_range") and distance_to_player > stats.get_stat("melee_attack_range") and ranged_cooldown_timer <= 0.0:
+	if range_ability_enabled == true and distance_to_player <= stats.get_stat("ranged_attack_range") and distance_to_player > stats.get_stat("melee_attack_range") and ranged_cooldown_timer <= 0.0:
 		change_boss_state(BossState.RANGED_ATTACK)
+		printerr("Range")
 		return
-		
 	# Move towards player
 	else:
 		play_boss__animation("move")
@@ -164,6 +167,7 @@ func perform_melee_charge():
 
 
 func perform_melee_attack(distance_to_player: float):
+	Global.camera.shake(5)
 	velocity = Vector2.ZERO
 	if distance_to_player <= stats.get_stat("melee_attack_range"):
 		deal_melee_damage()
@@ -238,25 +242,17 @@ func get_center_position():
 
 # Optional
 func spawn_entourage():
-	if dash_abilty_enabled:
-		#await enemy_animations.animation_finished
-		for i in range(3):
-			# Kleine zufällige Abweichung um Überlagerung zu vermeiden
+	for i in range(3):
+		if amount_enemies_spawned < MAX_SPAWN_AMOUNT:
+			# Enemies spawn with a small offset from each other
 			var offset = Vector2(
-				randf_range(-20, 20),  # Zufällig zwischen -20 und +20
+				randf_range(-20, 20),
 				randf_range(-20, 20)
 			)
-			#spawn_enemy_at("Melee_Orc", get_center_position() + offset)
 			spawn_enemy_at("Melee_Orc", get_center_position() + offset)
-	else:
-		#await enemy_animations.animation_finished
-		for i in range(2):
-			# Kleine zufällige Abweichung um Überlagerung zu vermeiden
-			var offset = Vector2(
-				randf_range(-20, 20),  # Zufällig zwischen -20 und +20
-				randf_range(-20, 20)
-			)
-			spawn_enemy_at("Shaman_Orc", get_center_position() + offset)
+			amount_enemies_spawned += 1
+		else:
+			pass
 
 
 # Optional	
@@ -270,12 +266,16 @@ func spawn_enemy_at(enemy_name, pos: Vector2):
 		enemy.enemy_resource = enemy_resources[enemy_name]
 		get_tree().current_scene.add_child(enemy)
 		enemy.global_position = pos
+		enemy.is_spawned_by_other_entity = true
+		enemy.enemy_parent = self
 		Global.ProgressManager.additional_enemies += 1
 	else:
 		printerr("No such enemy ", enemy_name)
 		print("Available keys: ", enemy_scenes.keys())
 
-
+func decrease_spawned_enemy_amount():
+	amount_enemies_spawned = max(amount_enemies_spawned - 1, 0)
+	
 func _on_spawn_entourage_timer_timeout() -> void:
 	spawn_entourage()
 

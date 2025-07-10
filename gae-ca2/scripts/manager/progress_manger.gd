@@ -94,7 +94,6 @@ func update_level_progress():
 		if is_next_boss_level():
 			Global.player.heal_player(1)
 		elif is_boss_level():
-			printerr("UPDATE")
 			enemy_manager.update_increase_amount()
 			
 		else:

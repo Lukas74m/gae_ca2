@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_jvqsb")
 name = "Ranged_Orc"
-max_health = 30
+max_health = 40
 movement_speed = 50.0
 attack_range = 70.0
 attack_damage = 10.0

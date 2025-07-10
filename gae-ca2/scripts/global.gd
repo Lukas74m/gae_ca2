@@ -3,6 +3,7 @@ extends Node
 var player
 var ProgressManager
 var shop
+var camera
 
 var kills: int = 0:
 	set(value):

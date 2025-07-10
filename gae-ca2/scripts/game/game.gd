@@ -6,13 +6,15 @@ extends Node2D
 @onready var task_display_instance = $CanvasLayer/TaskDisplay
 @onready var player = $Player
 @onready var shop = $Shop
+@onready var camera = $Player/Camera2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#enemy_manager.spawn_enemy()
 	Global.player = player
 	Global.ProgressManager = progress_manager
-	Global.shop = shop	
+	Global.shop = shop
+	Global.camera = camera
 	set_task_display()
 	game_timer.start()
 

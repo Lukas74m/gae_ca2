@@ -14,19 +14,11 @@ extends CanvasLayer
 @onready var result_label_2 = $Option2Button/Result2
 @onready var result_label_3 = $Option3Button/Result3
 
-#@onready var panel: Panel = $Panel
-#@onready var reward_with_box_for_buttons: Sprite2D = $RewardWithBoxForButtons
+
 @onready var label1: Label = $Option1Button/Label
 @onready var label2: Label = $Option2Button/Label
 @onready var label3: Label = $Option3Button/Label
 
-
-#@export var button_textures := {
-#	"common": preload("res://assets/rewards/Reward_Button_Normal2.png"),
-#	"rare": preload("res://assets/rewards/Reward_Button_Rare.png"),
-#	"epic": preload("res://assets/rewards/Reward_Button_Epic.png"),
-#	"legendary": preload("res://assets/rewards/Reward_Button_Legendary.png")
-#}
 
 @export var button_textures := {
 	"common": preload("res://assets/rewards/Reward_Button_v.2.png"),
@@ -70,10 +62,10 @@ var upgrade_templates = [
 		"stat": "crit_rate",
 		"label_base": "Krit-Wahrscheinlichkeit",
 		"rarities": {
-			"common": {"amount": 0.04},
-			"rare": {"amount": 0.05},
-			"epic": {"amount": 0.06},
-			"legendary": {"amount": 0.10}
+			"common": {"amount": 0.03},
+			"rare": {"amount": 0.04},
+			"epic": {"amount": 0.05},
+			"legendary": {"amount": 0.07}
 		}
 	},
 	{
@@ -88,18 +80,18 @@ var upgrade_templates = [
 	},
 	{
 		"stat": "fireball_damage",
-		"label_base": "Fireball Schaden",
+		"label_base": "Feuerball Schaden",
 		"rarities": {
-			"common": {"amount": 1},
-			"rare": {"amount": 2},
-			"epic": {"amount": 3},
-			"legendary": {"amount": 5}
+			"common": {"amount": 3},
+			"rare": {"amount": 5},
+			"epic": {"amount": 7},
+			"legendary": {"amount": 9}
 		}
 	}
 ]
 
 var gamble_possible_upgrades = [
-	{"stat": "attack_damage", "amount": 6, "label": "+ 0-6 Angriffsschaden", "label_base": "Angriffsschaden", "gamble": true, "color": Color.WHITE},
+	{"stat": "attack_damage", "amount": 7, "label": "+ 0-7 Angriffsschaden", "label_base": "Angriffsschaden", "gamble": true, "color": Color.WHITE},
 	{"stat": "max_health", "amount": 10, "label": " + 0-10 Max. Leben", "label_base": "Max. Leben", "gamble": true, "color": Color.WHITE}
 ]
 
@@ -234,15 +226,11 @@ func apply_upgrade(index):
 		
 		# Prüfen ob es sich um ein Gamble-Upgrade handelt
 		if upgrade.get("gamble", false):
-			#print("GAMBLE ERKANNT!")
 			final_amount = get_weighted_random_value(upgrade["amount"])
 		else:
 			pass
-			#print("UPGRADE ANGEWENDET - Seltenheit: ", upgrade.get("rarity", "N/A"))
 		
 		Global.player.get_node("PlayerStats").base_stats[upgrade["stat"]] += final_amount
-		#print("Angewendet: ", final_amount, " auf ", upgrade["stat"])
-		#print("Neuer Wert: ", Global.player.get_node("PlayerStats").base_stats[upgrade["stat"]])
 	
 	return upgrade["label_base"] + ": + " + str(final_amount)
 

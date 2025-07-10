@@ -1,31 +1,31 @@
 [gd_scene load_steps=15 format=3 uid="uid://df1ymeh7kbn6q"]
 
-[ext_resource type="Script" uid="uid://b8veoxcmbw0wc" path="res://scripts/deathscreen/deathscreen.gd" id="1_btbqu"]
-[ext_resource type="Script" uid="uid://3ec3cm3265m7" path="res://scripts/deathscreen/texture_button.gd" id="2_bssjh"]
-[ext_resource type="Theme" uid="uid://b2ftdon0s262d" path="res://stats_display_theme.tres" id="2_gm5rc"]
-[ext_resource type="Texture2D" uid="uid://rwdm74nqhelq" path="res://assets/buttons/Test_Button.png" id="2_u6gas"]
-[ext_resource type="Texture2D" uid="uid://drsj06k5do28m" path="res://assets/buttons/Test_Button_Hover.png" id="3_3638j"]
-[ext_resource type="Texture2D" uid="uid://wkwoejl3hpar" path="res://assets/buttons/Test_Button_On_Click.png" id="5_3638j"]
-[ext_resource type="PackedScene" uid="uid://cpnywmo70ieol" path="res://scenes/components/StatsDisplay.tscn" id="6_gm5rc"]
+[ext_resource type="Script" uid="uid://b8veoxcmbw0wc" path="res://scripts/deathscreen/deathscreen.gd" id="1_61vww"]
+[ext_resource type="Theme" uid="uid://b2ftdon0s262d" path="res://stats_display_theme.tres" id="2_2tdkb"]
+[ext_resource type="Texture2D" uid="uid://rwdm74nqhelq" path="res://assets/buttons/Test_Button.png" id="3_1h7yr"]
+[ext_resource type="Texture2D" uid="uid://drsj06k5do28m" path="res://assets/buttons/Test_Button_Hover.png" id="4_f5ivv"]
+[ext_resource type="Script" uid="uid://3ec3cm3265m7" path="res://scripts/deathscreen/texture_button.gd" id="5_w0ong"]
+[ext_resource type="Texture2D" uid="uid://wkwoejl3hpar" path="res://assets/buttons/Test_Button_On_Click.png" id="6_rx4g2"]
+[ext_resource type="PackedScene" uid="uid://cpnywmo70ieol" path="res://scenes/components/StatsDisplay.tscn" id="7_exojw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_btbqu"]
-atlas = ExtResource("5_3638j")
+atlas = ExtResource("6_rx4g2")
 region = Rect2(0, 0, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gm5rc"]
-atlas = ExtResource("5_3638j")
+atlas = ExtResource("6_rx4g2")
 region = Rect2(100, 0, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_esdwi"]
-atlas = ExtResource("5_3638j")
+atlas = ExtResource("6_rx4g2")
 region = Rect2(200, 0, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sp2op"]
-atlas = ExtResource("5_3638j")
+atlas = ExtResource("6_rx4g2")
 region = Rect2(300, 0, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t037i"]
-atlas = ExtResource("5_3638j")
+atlas = ExtResource("6_rx4g2")
 region = Rect2(400, 0, 100, 100)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_s586m"]
@@ -59,7 +59,7 @@ outline_color = Color(0.997687, 0.488045, 0.420835, 1)
 shadow_size = 3
 
 [node name="Deathscreen" type="Panel"]
-script = ExtResource("1_btbqu")
+script = ExtResource("1_61vww")
 
 [node name="Control" type="CanvasLayer" parent="."]
 
@@ -69,7 +69,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("2_gm5rc")
+theme = ExtResource("2_2tdkb")
 
 [node name="TextureButton" type="TextureButton" parent="Control"]
 anchors_preset = 8
@@ -83,9 +83,9 @@ offset_right = 56.0
 offset_bottom = 239.0
 grow_horizontal = 2
 grow_vertical = 2
-texture_normal = ExtResource("2_u6gas")
-texture_hover = ExtResource("3_3638j")
-script = ExtResource("2_bssjh")
+texture_normal = ExtResource("3_1h7yr")
+texture_hover = ExtResource("4_f5ivv")
+script = ExtResource("5_w0ong")
 
 [node name="Label" type="Label" parent="Control/TextureButton"]
 layout_mode = 1
@@ -111,7 +111,7 @@ animation = &"click"
 frame = 4
 frame_progress = 1.0
 
-[node name="StatsDisplay" parent="Control" instance=ExtResource("6_gm5rc")]
+[node name="StatsDisplay" parent="Control" instance=ExtResource("7_exojw")]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
