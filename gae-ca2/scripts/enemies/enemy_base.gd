@@ -94,9 +94,6 @@ func increase_stats(increase_mult : float):
 	stats.apply_mult_modifier("attack_damage", increase_mult)
 	stats.apply_mult_modifier("max_health", increase_mult)
 	health.initialize_health(get_stat("max_health"))
-	printerr("New: ", stats.get_stat("attack_damage"))
-	printerr("New: ", stats.get_stat("max_health"))
-	printerr("Current: ", stats.get_stat("max_health"))
 	
 func reset_stats():
 	pass
