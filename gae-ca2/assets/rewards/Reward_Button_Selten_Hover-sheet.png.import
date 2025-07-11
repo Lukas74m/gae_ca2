@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccud8tev122qt"
-path="res://.godot/imported/Reward_Button_On_Click_Animation.png-2dc3132fa5bcee4651d123f6c3cfc795.ctex"
+uid="uid://dvawnre7hjj8c"
+path="res://.godot/imported/Reward_Button_Selten_Hover-sheet.png-6b62d4901498dd9b6df156f44ff65ced.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/rewards/Reward_Button_On_Click_Animation.png"
-dest_files=["res://.godot/imported/Reward_Button_On_Click_Animation.png-2dc3132fa5bcee4651d123f6c3cfc795.ctex"]
+source_file="res://assets/rewards/Reward_Button_Selten_Hover-sheet.png"
+dest_files=["res://.godot/imported/Reward_Button_Selten_Hover-sheet.png-6b62d4901498dd9b6df156f44ff65ced.ctex"]
 
 [params]
 

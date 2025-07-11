@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://82lrw02h0nsx"
-path="res://.godot/imported/Reward_Button_Legendary.png-2c45c83240c106b6a498924d42e320f8.ctex"
+uid="uid://c16dopjhntdcu"
+path="res://.godot/imported/Reward_Button_Legendaer_Hover-sheet.png-0c7e0346a7656e4ea886f36fe7f1cc4b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/rewards/Reward_Button_Legendary.png"
-dest_files=["res://.godot/imported/Reward_Button_Legendary.png-2c45c83240c106b6a498924d42e320f8.ctex"]
+source_file="res://assets/rewards/Reward_Button_Legendaer_Hover-sheet.png"
+dest_files=["res://.godot/imported/Reward_Button_Legendaer_Hover-sheet.png-0c7e0346a7656e4ea886f36fe7f1cc4b.ctex"]
 
 [params]
 

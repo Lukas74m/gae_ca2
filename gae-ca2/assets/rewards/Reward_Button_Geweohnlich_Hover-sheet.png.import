@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bfo2032cpstjr"
-path="res://.godot/imported/Reward_Button_Normal.png-c84f3de72f4315a036b2626ae588b6c9.ctex"
+uid="uid://d0xxdn2ya2ypl"
+path="res://.godot/imported/Reward_Button_Geweohnlich_Hover-sheet.png-a43359954ce5459b19d5939be11d60f2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/rewards/Reward_Button_Normal.png"
-dest_files=["res://.godot/imported/Reward_Button_Normal.png-c84f3de72f4315a036b2626ae588b6c9.ctex"]
+source_file="res://assets/rewards/Reward_Button_Geweohnlich_Hover-sheet.png"
+dest_files=["res://.godot/imported/Reward_Button_Geweohnlich_Hover-sheet.png-a43359954ce5459b19d5939be11d60f2.ctex"]
 
 [params]
 

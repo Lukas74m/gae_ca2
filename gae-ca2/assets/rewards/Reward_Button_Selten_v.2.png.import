@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dnsn081bbd8cr"
-path="res://.godot/imported/Reward_Button_Epic.png-e939c3046c0f937b78e0e70a59ae0fee.ctex"
+uid="uid://b7xvtgtp1jfu7"
+path="res://.godot/imported/Reward_Button_Selten_v.2.png-759b9ea0be64c7cffc0ba2e1f2d77567.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/rewards/Reward_Button_Epic.png"
-dest_files=["res://.godot/imported/Reward_Button_Epic.png-e939c3046c0f937b78e0e70a59ae0fee.ctex"]
+source_file="res://assets/rewards/Reward_Button_Selten_v.2.png"
+dest_files=["res://.godot/imported/Reward_Button_Selten_v.2.png-759b9ea0be64c7cffc0ba2e1f2d77567.ctex"]
 
 [params]
 

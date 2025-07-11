@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6ac4rvl476sc"
-path="res://.godot/imported/Reward_Button_Normal2.png-89f1241b13f89e78323bced2b2862947.ctex"
+uid="uid://bl7y5co7lcae8"
+path="res://.godot/imported/Reward_Button_Legendaer.png-c446dbbe72639718ff848470b6a7ece9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/rewards/Reward_Button_Normal2.png"
-dest_files=["res://.godot/imported/Reward_Button_Normal2.png-89f1241b13f89e78323bced2b2862947.ctex"]
+source_file="res://assets/rewards/Reward_Button_Legendaer.png"
+dest_files=["res://.godot/imported/Reward_Button_Legendaer.png-c446dbbe72639718ff848470b6a7ece9.ctex"]
 
 [params]
 
