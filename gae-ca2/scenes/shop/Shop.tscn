@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://vcvbrmlgyiai"]
+[gd_scene load_steps=34 format=3 uid="uid://vcvbrmlgyiai"]
 
 [ext_resource type="Script" uid="uid://dxgytc8f7yu4" path="res://scripts/shop/shop.gd" id="1_rktij"]
 [ext_resource type="Texture2D" uid="uid://b7s3qvn1du15q" path="res://assets/rewards/Reward_with_Box_for_Buttons.png" id="2_srfm6"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cel53uqprebug" path="res://assets/rewards/Reward_Button_v.2.png" id="3_xjfbs"]
 [ext_resource type="Script" uid="uid://bbaiogxgg4j8g" path="res://scripts/shop/option_1_button.gd" id="5_6yl83"]
 [ext_resource type="Texture2D" uid="uid://ccna8dtf71i5y" path="res://assets/rewards/Reward_Button_On_Click_Animation_v.2.png" id="6_rdw2s"]
+[ext_resource type="AudioStream" uid="uid://cjvg3jkufi3kw" path="res://assets/sounds/click_sound_1.mp3" id="8_2xo2e"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_pe3u1"]
 font_size = 30
@@ -366,6 +367,11 @@ theme_override_fonts/font = ExtResource("3_rdw2s")
 label_settings = SubResource("LabelSettings_6yl83")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
+stream = ExtResource("8_2xo2e")
+bus = &"SFX"
 
 [connection signal="pressed" from="Option1Button" to="." method="_on_option_1_button_pressed"]
 [connection signal="pressed" from="Option1Button" to="Option1Button" method="_on_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://dk00wpftg1tix"]
+[gd_scene load_steps=56 format=3 uid="uid://dk00wpftg1tix"]
 
 [ext_resource type="PackedScene" uid="uid://41vujg0qkyqh" path="res://scenes/enemies/EnemyBase.tscn" id="1_jonyt"]
 [ext_resource type="Script" uid="uid://dg2wv5kpfemed" path="res://scripts/enemies/enemy_range_orc.gd" id="2_5jl5p"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://dts0oqa8nbg7s" path="res://assets/enemies/archer_orc/archer_orc_death.png" id="3_did05"]
 [ext_resource type="Texture2D" uid="uid://b07dr73x4ngf0" path="res://assets/enemies/archer_orc/archer_orc_shoot.png" id="4_did05"]
 [ext_resource type="Texture2D" uid="uid://ddhjyclol46i4" path="res://assets/enemies/archer_orc/archer_orc_bow_animation.png" id="5_83v8l"]
+[ext_resource type="AudioStream" uid="uid://b7ixiq1qlu2lf" path="res://assets/sounds/enemy death/archer_death.wav" id="7_tpk2j"]
+[ext_resource type="AudioStream" uid="uid://biujttecs7i3c" path="res://assets/sounds/enemy attacks/bow_attack.wav" id="8_024g0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fg1j7"]
 atlas = ExtResource("3_did05")
@@ -374,5 +376,14 @@ frame_progress = 1.0
 
 [node name="CollisionShape2D" parent="." index="5"]
 shape = SubResource("CapsuleShape2D_4fa51")
+
+[node name="ArcherDeath" type="AudioStreamPlayer2D" parent="." index="6"]
+process_mode = 3
+stream = ExtResource("7_tpk2j")
+bus = &"SFX"
+
+[node name="ArcherAttack" type="AudioStreamPlayer2D" parent="." index="7"]
+stream = ExtResource("8_024g0")
+bus = &"SFX"
 
 [connection signal="animation_finished" from="Bow" to="." method="_on_bow_animation_finished"]

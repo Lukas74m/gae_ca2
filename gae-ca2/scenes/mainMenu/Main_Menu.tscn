@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://cxx3el2lce3d2"]
+[gd_scene load_steps=47 format=3 uid="uid://cxx3el2lce3d2"]
 
 [ext_resource type="Texture2D" uid="uid://cmaw3riheloc6" path="res://assets/main_menu/Main_Menu_Background.png" id="1_j6enk"]
 [ext_resource type="Texture2D" uid="uid://btpcdo805tl7g" path="res://assets/main_menu/Character_Attack.png" id="2_sn6g4"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://csebkvow0dpti" path="res://assets/buttons/Main_Menu_Button_On_Click_New_Canvas_Size.png" id="12_jqkcq"]
 [ext_resource type="AudioStream" uid="uid://n11g0qom4w2x" path="res://assets/sounds/melee sounds/sword sound.wav" id="15_ahvwn"]
 [ext_resource type="AudioStream" uid="uid://bigyyyyn6konw" path="res://assets/sounds/melee sounds/melee sound.wav" id="16_jqkcq"]
+[ext_resource type="AudioStream" uid="uid://cjvg3jkufi3kw" path="res://assets/sounds/click_sound_1.mp3" id="17_jqkcq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gtai5"]
 atlas = ExtResource("2_sn6g4")
@@ -469,6 +470,11 @@ bus = &"SFX"
 [node name="SwordSound2" type="AudioStreamPlayer2D" parent="."]
 process_mode = 3
 stream = ExtResource("16_jqkcq")
+bus = &"SFX"
+
+[node name="ClickSound" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
+stream = ExtResource("17_jqkcq")
 bus = &"SFX"
 
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="VBoxContainer/PlayButton" method="_on_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://df1ymeh7kbn6q"]
+[gd_scene load_steps=18 format=3 uid="uid://df1ymeh7kbn6q"]
 
 [ext_resource type="Script" uid="uid://b8veoxcmbw0wc" path="res://scripts/deathscreen/deathscreen.gd" id="1_61vww"]
 [ext_resource type="Theme" uid="uid://b2ftdon0s262d" path="res://stats_display_theme.tres" id="2_2tdkb"]
@@ -9,6 +9,7 @@
 [ext_resource type="FontFile" uid="uid://lnwkc2w8ptcg" path="res://assets/font/Eagle_Lake/EagleLake-Regular.ttf" id="6_sp2op"]
 [ext_resource type="PackedScene" uid="uid://cpnywmo70ieol" path="res://scenes/components/StatsDisplay.tscn" id="7_exojw"]
 [ext_resource type="AudioStream" uid="uid://dv2iptvuwts3w" path="res://assets/sounds/game_over_bad_chest.wav" id="8_esdwi"]
+[ext_resource type="AudioStream" uid="uid://cjvg3jkufi3kw" path="res://assets/sounds/click_sound_1.mp3" id="10_t037i"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_27ccj"]
 atlas = ExtResource("6_s586m")
@@ -143,6 +144,11 @@ vertical_alignment = 1
 stream = ExtResource("8_esdwi")
 autoplay = true
 bus = &"Music"
+
+[node name="ClickSound" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
+stream = ExtResource("10_t037i")
+bus = &"SFX"
 
 [connection signal="pressed" from="Control/TextureButton" to="Control/TextureButton" method="_on_pressed"]
 [connection signal="animation_finished" from="Control/TextureButton/AnimatedSprite2D" to="Control/TextureButton" method="_on_animated_sprite_2d_animation_finished"]

@@ -60,13 +60,16 @@ func change_state(new_state: EnemyState):
 		EnemyState.ATTACK:
 			attack()
 		EnemyState.DEAD:
-			die()
+			death()
 	
 func take_damage(amount: int, is_crit: bool):
 	show_damage(amount, is_crit)
 	health.update_health(-amount)
-
+	
 func die():
+	change_state(EnemyState.DEAD)
+	
+func death():
 	Global.kills += 1
 	# Signals the parent that he is killed
 	# Important for the max spawn amount of a "spawner-enemy"

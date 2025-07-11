@@ -1,6 +1,8 @@
 extends "res://scripts/enemies/enemy_base.gd"
 
 @onready var summon_circle: Sprite2D = $SummonCircle
+@onready var shaman_death: AudioStreamPlayer2D = $ShamanDeath
+@onready var shaman_attack: AudioStreamPlayer2D = $ShamanAttack
 
 var enemy_scenes = {}
 var enemy_resources  = {}
@@ -54,6 +56,7 @@ func attack():
 	#enemy_animations.play("attack")
 	attack_cooldown_timer = get_stat("attack_cooldown")
 	enemy_animations.play("summon")
+	shaman_attack.play()
 	summon_circle.show()
 	await enemy_animations.animation_finished
 	for i in range(spawn_amount):
@@ -113,3 +116,22 @@ func move_towards_player(_delta: float, distance_to_player: float):
 
 func decrease_spawned_enemy_amount():
 	amount_enemies_spawned = max(amount_enemies_spawned - 1, 0)
+
+func die():
+	change_state(EnemyState.DEAD)
+	
+func death():
+	Global.kills += 1
+	# Signals the parent that he is killed
+	# Important for the max spawn amount of a "spawner-enemy"
+	if is_spawned_by_other_entity == true:
+		if enemy_parent != null:
+			enemy_parent.decrease_spawned_enemy_amount()
+		else:
+			pass
+	summon_circle.visible = false
+	shaman_death.play()
+	enemy_animations.play("death")
+	await enemy_animations.animation_finished
+	Global.ProgressManager.update_level_progress()
+	queue_free()

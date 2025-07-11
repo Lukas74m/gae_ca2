@@ -1,5 +1,7 @@
 extends TextureButton
 @onready var BackButton: AnimatedSprite2D = $AnimatedSprite2D
+@onready var click_sound: AudioStreamPlayer2D = $"../ClickSound"
+
 var back_to_main_menu_after_animation
 
 
@@ -10,6 +12,7 @@ func _ready() -> void:
 	back_to_main_menu_after_animation = false
 
 func _on_pressed() -> void:
+	click_sound.play()
 	BackButton.visible = true
 	BackButton.play("click")
 	back_to_main_menu_after_animation = true

@@ -1,5 +1,7 @@
 extends TextureButton
 @onready var deathscreen_button: AnimatedSprite2D = $AnimatedSprite2D
+@onready var click_sound: AudioStreamPlayer2D = $"../../ClickSound"
+
 var start_menu_after_animation
 
 # Called when the node enters the scene tree for the first time.
@@ -9,6 +11,7 @@ func _ready() -> void:
 	start_menu_after_animation = false
 
 func _on_pressed() -> void:
+	click_sound.play()
 	deathscreen_button.visible = true
 	deathscreen_button.play("click")
 	start_menu_after_animation = true

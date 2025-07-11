@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bt6ktfyl3ngn7"
+path="res://.godot/imported/shaman.wav-1915d37fe7cb00a7b9949338ea5622d2.sample"
+
+[deps]
+
+source_file="res://assets/sounds/enemy attacks/shaman.wav"
+dest_files=["res://.godot/imported/shaman.wav-1915d37fe7cb00a7b9949338ea5622d2.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

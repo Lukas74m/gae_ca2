@@ -5,6 +5,8 @@ extends "res://scripts/enemies/enemy_base.gd"
 
 @onready var bow: AnimatedSprite2D = $Bow
 @onready var enemy_center = $EnemyCenter
+@onready var archer_attack: AudioStreamPlayer2D = $ArcherAttack
+@onready var archer_death: AudioStreamPlayer2D = $ArcherDeath
 
 #signal fireball_start
 
@@ -44,6 +46,7 @@ func attack():
 	#await enemy_animations.animation_finished
 	can_fireball = false
 	await bow.animation_finished
+	archer_attack.play()
 	var arrow = arrow_scene.instantiate()
 	arrow.global_position = enemy_center.global_position 
 	arrow.initialize(
@@ -68,6 +71,7 @@ func _on_attack_frame_changed():
 			#Global.player.take_damage(get_stat("attack_damage"))
 	pass 
 
+
 # Overrides enemy_base.gd
 func get_center_position():
 	return center.global_position
@@ -89,6 +93,25 @@ func move_towards_player(_delta: float, distance_to_player: float):
 		enemy_animations.play("idle")
 		velocity = Vector2.ZERO
 
+func die():
+	bow.stop()
+	bow.visible = false
+	change_state(EnemyState.DEAD)
+	
+func death():
+	Global.kills += 1
+	# Signals the parent that he is killed
+	# Important for the max spawn amount of a "spawner-enemy"
+	if is_spawned_by_other_entity == true:
+		if enemy_parent != null:
+			enemy_parent.decrease_spawned_enemy_amount()
+		else:
+			pass
+	enemy_animations.play("death")
+	archer_death.play()
+	await enemy_animations.animation_finished
+	Global.ProgressManager.update_level_progress()
+	queue_free()
 
 func _on_bow_animation_finished() -> void:
 	bow.visible = false

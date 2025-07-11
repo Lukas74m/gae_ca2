@@ -3,6 +3,12 @@ class_name Boss
 
 @onready var boss_animations: AnimatedSprite2D = $EnemyAnimations
 @onready var boss_with_orc_animations: AnimatedSprite2D = $Boss_with_orc_animations
+@onready var boss_melee: AudioStreamPlayer2D = $BossMelee
+@onready var boss_dash: AudioStreamPlayer2D = $BossDash
+@onready var boss_throw: AudioStreamPlayer2D = $BossThrow
+@onready var boss_death: AudioStreamPlayer2D = $BossDeath
+
+
 
 @onready var entourage_timer = $Spawn_entourage_timer
 @export var projectile_scene = preload("res://scenes/projectiles/boss_projectile.tscn")
@@ -136,6 +142,7 @@ func start_dash():
 
 func perform_dash(delta: float):
 	play_boss__animation("dash")
+	boss_dash.play()
 	velocity = dash_direction * stats.get_stat("dash_speed")
 	dash_time_left -= delta
 	# If boss connects on player, player gets damage
@@ -147,6 +154,7 @@ func perform_dash(delta: float):
 
 func perform_ranged_attack(_distance_to_player: float):
 	play_boss__animation("range_attack")
+	boss_throw.play()
 	# Aim and throw projectile at player
 	throw_projectile_at_player()
 	# Set cooldown and return to walking
@@ -160,6 +168,7 @@ func perform_ranged_charge():
 
 func perform_melee_charge():
 	play_boss__animation("melee_attack")
+	boss_melee.play()
 	charging_melee = true
 	melee_charge_timer = stats.get_stat("melee_charge_cooldown")
 
@@ -233,6 +242,7 @@ func die():
 	boss_current_state = BossState.DEAD
 	# Add boss death effects here (screen shake, special loot, etc.)
 	boss_animations.play("death")
+	boss_death.play()
 	await boss_animations.animation_finished
 	super.die()
 	

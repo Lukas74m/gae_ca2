@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ctkne8dtnhxr4"
+path="res://.godot/imported/melee_death.wav-b0a77ee733534af324c0826c0b31dfc0.sample"
+
+[deps]
+
+source_file="res://assets/sounds/enemy death/melee_death.wav"
+dest_files=["res://.godot/imported/melee_death.wav-b0a77ee733534af324c0826c0b31dfc0.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
