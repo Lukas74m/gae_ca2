@@ -190,7 +190,7 @@ func _on_health_died() -> void:
 	Global.enemies_alive = 0
 	player_sprite.play("death")
 	await player_sprite.animation_finished
-	get_tree().change_scene_to_file("res://scenes/deathscreen/deathscreen.tscn")
+	Global.go_to_deathscreen()
 	
 func spawn_dash_ghost():
 	var ghost = dash_ghost_scene.instantiate() as Sprite2D
