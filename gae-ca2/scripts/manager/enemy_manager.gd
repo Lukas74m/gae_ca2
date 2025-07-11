@@ -79,7 +79,7 @@ func get_increase_amount():
 	return increase_amount
 
 func update_increase_amount():
-	increase_amount += 0.5
+	increase_amount += 0.3
 
 func spawn_around_player(enemy_object):
 	var offset = Vector2(randf_range(-100, 100), randf_range(-100, 100))

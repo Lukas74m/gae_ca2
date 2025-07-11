@@ -65,7 +65,7 @@ _data = {
 
 [sub_resource type="LabelSettings" id="LabelSettings_6nrkl"]
 outline_size = 3
-outline_color = Color(0.817706, 0.0251661, 0.0627186, 1)
+outline_color = Color(0.0484297, 0.350052, 1, 1)
 
 [node name="DamagePopUp" type="Node2D"]
 scale = Vector2(0.3, 0.3)

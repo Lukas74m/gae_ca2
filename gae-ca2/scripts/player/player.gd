@@ -222,6 +222,6 @@ func show_damage(amount: int):
 	var old_settings = popup.get_node("Label").label_settings
 	var new_settings = old_settings.duplicate()
 	new_settings.font_size = 18
-	new_settings.outline_color = Color.DODGER_BLUE
+	new_settings.outline_color = Color.FIREBRICK
 	popup.get_node("Label").label_settings = new_settings
 	get_tree().current_scene.add_child(popup)
