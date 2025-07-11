@@ -68,7 +68,7 @@ func on_level_up():
 			#var boss_weakend = is_enough_artefacts_collected()
 			enemy_manager.spawn_boss(current_level_dict["level_boss_name"], get_chapter())
 	else:
-		printerr("No more levels!")
+		get_tree().change_scene_to_file("res://scenes/mainMenu/Main_Menu.tscn")
 
 # Saves the information about the new level localy
 func load_level_information():

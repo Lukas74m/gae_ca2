@@ -238,9 +238,12 @@ func die():
 func get_center_position():
 	return center.global_position
 
-# Optional
+# Optional: Spawns enemies
 func spawn_entourage():
 	for i in range(3):
+		# There shouldn't be more than 10 enemies at the same time on the field
+		while Global.enemies_alive >= 10:
+			await get_tree().create_timer(0.1).timeout
 		if amount_enemies_spawned < MAX_SPAWN_AMOUNT:
 			# Enemies spawn with a small offset from each other
 			var offset = Vector2(
@@ -253,10 +256,10 @@ func spawn_entourage():
 			pass
 
 
-# Optional	
+# Optional 
 func spawn_enemy_at(enemy_name, pos: Vector2):
 	if enemy_name == null:
-		printerr("Keine Enemy Scene zugewiesen!")
+		printerr("No enemy scene!")
 		return
 	
 	if enemy_name in enemy_scenes:
@@ -267,6 +270,7 @@ func spawn_enemy_at(enemy_name, pos: Vector2):
 		enemy.is_spawned_by_other_entity = true
 		enemy.enemy_parent = self
 		Global.ProgressManager.additional_enemies += 1
+		Global.enemies_alive += 1
 	else:
 		printerr("No such enemy ", enemy_name)
 		print("Available keys: ", enemy_scenes.keys())

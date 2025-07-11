@@ -21,7 +21,7 @@ func set_labels(information: Dictionary):
 			#child.queue_free()
 	title_label.text = title
 	wave_size_info.text = wave_enemy_information
-	task_size_info.text = wave_artefacts_information
+	task_size_info.text = str(Global.enemies_alive) #wave_artefacts_information
 	## Add a new stats 
 	#for stat_name in stats.keys():
 		#var value = stats[stat_name]

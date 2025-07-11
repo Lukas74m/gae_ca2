@@ -68,6 +68,7 @@ func take_damage(amount: int, is_crit: bool):
 
 func die():
 	Global.kills += 1
+	Global.enemies_alive -= 1
 	# Signals the parent that he is killed
 	# Important for the max spawn amount of a "spawner-enemy"
 	if is_spawned_by_other_entity == true:

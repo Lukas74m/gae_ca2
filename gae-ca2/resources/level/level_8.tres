@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_jv8xk")
-current_level = 0
+current_level = 8
 level_wave_size = 1
 enemy_composition = {}
 spawn_frequency = 0

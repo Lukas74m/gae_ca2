@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://df1ymeh7kbn6q"]
+[gd_scene load_steps=17 format=3 uid="uid://b7o18v7tpnuu0"]
 
 [ext_resource type="Script" uid="uid://b8veoxcmbw0wc" path="res://scripts/deathscreen/deathscreen.gd" id="1_61vww"]
 [ext_resource type="Theme" uid="uid://b2ftdon0s262d" path="res://stats_display_theme.tres" id="2_2tdkb"]
