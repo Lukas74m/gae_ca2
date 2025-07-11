@@ -13,6 +13,15 @@ const START_DISTANCE: float = 20.0
 const DASH_DURATION: float = 0.2
 const DASH_COOLDOWN: float = 1.0
 
+@onready var sword_sound_1: AudioStreamPlayer2D = $SwordSound1
+@onready var sword_sound_2: AudioStreamPlayer2D = $SwordSound2
+@onready var sword_sound_3: AudioStreamPlayer2D = $SwordSound3
+@onready var sword_sounds = [
+	sword_sound_2,
+	sword_sound_3
+]
+@onready var dash: AudioStreamPlayer2D = $Dash
+@onready var fire_ball_sound: AudioStreamPlayer2D = $FireBallSound
 @onready var fireball_scene = preload("res://scenes/projectiles/Fire_Ball.tscn")
 @onready var stats = $PlayerStats
 @onready var attack_area: Area2D = $Area2D
@@ -116,6 +125,8 @@ func check_movement_input() -> void:
 # If true, do damage to the enemy
 func attack():
 	emit_signal("attack_start")
+	var random_index = randi() % sword_sounds.size()
+	sword_sounds[random_index].play()
 	for body in attack_area.get_overlapping_bodies():
 		# Must be an enemy
 		if body.is_in_group("enemies"):
@@ -143,6 +154,7 @@ func is_facing(target_pos: Vector2) -> bool:
 func start_dash():
 	change_state(PlayerState.DASH)
 	emit_signal("dash_start")
+	dash.play()
 	dash_time_left = DASH_DURATION
 	dash_cooldown_left = DASH_COOLDOWN
 	dash_direction = (get_global_mouse_position() - player_center.global_position).normalized()
@@ -186,6 +198,7 @@ func heal_player(heal_percentage: float):
 
 func shoot_fireball():
 	emit_signal("fireball_start")
+	fire_ball_sound.play()
 	can_fireball = false
 	var fireball = fireball_scene.instantiate()
 	fireball.global_position = player_center.global_position 
