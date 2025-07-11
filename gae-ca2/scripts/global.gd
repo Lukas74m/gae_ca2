@@ -4,6 +4,7 @@ var player
 var ProgressManager
 var shop
 var camera
+var map_area
 
 var kills: int = 0:
 	set(value):

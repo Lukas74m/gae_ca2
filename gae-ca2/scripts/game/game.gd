@@ -7,6 +7,7 @@ extends Node2D
 @onready var player = $Player
 @onready var shop = $Shop
 @onready var camera = $Player/Camera2D
+@onready var map = $Map
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -16,6 +17,7 @@ func _ready() -> void:
 	Global.ProgressManager = progress_manager
 	Global.shop = shop
 	Global.camera = camera
+	Global.map_area = map
 	set_task_display()
 	game_timer.start()
 

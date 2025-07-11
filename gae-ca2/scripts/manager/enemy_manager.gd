@@ -78,9 +78,37 @@ func spawn_wave(enemy_composition, spawn_frequency):
 func get_increase_amount():
 	return increase_amount
 
+# Percentage by which enemies are buffed after each boss fight
 func update_increase_amount():
 	increase_amount += 0.3
 
+# Enemies spawn around player
 func spawn_around_player(enemy_object):
-	var offset = Vector2(randf_range(-100, 100), randf_range(-100, 100))
-	enemy_object.global_position = Global.player.get_center_position() + offset
+	var max_tries = 10
+	var spawn_pos: Vector2
+
+	for i in range(max_tries):
+		var offset = Vector2(randf_range(-100, 100), randf_range(-100, 100))
+		spawn_pos = Global.player.get_center_position() + offset
+		if is_inside_map(spawn_pos):
+			break
+
+	# Fallback auf Map-Mitte, falls 10 Versuche fehlschlagen
+	if not is_inside_map(spawn_pos):
+		spawn_pos = Vector2(0,0)
+	enemy_object.global_position = spawn_pos
+
+
+func is_inside_map(position: Vector2) -> bool:
+	var shape = Global.map_area.get_node("CollisionShape2D")
+	var rect_shape = shape.shape as RectangleShape2D
+	if rect_shape:
+		var shape_pos = shape.global_position
+		var extents = rect_shape.extents
+		var min = shape_pos - extents
+		var max = shape_pos + extents
+		return (
+			position.x >= min.x and position.x <= max.x and
+			position.y >= min.y and position.y <= max.y
+		)
+	return false

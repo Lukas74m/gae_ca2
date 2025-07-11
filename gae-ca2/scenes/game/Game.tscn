@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://dads2ywxohnu1"]
+[gd_scene load_steps=19 format=4 uid="uid://dads2ywxohnu1"]
 
 [ext_resource type="Script" uid="uid://bkhnbumjr1vsv" path="res://scripts/game/game.gd" id="1_m44fu"]
 [ext_resource type="Texture2D" uid="uid://djjmnhn7uw1i4" path="res://assets/dungeon tileset pack/0x72_DungeonTilesetII_v1.7 (1)/0x72_DungeonTilesetII_v1.7/atlas_floor-16x16.png" id="2_wnrko"]
@@ -376,6 +376,9 @@ physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_60iot")
 sources/2 = SubResource("TileSetAtlasSource_5xhyk")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gynul"]
+size = Vector2(1278, 1083)
+
 [node name="Game" type="Node2D"]
 script = ExtResource("1_m44fu")
 
@@ -425,5 +428,13 @@ process_mode = 3
 stream = ExtResource("13_60iot")
 autoplay = true
 bus = &"Music"
+
+[node name="Map" type="Area2D" parent="."]
+position = Vector2(-239, 44)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map"]
+position = Vector2(-614, -614.5)
+shape = SubResource("RectangleShape2D_gynul")
+debug_color = Color(0.96707, 0.182744, 0, 0.42)
 
 [connection signal="timeout" from="Gametimer" to="." method="_on_gametimer_timeout"]
