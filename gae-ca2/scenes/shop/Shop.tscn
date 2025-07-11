@@ -1,8 +1,9 @@
-[gd_scene load_steps=32 format=3 uid="uid://vcvbrmlgyiai"]
+[gd_scene load_steps=33 format=3 uid="uid://vcvbrmlgyiai"]
 
 [ext_resource type="Script" uid="uid://dxgytc8f7yu4" path="res://scripts/shop/shop.gd" id="1_rktij"]
 [ext_resource type="Texture2D" uid="uid://b7s3qvn1du15q" path="res://assets/rewards/Reward_with_Box_for_Buttons.png" id="2_srfm6"]
 [ext_resource type="Theme" uid="uid://e8sv42deghif" path="res://shop.tres" id="3_pe3u1"]
+[ext_resource type="FontFile" uid="uid://lnwkc2w8ptcg" path="res://assets/font/Eagle_Lake/EagleLake-Regular.ttf" id="3_rdw2s"]
 [ext_resource type="Texture2D" uid="uid://cel53uqprebug" path="res://assets/rewards/Reward_Button_v.2.png" id="3_xjfbs"]
 [ext_resource type="Script" uid="uid://bbaiogxgg4j8g" path="res://scripts/shop/option_1_button.gd" id="5_6yl83"]
 [ext_resource type="Texture2D" uid="uid://ccna8dtf71i5y" path="res://assets/rewards/Reward_Button_On_Click_Animation_v.2.png" id="6_rdw2s"]
@@ -194,6 +195,7 @@ offset_right = 153.0
 offset_bottom = 86.0
 grow_horizontal = 2
 size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_rdw2s")
 text = "Wähle eine Upgrade!"
 label_settings = SubResource("LabelSettings_pe3u1")
 
@@ -223,6 +225,7 @@ offset_right = -7.50491
 offset_bottom = -128.833
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_rdw2s")
 text = "ahudvahdbjadaj"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -247,6 +250,7 @@ offset_right = -7.67163
 offset_bottom = 84.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_rdw2s")
 label_settings = SubResource("LabelSettings_6yl83")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -277,6 +281,7 @@ offset_right = -7.50491
 offset_bottom = -128.833
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_rdw2s")
 text = "ahudvahdbjadaj"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -301,6 +306,7 @@ offset_right = -7.67163
 offset_bottom = 84.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_rdw2s")
 label_settings = SubResource("LabelSettings_6yl83")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -331,6 +337,7 @@ offset_right = -7.50491
 offset_bottom = -128.833
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_rdw2s")
 text = "ahudvahdbjadaj"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -355,6 +362,7 @@ offset_right = -7.67163
 offset_bottom = 84.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_rdw2s")
 label_settings = SubResource("LabelSettings_6yl83")
 horizontal_alignment = 1
 vertical_alignment = 1

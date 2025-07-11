@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://byi3e8vfwfdhg"]
+[gd_scene load_steps=18 format=3 uid="uid://byi3e8vfwfdhg"]
 
 [ext_resource type="Script" uid="uid://bijuh5uq5kfoe" path="res://scripts/components/task_display.gd" id="1_5xplb"]
 [ext_resource type="Theme" uid="uid://dviluyd0ea27u" path="res://task_display_theme.tres" id="1_r04c6"]
 [ext_resource type="Texture2D" uid="uid://c06vngo44emjn" path="res://assets/to_do_Leiste/Test_To-Do_Tasks.png" id="3_ff0c8"]
 [ext_resource type="PackedScene" uid="uid://dxyuukgy0vofe" path="res://scenes/components/ProgressBar.tscn" id="3_tsd5v"]
 [ext_resource type="Texture2D" uid="uid://dgfoqdmatevgv" path="res://assets/to_do_Leiste/Test_To-Do_Tasks_Animation.png" id="4_xd83a"]
+[ext_resource type="FontFile" uid="uid://lnwkc2w8ptcg" path="res://assets/font/Eagle_Lake/EagleLake-Regular.ttf" id="5_xd83a"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jhncn"]
 atlas = ExtResource("3_ff0c8")
@@ -118,6 +119,7 @@ alignment = 1
 [node name="Title" type="Label" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("5_xd83a")
 text = "Chapter 1: Level 1"
 label_settings = SubResource("LabelSettings_5xplb")
 horizontal_alignment = 1
@@ -150,6 +152,7 @@ offset_left = -221.0
 offset_top = 37.0
 offset_right = -78.0
 offset_bottom = 60.0
+theme_override_fonts/font = ExtResource("5_xd83a")
 text = "Besiege 3 Gegner "
 
 [node name="Task_size_info" type="Label" parent="CanvasLayer/Control"]
@@ -159,4 +162,5 @@ offset_left = 72.0
 offset_top = 75.0
 offset_right = 227.0
 offset_bottom = 98.0
+theme_override_fonts/font = ExtResource("5_xd83a")
 text = "Besiege 3 artefacten gesammelt"
