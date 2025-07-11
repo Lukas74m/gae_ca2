@@ -13,7 +13,7 @@ func update_display(information: Dictionary):
 
 func set_labels(information: Dictionary):
 	var wave_enemy_information = str(information["killed_wave_enemies"]) + " von " + str(information["current_wave_size"]) + " Gegnern elemeniert"
-	var wave_artefacts_information = str(information["current_artefact_amount"]) + " von " + str(information["chapter_artefact_amount"]) + " Artefakten gesammelt"
+	var _wave_artefacts_information = str(information["current_artefact_amount"]) + " von " + str(information["chapter_artefact_amount"]) + " Artefakten gesammelt"
 	var title = "Chapter " + str(information["chapter"]) + " : Level " + str(information["level"]) 
 	# Delete all previous entries (except title)
 	#for child in vbox_container.get_children():

@@ -97,7 +97,7 @@ func update_level_progress():
 			enemy_manager.update_increase_amount()
 			
 		else:
-			Global.player.heal_player(0.50)
+			Global.player.heal_player(0.75)
 			
 		await Global.shop.show_shop()
 		on_level_up()
@@ -123,7 +123,7 @@ func next_chapter():
 # Checks if the next lvel is a boss level
 # Every forth level is a boss level
 func is_next_boss_level():
-	return (current_level_dict["current_level"] + 1) % 4 == 0
+	return (current_level_dict["current_level"] + 1) % 4 == 0 or (current_level_dict["current_level"] + 1) == 9
 
 func is_boss_level():
 	return current_level_dict["boss_level"]
