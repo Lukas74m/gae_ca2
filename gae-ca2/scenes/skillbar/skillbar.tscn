@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://m6ps6lrboft0"]
+[gd_scene load_steps=56 format=3 uid="uid://m6ps6lrboft0"]
 
 [ext_resource type="Script" uid="uid://b6nha1ml76tu4" path="res://scripts/skillbar/skillbar.gd" id="1_0h48n"]
 [ext_resource type="Texture2D" uid="uid://dcuo1sfe626y0" path="res://assets/skillleiste/Attack_Icon_On_Cooldown.png" id="2_31c5q"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://kpi0a6nk4ai" path="res://assets/skillleiste/Dash_Icon.png" id="5_hvuuc"]
 [ext_resource type="Texture2D" uid="uid://dffc8tvxym255" path="res://assets/skillleiste/Magic_Icon_On_Cooldown.png" id="6_q6vhr"]
 [ext_resource type="Texture2D" uid="uid://cd7qwnrt0512p" path="res://assets/skillleiste/Magic_Icon.png" id="7_f34wy"]
+[ext_resource type="FontFile" uid="uid://lnwkc2w8ptcg" path="res://assets/font/Eagle_Lake/EagleLake-Regular.ttf" id="8_f34wy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j0v64"]
 atlas = ExtResource("2_31c5q")
@@ -387,6 +388,7 @@ offset_bottom = 2.0
 scale = Vector2(0.5, 0.5)
 size_flags_horizontal = 4
 size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("8_f34wy")
 text = "Q"
 
 [node name="Label2" type="Label" parent="."]
@@ -395,6 +397,7 @@ offset_top = -19.0
 offset_right = 34.0
 offset_bottom = 4.0
 scale = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("8_f34wy")
 text = "W"
 
 [node name="Label3" type="Label" parent="."]
@@ -403,6 +406,7 @@ offset_top = -20.0
 offset_right = 67.0
 offset_bottom = 3.0
 scale = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("8_f34wy")
 text = "E"
 
 [connection signal="animation_finished" from="HBoxContainer/Attack" to="." method="_on_attack_skill_animation_finished"]

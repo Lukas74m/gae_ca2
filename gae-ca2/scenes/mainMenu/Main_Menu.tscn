@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://cxx3el2lce3d2"]
+[gd_scene load_steps=45 format=3 uid="uid://cxx3el2lce3d2"]
 
 [ext_resource type="Texture2D" uid="uid://cmaw3riheloc6" path="res://assets/main_menu/Main_Menu_Background.png" id="1_j6enk"]
 [ext_resource type="Texture2D" uid="uid://bhnw8sh87bm4" path="res://assets/main_menu/Main_Menu_Button_v.2.png" id="1_lt47h"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://8q8wxq3n0obc" path="res://scripts/mainMenu/play_button.gd" id="3_m2m30"]
 [ext_resource type="Texture2D" uid="uid://cqwnrikjtfm4d" path="res://assets/main_menu/Main_Menu_Button_on_Click_v.2.png" id="4_aoxig"]
 [ext_resource type="Texture2D" uid="uid://280ymngawsc4" path="res://assets/main_menu/Main_Menu_Game_Instructions.png" id="4_sn6g4"]
+[ext_resource type="FontFile" uid="uid://lnwkc2w8ptcg" path="res://assets/font/Eagle_Lake/EagleLake-Regular.ttf" id="5_jqkcq"]
 [ext_resource type="Texture2D" uid="uid://baq4btag2v3ey" path="res://assets/main_menu/Attack_Icon.png" id="5_vo403"]
 [ext_resource type="Script" uid="uid://brm31nfjnr504" path="res://scripts/mainMenu/sound_button.gd" id="5_y210c"]
 [ext_resource type="Script" uid="uid://bs8us8popi4rr" path="res://scripts/mainMenu/help_button.gd" id="6_bh2hf"]
@@ -235,11 +236,12 @@ position = Vector2(573, 273)
 texture = ExtResource("4_sn6g4")
 
 [node name="Label" type="Label" parent="MainMenuGameInstructions"]
-offset_left = 242.0
-offset_top = -111.0
-offset_right = 519.0
-offset_bottom = 165.0
-theme_override_font_sizes/font_size = 18
+offset_left = 226.0
+offset_top = -172.0
+offset_right = 503.0
+offset_bottom = 104.0
+theme_override_fonts/font = ExtResource("5_jqkcq")
+theme_override_font_sizes/font_size = 16
 text = "-Überlebe gegen 
 die Horden von Orks
 
@@ -249,6 +251,19 @@ um die Gegner zu besiegen
 -Nach jeder Welle kannst du 
 deinen Helden verbessern
 um stärker zu werden"
+
+[node name="Label2" type="Label" parent="MainMenuGameInstructions"]
+offset_left = 227.0
+offset_top = 125.0
+offset_right = 540.0
+offset_bottom = 330.0
+theme_override_fonts/font = ExtResource("5_jqkcq")
+theme_override_font_sizes/font_size = 13
+text = "Credits:
+Alina Petek - Code, Animationen & Audio
+Sebastian Stinner - Code, Animationen
+Leon Zeiger - Code
+Lukas Wirch - Code"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 anchors_preset = 8
@@ -276,6 +291,7 @@ offset_left = -6.0
 offset_top = -12.5
 offset_right = 34.0
 offset_bottom = 10.5
+theme_override_fonts/font = ExtResource("5_jqkcq")
 text = "Q"
 
 [node name="TextureRect2" type="TextureRect" parent="HBoxContainer"]
@@ -288,6 +304,7 @@ offset_left = -6.5
 offset_top = -12.0
 offset_right = 33.5
 offset_bottom = 11.0
+theme_override_fonts/font = ExtResource("5_jqkcq")
 text = "W"
 
 [node name="TextureRect3" type="TextureRect" parent="HBoxContainer"]
@@ -300,6 +317,7 @@ offset_left = -2.5
 offset_top = -12.0
 offset_right = 37.5
 offset_bottom = 11.0
+theme_override_fonts/font = ExtResource("5_jqkcq")
 text = "E"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -343,6 +361,7 @@ offset_right = 28.5
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_jqkcq")
 theme_override_font_sizes/font_size = 25
 text = "Spielen"
 horizontal_alignment = 1
@@ -370,6 +389,7 @@ offset_right = -64.0
 offset_bottom = 3.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_jqkcq")
 theme_override_font_sizes/font_size = 25
 text = "Einstellungen
 "
@@ -425,6 +445,7 @@ offset_right = -111.0
 offset_bottom = -36.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_jqkcq")
 theme_override_font_sizes/font_size = 25
 text = "Beenden"
 horizontal_alignment = 1
@@ -435,15 +456,18 @@ offset_left = 186.0
 offset_top = 565.0
 offset_right = 288.0
 offset_bottom = 588.0
+theme_override_fonts/font = ExtResource("5_jqkcq")
 theme_override_font_sizes/font_size = 14
-text = "Version - Alpha"
+text = "Version - 1.0"
 
 [node name="Label2" type="Label" parent="."]
-offset_left = 445.0
-offset_top = 11.0
-offset_right = 732.0
-offset_bottom = 53.0
+offset_left = 427.0
+offset_top = 9.0
+offset_right = 757.0
+offset_bottom = 59.0
 theme_override_colors/font_color = Color(0.399475, 0.244376, 0.0245967, 1)
+theme_override_colors/font_shadow_color = Color(0.288548, 0.139622, 0.00131253, 1)
+theme_override_fonts/font = ExtResource("5_jqkcq")
 theme_override_font_sizes/font_size = 30
 text = "Brawl of the Depths"
 

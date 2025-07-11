@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://b855kpvkugs0f"]
+[gd_scene load_steps=12 format=3 uid="uid://b855kpvkugs0f"]
 
 [ext_resource type="Script" uid="uid://hi6auvp544be" path="res://scripts/helpSettings/help_button.gd" id="1_ashw5"]
 [ext_resource type="Texture2D" uid="uid://wkwoejl3hpar" path="res://assets/buttons/Test_Button_On_Click.png" id="1_lbjv5"]
 [ext_resource type="Texture2D" uid="uid://rwdm74nqhelq" path="res://assets/buttons/Test_Button.png" id="1_n5tbk"]
 [ext_resource type="Texture2D" uid="uid://drsj06k5do28m" path="res://assets/buttons/Test_Button_Hover.png" id="2_jw8kq"]
+[ext_resource type="FontFile" uid="uid://lnwkc2w8ptcg" path="res://assets/font/Eagle_Lake/EagleLake-Regular.ttf" id="5_jw8kq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ashw5"]
 atlas = ExtResource("1_lbjv5")
@@ -70,6 +71,7 @@ offset_left = 25.0
 offset_top = 34.0
 offset_right = 79.0
 offset_bottom = 57.0
+theme_override_fonts/font = ExtResource("5_jw8kq")
 text = "Zurück"
 horizontal_alignment = 1
 vertical_alignment = 1
