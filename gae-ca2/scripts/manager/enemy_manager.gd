@@ -85,7 +85,7 @@ func get_increase_amount():
 
 # Percentage by which enemies are buffed after each boss fight
 func update_increase_amount():
-	increase_amount += 0.3
+	increase_amount += 0.1
 
 # Enemies spawn around player
 func spawn_around_player(enemy_object):
@@ -98,12 +98,12 @@ func spawn_around_player(enemy_object):
 		if is_inside_map(spawn_pos):
 			break
 
-	# Fallback auf Map-Mitte, falls 10 Versuche fehlschlagen
+	# If always outside of map, set point manually
 	if not is_inside_map(spawn_pos):
 		spawn_pos = Vector2(0,0)
 	enemy_object.global_position = spawn_pos
 
-
+# Checks if entity is inside the map
 func is_inside_map(position: Vector2) -> bool:
 	var shape = Global.map_area.get_node("CollisionShape2D")
 	var rect_shape = shape.shape as RectangleShape2D

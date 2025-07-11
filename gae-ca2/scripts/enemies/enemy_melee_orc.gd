@@ -38,3 +38,4 @@ func move_towards_player(_delta: float, distance_to_player: float):
 		enemy_animations.flip_h = Global.player.get_center_position().x < global_position.x
 		enemy_animations.play("idle")
 		velocity = Vector2.ZERO
+		

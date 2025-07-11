@@ -93,11 +93,9 @@ func update_level_progress():
 		# Heal more before a boss wave
 		if is_next_boss_level():
 			Global.player.heal_player(1)
-		elif is_boss_level():
 			enemy_manager.update_increase_amount()
 			
-		else:
-			Global.player.heal_player(0.75)
+		Global.player.heal_player(0.75)
 			
 		await Global.shop.show_shop()
 		on_level_up()

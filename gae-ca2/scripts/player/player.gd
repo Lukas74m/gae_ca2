@@ -178,6 +178,7 @@ func get_center_position() -> Vector2:
 # Player dies
 func _on_health_died() -> void:
 	change_state(PlayerState.DEAD)
+	Global.enemies_alive = 0
 	player_sprite.play("death")
 	await player_sprite.animation_finished
 	get_tree().change_scene_to_file("res://scenes/deathscreen/Deathscreen.tscn")
