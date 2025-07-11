@@ -178,7 +178,8 @@ func get_center_position() -> Vector2:
 # Player dies
 func _on_health_died() -> void:
 	change_state(PlayerState.DEAD)
-	await get_tree().create_timer(1.2).timeout
+	player_sprite.play("death")
+	await player_sprite.animation_finished
 	get_tree().change_scene_to_file("res://scenes/deathscreen/Deathscreen.tscn")
 
 func spawn_dash_ghost():
