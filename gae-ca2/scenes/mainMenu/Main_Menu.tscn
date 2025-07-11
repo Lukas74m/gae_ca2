@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://cxx3el2lce3d2"]
+[gd_scene load_steps=44 format=3 uid="uid://cxx3el2lce3d2"]
 
 [ext_resource type="Texture2D" uid="uid://cmaw3riheloc6" path="res://assets/main_menu/Main_Menu_Background.png" id="1_j6enk"]
 [ext_resource type="Texture2D" uid="uid://bhnw8sh87bm4" path="res://assets/main_menu/Main_Menu_Button_v.2.png" id="1_lt47h"]
@@ -14,6 +14,8 @@
 [ext_resource type="Texture2D" uid="uid://chg5qchwwtgne" path="res://assets/main_menu/Dash_Icon.png" id="6_wp84g"]
 [ext_resource type="Texture2D" uid="uid://s0rwd7c6eyo8" path="res://assets/main_menu/Magic_Icon.png" id="7_ahvwn"]
 [ext_resource type="Script" uid="uid://bxq12qv6mnh6b" path="res://scripts/mainMenu/quit_button.gd" id="7_lt47h"]
+[ext_resource type="AudioStream" uid="uid://n11g0qom4w2x" path="res://assets/sounds/melee sounds/sword sound.wav" id="15_ahvwn"]
+[ext_resource type="AudioStream" uid="uid://bigyyyyn6konw" path="res://assets/sounds/melee sounds/melee sound.wav" id="16_jqkcq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gtai5"]
 atlas = ExtResource("2_sn6g4")
@@ -444,6 +446,16 @@ offset_bottom = 53.0
 theme_override_colors/font_color = Color(0.399475, 0.244376, 0.0245967, 1)
 theme_override_font_sizes/font_size = 30
 text = "Brawl of the Depths"
+
+[node name="SwordSound1" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
+stream = ExtResource("15_ahvwn")
+bus = &"SFX"
+
+[node name="SwordSound2" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
+stream = ExtResource("16_jqkcq")
+bus = &"SFX"
 
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="VBoxContainer/PlayButton" method="_on_pressed"]
 [connection signal="ready" from="VBoxContainer/PlayButton" to="VBoxContainer/PlayButton" method="_on_ready"]
