@@ -88,7 +88,7 @@ func update_level_progress():
 	if current_level_kill_amount >= current_level_dict["level_wave_size"] + additional_enemies:
 		current_level_kill_amount = 0
 		additional_enemies = 0
-		
+		await get_tree().create_timer(0.5).timeout
 		# Heal the player after each wave
 		# Heal more before a boss wave
 		if is_next_boss_level():
@@ -114,8 +114,8 @@ func is_enough_artefacts_collected():
 # Sets new stats according to the new chapter
 # Doesn't care if player connected enough artefacts previously
 func next_chapter():
-	var next_chapter = current_level_dict["current_chapter"] + 1
-	var chapter = "chapter_" + str(next_chapter)
+	var next_chapter_number = current_level_dict["current_chapter"] + 1
+	var chapter = "chapter_" + str(next_chapter_number)
 	var chapters_dictionary = artefact_resource.chapters_information
 	
 	chapter_artefact_amount = chapters_dictionary[chapter]

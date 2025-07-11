@@ -19,7 +19,7 @@ func _physics_process(delta):
 	position += direction * speed * delta
 
 # Overwritten by subclasses
-func _on_body_entered(body: Node2D) -> void:
+func _on_body_entered(_body: Node2D) -> void:
 	pass
 
 # Overwritten by subclasses

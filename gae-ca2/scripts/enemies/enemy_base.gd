@@ -1,14 +1,12 @@
 extends CharacterBody2D
 class_name Enemy
 
-signal died
-signal attacked(player)
-
 enum EnemyState { WALK, ATTACK, DEAD }
 var current_state: EnemyState = EnemyState.WALK
 var is_spawned_by_other_entity = false
 var enemy_parent = null
 
+@onready var damage_popup = preload("res://scenes/components/DamagePopUp.tscn")
 @export var enemy_resource: EnemyResource
 @onready var health = $Health
 @onready var stats = $EnemyStats
@@ -49,7 +47,7 @@ func _physics_process(delta):
 			velocity = Vector2.ZERO
 	move_and_slide()
 			
-func move_towards_player(delta: float, distance_to_player: float):
+func move_towards_player(_delta: float, _distance_to_player: float):
 	pass
 	
 func change_state(new_state: EnemyState):
@@ -64,7 +62,8 @@ func change_state(new_state: EnemyState):
 		EnemyState.DEAD:
 			die()
 	
-func take_damage(amount: int):
+func take_damage(amount: int, is_crit: bool):
+	show_damage(amount, is_crit)
 	health.update_health(-amount)
 
 func die():
@@ -102,3 +101,17 @@ func increase_stats(increase_mult : float):
 	
 func reset_stats():
 	pass
+
+func show_damage(amount: int, is_crit: bool):
+	var popup = damage_popup.instantiate()
+	popup.position = get_center_position() + Vector2(randf_range(-10, 10), -10)
+	popup.get_node("Label").text = str(amount)
+	# Crit has a different color and is bigger sized
+	if is_crit:
+		# New settings so the color/size adjusments don't effect the original one
+		var old_settings = popup.get_node("Label").label_settings
+		var new_settings = old_settings.duplicate()
+		new_settings.font_size = 21
+		new_settings.font_color = Color.HOT_PINK
+		popup.get_node("Label").label_settings = new_settings
+	get_tree().current_scene.add_child(popup)
