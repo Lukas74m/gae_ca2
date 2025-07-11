@@ -252,7 +252,8 @@ func die():
 	boss_animations.play("death")
 	boss_death.play()
 	await boss_animations.animation_finished
-	super.die()
+	Global.ProgressManager.update_level_progress()
+	queue_free()
 	
 # Overrides enemy_base.gd
 func get_center_position():
@@ -262,9 +263,7 @@ func get_center_position():
 func spawn_entourage():
 	for i in range(3):
 		# There shouldn't be more than 10 enemies at the same time on the field
-		while Global.enemies_alive >= 10:
-			await get_tree().create_timer(0.1).timeout
-		if amount_enemies_spawned < MAX_SPAWN_AMOUNT:
+		if amount_enemies_spawned < MAX_SPAWN_AMOUNT and Global.enemies_alive < 9:
 			# Enemies spawn with a small offset from each other
 			var offset = Vector2(
 				randf_range(-20, 20),

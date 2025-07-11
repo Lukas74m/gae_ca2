@@ -96,7 +96,6 @@ func update_level_progress():
 			enemy_manager.update_increase_amount()
 			
 		Global.player.heal_player(0.75)
-			
 		await Global.shop.show_shop()
 		on_level_up()
 		

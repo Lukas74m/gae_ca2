@@ -74,7 +74,7 @@ func spawn_wave(enemy_composition, spawn_frequency):
 	for enemy in enemy_composition:
 		for enemy_amount in range(enemy_composition[enemy]):
 			# Limits max spawn amount of enemies at a time
-			while Global.enemies_alive >= 10:
+			while Global.enemies_alive >= 8:
 				await get_tree().create_timer(0.1).timeout
 			
 			await get_tree().create_timer(spawn_frequency).timeout

@@ -60,7 +60,7 @@ func attack():
 		# Only a certain amount of spawned enemies at a time is allowed
 		# If actuall amount is less, spawn new ones until MaxSpawnAmount is reached again
 		# There shouldn't be more than 10 enemies at the same time on the field
-		if amount_enemies_spawned < MAX_SPAWN_AMOUNT and Global.enemies_alive < 10:
+		if amount_enemies_spawned < MAX_SPAWN_AMOUNT and Global.enemies_alive < 8:
 			enemy_animations.play("summon")
 			shaman_attack.play()
 			summon_circle.show()
@@ -125,8 +125,9 @@ func decrease_spawned_enemy_amount():
 func die():
 	change_state(EnemyState.DEAD)
 	
+# Overrites parent class
 func death():
-	Global.kills += 1
+	Global.enemies_alive -= 1
 	# Signals the parent that he is killed
 	# Important for the max spawn amount of a "spawner-enemy"
 	if is_spawned_by_other_entity == true:

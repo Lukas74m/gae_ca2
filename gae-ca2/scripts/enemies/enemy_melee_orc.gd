@@ -45,7 +45,9 @@ func move_towards_player(_delta: float, distance_to_player: float):
 func die():
 	change_state(EnemyState.DEAD)
 	
+# Overrites parent class
 func death():
+	Global.enemies_alive -= 1
 	Global.kills += 1
 	# Signals the parent that he is killed
 	# Important for the max spawn amount of a "spawner-enemy"
@@ -59,4 +61,3 @@ func death():
 	await enemy_animations.animation_finished
 	Global.ProgressManager.update_level_progress()
 	queue_free()
-
