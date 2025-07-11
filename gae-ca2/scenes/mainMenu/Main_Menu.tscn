@@ -1,20 +1,19 @@
-[gd_scene load_steps=45 format=3 uid="uid://cxx3el2lce3d2"]
+[gd_scene load_steps=46 format=3 uid="uid://cxx3el2lce3d2"]
 
 [ext_resource type="Texture2D" uid="uid://cmaw3riheloc6" path="res://assets/main_menu/Main_Menu_Background.png" id="1_j6enk"]
-[ext_resource type="Texture2D" uid="uid://bhnw8sh87bm4" path="res://assets/main_menu/Main_Menu_Button_v.2.png" id="1_lt47h"]
 [ext_resource type="Texture2D" uid="uid://btpcdo805tl7g" path="res://assets/main_menu/Character_Attack.png" id="2_sn6g4"]
-[ext_resource type="Texture2D" uid="uid://jabfdh2gipa5" path="res://assets/main_menu/Main_Menu_Button_on_Hover_v.2.png" id="2_wkoib"]
 [ext_resource type="Texture2D" uid="uid://bessj6ma2ocxp" path="res://assets/main_menu/Character_Idle.png" id="3_7yx1s"]
 [ext_resource type="Script" uid="uid://8q8wxq3n0obc" path="res://scripts/mainMenu/play_button.gd" id="3_m2m30"]
-[ext_resource type="Texture2D" uid="uid://cqwnrikjtfm4d" path="res://assets/main_menu/Main_Menu_Button_on_Click_v.2.png" id="4_aoxig"]
 [ext_resource type="Texture2D" uid="uid://280ymngawsc4" path="res://assets/main_menu/Main_Menu_Game_Instructions.png" id="4_sn6g4"]
 [ext_resource type="FontFile" uid="uid://lnwkc2w8ptcg" path="res://assets/font/Eagle_Lake/EagleLake-Regular.ttf" id="5_jqkcq"]
 [ext_resource type="Texture2D" uid="uid://baq4btag2v3ey" path="res://assets/main_menu/Attack_Icon.png" id="5_vo403"]
 [ext_resource type="Script" uid="uid://brm31nfjnr504" path="res://scripts/mainMenu/sound_button.gd" id="5_y210c"]
-[ext_resource type="Script" uid="uid://bs8us8popi4rr" path="res://scripts/mainMenu/help_button.gd" id="6_bh2hf"]
 [ext_resource type="Texture2D" uid="uid://chg5qchwwtgne" path="res://assets/main_menu/Dash_Icon.png" id="6_wp84g"]
 [ext_resource type="Texture2D" uid="uid://s0rwd7c6eyo8" path="res://assets/main_menu/Magic_Icon.png" id="7_ahvwn"]
 [ext_resource type="Script" uid="uid://bxq12qv6mnh6b" path="res://scripts/mainMenu/quit_button.gd" id="7_lt47h"]
+[ext_resource type="Texture2D" uid="uid://da5gyjpgy3t74" path="res://assets/buttons/Main_Menu_Button_New_Canvas_Size.png" id="9_yeebi"]
+[ext_resource type="Texture2D" uid="uid://dl0jbq7jwc43x" path="res://assets/buttons/Main_Menu_Button_On_Hover_New_Canvas_Size-sheet.png" id="10_yeebi"]
+[ext_resource type="Texture2D" uid="uid://csebkvow0dpti" path="res://assets/buttons/Main_Menu_Button_On_Click_New_Canvas_Size.png" id="12_jqkcq"]
 [ext_resource type="AudioStream" uid="uid://n11g0qom4w2x" path="res://assets/sounds/melee sounds/sword sound.wav" id="15_ahvwn"]
 [ext_resource type="AudioStream" uid="uid://bigyyyyn6konw" path="res://assets/sounds/melee sounds/melee sound.wav" id="16_jqkcq"]
 
@@ -101,58 +100,43 @@ animations = [{
 "speed": 4.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_j6enk"]
-atlas = ExtResource("4_aoxig")
-region = Rect2(0, 0, 291, 99)
+[sub_resource type="AtlasTexture" id="AtlasTexture_yeebi"]
+atlas = ExtResource("12_jqkcq")
+region = Rect2(0, 0, 292, 101)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sn6g4"]
-atlas = ExtResource("4_aoxig")
-region = Rect2(291, 0, 291, 99)
+[sub_resource type="AtlasTexture" id="AtlasTexture_68f8v"]
+atlas = ExtResource("12_jqkcq")
+region = Rect2(292, 0, 292, 101)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7yx1s"]
-atlas = ExtResource("4_aoxig")
-region = Rect2(582, 0, 291, 99)
+[sub_resource type="AtlasTexture" id="AtlasTexture_1vvhf"]
+atlas = ExtResource("12_jqkcq")
+region = Rect2(584, 0, 292, 101)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tm4wr"]
+atlas = ExtResource("12_jqkcq")
+region = Rect2(876, 0, 292, 101)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jllmp"]
+atlas = ExtResource("12_jqkcq")
+region = Rect2(1168, 0, 292, 101)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_65jxp"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_j6enk")
+"texture": SubResource("AtlasTexture_yeebi")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_sn6g4")
+"texture": SubResource("AtlasTexture_68f8v")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7yx1s")
-}],
-"loop": false,
-"name": &"click",
-"speed": 12.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_725k2"]
-atlas = ExtResource("4_aoxig")
-region = Rect2(0, 0, 291, 99)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vo403"]
-atlas = ExtResource("4_aoxig")
-region = Rect2(291, 0, 291, 99)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wp84g"]
-atlas = ExtResource("4_aoxig")
-region = Rect2(582, 0, 291, 99)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_no2s3"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_725k2")
+"texture": SubResource("AtlasTexture_1vvhf")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vo403")
+"texture": SubResource("AtlasTexture_tm4wr")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wp84g")
+"texture": SubResource("AtlasTexture_jllmp")
 }],
 "loop": false,
 "name": &"click",
@@ -160,18 +144,26 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ahvwn"]
-atlas = ExtResource("4_aoxig")
-region = Rect2(0, 0, 291, 99)
+atlas = ExtResource("12_jqkcq")
+region = Rect2(0, 0, 292, 101)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jqkcq"]
-atlas = ExtResource("4_aoxig")
-region = Rect2(291, 0, 291, 99)
+atlas = ExtResource("12_jqkcq")
+region = Rect2(292, 0, 292, 101)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_yeebi"]
-atlas = ExtResource("4_aoxig")
-region = Rect2(582, 0, 291, 99)
+[sub_resource type="AtlasTexture" id="AtlasTexture_7m3xv"]
+atlas = ExtResource("12_jqkcq")
+region = Rect2(584, 0, 292, 101)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_lbdhq"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_4hwip"]
+atlas = ExtResource("12_jqkcq")
+region = Rect2(876, 0, 292, 101)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxubs"]
+atlas = ExtResource("12_jqkcq")
+region = Rect2(1168, 0, 292, 101)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_no2s3"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -181,29 +173,6 @@ animations = [{
 "texture": SubResource("AtlasTexture_jqkcq")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_yeebi")
-}],
-"loop": false,
-"name": &"click",
-"speed": 12.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7m3xv"]
-atlas = ExtResource("4_aoxig")
-region = Rect2(0, 0, 291, 99)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4hwip"]
-atlas = ExtResource("4_aoxig")
-region = Rect2(291, 0, 291, 99)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mxubs"]
-atlas = ExtResource("4_aoxig")
-region = Rect2(582, 0, 291, 99)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_bh2hf"]
-animations = [{
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_7m3xv")
 }, {
 "duration": 1.0,
@@ -211,6 +180,49 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_mxubs")
+}],
+"loop": false,
+"name": &"click",
+"speed": 12.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wl74u"]
+atlas = ExtResource("12_jqkcq")
+region = Rect2(0, 0, 292, 101)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iipgr"]
+atlas = ExtResource("12_jqkcq")
+region = Rect2(292, 0, 292, 101)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7hu3m"]
+atlas = ExtResource("12_jqkcq")
+region = Rect2(584, 0, 292, 101)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qq3rq"]
+atlas = ExtResource("12_jqkcq")
+region = Rect2(876, 0, 292, 101)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_06oar"]
+atlas = ExtResource("12_jqkcq")
+region = Rect2(1168, 0, 292, 101)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bh2hf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wl74u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iipgr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7hu3m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qq3rq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_06oar")
 }],
 "loop": false,
 "name": &"click",
@@ -326,26 +338,26 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 445.0
-offset_top = 81.0
-offset_right = 736.0
-offset_bottom = 528.0
+offset_left = 456.0
+offset_top = 130.0
+offset_right = 748.0
+offset_bottom = 579.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.8, 0.8)
 size_flags_horizontal = 4
-theme_override_constants/separation = 73
+theme_override_constants/separation = 85
 
 [node name="PlayButton" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
-texture_normal = ExtResource("1_lt47h")
-texture_hover = ExtResource("2_wkoib")
+texture_normal = ExtResource("9_yeebi")
+texture_hover = ExtResource("10_yeebi")
 script = ExtResource("3_m2m30")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="VBoxContainer/PlayButton"]
 position = Vector2(146, 50)
 sprite_frames = SubResource("SpriteFrames_65jxp")
 animation = &"click"
-frame = 2
 frame_progress = 1.0
 
 [node name="PlayLabel" type="Label" parent="VBoxContainer/PlayButton"]
@@ -355,12 +367,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -28.5
-offset_top = -11.5
-offset_right = 28.5
-offset_bottom = 11.5
+offset_left = -50.5
+offset_top = -21.0
+offset_right = 50.5
+offset_bottom = 21.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_jqkcq")
 theme_override_font_sizes/font_size = 25
 text = "Spielen"
@@ -369,8 +382,8 @@ vertical_alignment = 1
 
 [node name="SoundButton" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
-texture_normal = ExtResource("1_lt47h")
-texture_hover = ExtResource("2_wkoib")
+texture_normal = ExtResource("9_yeebi")
+texture_hover = ExtResource("10_yeebi")
 script = ExtResource("5_y210c")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="VBoxContainer/SoundButton"]
@@ -380,53 +393,28 @@ animation = &"click"
 
 [node name="SoundLabel" type="Label" parent="VBoxContainer/SoundButton"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 64.0
-offset_top = 29.0
-offset_right = -64.0
-offset_bottom = 3.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -98.0
+offset_top = -43.5
+offset_right = 98.0
+offset_bottom = 43.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_jqkcq")
 theme_override_font_sizes/font_size = 25
-text = "Einstellungen
-"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HelpButton" type="TextureButton" parent="VBoxContainer"]
-visible = false
-layout_mode = 2
-texture_normal = ExtResource("1_lt47h")
-texture_hover = ExtResource("2_wkoib")
-script = ExtResource("6_bh2hf")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="VBoxContainer/HelpButton"]
-position = Vector2(146, 50)
-sprite_frames = SubResource("SpriteFrames_lbdhq")
-animation = &"click"
-
-[node name="HelpLabel" type="Label" parent="VBoxContainer/HelpButton"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -1.0
-offset_top = -18.0
-offset_right = -1.0
-offset_bottom = 5.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Hilfe"
+text = "Einstellungen"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="QuitButton" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
-texture_normal = ExtResource("1_lt47h")
-texture_hover = ExtResource("2_wkoib")
+texture_normal = ExtResource("9_yeebi")
+texture_hover = ExtResource("10_yeebi")
 script = ExtResource("7_lt47h")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="VBoxContainer/QuitButton"]
@@ -436,15 +424,18 @@ animation = &"click"
 
 [node name="QuitLabel" type="Label" parent="VBoxContainer/QuitButton"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 111.0
-offset_top = 40.0
-offset_right = -111.0
-offset_bottom = -36.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -59.5
+offset_top = -21.0
+offset_right = 59.5
+offset_bottom = 21.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_jqkcq")
 theme_override_font_sizes/font_size = 25
 text = "Beenden"
@@ -461,11 +452,10 @@ theme_override_font_sizes/font_size = 14
 text = "Version - 1.0"
 
 [node name="Label2" type="Label" parent="."]
-offset_left = 427.0
-offset_top = 9.0
-offset_right = 757.0
-offset_bottom = 59.0
-theme_override_colors/font_color = Color(0.399475, 0.244376, 0.0245967, 1)
+offset_left = 417.0
+offset_top = 27.0
+offset_right = 747.0
+offset_bottom = 77.0
 theme_override_colors/font_shadow_color = Color(0.288548, 0.139622, 0.00131253, 1)
 theme_override_fonts/font = ExtResource("5_jqkcq")
 theme_override_font_sizes/font_size = 30
@@ -487,9 +477,6 @@ bus = &"SFX"
 [connection signal="pressed" from="VBoxContainer/SoundButton" to="VBoxContainer/SoundButton" method="_on_pressed"]
 [connection signal="ready" from="VBoxContainer/SoundButton" to="VBoxContainer/SoundButton" method="_on_ready"]
 [connection signal="animation_finished" from="VBoxContainer/SoundButton/AnimatedSprite2D" to="VBoxContainer/SoundButton" method="_on_animated_sprite_2d_animation_finished"]
-[connection signal="pressed" from="VBoxContainer/HelpButton" to="VBoxContainer/HelpButton" method="_on_pressed"]
-[connection signal="ready" from="VBoxContainer/HelpButton" to="VBoxContainer/HelpButton" method="_on_ready"]
-[connection signal="animation_finished" from="VBoxContainer/HelpButton/AnimatedSprite2D" to="VBoxContainer/HelpButton" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="VBoxContainer/QuitButton" method="_on_pressed"]
 [connection signal="ready" from="VBoxContainer/QuitButton" to="VBoxContainer/QuitButton" method="_on_ready"]
 [connection signal="animation_finished" from="VBoxContainer/QuitButton/AnimatedSprite2D" to="VBoxContainer/QuitButton" method="_on_animated_sprite_2d_animation_finished"]
