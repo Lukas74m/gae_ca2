@@ -31,7 +31,7 @@ func _physics_process(delta):
 		EnemyState.ATTACK:
 			# Stay still for attack
 			velocity = Vector2.ZERO
-			enemy_animations.flip_h = Global.player.get_center_position().x < global_position.x
+			enemy_animations.flip_h = Global.player.get_center_position().x < center.global_position.x
 			bow.rotation = (Global.player.global_position - bow.global_position).normalized().angle()
 		EnemyState.DEAD:
 			velocity = Vector2.ZERO
@@ -83,13 +83,13 @@ func move_towards_player(_delta: float, distance_to_player: float):
 		return
 	# Only move if not in attack range
 	if distance_to_player > get_stat("attack_range") and attack_cooldown_timer <= 0.0:
-		enemy_animations.flip_h = Global.player.get_center_position().x < global_position.x
+		enemy_animations.flip_h = Global.player.get_center_position().x < center.global_position.x
 		enemy_animations.play("move")
-		var direction = (Global.player.get_center_position() - global_position).normalized()
+		var direction = (Global.player.get_center_position() - center.global_position).normalized()
 		velocity = direction * get_stat("movement_speed")
 	else:
 		# Stop moving when in attack range but cooldown >= 0
-		enemy_animations.flip_h = Global.player.get_center_position().x < global_position.x
+		enemy_animations.flip_h = Global.player.get_center_position().x < center.global_position.x
 		enemy_animations.play("idle")
 		velocity = Vector2.ZERO
 
