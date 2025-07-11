@@ -17,3 +17,7 @@ var score: int = 0:
 var time_alive: int = 0:
 	set(value):
 		time_alive = value
+
+var enemies_alive: int = 0:
+	set(value):
+		enemies_alive = value

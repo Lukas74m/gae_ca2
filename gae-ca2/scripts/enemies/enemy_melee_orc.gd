@@ -59,3 +59,4 @@ func death():
 	await enemy_animations.animation_finished
 	Global.ProgressManager.update_level_progress()
 	queue_free()
+

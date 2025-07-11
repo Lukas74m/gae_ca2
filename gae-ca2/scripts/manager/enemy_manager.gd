@@ -38,6 +38,7 @@ func spawn_enemy(enemy_name: String):
 	enemy_object.enemy_resource = enemy_resources[enemy_name]
 	spawn_around_player(enemy_object)
 	add_child(enemy_object)
+	Global.enemies_alive += 1
 	enemy_object.increase_stats(get_increase_amount())
 	
 	
@@ -72,6 +73,10 @@ func spawn_boss(boss_name: String, chapter: int):
 func spawn_wave(enemy_composition, spawn_frequency):
 	for enemy in enemy_composition:
 		for enemy_amount in range(enemy_composition[enemy]):
+			# Limits max spawn amount of enemies at a time
+			while Global.enemies_alive >= 10:
+				await get_tree().create_timer(0.1).timeout
+			
 			await get_tree().create_timer(spawn_frequency).timeout
 			spawn_enemy(enemy)
 			
@@ -80,7 +85,7 @@ func get_increase_amount():
 
 # Percentage by which enemies are buffed after each boss fight
 func update_increase_amount():
-	increase_amount += 0.3
+	increase_amount += 0.1
 
 # Enemies spawn around player
 func spawn_around_player(enemy_object):
@@ -93,22 +98,22 @@ func spawn_around_player(enemy_object):
 		if is_inside_map(spawn_pos):
 			break
 
-	# Fallback auf Map-Mitte, falls 10 Versuche fehlschlagen
+	# If always outside of map, set point manually
 	if not is_inside_map(spawn_pos):
 		spawn_pos = Vector2(0,0)
 	enemy_object.global_position = spawn_pos
 
-
+# Checks if entity is inside the map
 func is_inside_map(position: Vector2) -> bool:
 	var shape = Global.map_area.get_node("CollisionShape2D")
 	var rect_shape = shape.shape as RectangleShape2D
 	if rect_shape:
 		var shape_pos = shape.global_position
 		var extents = rect_shape.extents
-		var min = shape_pos - extents
-		var max = shape_pos + extents
+		var minimum = shape_pos - extents
+		var maximum = shape_pos + extents
 		return (
-			position.x >= min.x and position.x <= max.x and
-			position.y >= min.y and position.y <= max.y
+			position.x >= minimum.x and position.x <= maximum.x and
+			position.y >= minimum.y and position.y <= maximum.y
 		)
 	return false

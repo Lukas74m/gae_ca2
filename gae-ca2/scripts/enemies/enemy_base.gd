@@ -71,6 +71,7 @@ func die():
 	
 func death():
 	Global.kills += 1
+	Global.enemies_alive -= 1
 	# Signals the parent that he is killed
 	# Important for the max spawn amount of a "spawner-enemy"
 	if is_spawned_by_other_entity == true:
@@ -103,7 +104,10 @@ func attack():
 func increase_stats(increase_mult : float):
 	stats.apply_mult_modifier("attack_damage", increase_mult)
 	stats.apply_mult_modifier("max_health", increase_mult)
-	
+	health.initialize_health(get_stat("max_health"))
+	printerr("New: ", stats.get_stat("attack_damage"))
+	printerr("New: ", stats.get_stat("max_health"))
+	printerr("Current: ", stats.get_stat("max_health"))
 func reset_stats():
 	pass
 
