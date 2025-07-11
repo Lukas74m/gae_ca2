@@ -180,7 +180,7 @@ func _on_health_died() -> void:
 	change_state(PlayerState.DEAD)
 	player_sprite.play("death")
 	await player_sprite.animation_finished
-	get_tree().change_scene_to_file("res://scenes/deathscreen/Deathscreen.tscn")
+	get_tree().change_scene_to_file("res://scenes/deathscreen/deathscreen.tscn")
 
 func spawn_dash_ghost():
 	var ghost = dash_ghost_scene.instantiate() as Sprite2D

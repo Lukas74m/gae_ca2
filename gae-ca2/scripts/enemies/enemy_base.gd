@@ -75,6 +75,8 @@ func die():
 			enemy_parent.decrease_spawned_enemy_amount()
 		else:
 			pass
+	enemy_animations.play("death")
+	await enemy_animations.animation_finished
 	Global.ProgressManager.update_level_progress()
 	queue_free()
 

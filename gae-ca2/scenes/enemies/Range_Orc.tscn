@@ -1,10 +1,63 @@
-[gd_scene load_steps=40 format=3 uid="uid://dk00wpftg1tix"]
+[gd_scene load_steps=54 format=3 uid="uid://dk00wpftg1tix"]
 
 [ext_resource type="PackedScene" uid="uid://41vujg0qkyqh" path="res://scenes/enemies/EnemyBase.tscn" id="1_jonyt"]
 [ext_resource type="Script" uid="uid://dg2wv5kpfemed" path="res://scripts/enemies/enemy_range_orc.gd" id="2_5jl5p"]
 [ext_resource type="Texture2D" uid="uid://cojl6xi83duun" path="res://assets/enemies/archer_orc/acher_orc_idle_and_move.png" id="3_7iduu"]
+[ext_resource type="Texture2D" uid="uid://dts0oqa8nbg7s" path="res://assets/enemies/archer_orc/archer_orc_death.png" id="3_did05"]
 [ext_resource type="Texture2D" uid="uid://b07dr73x4ngf0" path="res://assets/enemies/archer_orc/archer_orc_shoot.png" id="4_did05"]
 [ext_resource type="Texture2D" uid="uid://ddhjyclol46i4" path="res://assets/enemies/archer_orc/archer_orc_bow_animation.png" id="5_83v8l"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fg1j7"]
+atlas = ExtResource("3_did05")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ldwvg"]
+atlas = ExtResource("3_did05")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ixxu6"]
+atlas = ExtResource("3_did05")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3cq4e"]
+atlas = ExtResource("3_did05")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u2b7s"]
+atlas = ExtResource("3_did05")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jpyl4"]
+atlas = ExtResource("3_did05")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uqoao"]
+atlas = ExtResource("3_did05")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7h8o0"]
+atlas = ExtResource("3_did05")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o33b0"]
+atlas = ExtResource("3_did05")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3nmkg"]
+atlas = ExtResource("3_did05")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kpptg"]
+atlas = ExtResource("3_did05")
+region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v4jei"]
+atlas = ExtResource("3_did05")
+region = Rect2(352, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_crajn"]
+atlas = ExtResource("3_did05")
+region = Rect2(384, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tpk2j"]
 atlas = ExtResource("3_7iduu")
@@ -88,6 +141,50 @@ region = Rect2(320, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_twrlv"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fg1j7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ldwvg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ixxu6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3cq4e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u2b7s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jpyl4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uqoao")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7h8o0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o33b0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3nmkg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kpptg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v4jei")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_crajn")
+}],
+"loop": false,
+"name": &"death",
+"speed": 16.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_tpk2j")
@@ -263,8 +360,8 @@ position = Vector2(-26.6667, 26.6667)
 position = Vector2(0, -20)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_twrlv")
-animation = &"shoot"
-frame = 10
+animation = &"death"
+frame = 12
 frame_progress = 1.0
 
 [node name="Bow" type="AnimatedSprite2D" parent="." index="4"]

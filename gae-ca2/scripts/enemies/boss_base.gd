@@ -232,6 +232,8 @@ func change_boss_state(new_state: BossState):
 func die():
 	boss_current_state = BossState.DEAD
 	# Add boss death effects here (screen shake, special loot, etc.)
+	boss_animations.play("death")
+	await boss_animations.animation_finished
 	super.die()
 	
 # Overrides enemy_base.gd

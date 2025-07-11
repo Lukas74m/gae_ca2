@@ -1,8 +1,9 @@
-[gd_scene load_steps=30 format=3 uid="uid://gthmdo0mgpcm"]
+[gd_scene load_steps=42 format=3 uid="uid://gthmdo0mgpcm"]
 
 [ext_resource type="PackedScene" uid="uid://41vujg0qkyqh" path="res://scenes/enemies/EnemyBase.tscn" id="1_4ttfu"]
 [ext_resource type="Script" uid="uid://dxrchvuodo0r5" path="res://scripts/enemies/enemy_melee_orc.gd" id="2_av4ak"]
 [ext_resource type="Texture2D" uid="uid://bpoq51py4ommh" path="res://assets/enemies/enemy_orc/mini_orc_attack.png" id="3_og7q1"]
+[ext_resource type="Texture2D" uid="uid://clb60yb8t647p" path="res://assets/enemies/enemy_orc/mini_orc_death.png" id="4_av4ak"]
 [ext_resource type="Texture2D" uid="uid://rnhuo7cd3r5d" path="res://assets/enemies/enemy_orc/mini_orc_idle_and_walking.png" id="4_uemfv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wprko"]
@@ -56,6 +57,50 @@ region = Rect2(352, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_ayw2k"]
 atlas = ExtResource("3_og7q1")
 region = Rect2(384, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_og7q1"]
+atlas = ExtResource("4_av4ak")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uemfv"]
+atlas = ExtResource("4_av4ak")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_py2rg"]
+atlas = ExtResource("4_av4ak")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oudi6"]
+atlas = ExtResource("4_av4ak")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tgjbv"]
+atlas = ExtResource("4_av4ak")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yh38p"]
+atlas = ExtResource("4_av4ak")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h1qwp"]
+atlas = ExtResource("4_av4ak")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j4ft5"]
+atlas = ExtResource("4_av4ak")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2l24d"]
+atlas = ExtResource("4_av4ak")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6pyb7"]
+atlas = ExtResource("4_av4ak")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4daxi"]
+atlas = ExtResource("4_av4ak")
+region = Rect2(320, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mt6qy"]
 atlas = ExtResource("4_uemfv")
@@ -141,6 +186,44 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_og7q1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uemfv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_py2rg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oudi6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tgjbv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yh38p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h1qwp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j4ft5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2l24d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6pyb7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4daxi")
+}],
+"loop": false,
+"name": &"death",
+"speed": 16.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_mt6qy")
 }, {
 "duration": 1.0,
@@ -197,7 +280,7 @@ scale = Vector2(0.5, 0.5)
 position = Vector2(-6, -12)
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_be4gh")
-animation = &"attack"
+animation = &"death"
 
 [node name="EnemyCenter" parent="." index="3"]
 position = Vector2(-6, 6)
