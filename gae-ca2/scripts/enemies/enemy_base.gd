@@ -69,19 +69,9 @@ func take_damage(amount: int, is_crit: bool):
 func die():
 	change_state(EnemyState.DEAD)
 	
+# Overwritten by subclasses
 func death():
-	Global.kills += 1
-	# Signals the parent that he is killed
-	# Important for the max spawn amount of a "spawner-enemy"
-	if is_spawned_by_other_entity == true:
-		if enemy_parent != null:
-			enemy_parent.decrease_spawned_enemy_amount()
-		else:
-			pass
-	enemy_animations.play("death")
-	await enemy_animations.animation_finished
-	Global.ProgressManager.update_level_progress()
-	queue_free()
+	pass
 
 func get_stat(stat_name: String):
 	return stats.get_stat(stat_name)
@@ -103,6 +93,7 @@ func attack():
 func increase_stats(increase_mult : float):
 	stats.apply_mult_modifier("attack_damage", increase_mult)
 	stats.apply_mult_modifier("max_health", increase_mult)
+	health.initialize_health(get_stat("max_health"))
 	
 func reset_stats():
 	pass

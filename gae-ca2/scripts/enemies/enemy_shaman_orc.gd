@@ -55,19 +55,24 @@ func attack():
 	#enemy_animations.flip_h = Global.player.get_center_position().x < global_position.x
 	#enemy_animations.play("attack")
 	attack_cooldown_timer = get_stat("attack_cooldown")
-	enemy_animations.play("summon")
-	shaman_attack.play()
-	summon_circle.show()
-	await enemy_animations.animation_finished
+
 	for i in range(spawn_amount):
-		if amount_enemies_spawned < MAX_SPAWN_AMOUNT:
+		# Only a certain amount of spawned enemies at a time is allowed
+		# If actuall amount is less, spawn new ones until MaxSpawnAmount is reached again
+		# There shouldn't be more than 10 enemies at the same time on the field
+		if amount_enemies_spawned < MAX_SPAWN_AMOUNT and Global.enemies_alive < 8:
+			enemy_animations.play("summon")
+			shaman_attack.play()
+			summon_circle.show()
+			await enemy_animations.animation_finished
 			# Enemies spawn with a small offset from each other
 			var offset = Vector2(
-				randf_range(-20, 20),  # Zufällig zwischen -20 und +20
+				randf_range(-20, 20), 
 				randf_range(-20, 20)
 			)
 			spawn_enemy_at("Melee_Orc", get_center_position() + offset)
 			amount_enemies_spawned += 1
+			Global.enemies_alive += 1
 		else:
 			pass
 	summon_circle.hide()
@@ -120,8 +125,9 @@ func decrease_spawned_enemy_amount():
 func die():
 	change_state(EnemyState.DEAD)
 	
+# Overrites parent class
 func death():
-	Global.kills += 1
+	Global.enemies_alive -= 1
 	# Signals the parent that he is killed
 	# Important for the max spawn amount of a "spawner-enemy"
 	if is_spawned_by_other_entity == true:

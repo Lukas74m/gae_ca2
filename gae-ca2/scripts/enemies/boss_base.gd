@@ -251,16 +251,18 @@ func die():
 	boss_animations.play("death")
 	boss_death.play()
 	await boss_animations.animation_finished
-	super.die()
+	Global.ProgressManager.update_level_progress()
+	queue_free()
 	
 # Overrides enemy_base.gd
 func get_center_position():
 	return center.global_position
 
-# Optional
+# Optional: Spawns enemies
 func spawn_entourage():
 	for i in range(3):
-		if amount_enemies_spawned < MAX_SPAWN_AMOUNT:
+		# There shouldn't be more than 10 enemies at the same time on the field
+		if amount_enemies_spawned < MAX_SPAWN_AMOUNT and Global.enemies_alive < 9:
 			# Enemies spawn with a small offset from each other
 			var offset = Vector2(
 				randf_range(-20, 20),
@@ -272,10 +274,10 @@ func spawn_entourage():
 			pass
 
 
-# Optional	
+# Optional 
 func spawn_enemy_at(enemy_name, pos: Vector2):
 	if enemy_name == null:
-		printerr("Keine Enemy Scene zugewiesen!")
+		printerr("No enemy scene!")
 		return
 	
 	if enemy_name in enemy_scenes:
@@ -286,6 +288,7 @@ func spawn_enemy_at(enemy_name, pos: Vector2):
 		enemy.is_spawned_by_other_entity = true
 		enemy.enemy_parent = self
 		Global.ProgressManager.additional_enemies += 1
+		Global.enemies_alive += 1
 	else:
 		printerr("No such enemy ", enemy_name)
 		print("Available keys: ", enemy_scenes.keys())

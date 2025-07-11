@@ -68,7 +68,7 @@ func on_level_up():
 			#var boss_weakend = is_enough_artefacts_collected()
 			enemy_manager.spawn_boss(current_level_dict["level_boss_name"], get_chapter())
 	else:
-		printerr("No more levels!")
+		get_tree().change_scene_to_file("res://scenes/mainMenu/Main_Menu.tscn")
 
 # Saves the information about the new level localy
 func load_level_information():
@@ -93,12 +93,9 @@ func update_level_progress():
 		# Heal more before a boss wave
 		if is_next_boss_level():
 			Global.player.heal_player(1)
-		elif is_boss_level():
 			enemy_manager.update_increase_amount()
 			
-		else:
-			Global.player.heal_player(0.50)
-			
+		Global.player.heal_player(0.75)
 		await Global.shop.show_shop()
 		on_level_up()
 		
@@ -123,7 +120,7 @@ func next_chapter():
 # Checks if the next lvel is a boss level
 # Every forth level is a boss level
 func is_next_boss_level():
-	return (current_level_dict["current_level"] + 1) % 4 == 0
+	return (current_level_dict["current_level"] + 1) % 4 == 0 or (current_level_dict["current_level"] + 1) == 9
 
 func is_boss_level():
 	return current_level_dict["boss_level"]
