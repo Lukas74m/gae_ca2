@@ -6,7 +6,7 @@ var enemy_scenes = {}
 var enemy_resources  = {}
 var spawn_amount = 2
 var amount_enemies_spawned = 0
-var MAX_SPAWN_AMOUNT = 6
+var MAX_SPAWN_AMOUNT = 2
 
 func _ready():
 	super._ready()
