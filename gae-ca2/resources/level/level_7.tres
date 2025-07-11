@@ -5,10 +5,10 @@
 [resource]
 script = ExtResource("1_pltdu")
 current_level = 7
-level_wave_size = 22
+level_wave_size = 17
 enemy_composition = {
-"Melee_Orc": 9,
-"Range_Orc": 10,
+"Melee_Orc": 7,
+"Range_Orc": 7,
 "Shaman_Orc": 3
 }
 spawn_frequency = 1

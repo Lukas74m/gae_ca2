@@ -71,6 +71,8 @@ animations = [{
 
 [node name="Arrow" instance=ExtResource("1_iyfe7")]
 scale = Vector2(4, 4)
+collision_layer = 9
+collision_mask = 9
 script = ExtResource("2_m2i7i")
 
 [node name="CollisionShape2D" parent="." index="0"]

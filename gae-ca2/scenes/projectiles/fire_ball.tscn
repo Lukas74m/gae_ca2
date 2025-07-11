@@ -113,7 +113,7 @@ animations = [{
 script = ExtResource("2_472mr")
 
 [node name="CollisionShape2D" parent="." index="0"]
-polygon = PackedVector2Array(-16, 0, -7, -4, 1, -7, 7, -4, 7, 1, 5, 4, -1, 6, -8, 3)
+polygon = PackedVector2Array(-10, 0, -8, -5, 1, -8, 8, -5, 9, 1, 8, 5, -1, 8, -9, 4)
 
 [node name="AnimatedSprite2D" parent="." index="1"]
 position = Vector2(-9, -1)

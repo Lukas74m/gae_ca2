@@ -5,6 +5,8 @@
 [ext_resource type="SpriteFrames" uid="uid://dqsmqf1lu3nv8" path="res://temp/fire_ball.tres" id="3_x5ike"]
 
 [node name="Boss_Projectile" instance=ExtResource("1_3sspm")]
+collision_layer = 9
+collision_mask = 9
 script = ExtResource("2_k5bii")
 
 [node name="CollisionShape2D" parent="." index="0"]

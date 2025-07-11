@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://bh328mthevi7m" path="res://scripts/projectiles/projectile_base.gd" id="1_al3l1"]
 
 [node name="ProjectileBase2" type="Area2D"]
+collision_layer = 9
+collision_mask = 9
 script = ExtResource("1_al3l1")
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]

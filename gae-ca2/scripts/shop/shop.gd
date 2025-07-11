@@ -24,13 +24,15 @@ extends CanvasLayer
 	"common": preload("res://assets/rewards/Reward_Button_Gewoehnlich.png"),
 	"rare": preload("res://assets/rewards/Reward_Button_Selten_v.2.png"),
 	"epic": preload("res://assets/rewards/Reward_Button_Episch.png"),
-	"legendary": preload("res://assets/rewards/Reward_Button_Legendaer.png")
+	"legendary": preload("res://assets/rewards/Reward_Button_Legendaer.png"),
+	"gamble": preload("res://assets/rewards/Reward_Button_Gamble.png")
 }
 @export var button_hovers := {
 	"common": preload("res://assets/rewards/Reward_Button_Geweohnlich_Hover-sheet.png"),
 	"rare": preload("res://assets/rewards/Reward_Button_Selten_Hover-sheet.png"),
 	"epic": preload("res://assets/rewards/Reward_Button_Episch_Hover-sheet.png"),
-	"legendary": preload("res://assets/rewards/Reward_Button_Legendaer_Hover-sheet.png")
+	"legendary": preload("res://assets/rewards/Reward_Button_Legendaer_Hover-sheet.png"),
+	"gamble": preload("res://assets/rewards/Reward_Button_Gamble_Hover-sheet.png")
 }
 
 # Globale Wahrscheinlichkeiten für alle Stats
@@ -57,10 +59,10 @@ var upgrade_templates = [
 		"stat": "max_health",
 		"label_base": "Max. Leben",
 		"rarities": {
-			"common": {"amount": 5},
-			"rare": {"amount": 6},
-			"epic": {"amount": 7},
-			"legendary": {"amount": 10}
+			"common": {"amount": 6},
+			"rare": {"amount": 7},
+			"epic": {"amount": 8},
+			"legendary": {"amount": 15}
 		}
 	},
 	{
@@ -87,7 +89,7 @@ var upgrade_templates = [
 		"stat": "fireball_damage",
 		"label_base": "Feuerball Schaden",
 		"rarities": {
-			"common": {"amount": 3},
+			"common": {"amount": 4},
 			"rare": {"amount": 5},
 			"epic": {"amount": 7},
 			"legendary": {"amount": 9}
@@ -192,7 +194,7 @@ func update_shop_labels():
 			buttons[i].texture_hover = button_hovers[rarity]
 			buttons[i].texture_pressed = button_textures[rarity]
 		else:
-			var rarity = upgrade.get("rarity", "common")
+			var rarity = upgrade.get("rarity", "gamble")
 			labels[i].modulate = Color.WHITE
 			buttons[i].texture_normal = button_textures[rarity]
 			buttons[i].texture_hover = button_hovers[rarity]

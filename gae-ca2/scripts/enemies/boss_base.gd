@@ -132,7 +132,6 @@ func boss_movement_logic(distance_to_player: float):
 		play_boss__animation("move")
 		var direction = (Global.player.center.global_position - center.global_position).normalized()
 		boss_animations.flip_h = direction.x < 0
-		boss_with_orc_animations.flip_h = direction.x < 0
 		velocity = direction * get_stat("movement_speed")
 
 
@@ -141,6 +140,7 @@ func start_dash():
 
 	#await boss_animations.animation_finished
 	change_boss_state(BossState.DASH)
+	boss_dash.play()
 	dash_time_left = stats.get_stat("dash_duration")
 	dash_cooldown_timer = stats.get_stat("dash_cooldown")
 	dash_direction = (Global.player.center.global_position - center.global_position).normalized()
@@ -148,7 +148,6 @@ func start_dash():
 
 func perform_dash(delta: float):
 	play_boss__animation("dash")
-	boss_dash.play()
 	velocity = dash_direction * stats.get_stat("dash_speed")
 	dash_time_left -= delta
 	# If boss connects on player, player gets damage
