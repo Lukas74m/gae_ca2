@@ -844,4 +844,7 @@ bus = &"SFX"
 stream = ExtResource("18_uhyhl")
 bus = &"SFX"
 
+[node name="Center" type="Marker2D" parent="." index="12"]
+position = Vector2(130, -136.667)
+
 [connection signal="timeout" from="Spawn_entourage_timer" to="." method="_on_spawn_entourage_timer_timeout"]

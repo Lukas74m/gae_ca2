@@ -10,7 +10,6 @@ class_name Boss
 @onready var boss_melee_impact: AudioStreamPlayer2D = $BossMeleeImpact
 
 
-
 @onready var entourage_timer = $Spawn_entourage_timer
 @export var projectile_scene = preload("res://scenes/projectiles/boss_projectile.tscn")
 
@@ -89,16 +88,16 @@ func _physics_process(delta):
 		BossState.WALK:
 			boss_movement_logic(distance_to_player)
 		BossState.RANGED_ATTACK:
-			boss_animations.flip_h = Global.player.get_center_position().x < global_position.x
-			boss_with_orc_animations.flip_h = Global.player.get_center_position().x < global_position.x
+			boss_animations.flip_h = Global.player.get_center_position().x < center.global_position.x
+			boss_with_orc_animations.flip_h = Global.player.get_center_position().x < center.global_position.x
 			if !charging_range:
 				perform_ranged_charge()
 			if ranged_charge_timer <= 0 and charging_range:
 				charging_range = false
 				perform_ranged_attack(distance_to_player)
 		BossState.MELEE_ATTACK:
-			boss_animations.flip_h = Global.player.get_center_position().x < global_position.x
-			boss_with_orc_animations.flip_h = Global.player.get_center_position().x < global_position.x
+			boss_animations.flip_h = Global.player.get_center_position().x < center.global_position.x
+			boss_with_orc_animations.flip_h = Global.player.get_center_position().x < center.global_position.x
 			if !charging_melee:
 				perform_melee_charge()
 			if melee_charge_timer <= 0 and charging_melee:
@@ -107,8 +106,8 @@ func _physics_process(delta):
 		BossState.DEAD:
 			velocity = Vector2.ZERO
 		BossState.DASH:
-			boss_animations.flip_h = Global.player.get_center_position().x < global_position.x
-			boss_with_orc_animations.flip_h = Global.player.get_center_position().x < global_position.x
+			boss_animations.flip_h = Global.player.get_center_position().x < center.global_position.x
+			boss_with_orc_animations.flip_h = Global.player.get_center_position().x < center.global_position.x
 			perform_dash(delta)
 			
 	move_and_slide()

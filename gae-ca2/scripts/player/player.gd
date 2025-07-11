@@ -57,7 +57,10 @@ func _input(event: InputEvent) -> void:
 			start_dash()
 		elif event.is_action_pressed("fireball") and can_fireball == true:
 			change_state(PlayerState.FIREBALL)
-
+	elif current_state == PlayerState.ATTACK:
+		if event.is_action_pressed("dash") and dash_cooldown_left <= 0.0:
+			start_dash()
+			
 # Walk, dashen and idle
 func _physics_process(delta: float) -> void:
 	if dash_cooldown_left > 0.0:
@@ -81,8 +84,14 @@ func _physics_process(delta: float) -> void:
 				change_state(PlayerState.IDLE)
 		
 		PlayerState.ATTACK:
-			velocity = Vector2.ZERO
-		
+			var mouse_position = get_global_mouse_position()
+			var direction = mouse_position - player_center.global_position
+			var distance = direction.length()
+			if distance > START_DISTANCE:
+				velocity = direction.normalized() * get_stat("movement_speed")
+			elif distance < STOP_DISTANCE:
+				velocity = Vector2.ZERO
+			#velocity = Vector2.ZERO
 		PlayerState.FIREBALL:
 			velocity = Vector2.ZERO
 		
