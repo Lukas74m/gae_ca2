@@ -1,4 +1,5 @@
-[gd_scene load_steps=15 format=3 uid="uid://1s36duab3r3v"]
+[gd_scene load_steps=16 format=3 uid="uid://df1ymeh7kbn6q"]
+
 
 [ext_resource type="Script" uid="uid://b8veoxcmbw0wc" path="res://scripts/deathscreen/deathscreen.gd" id="1_61vww"]
 [ext_resource type="Theme" uid="uid://b2ftdon0s262d" path="res://stats_display_theme.tres" id="2_2tdkb"]
@@ -7,6 +8,7 @@
 [ext_resource type="Script" uid="uid://3ec3cm3265m7" path="res://scripts/deathscreen/texture_button.gd" id="5_w0ong"]
 [ext_resource type="Texture2D" uid="uid://wkwoejl3hpar" path="res://assets/buttons/Test_Button_On_Click.png" id="6_rx4g2"]
 [ext_resource type="PackedScene" uid="uid://cpnywmo70ieol" path="res://scenes/components/StatsDisplay.tscn" id="7_exojw"]
+[ext_resource type="AudioStream" uid="uid://dv2iptvuwts3w" path="res://assets/sounds/game_over_bad_chest.wav" id="8_esdwi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_btbqu"]
 atlas = ExtResource("6_rx4g2")
@@ -132,6 +134,11 @@ text = "Game Over! "
 label_settings = SubResource("LabelSettings_btbqu")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="GameOver" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_esdwi")
+autoplay = true
+bus = &"Music"
 
 [connection signal="pressed" from="Control/TextureButton" to="Control/TextureButton" method="_on_pressed"]
 [connection signal="animation_finished" from="Control/TextureButton/AnimatedSprite2D" to="Control/TextureButton" method="_on_animated_sprite_2d_animation_finished"]

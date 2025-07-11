@@ -11,6 +11,7 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#enemy_manager.spawn_enemy()
+	MenuMusic.stop()
 	Global.player = player
 	Global.ProgressManager = progress_manager
 	Global.shop = shop

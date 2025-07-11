@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://rurk8h712f01"]
+
+[ext_resource type="AudioStream" uid="uid://bpa2y74tw1fqj" path="res://assets/music/Героическая минорная.mp3" id="1_1fvqx"]
+
+[node name="MenuMusic" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_1fvqx")
+autoplay = true
+bus = &"Music"

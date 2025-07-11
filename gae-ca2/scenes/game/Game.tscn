@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://dads2ywxohnu1"]
+[gd_scene load_steps=18 format=4 uid="uid://dads2ywxohnu1"]
 
 [ext_resource type="Script" uid="uid://bkhnbumjr1vsv" path="res://scripts/game/game.gd" id="1_m44fu"]
 [ext_resource type="Texture2D" uid="uid://djjmnhn7uw1i4" path="res://assets/dungeon tileset pack/0x72_DungeonTilesetII_v1.7 (1)/0x72_DungeonTilesetII_v1.7/atlas_floor-16x16.png" id="2_wnrko"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://mmmlhyshq4g6" path="res://scripts/components/camera.gd" id="6_aptqa"]
 [ext_resource type="PackedScene" uid="uid://vcvbrmlgyiai" path="res://scenes/shop/Shop.tscn" id="8_wnrko"]
 [ext_resource type="PackedScene" uid="uid://byi3e8vfwfdhg" path="res://scenes/components/TaskDisplay.tscn" id="9_qf6a8"]
+[ext_resource type="AudioStream" uid="uid://cuji1jv845pl" path="res://assets/music/Battle in the winter.mp3" id="13_60iot"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gg4pt"]
 texture = ExtResource("2_wnrko")
@@ -418,5 +419,11 @@ grow_vertical = 1
 [node name="Skillbar" parent="CanvasLayer" instance=ExtResource("6_56wml")]
 position = Vector2(487, 572)
 scale = Vector2(2.5, 2.5)
+
+[node name="GameBackground" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
+stream = ExtResource("13_60iot")
+autoplay = true
+bus = &"Music"
 
 [connection signal="timeout" from="Gametimer" to="." method="_on_gametimer_timeout"]

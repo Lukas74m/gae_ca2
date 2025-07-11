@@ -15,4 +15,5 @@ func _on_pressed() -> void:
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if start_menu_after_animation:
+		MenuMusic.play()
 		get_tree().change_scene_to_file("res://scenes/mainMenu/Main_Menu.tscn")
