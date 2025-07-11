@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dha2b71ufhg3e"
-path="res://.godot/imported/Reward_Button_Trash.png-33fb1137b8e56ae941b945b41fff8637.ctex"
+uid="uid://cjwpflmiihkdi"
+path="res://.godot/imported/Reward_Button_Episch.png-89f85a1bee0adda632f8a9794a677136.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/rewards/Reward_Button_Trash.png"
-dest_files=["res://.godot/imported/Reward_Button_Trash.png-33fb1137b8e56ae941b945b41fff8637.ctex"]
+source_file="res://assets/rewards/Reward_Button_Episch.png"
+dest_files=["res://.godot/imported/Reward_Button_Episch.png-89f85a1bee0adda632f8a9794a677136.ctex"]
 
 [params]
 

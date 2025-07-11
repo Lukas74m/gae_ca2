@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://hnh18s46l03t"
-path="res://.godot/imported/Reward_Button_Random.png-1d202198e082aade77996b9b0612f461.ctex"
+uid="uid://by7xcd27con6n"
+path="res://.godot/imported/Reward_Button_Gewoehnlich.png-f33fcaa6f9bdc2efae285d4e36a646d0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/rewards/Reward_Button_Random.png"
-dest_files=["res://.godot/imported/Reward_Button_Random.png-1d202198e082aade77996b9b0612f461.ctex"]
+source_file="res://assets/rewards/Reward_Button_Gewoehnlich.png"
+dest_files=["res://.godot/imported/Reward_Button_Gewoehnlich.png-f33fcaa6f9bdc2efae285d4e36a646d0.ctex"]
 
 [params]
 

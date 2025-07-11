@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://nol6ki70tm6d"
-path="res://.godot/imported/Reward_Button_Rare.png-934437ac6138f14a58d21a0faa9d92db.ctex"
+uid="uid://dqtdkt8ms0yvs"
+path="res://.godot/imported/Reward_Button_Episch_Hover-sheet.png-3a433155a8d72793aec689137de3c7c0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/rewards/Reward_Button_Rare.png"
-dest_files=["res://.godot/imported/Reward_Button_Rare.png-934437ac6138f14a58d21a0faa9d92db.ctex"]
+source_file="res://assets/rewards/Reward_Button_Episch_Hover-sheet.png"
+dest_files=["res://.godot/imported/Reward_Button_Episch_Hover-sheet.png-3a433155a8d72793aec689137de3c7c0.ctex"]
 
 [params]
 
