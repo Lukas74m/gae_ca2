@@ -9,7 +9,7 @@ level_wave_size = 12
 enemy_composition = {
 "Melee_Orc": 5,
 "Range_Orc": 5,
-"Shaman_Orc": 3
+"Shaman_Orc": 2
 }
 spawn_frequency = 2
 level_boss_name = "Orc_Boss"

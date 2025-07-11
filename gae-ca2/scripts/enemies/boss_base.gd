@@ -88,16 +88,29 @@ func _physics_process(delta):
 		BossState.WALK:
 			boss_movement_logic(distance_to_player)
 		BossState.RANGED_ATTACK:
-			boss_animations.flip_h = Global.player.get_center_position().x < center.global_position.x
-			boss_with_orc_animations.flip_h = Global.player.get_center_position().x < center.global_position.x
+			var direction = (Global.player.center.global_position - center.global_position).normalized()
+			var deadzone = 0.9
+			if direction.x > deadzone:
+				boss_animations.flip_h = false
+				boss_with_orc_animations.flip_h = false
+			elif direction.x < -deadzone:
+				boss_animations.flip_h = true
+				boss_with_orc_animations.flip_h = true
+				
 			if !charging_range:
 				perform_ranged_charge()
 			if ranged_charge_timer <= 0 and charging_range:
 				charging_range = false
 				perform_ranged_attack(distance_to_player)
 		BossState.MELEE_ATTACK:
-			boss_animations.flip_h = Global.player.get_center_position().x < center.global_position.x
-			boss_with_orc_animations.flip_h = Global.player.get_center_position().x < center.global_position.x
+			var direction = (Global.player.center.global_position - center.global_position).normalized()
+			var deadzone = 0.9
+			if direction.x > deadzone:
+				boss_animations.flip_h = false
+				boss_with_orc_animations.flip_h = false
+			elif direction.x < -deadzone:
+				boss_animations.flip_h = true
+				boss_with_orc_animations.flip_h = true
 			if !charging_melee:
 				perform_melee_charge()
 			if melee_charge_timer <= 0 and charging_melee:
@@ -106,8 +119,14 @@ func _physics_process(delta):
 		BossState.DEAD:
 			velocity = Vector2.ZERO
 		BossState.DASH:
-			boss_animations.flip_h = Global.player.get_center_position().x < center.global_position.x
-			boss_with_orc_animations.flip_h = Global.player.get_center_position().x < center.global_position.x
+			var direction = (Global.player.center.global_position - center.global_position).normalized()
+			var deadzone = 0.9
+			if direction.x > deadzone:
+				boss_animations.flip_h = false
+				boss_with_orc_animations.flip_h = false
+			elif direction.x < -deadzone:
+				boss_animations.flip_h = true
+				boss_with_orc_animations.flip_h = true
 			perform_dash(delta)
 			
 	move_and_slide()
@@ -131,7 +150,13 @@ func boss_movement_logic(distance_to_player: float):
 	else:
 		play_boss__animation("move")
 		var direction = (Global.player.center.global_position - center.global_position).normalized()
-		boss_animations.flip_h = direction.x < 0
+		var deadzone = 0.9
+		if direction.x > deadzone:
+			boss_animations.flip_h = false
+			boss_with_orc_animations.flip_h = false
+		elif direction.x < -deadzone:
+			boss_animations.flip_h = true
+			boss_with_orc_animations.flip_h = true
 		velocity = direction * get_stat("movement_speed")
 
 

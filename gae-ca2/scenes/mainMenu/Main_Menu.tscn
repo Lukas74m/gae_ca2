@@ -249,9 +249,9 @@ position = Vector2(573, 273)
 texture = ExtResource("4_sn6g4")
 
 [node name="Label" type="Label" parent="MainMenuGameInstructions"]
-offset_left = 226.0
+offset_left = 220.0
 offset_top = -172.0
-offset_right = 503.0
+offset_right = 497.0
 offset_bottom = 104.0
 theme_override_fonts/font = ExtResource("5_jqkcq")
 theme_override_font_sizes/font_size = 16
@@ -266,10 +266,10 @@ deinen Helden verbessern
 um stärker zu werden"
 
 [node name="Label2" type="Label" parent="MainMenuGameInstructions"]
-offset_left = 227.0
-offset_top = 125.0
-offset_right = 540.0
-offset_bottom = 330.0
+offset_left = 221.0
+offset_top = 122.0
+offset_right = 534.0
+offset_bottom = 327.0
 theme_override_fonts/font = ExtResource("5_jqkcq")
 theme_override_font_sizes/font_size = 13
 text = "Credits:
@@ -453,9 +453,9 @@ theme_override_font_sizes/font_size = 14
 text = "Version - 1.0"
 
 [node name="Label2" type="Label" parent="."]
-offset_left = 417.0
+offset_left = 408.0
 offset_top = 27.0
-offset_right = 747.0
+offset_right = 738.0
 offset_bottom = 77.0
 theme_override_colors/font_shadow_color = Color(0.288548, 0.139622, 0.00131253, 1)
 theme_override_fonts/font = ExtResource("5_jqkcq")
