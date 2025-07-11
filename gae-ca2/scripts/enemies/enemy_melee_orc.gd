@@ -9,9 +9,9 @@ func _ready():
 func attack():
 	enemy_animations.flip_h = Global.player.get_center_position().x < global_position.x
 	enemy_animations.play("attack")
-	orc_attack.play()
 	attack_cooldown_timer = get_stat("attack_cooldown")
 	await enemy_animations.animation_finished
+	orc_attack.play()
 	enemy_animations.play("idle")
 
 # Overrides enemy_base.gd

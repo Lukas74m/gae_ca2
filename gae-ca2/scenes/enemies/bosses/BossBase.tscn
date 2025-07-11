@@ -1,4 +1,4 @@
-[gd_scene load_steps=119 format=3 uid="uid://uillq8yy1jid"]
+[gd_scene load_steps=120 format=3 uid="uid://uillq8yy1jid"]
 
 [ext_resource type="PackedScene" uid="uid://41vujg0qkyqh" path="res://scenes/enemies/EnemyBase.tscn" id="1_lw1cg"]
 [ext_resource type="Script" uid="uid://dy06kynt7epty" path="res://scripts/enemies/boss_base.gd" id="2_u5uy3"]
@@ -17,6 +17,7 @@
 [ext_resource type="AudioStream" uid="uid://drwrqjwil1pm1" path="res://assets/sounds/enemy attacks/boss_dash.wav" id="15_gbebf"]
 [ext_resource type="AudioStream" uid="uid://cv3t8s0fhhcsy" path="res://assets/sounds/enemy attacks/boss_throw.wav" id="16_uhyhl"]
 [ext_resource type="AudioStream" uid="uid://jx54gdqdyod5" path="res://assets/sounds/enemy death/boss_death.wav" id="17_gbebf"]
+[ext_resource type="AudioStream" uid="uid://cwwnxxcjx4yex" path="res://assets/sounds/enemy attacks/boss_melee_on_impact.wav" id="18_uhyhl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kftr7"]
 atlas = ExtResource("9_q2tgc")
@@ -837,6 +838,10 @@ bus = &"SFX"
 [node name="BossDeath" type="AudioStreamPlayer2D" parent="." index="10"]
 process_mode = 3
 stream = ExtResource("17_gbebf")
+bus = &"SFX"
+
+[node name="BossMeleeImpact" type="AudioStreamPlayer2D" parent="." index="11"]
+stream = ExtResource("18_uhyhl")
 bus = &"SFX"
 
 [connection signal="timeout" from="Spawn_entourage_timer" to="." method="_on_spawn_entourage_timer_timeout"]
